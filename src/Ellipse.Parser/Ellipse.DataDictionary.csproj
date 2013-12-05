@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3DF13B67-A376-4584-B63E-630025AB52B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ellipse.DataDictionary</RootNamespace>
+    <AssemblyName>Ellipse.DataDictionary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Assembly.Common.cs">
+      <Link>Properties\Assembly.Common.cs</Link>
+    </Compile>
+    <Compile Include="..\Assembly.Version.cs">
+      <Link>Properties\Assembly.Version.cs</Link>
+    </Compile>
+    <Compile Include="Models\StringModel.cs" />
+    <Compile Include="Parsers\BlockParser.cs" />
+    <Compile Include="Parsers\IModelParser.cs" />
+    <Compile Include="Models\PageHeaderModel.cs" />
+    <Compile Include="Parsers\Lines\Data.cs" />
+    <Compile Include="Parsers\Lines\IRepeatLineMatcher.cs" />
+    <Compile Include="Parsers\Lines\Line.cs" />
+    <Compile Include="Parsers\Lines\LineMatcher.cs" />
+    <Compile Include="Models\IgnoreModel.cs" />
+    <Compile Include="Models\Model.cs" />
+    <Compile Include="Parsers\Lines\ILineMatcher.cs" />
+    <Compile Include="Parsers\Lines\ILineParser.cs" />
+    <Compile Include="Parsers\Lines\LineParser.cs" />
+    <Compile Include="Parsers\Lines\RepeatLineMatcher.cs" />
+    <Compile Include="Parsers\Models\DetailsParser.cs" />
+    <Compile Include="Parsers\Models\RecordLengthParser.cs" />
+    <Compile Include="Parsers\Models\DescriptionParser.cs" />
+    <Compile Include="Parsers\Models\PageHeaderParser.cs" />
+    <Compile Include="Parsers\Models\RecordParser.cs" />
+    <Compile Include="Parsers\SingleLineParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Readers\IReader.cs" />
+    <Compile Include="Readers\StringReader.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

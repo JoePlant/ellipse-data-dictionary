@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ellipse.DataDictionary", "Ellipse.Parser\Ellipse.DataDictionary.csproj", "{3DF13B67-A376-4584-B63E-630025AB52B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ellipse.DataDictionary.Tests", "Ellipse.Parser.Tests\Ellipse.DataDictionary.Tests.csproj", "{B06B8FF1-5492-4A1A-88F0-03068D91079C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DF13B67-A376-4584-B63E-630025AB52B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF13B67-A376-4584-B63E-630025AB52B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF13B67-A376-4584-B63E-630025AB52B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF13B67-A376-4584-B63E-630025AB52B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B06B8FF1-5492-4A1A-88F0-03068D91079C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B06B8FF1-5492-4A1A-88F0-03068D91079C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B06B8FF1-5492-4A1A-88F0-03068D91079C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B06B8FF1-5492-4A1A-88F0-03068D91079C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
