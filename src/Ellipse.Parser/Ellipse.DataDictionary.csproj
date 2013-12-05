@@ -60,6 +60,7 @@
     <Compile Include="Parsers\Lines\ILineParser.cs" />
     <Compile Include="Parsers\Lines\LineParser.cs" />
     <Compile Include="Parsers\Lines\RepeatLineMatcher.cs" />
+    <Compile Include="Parsers\Models\AccessInformationParser.cs" />
     <Compile Include="Parsers\Models\ModuleParser.cs" />
     <Compile Include="Parsers\Models\ModifiedParser.cs" />
     <Compile Include="Parsers\Models\DetailsParser.cs" />

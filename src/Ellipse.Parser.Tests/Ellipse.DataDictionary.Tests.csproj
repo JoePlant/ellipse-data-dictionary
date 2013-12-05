@@ -53,6 +53,7 @@
     <Compile Include="Models\PageHeaderModelUnitTests.cs" />
     <Compile Include="Parsers\Lines\LineParserUnitTests.cs" />
     <Compile Include="Parsers\Lines\RepeatLineMatcherUnitTests.cs" />
+    <Compile Include="Parsers\Models\AccessInformationParserUnitTests.cs" />
     <Compile Include="Parsers\Models\ModuleParserUnitTests.cs" />
     <Compile Include="Parsers\Models\ModifiedParserUnitTests.cs" />
     <Compile Include="Parsers\Models\DetailsParserUnitTests.cs" />
