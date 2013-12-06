@@ -31,5 +31,20 @@
         {
             return new LineMatcher.LineIsEqual(text);
         }
+
+        public static ILineMatcher IsNotEmpty()
+        {
+            return new LineMatcher.LineIsNotEmpty();
+        }
+
+        public static ILineMatcher Optional(ILineMatcher lineMatcher)
+        {
+            return new OptionalLineMatcher(lineMatcher);
+        }
+
+        public static ILineMatcher Or(ILineMatcher primary, ILineMatcher alternate)
+        {
+            return new OrLineMatcher(primary, alternate);
+        }
     }
 }

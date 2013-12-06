@@ -8,8 +8,11 @@ namespace Ellipse.DataDictionary.Parsers.Models
     {
         private static readonly ILineMatcher[] DetailBlock = new[]
             {
-                Line.IsEqual("ACCESS INFORMATION:"),
-                Line.Repeat(Line.Any()).Until(Line.IsEqual("TECHNICAL INFORMATION:")),
+                Line.StartsWith("ACCESS INFORMATION"),
+                Line.Optional(
+                    Line.Repeat(
+                        Line.Any())
+                    .Until(Line.StartsWith("TECHNICAL INFORMATION"))),
             };
 
         public AccessInformationParser() : base(DetailBlock)

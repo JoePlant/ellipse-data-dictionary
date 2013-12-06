@@ -50,6 +50,14 @@ namespace Ellipse.DataDictionary.Parsers.Lines
             }
         }
 
+        public class LineIsNotEmpty : LineMatcher
+        {
+            public override bool Matches(string line)
+            {
+                return !string.IsNullOrEmpty(line);
+            }
+        }
+
         public class LineIsEqual : LineMatcher
         {
             private readonly string text;

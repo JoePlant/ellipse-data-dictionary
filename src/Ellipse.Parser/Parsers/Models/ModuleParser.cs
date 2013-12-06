@@ -8,8 +8,9 @@ namespace Ellipse.DataDictionary.Parsers.Models
     {
         private static readonly ILineMatcher[] ModuleBlock = new[]
             {
-                Line.IsEqual("MODULE:"),
+                Line.StartsWith("MODULE"),
                 Line.Any(),
+                Line.Optional(Line.Repeat(Line.IsEmpty()).Until(Line.IsNotEmpty())),
             };
 
         public ModuleParser() : base(ModuleBlock)

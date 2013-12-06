@@ -5,9 +5,12 @@ using NUnit.Framework;
 namespace Ellipse.DataDictionary.Parsers.Models
 {
     [TestFixture]
-    public class AccessInformationParserUnitTests : TestFixture
+    public class TechnicalInformationParserUnitTests : TestFixture
     {
         private const string lineFeed = "\n";
+
+        private const string name = "[TechnicalInformation]";
+        private const string dataPhrase = "Random";
 
         private string NextLine
         {
@@ -21,24 +24,26 @@ namespace Ellipse.DataDictionary.Parsers.Models
 
         private readonly string[] detailsText = new[]
             {
-                "ACCESS INFORMATION:",
-                "   The file is keyed on a combination of:",
-                "   .  TSUB Number",
-                "   .  TSUB Status",
-                "   .  Line Number",
-                "   Alternate keys are provided for:",
-                "   .  Stock Code",
-                "   .  TSUB Number",
-                "   .  TSUB Status",
-                "   .  Line Number",
-                "TECHNICAL INFORMATION:"
+                "TECHNICAL INFORMATION:",
+                "   STABILITY:",
+                "      Relatively stable,will infrequently be updated after initial of",
+                "      existing TSUB tables.",
+                "   SIZING:",
+                "      The number of existing TSUB tables line items are approx, 36000.",
+                "   REFERENCE FREQUENCY:",
+                "      Referenced frequently in the requisitioning and procurement",
+                "      processess.",
+                "   KEY GROWTH:",
+                "      Random",
+                "",
+                "01  DDF136-RECORD."
             };
 
         private IModelParser parser;
 
         protected override void OnSetUp()
         {
-            parser = new AccessInformationParser();
+            parser = new TechnicalInformationParser();
             base.OnSetUp();
         }
 
@@ -47,19 +52,18 @@ namespace Ellipse.DataDictionary.Parsers.Models
         {
             string text = detailsText[0];
 
-            Assert.That(text,Is.Not.StringContaining("key"));
+            Assert.That(text,Is.Not.StringContaining("TSUB"));
             IReader reader = new StringReader(text);
 
             Assert.That(reader.LineNumber, Is.EqualTo(1));
 
-            Assert.That(parser.Matches(reader), Is.True);
+            Assert.That(parser.Matches(reader), Is.False);
 
             Model model = parser.Parse(reader);
-            Assert.That(model, Is.Not.Null);
-            Assert.That(model.ToString(), Is.StringStarting("[AccessInformation]"));
+            Assert.That(model, Is.Null);
             
-            Assert.That(reader.LineNumber, Is.EqualTo(2));
-            Assert.That(reader.EndOfFile, Is.True);
+            Assert.That(reader.LineNumber, Is.EqualTo(1));
+            Assert.That(reader.EndOfFile, Is.False);
         }
 
         [Test]
@@ -82,8 +86,8 @@ namespace Ellipse.DataDictionary.Parsers.Models
             Assert.That(reader.EndOfFile, Is.False);
             Assert.That(reader.PeekNext(), Is.EqualTo(NextLine));
 
-            Assert.That(model.ToString(), Is.StringStarting("[AccessInformation]"));
-            Assert.That(model.ToString(), Is.StringContaining("TSUB"));
+            Assert.That(model.ToString(), Is.StringStarting(name));
+            Assert.That(model.ToString(), Is.StringContaining(dataPhrase));
         }
 
         [Test]
@@ -106,33 +110,10 @@ namespace Ellipse.DataDictionary.Parsers.Models
             Assert.That(reader.LineNumber, Is.EqualTo(NumberOfLines));
             Assert.That(reader.EndOfFile, Is.False);
 
-            Assert.That(model.ToString(), Is.StringStarting("[AccessInformation]"));
-            Assert.That(model.ToString(), Is.StringContaining("TSUB"));
+            Assert.That(model.ToString(), Is.StringStarting(name));
+            Assert.That(model.ToString(), Is.StringContaining(dataPhrase));
 
             Assert.That(reader.PeekAhead(0), Is.EqualTo(NextLine));
-        }
-
-       [Test]
-        public void ParseEmptyData()
-        {
-            const string text = "ACCESS INFORMATION:\nTECHNICAL INFORMATION:";
-
-            IReader reader = new StringReader(text);
-
-            Assert.That(reader.LineNumber, Is.EqualTo(1));
-
-            Assert.That(parser.Matches(reader), Is.True);
-
-            Model model = parser.Parse(reader);
-            Assert.That(model, Is.Not.Null);
-
-            Assert.That(model, Is.InstanceOf<StringModel>());
-
-            Assert.That(reader.LineNumber, Is.EqualTo(2));
-            Assert.That(reader.EndOfFile, Is.False);
-            Assert.That(reader.PeekNext(), Is.EqualTo(NextLine));
-
-            Assert.That(model.ToString(), Is.StringStarting("[AccessInformation]"));
         }
     }
 }

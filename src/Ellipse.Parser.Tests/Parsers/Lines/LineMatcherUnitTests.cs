@@ -16,12 +16,52 @@ namespace Ellipse.DataDictionary.Parsers.Lines
             AssertMatches(lineMatcher, "Testing", "Testing  ", "Testing that this line matches", "TestingWithoutSpaces");
         }
 
+
+        [Test]
+        public void LineOr()
+        {
+            ILineMatcher lineMatcher = Line.Or(Line.StartsWith("AA"), Line.StartsWith("BB"));
+
+            AssertDoesNotMatch(lineMatcher, null, "", "    ", "test", "TestAA", "TestBB");
+            AssertMatches(lineMatcher, "AA", "BB","AAC", "AATest", "BBTest");
+        }
+
         [Test]
         public void LineContains()
         {
             ILineMatcher lineMatcher = Line.Contains("Testing");
 
             AssertDoesNotMatch(lineMatcher, null, "", "    ", "TESTING: ", "Testin", "testing");
+            AssertMatches(lineMatcher, "Testing", "Testing  ", "Testing that this line matches", "TestingWithoutSpaces",
+                          "That Testing in the middle matches", "At the End: Testing");
+        }
+
+        [Test]
+        public void LineIsEmpty()
+        {
+            ILineMatcher lineMatcher = Line.IsEmpty();
+
+            AssertDoesNotMatch(lineMatcher, null, "    ", "TESTING: ", "Testin", "testing");
+            AssertMatches(lineMatcher, "\n");
+        }
+
+        [Test]
+        public void LineIsNotEmpty()
+        {
+            ILineMatcher lineMatcher = Line.IsNotEmpty();
+
+            AssertMatches(lineMatcher, "    ", "TESTING: ", "Testin", "testing");
+            AssertDoesNotMatch(lineMatcher, null, string.Empty);
+        }
+
+        [Test]
+        public void LineOptional()
+        {
+            ILineMatcher lineMatcher = Line.Optional(Line.Contains("Testing"));
+
+            // matches invalid lines
+            AssertMatches(lineMatcher, null, "", "    ", "TESTING: ", "Testin", "testing");
+            // matches valid lines
             AssertMatches(lineMatcher, "Testing", "Testing  ", "Testing that this line matches", "TestingWithoutSpaces",
                           "That Testing in the middle matches", "At the End: Testing");
         }

@@ -67,6 +67,29 @@ namespace Ellipse.DataDictionary.Parsers.Models
         }
 
         [Test]
+        public void ParseAlternate()
+        {
+            string text = string.Join(lineFeed, detailsText).Replace(":", "");
+
+            IReader reader = new StringReader(text);
+
+            Assert.That(reader.LineNumber, Is.EqualTo(1));
+
+            Assert.That(parser.Matches(reader), Is.True);
+
+            Model model = parser.Parse(reader);
+            Assert.That(model, Is.Not.Null);
+
+            Assert.That(model, Is.InstanceOf<StringModel>());
+
+            Assert.That(reader.LineNumber, Is.EqualTo(3));
+            Assert.That(reader.EndOfFile, Is.True);
+
+            Assert.That(model.ToString(), Is.StringStarting("[MODULE]"));
+            Assert.That(model.ToString(), Is.StringContaining("30DD"));
+        }
+
+        [Test]
         public void ParseWithFollowingText()
         {
             string text = string.Join(lineFeed, detailsText);
@@ -90,6 +113,23 @@ namespace Ellipse.DataDictionary.Parsers.Models
             Assert.That(model.ToString(), Is.StringContaining("30DD"));
 
             Assert.That(reader.PeekAhead(0), Is.EqualTo("Following"));
+        }
+
+        [Test]
+        public void SimpleLineWithExtra2Lines()
+        {
+            string text = string.Join(lineFeed, detailsText) + lineFeed + lineFeed + "Next";
+
+            IReader reader = new StringReader(text);
+            Assert.That(parser.Matches(reader), Is.True);
+            Model model = parser.Parse(reader);
+            Assert.That(model, Is.Not.Null);
+            Assert.That(model, Is.InstanceOf<StringModel>());
+
+            Assert.That(model.ToString(), Is.StringStarting("[MODULE]"));
+            Assert.That(model.ToString(), Is.StringContaining("30DD"));
+
+            Assert.That(reader.PeekNext(), Is.EqualTo("Next"));
         }
 
     }

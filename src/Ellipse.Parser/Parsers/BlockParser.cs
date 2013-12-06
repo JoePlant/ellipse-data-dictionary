@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Ellipse.DataDictionary.Models;
+﻿using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers.Lines;
 using Ellipse.DataDictionary.Readers;
 

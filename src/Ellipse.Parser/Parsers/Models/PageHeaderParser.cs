@@ -7,12 +7,11 @@ namespace Ellipse.DataDictionary.Parsers.Models
     {
         private static readonly ILineMatcher[] PageHeader = new []
             {
-                Line.IsEmpty(),
-                Line.IsEmpty(),
+                Line.Repeat(Line.IsEmpty()).Until(Line.Contains("Page")),
                 Line.Contains("  Page  "),
                 Line.IsEmpty(),
                 Line.StartsWith("Dictionary file : "),
-                Line.IsEmpty(),
+                Line.IsEmpty()
             };
 
         public PageHeaderParser() : base(PageHeader)

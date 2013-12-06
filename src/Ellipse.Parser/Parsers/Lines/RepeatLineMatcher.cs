@@ -6,8 +6,6 @@ namespace Ellipse.DataDictionary.Parsers.Lines
     {
         private readonly ILineMatcher lineMatcher;
         private ILineMatcher until;
-        private int count = int.MaxValue;
-        private int atLeast = 0;
 
         public RepeatLineMatcher(ILineMatcher lineMatcher)
         {
@@ -22,7 +20,6 @@ namespace Ellipse.DataDictionary.Parsers.Lines
             int currentOffset = offset;
 
             bool nextLine = true;
-            int repeatCount = 0;
             while (nextLine & (until == null || !until.Matches(reader, currentOffset, out currentLinesRead)))
             {
                 nextLine = lineMatcher.Matches(reader, currentOffset, out currentLinesRead);
@@ -30,12 +27,11 @@ namespace Ellipse.DataDictionary.Parsers.Lines
                 {
                     totalLinesRead += currentLinesRead;
                     currentOffset += currentLinesRead;
-                    repeatCount++;
                 }
             }
             
             linesRead = totalLinesRead;
-            return linesRead > atLeast;
+            return linesRead > 0;
         }
 
         public IRepeatLineMatcher Until(ILineMatcher untilMatcher)
@@ -44,16 +40,5 @@ namespace Ellipse.DataDictionary.Parsers.Lines
             return this;
         }
 
-        public IRepeatLineMatcher Count(int lines)
-        {
-            count = lines;
-            return this;
-        }
-
-        public IRepeatLineMatcher AtLeast(int lines)
-        {
-            atLeast = lines;
-            return this;
-        }
     }
 }

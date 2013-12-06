@@ -99,5 +99,53 @@ namespace Ellipse.DataDictionary.Parsers.Models
             Assert.That(reader.PeekAhead(0), Is.EqualTo("MODULE:"));
         }
 
+        [Test]
+        public void ParseAlternateFormat()
+        {
+            string text = string.Join(lineFeed, detailsText).Replace("DETAILS", "Details");
+
+            Assert.That(text, Is.Not.StringContaining("DETAILS"));
+
+            IReader reader = new StringReader(text);
+
+            Assert.That(reader.LineNumber, Is.EqualTo(1));
+
+            Model model = parser.Parse(reader);
+            Assert.That(model, Is.Not.Null);
+
+            Assert.That(model, Is.InstanceOf<StringModel>());
+
+            Assert.That(reader.LineNumber, Is.EqualTo(4));
+            Assert.That(reader.EndOfFile, Is.False);
+
+            Assert.That(model.ToString(), Is.StringStarting("[DETAILS]"));
+            Assert.That(model.ToString(), Is.Not.StringContaining("MODULE"));
+
+            Assert.That(reader.PeekAhead(0), Is.EqualTo("MODULE:"));
+        }
+
+        [Test]
+        public void ParseEmptyData()
+        {
+            const string text = "DETAILS:\nMODULE:";
+
+            IReader reader = new StringReader(text);
+
+            Assert.That(reader.LineNumber, Is.EqualTo(1));
+
+            Model model = parser.Parse(reader);
+            Assert.That(model, Is.Not.Null);
+
+            Assert.That(model, Is.InstanceOf<StringModel>());
+
+            Assert.That(reader.LineNumber, Is.EqualTo(2));
+            Assert.That(reader.EndOfFile, Is.False);
+
+            Assert.That(model.ToString(), Is.StringStarting("[DETAILS]"));
+            Assert.That(model.ToString(), Is.Not.StringContaining("MODULE"));
+
+            Assert.That(reader.PeekAhead(0), Is.EqualTo("MODULE:"));
+        }
+
     }
 }
