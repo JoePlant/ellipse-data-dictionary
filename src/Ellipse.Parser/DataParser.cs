@@ -16,53 +16,7 @@ namespace Ellipse.DataDictionary
         private readonly IModelParser[] parsers;
         private readonly List<Model> results = new List<Model>();
 
-        private readonly Dictionary<string, string> corrections = new Dictionary<string, string>()
-            {
-                {
-                    "ACESS INFORMATION:",
-                    "ACCESS INFORMATION:"
-                },
-                {
-                    "ACCESS INFO:",
-                    "ACCESS INFORMATION:"
-                },
-                {
-                    "Record     :  MSF731-RECORD / MIMS",
-                    "Record          :  MSF731-RECORD / MIMS"
-                },
-                {
-                    "Record      : MSFX39-RECORD / MIMS",
-                    "Record          :  MSFX39-RECORD / MIMS"
-                },
-                {
-                    "Description:Resource Requirement File",
-                    "Description     : Resource Requirement File"
-                },                
-                {
-                    "Description : Entity to Contractor Cross Reference",
-                    "Description     : Entity to Contractor Cross Reference"
-                },
-                {
-                    "Record Length   :263 Bytes",
-                    "Record length   : 263 bytes"
-                },
-                {
-                    "Record Length : 78 Bytes",
-                    "Record length   : 78 bytes"
-                },     
-                {
-                    "DETAIL:",
-                    "DETAILS:"
-                },
-                {
-                    " DETAILs:",
-                    "DETAILS:"
-                },
-                {
-                    "DETAILs:",
-                    "DETAILS:"
-                }
-            };
+ 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataParser"/> class.
@@ -93,8 +47,11 @@ namespace Ellipse.DataDictionary
 
                 if (parser == null)
                 {
-                    currentReader = new LookupReader(reader, corrections);
-                    parser = FindParser(currentReader, parsers);
+                    if (Corrections != null)
+                    {
+                        currentReader = new LookupReader(reader, Corrections);
+                        parser = FindParser(currentReader, parsers);
+                    }
                 }
 
                 if (parser == null)
@@ -125,6 +82,8 @@ namespace Ellipse.DataDictionary
         }
 
         public Func<string, bool> OnMissingParser { private get; set; }
+
+        public IDictionary<string,string> Corrections { private get; set; }
 
         private static IModelParser FindParser(IReader reader, IEnumerable<IModelParser> parsers)
         {

@@ -66,7 +66,6 @@
     <Compile Include="Parsers\Lines\RepeatLineMatcher.cs" />
     <Compile Include="Parsers\Models\AccessInformationParser.cs" />
     <Compile Include="Parsers\Models\CobolParser.cs" />
-    <Compile Include="Parsers\Models\EndOfFileParser.cs" />
     <Compile Include="Parsers\Models\TechnicalInformationParser.cs" />
     <Compile Include="Parsers\Models\ModuleParser.cs" />
     <Compile Include="Parsers\Models\ModifiedParser.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Ellipse.DataDictionary
 {
@@ -6,5 +7,6 @@ namespace Ellipse.DataDictionary
     {
         void Parse();
         Func<string, bool> OnMissingParser { set; }
+        IDictionary<string, string> Corrections { set; }
     }
 }
