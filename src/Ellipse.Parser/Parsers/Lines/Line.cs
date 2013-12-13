@@ -46,5 +46,15 @@
         {
             return new OrLineMatcher(primary, alternate);
         }
+
+        public static ILineMatcher FollowedBy(ILineMatcher line, ILineMatcher followedBy)
+        {
+            return new FollowedByMatcher(line, followedBy);
+        }
+
+        public static ILineMatcher Multiple(params ILineMatcher[] lineMatchers)
+        {
+            return new MultipleLineMatcher(lineMatchers);
+        }
     }
 }

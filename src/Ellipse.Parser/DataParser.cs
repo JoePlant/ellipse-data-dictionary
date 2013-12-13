@@ -16,8 +16,6 @@ namespace Ellipse.DataDictionary
         private readonly IModelParser[] parsers;
         private readonly List<Model> results = new List<Model>();
 
- 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DataParser"/> class.
         /// </summary>
@@ -39,12 +37,14 @@ namespace Ellipse.DataDictionary
                 IReader currentReader = reader;
                 IModelParser parser = FindParser(reader, parsers);
 
+                // Try fixing by trimming the lines
                 if (parser == null)
                 {
                     currentReader = new TrimReader(reader);
                     parser = FindParser(currentReader, parsers);
                 }
 
+                // Try fixing by replacing known Corrections
                 if (parser == null)
                 {
                     if (Corrections != null)
@@ -54,6 +54,7 @@ namespace Ellipse.DataDictionary
                     }
                 }
 
+                // Still no Parser found so raise OnMissingParser event
                 if (parser == null)
                 {
                     if (OnMissingParser != null)
@@ -84,6 +85,7 @@ namespace Ellipse.DataDictionary
         public Func<string, bool> OnMissingParser { private get; set; }
 
         public IDictionary<string,string> Corrections { private get; set; }
+        public IList<Model> Results { get { return results; } }
 
         private static IModelParser FindParser(IReader reader, IEnumerable<IModelParser> parsers)
         {

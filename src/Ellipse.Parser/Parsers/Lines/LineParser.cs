@@ -6,22 +6,30 @@ namespace Ellipse.DataDictionary.Parsers.Lines
 {
     public class LineParser : ILineParser
     {
-        private readonly List<Func<string, string>>  parseList; 
+        private readonly List<Func<int, string, string>> standardParseList;
+        private readonly Dictionary<int, ILineParser> lineDictionary; 
        
         public LineParser()
         {
-            parseList = new List<Func<string, string>>();
+            standardParseList = new List<Func<int, string, string>>();
+            lineDictionary = new Dictionary<int, ILineParser>();
         }
-
-        public string Parse(string line)
+        
+        public string Parse(int lineNo, string line)
         {
-            return parseList.Aggregate(line, (current, func) => func(current));
+            ILineParser lineParser;
+            if (lineDictionary.TryGetValue(lineNo, out lineParser))
+            {
+                return lineParser.Parse(lineNo, line);
+            }
+
+            return standardParseList.Aggregate(line, (current, func) => func(lineNo, current));
         }
 
         public ILineParser IgnoreStart(string start)
         {
-            parseList.Add(
-                    line => (line != null && line.StartsWith(start)) 
+            standardParseList.Add(
+                    (i, line) => (line != null && line.StartsWith(start)) 
                             ? line.Substring(start.Length) 
                             : line
                          );
@@ -30,17 +38,65 @@ namespace Ellipse.DataDictionary.Parsers.Lines
 
         public ILineParser IgnoreEnd(string end)
         {
-            parseList.Add(
-                line => (line != null && line.EndsWith(end))
+            standardParseList.Add(
+                (i, line) => (line != null && line.EndsWith(end))
                             ? line.Substring(0, line.Length - end.Length)
                             : line
              );
             return this;
         }
 
+        public ILineParser IgnoreAfter(string marker)
+        {
+            standardParseList.Add(
+                (i, line) => (line != null && line.Contains(marker))
+                            ? line.Substring(0, line.IndexOf(marker, StringComparison.InvariantCulture))
+                            : line
+                );
+            return this;
+        }
+
+        public ILineParser IgnoreBefore(string marker)
+        {
+            standardParseList.Add(
+                (i, line) => (line != null && line.Contains(marker))
+                            ? line.Substring(line.IndexOf(marker, StringComparison.InvariantCulture)+1)
+                            : line
+                );
+            return this;
+        }
+
         public ILineParser Trim()
         {
-            parseList.Add(line => !string.IsNullOrEmpty(line) ? line.Trim() : line);
+            standardParseList.Add(
+                (i, line) => !string.IsNullOrEmpty(line)
+                            ? line.Trim()
+                            : line
+                );
+            return this;
+        }
+
+        public ILineParser RemoveSpaces()
+        {
+            standardParseList.Add(
+                (i, line) => line != null && line.Contains(" ")
+                            ? string.Join(" ", line.Split(new []{" "}, StringSplitOptions.RemoveEmptyEntries))
+                            : line
+                );
+            return this;
+        }
+
+        public ILineParser IgnoreAll()
+        {
+            standardParseList.Add(
+                (i,line) => null
+                );
+            return this;
+        }
+
+        public ILineParser OnLineNumber(int lineNo, ILineParser lineParser)
+        {
+            lineDictionary.Add(lineNo, lineParser);
             return this;
         }
     }

@@ -16,10 +16,10 @@ namespace Ellipse.DataDictionary.Parsers
         public bool Matches(IReader reader)
         {
             int linesRead;
-            return MatcheLines(reader, out linesRead);
+            return MatchLines(reader, out linesRead);
         }
 
-        private bool MatcheLines(IReader reader, out int linesRead)
+        private bool MatchLines(IReader reader, out int linesRead)
         {
             int offset = 0;
             foreach (ILineMatcher lineMatcher in lineMatchers)
@@ -41,7 +41,7 @@ namespace Ellipse.DataDictionary.Parsers
         public Model Parse(IReader reader)
         {
             int linesRead;
-            if (MatcheLines(reader, out linesRead))
+            if (MatchLines(reader, out linesRead))
             {
                 string[] lines = reader.ReadLines(linesRead);
                 return CreateModel(lines);

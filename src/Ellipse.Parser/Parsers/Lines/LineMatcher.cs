@@ -91,7 +91,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
 
         public override string ToString()
         {
-            return this.GetType().Name;
+            return GetType().Name;
         }
     }
 }

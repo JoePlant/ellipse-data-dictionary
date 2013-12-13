@@ -52,6 +52,12 @@
     </Compile>
     <Compile Include="DataParserUnitTests.cs" />
     <Compile Include="Models\PageHeaderModelUnitTests.cs" />
+    <Compile Include="Parsers\Cobol\ClassParserUnitTests.cs" />
+    <Compile Include="Parsers\Cobol\PropertyParserUnitTests.cs" />
+    <Compile Include="ParserTestFixture.cs" />
+    <Compile Include="System\CobolUnitTests.cs" />
+    <Compile Include="Parsers\Lines\MultipleLineMatcherUnitTests.cs" />
+    <Compile Include="Parsers\Lines\FollowByLineMatcherUnitTests.cs" />
     <Compile Include="Parsers\Lines\LineParserUnitTests.cs" />
     <Compile Include="Parsers\Lines\RepeatLineMatcherUnitTests.cs" />
     <Compile Include="Parsers\Models\AccessInformationParserUnitTests.cs" />
@@ -81,7 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\Cobol\MSF004-RECORD.rpt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -48,10 +48,21 @@
     </Compile>
     <Compile Include="DataParser.cs" />
     <Compile Include="IDataParser.cs" />
+    <Compile Include="Models\CobolModel.cs" />
     <Compile Include="Models\StringModel.cs" />
     <Compile Include="Parsers\BlockParser.cs" />
+    <Compile Include="Parsers\Cobol\Prefix.cs" />
+    <Compile Include="Parsers\Cobol\DataTypeParser.cs" />
+    <Compile Include="Parsers\Cobol\PropertyParser.cs" />
+    <Compile Include="Parsers\Cobol\CommentParser.cs" />
+    <Compile Include="Parsers\Cobol\EnumParser.cs" />
+    <Compile Include="Parsers\Cobol\EnumValueParser.cs" />
+    <Compile Include="Parsers\Cobol\ClassParser.cs" />
     <Compile Include="Parsers\IModelParser.cs" />
     <Compile Include="Models\PageHeaderModel.cs" />
+    <Compile Include="Parsers\Lines\Comment.cs" />
+    <Compile Include="Parsers\Lines\MultipleLineMatcher.cs" />
+    <Compile Include="Parsers\Lines\FollowedByMatcher.cs" />
     <Compile Include="Parsers\Lines\OptionalLineMatcher.cs" />
     <Compile Include="Parsers\Lines\Data.cs" />
     <Compile Include="Parsers\Lines\IRepeatLineMatcher.cs" />

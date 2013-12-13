@@ -23,7 +23,7 @@ namespace Ellipse.DataDictionary.Parsers.Models
         {
             if (lines.Length > 0)
             {
-                return new StringModel("Modified", Data.IgnoreStart(prefix).Trim().Parse(lines[0]));
+                return new StringModel("Modified", Data.IgnoreStart(prefix).Trim().Parse(1,lines[0]));
             }
             return null;
         }

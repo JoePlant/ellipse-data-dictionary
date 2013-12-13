@@ -7,37 +7,75 @@ namespace Ellipse.DataDictionary.Parsers.Lines
     public class LineParserUnitTests : TestFixture
     {
         [Test]
-        public void LineStartsWith()
+        public void IgnoreStart()
         {
             ILineParser lineParser = Data.IgnoreStart("Testing:");
 
-            AssertDoesNotMatch(lineParser, "Data", null, "", "TESTING: ", "Testin", "   Testing", "testing", "Ending with Testing");
-            AssertMatches(lineParser, "Data", "Testing:Data");
-            AssertMatches(lineParser, "", "Testing:");
+            AssertNoChange(lineParser, null, "", "TESTING: ", "Testin", "   Testing", "testing", "Ending with Testing");
+            AssertWillParse(lineParser, "Data", "Testing:Data");
+            AssertWillParse(lineParser, "", "Testing:");
         }
 
         [Test]
-        public void LineContains()
+        public void IgnoreStartAndTrim()
         {
             ILineParser lineParser = Data.IgnoreStart("Testing:").Trim();
 
-            AssertMatches(lineParser, "Data", "Testing:Data", "Testing: Data ", "Testing:Data ", "Testing:   Data");
-            AssertMatches(lineParser, "", "Testing:", "Testing:     ", "Testing: ");
+            AssertWillParse(lineParser, "Data", "Testing:Data", "Testing: Data ", "Testing:Data ", "Testing:   Data");
+            AssertWillParse(lineParser, "", "Testing:", "Testing:     ", "Testing: ");
         }
 
-        private void AssertMatches(ILineParser parser, string expected, params string[] args)
+        [Test]
+        public void IgnoreAfter()
+        {
+            ILineParser lineParser = Data.IgnoreAfter(".");
+
+            AssertWillParse(lineParser, "Data", "Data.Testing", "Data.", "Data.  Testing. ", "Data.   Testing");
+            AssertWillParse(lineParser, "", ".", ".", "");
+            AssertNoChange(lineParser, "Data", "there is no dot", "dot", ",");
+        }
+
+        [Test]
+        public void IgnoreBefore()
+        {
+            ILineParser lineParser = Comment.IgnoreBefore(".");
+
+            AssertWillParse(lineParser, "Data", "TEsting.Data", ".Data", "Testing    .Data");
+            AssertWillParse(lineParser, "", ".", "", "Data.");
+            AssertNoChange(lineParser, "Data", "there is no dot", "dot", ",");
+        }
+
+        [Test]
+        public void IgnoreAll()
+        {
+            ILineParser lineParser = Comment.IgnoreAll();
+
+            AssertWillParse(lineParser, null, "", "Data", "TEsting.Data", ".Data", "Testing    .Data", ".", " any line");
+        }
+
+        [Test]
+        public void RemoveSpaces()
+        {
+            ILineParser lineParser = Data.RemoveSpaces();
+
+            AssertWillParse(lineParser, "One Two", "One Two", "One  Two", " One  Two ", "   One Two");
+            AssertWillParse(lineParser, ".", ".");
+            AssertNoChange(lineParser, "One", "there is no dot", "dot", ",");
+        }
+
+        private void AssertWillParse(ILineParser parser, string expected, params string[] args)
         {
             foreach (string line in args)
             {
-                Assert.That(parser.Parse(line), Is.EqualTo(expected), line);
+                Assert.That(parser.Parse(0,line), Is.EqualTo(expected), line);
             }
         }
 
-        private void AssertDoesNotMatch(ILineParser matcher, string expected, params string[] args)
+        private void AssertNoChange(ILineParser matcher, params string[] args)
         {
             foreach (string line in args)
             {
-                Assert.That(matcher.Parse(line), Is.Not.EqualTo(expected), line);
+                Assert.That(matcher.Parse(0,line), Is.EqualTo(line), line);
             }
         } 
     }
