@@ -1,0 +1,11 @@
+﻿01  MSF005-RECORD.
+    03  KEY-005.                                            [   1] Primary key of MSF005.                   FK:0
+        05  DSTRCT-CODE         PIC X(4).                   [   1] District Code                            MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB,KEY:0
+        05  USER-TYPE           PIC X(2).                   [   5] Type of program writting the telex.      DB,KEY:0
+        05  TLX-SEQ-NO          PIC X(12).                  [   7] Telex sequence number                    DB,KEY:0
+        05  LINE-NO.                                        [  19] Line No. of description                  DB,KEY:0
+            07  LINE-NO-9       PIC 9(4).                   [  19] Line No. of description
+    03  TLX-TEXT                PIC X(72).                  [  23] Single line of comment.                  DB

@@ -46,6 +46,7 @@
     <Compile Include="..\Assembly.Version.cs">
       <Link>Properties\Assembly.Version.cs</Link>
     </Compile>
+    <Compile Include="CombinationParser.cs" />
     <Compile Include="DataParser.cs" />
     <Compile Include="IDataParser.cs" />
     <Compile Include="Models\CobolModel.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Parsers\IModelParser.cs" />
     <Compile Include="Models\PageHeaderModel.cs" />
     <Compile Include="Parsers\Lines\Comment.cs" />
+    <Compile Include="Parsers\Lines\AndLineMatcher.cs" />
     <Compile Include="Parsers\Lines\MultipleLineMatcher.cs" />
     <Compile Include="Parsers\Lines\FollowedByMatcher.cs" />
     <Compile Include="Parsers\Lines\OptionalLineMatcher.cs" />

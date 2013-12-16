@@ -1,5 +1,4 @@
-﻿using Ellipse.DataDictionary.Models;
-using Ellipse.DataDictionary.Parsers.Lines;
+﻿using Ellipse.DataDictionary.Parsers.Lines;
 
 namespace Ellipse.DataDictionary.Parsers.Cobol
 {

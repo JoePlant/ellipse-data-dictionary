@@ -30,15 +30,23 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         public class LineContains : LineMatcher
         {
             private readonly string contains;
+            private bool required;
 
             public LineContains(string contains)
             {
                 this.contains = contains;
+                required = true;
             }
 
             public override bool Matches(string line)
             {
-                return line != null && line.Contains(contains);
+                return line != null && (line.Contains(contains) == required);
+            }
+
+            public ILineMatcher Invert()
+            {
+                required = false;
+                return this;
             }
         }
 

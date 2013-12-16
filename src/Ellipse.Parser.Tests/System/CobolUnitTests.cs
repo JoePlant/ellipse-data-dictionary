@@ -23,11 +23,11 @@ namespace Ellipse.DataDictionary.System
                     new EnumValueParser(), 
                     new EnumParser(),
                     new DataTypeParser(), 
-                    new CommentParser(),
+                    new CommentParser()
                 };
             IDataParser dataParser = new DataParser(reader, parsers);
             dataParser.Corrections = null;
-            dataParser.OnMissingParser = (line) =>
+            dataParser.OnMissingParser = line =>
             {
                 throw new InvalidOperationException("No Parser for: " + reader);
             };
@@ -37,17 +37,55 @@ namespace Ellipse.DataDictionary.System
                 {
                     new CobolModel("Class", "MSF004-RECORD"),
                     
-                    new CobolModel("Property", "KEY-004", "some comment"),
-                    new CobolModel("DataType", "DSTRCT-CODE PIC X(4)", "some comment"),
-                    new CobolModel("DataType", "FULL-PERIOD PIC X(6)", "some comment"),
+                    new CobolModel("Property", "KEY-004", "comment"),
+                    new CobolModel("DataType", "DSTRCT-CODE PIC X(4)", "comment"),
+                    new CobolModel("DataType", "FULL-PERIOD PIC X(6)", "comment"),
                     
-                    new CobolModel("Property", "END-DATE", "some comment"),
-                    new CobolModel("DataType", "END-DATE-9 PIC 9(8)", "some comment"),
+                    new CobolModel("Property", "END-DATE", "comment"),
+                    new CobolModel("DataType", "END-DATE-9 PIC 9(8)", "comment"),
                     
-                    new CobolModel("Property", "GAP-END-DATE", "some comment"),
-                    new CobolModel("DataType", "GAP-END-DATE-9 PIC 9(8)", "some comment"),
+                    new CobolModel("Property", "GAP-END-DATE", "comment"),
+                    new CobolModel("DataType", "GAP-END-DATE-9 PIC 9(8)", "comment"),
                     
-                    new CobolModel("Property", "TAX-PERIOD-CLOSED PIC X(1)", "some comment"),
+                    new CobolModel("DataType", "TAX-PERIOD-CLOSED PIC X(1)", "comment"),
+                };
+            AssertModel(dataParser.Results, expected);
+        }
+
+        [Test]
+        public void ParseMSF005_RECORD()
+        {
+            FileReader reader = new FileReader(@".\Resources\Cobol\MSF005-RECORD.rpt");
+            IModelParser[] parsers = new IModelParser[] {
+                    new ClassParser(), 
+                    new PropertyParser(), 
+             
+                    new EnumValueParser(), 
+                    new EnumParser(),
+                    new DataTypeParser(), 
+                    new CommentParser()
+            };
+            IDataParser dataParser = new DataParser(reader, parsers);
+            dataParser.Corrections = null;
+            dataParser.OnMissingParser = line =>
+            {
+                throw new InvalidOperationException("No Parser for: " + reader);
+            };
+            dataParser.Parse();
+
+            List<Model> expected = new List<Model>
+                {
+                    new CobolModel("Class", "MSF005-RECORD"),
+                    
+                    new CobolModel("Property", "KEY-005", "comment"),
+                    new CobolModel("DataType", "DSTRCT-CODE PIC X(4)", "comment"),
+                    new CobolModel("DataType", "USER-TYPE PIC X(2)", "comment"),
+                    new CobolModel("DataType", "TLX-SEQ-NO PIC X(12)", "comment"),
+                    
+                    new CobolModel("Property", "LINE-NO", "comment"),
+                    new CobolModel("DataType", "LINE-NO-9 PIC 9(4)", "comment"),
+                    
+                    new CobolModel("DataType", "TLX-TEXT PIC X(72)", "comment"),
                 };
             AssertModel(dataParser.Results, expected);
         }

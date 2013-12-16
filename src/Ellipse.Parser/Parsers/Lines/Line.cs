@@ -12,6 +12,11 @@
             return new LineMatcher.LineContains(marker);
         }
 
+        public static ILineMatcher DoesNotContain(string marker)
+        {
+            return new LineMatcher.LineContains(marker).Invert();
+        }
+
         public static ILineMatcher IsEmpty()
         {
             return new LineMatcher.LineIsEmpty();
@@ -42,9 +47,19 @@
             return new OptionalLineMatcher(lineMatcher);
         }
 
-        public static ILineMatcher Or(ILineMatcher primary, ILineMatcher alternate)
+        public static ILineMatcher Or(ILineMatcher option1, ILineMatcher option2)
         {
-            return new OrLineMatcher(primary, alternate);
+            return new OrLineMatcher(new [] {option1, option2});
+        }
+
+        public static ILineMatcher Or(ILineMatcher option1, ILineMatcher option2, ILineMatcher option3)
+        {
+            return new OrLineMatcher(new[] { option1, option2, option3});
+        }
+        
+        public static ILineMatcher And(ILineMatcher primary, ILineMatcher alternate)
+        {
+            return new AndLineMatcher(primary, alternate);
         }
 
         public static ILineMatcher FollowedBy(ILineMatcher line, ILineMatcher followedBy)

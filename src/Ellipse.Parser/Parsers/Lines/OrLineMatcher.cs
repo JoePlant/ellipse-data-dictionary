@@ -1,28 +1,21 @@
-﻿using Ellipse.DataDictionary.Readers;
+﻿using System.Linq;
+using Ellipse.DataDictionary.Readers;
 
 namespace Ellipse.DataDictionary.Parsers.Lines
 {
     public class OrLineMatcher : ILineMatcher
     {
-        private readonly ILineMatcher primary;
-        private readonly ILineMatcher alternate;
+        private readonly ILineMatcher[] options;
 
-        public OrLineMatcher(ILineMatcher primary, ILineMatcher alternate)
+        public OrLineMatcher(ILineMatcher[] options)
         {
-            this.primary = primary;
-            this.alternate = alternate;
+            this.options = options;
         }
 
         public bool Matches(IReader reader, int offset, out int linesRead)
         {
-            int lines;
-            if (primary.Matches(reader, offset, out lines))
-            {
-                linesRead = lines;
-                return true;
-            }
-
-            if (alternate.Matches(reader, offset, out lines))
+            int lines = 0;
+            if (options.Any(option => option.Matches(reader, offset, out lines)))
             {
                 linesRead = lines;
                 return true;

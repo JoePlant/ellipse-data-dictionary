@@ -27,12 +27,32 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         }
 
         [Test]
+        public void LineAnd()
+        {
+            ILineMatcher lineMatcher = Line.And(Line.Contains("One"), Line.Contains("Two"));
+
+            AssertDoesNotMatch(lineMatcher, null, "", "    ", "One", "Two", "Three", "One One", "Two Two");
+            AssertMatches(lineMatcher, "OneTwo", "TwoOne", "  One  Two  ", "  Two  One  ", "One  Two", "Two  One", "One One Two", "One Two Two");
+        }
+
+        [Test]
         public void LineContains()
         {
             ILineMatcher lineMatcher = Line.Contains("Testing");
 
             AssertDoesNotMatch(lineMatcher, null, "", "    ", "TESTING: ", "Testin", "testing");
             AssertMatches(lineMatcher, "Testing", "Testing  ", "Testing that this line matches", "TestingWithoutSpaces",
+                          "That Testing in the middle matches", "At the End: Testing");
+        }
+
+        [Test]
+        public void DoesNotContain()
+        {
+            ILineMatcher lineMatcher = Line.DoesNotContain("Testing");
+            
+            // need to use "\n" as an empty string
+            AssertMatches(lineMatcher, "\n", "    ", "TESTING: ", "Testin", "testing");
+            AssertDoesNotMatch(lineMatcher, "Testing", "Testing  ", "Testing that this line matches", "TestingWithoutSpaces",
                           "That Testing in the middle matches", "At the End: Testing");
         }
 
@@ -110,7 +130,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
             {
                 StringReader reader = new StringReader(line);
                 int lines;
-                Assert.That(matcher.Matches(reader, 0, out lines), Is.True, line);
+                Assert.That(matcher.Matches(reader, 0, out lines), Is.True, "Line: '{0}'", line);
             }
         }
 

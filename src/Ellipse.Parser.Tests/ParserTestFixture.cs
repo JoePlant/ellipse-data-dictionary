@@ -28,8 +28,25 @@ namespace Ellipse.DataDictionary
             return dataParser;
         }
 
-        protected void AssertResults(IDataParser dataParser, params Model[] expectedModel)
+
+        protected void AssertDoesNotParse(string[] cases)
         {
+            foreach (string line in cases)
+            {
+                bool isMissing = false;
+                StringReader reader = new StringReader(line);
+                IDataParser dataParser = new DataParser(reader, new IModelParser[] {new T()});
+                dataParser.OnMissingParser = s => isMissing = true;
+                dataParser.Parse();
+
+                Assert.That(dataParser.Results, Is.Empty, "Results should be empty: {0}", line);
+                Assert.That(isMissing, Is.True, "Missing Parser: {0}", line);
+            }
+        }
+
+        protected void AssertParsed(IDataParser dataParser, params Model[] expectedModel)
+        {
+            dataParser.Parse();
             string actual = BuildStringModel(dataParser.Results);
             string expect = BuildStringModel(expectedModel);
 

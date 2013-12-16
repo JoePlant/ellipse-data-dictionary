@@ -53,6 +53,8 @@
     <Compile Include="DataParserUnitTests.cs" />
     <Compile Include="Models\PageHeaderModelUnitTests.cs" />
     <Compile Include="Parsers\Cobol\ClassParserUnitTests.cs" />
+    <Compile Include="Parsers\Cobol\DataTypeParserUnitTests.cs" />
+    <Compile Include="Parsers\Cobol\ExampleStrings.cs" />
     <Compile Include="Parsers\Cobol\PropertyParserUnitTests.cs" />
     <Compile Include="ParserTestFixture.cs" />
     <Compile Include="System\CobolUnitTests.cs" />
@@ -87,6 +89,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\Cobol\MSF005-RECORD.rpt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Cobol\MSF004-RECORD.rpt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
