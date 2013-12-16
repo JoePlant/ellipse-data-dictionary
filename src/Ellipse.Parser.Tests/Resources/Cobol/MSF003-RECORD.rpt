@@ -1,0 +1,6 @@
+﻿01  MSF003-RECORD.
+    03  KEY-003.                                            [   1] key 003                                  FK:0
+        05  ATTR-NAME-LONG      PIC X(64).                  [   1] Long Attribute Name                      DB,KEY:0
+    03  AIX1-KEY-003.                                       [  65] Alternative key for short Attribute Name FK:1
+        05  ATTR-NAME-SHRT      PIC X(14).                  [  65] Short Attribute Name                     DB,KEY:1
+    03  AGE-METHOD              PIC X(2).                   [  79] Ageing Method                            DB

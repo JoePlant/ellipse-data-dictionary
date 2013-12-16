@@ -8,7 +8,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
     public class PropertyParserUnitTests : ParserTestFixture<PropertyParser>
     {
         [Test]
-        public void SingleLine()
+        public void SingleLine03()
         {
             StringReader reader = new StringReader(ExampleStrings.Property.Case1);
             IDataParser parser = CreateDataParser(reader);
@@ -16,7 +16,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
-        public void Twolines()
+        public void MultLineLevel03()
         {
             StringReader reader = new StringReader(ExampleStrings.Property.Case2);
             IDataParser parser = CreateDataParser(reader);
@@ -24,9 +24,33 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
+        public void MultiLineLevel05()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case3);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "CONTROL-ID", "[ 29] ID's Subledger,MIMS Sys & InterComp Ctl MANDATORY\nDB,KEY:0"));
+        }
+
+        [Test]
+        public void SingleLineLevel07()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case4);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "CONTROL-NUMBER", "[ 30] No Identifying MIMS System Ctl Account"));
+        }
+
+        [Test]
+        public void SingleLineLevel09()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case5);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "INT-DSTRCT", "[ 30] InterDist Dist Code Ident. Target Dist MANDATORY VALUE\n(DSTRCT-CODE) ERROR\n(6534) ACTIVE"));
+        }
+
+        [Test]
         public void PropertyFollowedByDataType()
         {
-            StringReader reader = new StringReader(ExampleStrings.Property.FollowingCase3);
+            StringReader reader = new StringReader(ExampleStrings.Property.FollowingCase6);
             IDataParser parser = CreateDataParser(reader, new DataTypeParser());
             AssertParsed(parser,
                          new CobolModel("Property", "LINE-NO", "[  19] Line No. of description"),
@@ -44,5 +68,12 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             AssertDoesNotParse(ExampleStrings.DataType.AllCases());
         }
+
+        [Test]
+        public void EnumDataTypeCases()
+        {
+            AssertDoesNotParse(ExampleStrings.EnumValue.AllCases());
+        }
+
     }
 }

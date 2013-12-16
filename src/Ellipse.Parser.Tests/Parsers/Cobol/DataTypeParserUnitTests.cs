@@ -24,6 +24,14 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
+        public void SingleLine11()
+        {
+            StringReader reader = new StringReader(ExampleStrings.DataType.Case3);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("DataType", "SUBLEDGER-TYPE PIC X(2)", "[ 30] Subledger Account Type OPTIONAL TABLE ('SA')"));
+        }
+
+        [Test]
         public void Multiline()
         {
             StringReader reader = new StringReader(ExampleStrings.DataType.Case4);
@@ -42,5 +50,12 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             AssertDoesNotParse(ExampleStrings.Property.SimpleCases());
         }
+
+        [Test]
+        public void EnumDataTypeCases()
+        {
+            AssertDoesNotParse(ExampleStrings.EnumValue.AllCases());
+        }
+
     }
 }

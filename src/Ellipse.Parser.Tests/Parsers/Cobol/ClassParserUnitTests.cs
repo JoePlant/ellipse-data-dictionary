@@ -22,5 +22,18 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             AssertDoesNotParse(ExampleStrings.Property.SimpleCases());
         }
+
+        [Test]
+        public void DataTypeCases()
+        {
+            AssertDoesNotParse(ExampleStrings.DataType.AllCases());
+        }
+
+        [Test]
+        public void EnumDataTypeCases()
+        {
+            AssertDoesNotParse(ExampleStrings.EnumValue.AllCases());
+        }
+
     }
 }

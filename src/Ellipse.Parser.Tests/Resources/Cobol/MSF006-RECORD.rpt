@@ -1,0 +1,51 @@
+﻿01  MSF006-RECORD.
+    03  KEY-006.                                            [   1] Primary Key of MSF006                    FK:0
+        05  DSTRCT-CODE         PIC X(4).                   [   1] District Code                            MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB,KEY:0
+        05  ACCOUNT-CODE        PIC X(24).                  [   5] Account Code Number                      ACCOUNT-CODE
+                                                                                                            DB,KEY:0
+        05  CONTROL-ID.                                     [  29] ID's Subledger,MIMS Sys & InterComp Ctl  MANDATORY
+                                                                                                            DB,KEY:0
+            07  CONTROL-TYPE    PIC X(1).                   [  29] Defines Account Controls                 VALUE ('I','M','S')
+                88  MIMS-CONTROL VALUE 'M'.                        Indicates MIMS System Control Account
+                88  INTER-DSTRCT-CTL VALUE 'I'.                    Inter District Control
+                88  SUBLEDGER-CTL VALUE 'S'.                       Indicates Subledger Facility Ctl Account
+                88  TABLE-DSTRCT-CTL VALUE 'T'.                    Table of Interdistrict Details Facility
+            07  CONTROL-NUMBER.                             [  30] No Identifying MIMS System Ctl Account
+                09  INT-DSTRCT.                             [  30] InterDist Dist Code Ident. Target Dist   MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  SUBLEDGER-TYPE PIC X(2).            [  30] Subledger Account Type                   OPTIONAL TABLE ('SA')
+                    11  FILLER  PIC X(2).
+        05  INVENT-CAT          PIC X(2).                   [  34] Inventory Category                       TABLE ('IG')
+                                                                                                            DB,KEY:0
+    03  AIX1-KEY-006.                                       [  36] Alternate Key of MSF006                  FK:1
+        05  DSTRCT-CODE-2       PIC X(4).                   [  36] Occurrence #2 of District Code           VALUE (DSTRCT-CODE)
+                                                                                                            MANDATORY ERROR (0049)
+                                                                                                            COPY,KEY:1
+        05  CONTROL-ID-2        PIC X(5).                   [  40] ID's Subledger,MIMS Sys & InterComp Ctl  MANDATORY
+                                                                                                            COPY,KEY:1
+        05  INVENT-CAT-2        PIC X(2).                   [  45] Inventory Category                       TABLE ('IG')
+                                                                                                            COPY,KEY:1
+        05  ACCOUNT-CODE-2      PIC X(24).                  [  47] Account Code number                      ACCOUNT-CODE
+                                                                                                            COPY,KEY:1
+    03  SL-ACCT-TY-IND          PIC X(2).                   [  71] Subledger Account Type Indicator         OPTIONAL VALUE
+                                                                                                            ('PO','IN')
+                                                                                                            DB
+        88  PO-NO-ITEM          VALUE 'PO'.                        Purchase Order Number Item
+        88  INVOICE-NUM         VALUE 'IN'.                        Invoice Number
+    03  TARGT-ACCT-CDE          PIC X(24).                  [  73] Receiving Dstrct's Interdstrct A/c Code  ACCOUNT-CODE
+                                                                                                            DB
+    03  TARGT-OFF-ACCT          PIC X(24).                  [  97] Receiving Dists InterDist Offset A/c Cde ACCOUNT-CODE
+                                                                                                            DB
+    03  TARGT-AUTO-SW           PIC X(1).                   [ 121] AutoG'rate InterDst A/c Entr in Rcv Dist OPTIONAL VALUE ('Y','N')
+                                                                                                            DB
+        88  TARGT-AUTOGEN       VALUE 'Y'.                         Auto Generate Interdistrict Acct Entries
+        88  TARGT-NO-AUTOGEN    VALUE 'N'.                         No Autogenerate Interdistrict Account
+                                                                   Entries
+    03  TARGT-OFF-SW            PIC X(1).                   [ 122] If Src Dist Set in Target Offs A/c Entry OPTIONAL VALUE ('Y','N')
+                                                                                                            DB
+        88  TARGT-OFF-DIST      VALUE 'Y'.                         Target Offset
+        88  TARGT-NO-OFF-DIST   VALUE 'N'.                         No Target Offset
