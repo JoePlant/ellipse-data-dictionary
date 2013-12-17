@@ -1,0 +1,17 @@
+﻿ 01  MSW000-RECORD.
+     03  KEY-W000.                                           [   1] Primary key of MSW000                    FK:0,DB,KEY:0,DA
+         05  USERNO              PIC X(4).                   [   1] MIMS User sequence number
+         05  W000-KEY            PIC X(10).                  [   5] key data for F000 type
+     03  W000-FILE-FLAGS         PIC X(1).                   [  15] Work File Flags                          DB
+     03  W000-FILE-DATA.                                     [  16] Work file data
+         05  W000-DATA-REC.                                  [  16] Work file data DB,RAW                    DB,RAW
+             07  W000-DATA-GRP.                              [  16] Work file data
+                 09  W000-DATA-1 PIC X(95).                  [  16] Ninety seven bytes of work data.
+                 09  W000-DATA-2 PIC X(95).                  [ 111] Ninety seven bytes of work data.
+                 09  W000-DATA-3 PIC X(95).                  [ 206] Ninety seven bytes of work data.
+             07  W000-DATA-RT    REDEFINES W000-DATA-GRP.    [  16] Work file data
+                 09  W000-REDEF-REC.                         [  16] Work file data
+                     11  W000-DATA PIC X(95) OCCURS 3        [  16] Ninety five bytes 0f work data
+                                 INDEXED BY W000-DATA-IDX.
+     03  FILLER                  PIC X(4).
+1

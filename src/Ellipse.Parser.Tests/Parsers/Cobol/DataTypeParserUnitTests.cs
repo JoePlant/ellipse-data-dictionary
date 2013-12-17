@@ -56,11 +56,19 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
-        public void Multiline()
+        public void MultiLine05()
         {
             StringReader reader = new StringReader(ExampleStrings.DataType.Case05MultipleLines);
             IDataParser parser = CreateDataParser(reader);
             AssertParsed(parser, new CobolModel("DataType", "DSTRCT-CODE PIC X(4)", "[ 1] District Code MANDATORY VALUE\n(DSTRCT-CODE) ERROR\n(6534) ACTIVE\nDB,KEY:0"));
+        }
+
+        [Test]
+        public void MultiLine31()
+        {
+            StringReader reader = new StringReader(ExampleStrings.DataType.Case31MultipleLines);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("DataType", "MSF062-DATA-2-062-PB PIC X(24)", "[ 33] Reference data 2"));
         }
 
         [Test]

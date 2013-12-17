@@ -51,6 +51,12 @@ namespace Ellipse.DataDictionary
                     parser = FindParser(currentReader, parsers);
                 }
 
+                // Try fixing trimming off 1 char
+                if (parser == null)
+                {
+                    currentReader = new TrimLeftReader(reader, 1);
+                    parser = FindParser(currentReader, parsers);
+                }
 
                 // Try fixing by replacing known Corrections
                 if (parser == null)

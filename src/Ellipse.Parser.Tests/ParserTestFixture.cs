@@ -14,11 +14,6 @@ namespace Ellipse.DataDictionary
     [TestFixture]
     public abstract class ParserTestFixture<T> : TestFixture where T : IModelParser, new()
     {
-        protected T CreateParser()
-        {
-            return new T();
-        }
-
         protected IDataParser CreateDataParser(IReader reader, params IModelParser[] optional)
         {
             List<IModelParser> parsers = new List<IModelParser> {new T()};
@@ -30,7 +25,6 @@ namespace Ellipse.DataDictionary
             };
             return dataParser;
         }
-
 
         protected void AssertDoesNotParse(string[] cases)
         {
@@ -70,14 +64,19 @@ namespace Ellipse.DataDictionary
             return builder.ToString();
         }
 
-        protected void ParseFile(string fileName)
+        protected void ParseFile(string fileName, params IModelParser[] additionalParsers)
         {
             string methodName = new StackTrace().GetFrame(1).GetMethod().Name.Replace("_", "-");
             FileInfo file = new FileInfo(fileName);
             Assert.That(file.Exists, Is.True, "File doesn't exist {0}", fileName);
 
             FileReader reader = new FileReader(fileName);
-            IDataParser dataParser = new DataParser(reader, new IModelParser[] { new T() });
+            List<IModelParser> list = new List<IModelParser> {new T()};
+            if (additionalParsers.Length > 0)
+            {
+                list.AddRange(additionalParsers);
+            }
+            IDataParser dataParser = new DataParser(reader, list.ToArray());
             dataParser.OnMissingParser = s =>
                 {
                     Assert.Fail("Unable to Parse: {0}", reader);
@@ -86,9 +85,10 @@ namespace Ellipse.DataDictionary
             dataParser.Parse();
 
             Assert.That(dataParser.Results, Is.Not.Empty, "Results should not be empty");
+            Assert.That(dataParser.Results[0], Is.TypeOf<CobolModel>(), "Expected a Cobol Model");
 
             CobolModel classModel = dataParser.Results[0] as CobolModel;
-            Assert.That(classModel, Is.Not.Null);
+            Assert.That(classModel, Is.Not.Null, "Class Model not found: {0}", dataParser.Results[0]);
             if (classModel != null)
             {
                 Assert.That(file.Name, Is.StringContaining(classModel.Data), "Class name doesn't match the filename");

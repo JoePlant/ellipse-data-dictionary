@@ -56,7 +56,12 @@ namespace Ellipse.DataDictionary
                 {
                     "DETAILs:",
                     "DETAILS:"
+                },
+                {
+                    "1",
+                    ""
                 }
+
             };
 
         [Test]
@@ -84,7 +89,6 @@ namespace Ellipse.DataDictionary
         }
 
         [Test]
-        [Explicit("Work in progress")]
         public void SystemTests()
         {
             IReader reader = new FileReader(@".\Resources\DataDictionary\datadict.rpt");
@@ -99,6 +103,7 @@ namespace Ellipse.DataDictionary
                     new RecordParser(),
                     new TechnicalInformationParser(),
                     new CobolParser(), 
+                    new IgnoreParser(), 
                 };
             IDataParser dataParser = new DataParser(reader, parsers);
             dataParser.Corrections = corrections;

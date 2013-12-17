@@ -1,0 +1,677 @@
+﻿01  MSF062-RECORD.
+    03  MSF062-KEY-062.                                     [   1] Primary key of MSF062                    FK:0,DA
+        05  MSF062-PART-1-062   PIC X(2).                   [   1] Reference data type part 1               DB,KEY:0
+            88  MSF062-DRAWING-NO-IND VALUE 'DN'.                  Drawing Number
+            88  MSF062-DIST-CODE VALUE '1D'.                       District
+            88  MSF062-INVOICE-NUMBER VALUE 'E$'.                  Invoice Number
+            88  MSF062-EQUIPMENT-COLLOQUIAL VALUE 'EQ'.            Equipment Colloquial
+            88  MSF062-DSTRCT-STOCK-CODE VALUE '2S'.               District & Stock Code
+            88  MSF062-DSTRCT-JOURNAL VALUE '2J'.                  District and Journal Code
+            88  MSF062-DSTRCT-WORK-ORDER VALUE '2W'.               District And Work Order
+            88  MSF062-EQUIPMENT-NO-1 VALUE 'EN'.                  Equipment Number
+            88  MSF062-DSTRCT-PROJECT VALUE '2P'.                  District and Project Number
+            88  MSF062-DSTRCT-PERIOD VALUE '2D'.                   District Code and Period
+            88  MSF062-DSTRCT-WH-ISSUE-REQ VALUE '2R'.             District Code & Whouse Req No and Item
+            88  MSF062-DISTRICT-CODE-IND VALUE 'DC'.               District Code Indicator
+            88  MSF062-DSTRCT-EQUIP-PROJECT VALUE '3E'.            District + Equipment + Project indicator
+            88  MSF062-DSTRCT-WO-EQUIPMENT VALUE '3W'.             District + Work Order + Equipment
+                                                                   indicator
+            88  MSF062-EQUIP-DSTRCT-PWO-STAT VALUE '3Q'.           Equip. No. + District + Parent WO status
+            88  MSF062-DSTRCT-WO-TASK VALUE '3K'.                  District Code + Work Order + Wo Task No.
+            88  MSF062-EQUIP-STATUS-RAISED VALUE '3P'.             Equipment + WO Status + Raised Date
+            88  MSF062-WORK-GRP-STATUS-PLAN VALUE '4W'.            Work Grp + WO Stat + Orig Method + Plan
+                                                                   Start Date
+            88  MSF062-ASSIGN-STATUS-PLAN VALUE '3A'.              Assign Person + WO Status + Plan Start
+                                                                   Date
+            88  MSF062-DIST-PAR-STATUS-PLAN VALUE '4T'.            Dist + Parent WO + WO Status + Plan
+                                                                   Start Date
+            88  MSF062-WK-GRP-TSK-STAT-PLAN VALUE '4G'.            Work Group + Task Stat + Orig Meth +
+                                                                   Plan Str Date
+            88  MSF062-ASSIGN-TSK-STAT-PLAN VALUE '3G'.            Assign Person + Task Status + Plan Start
+                                                                   Date
+            88  MSF062-DSTRCT-STK-CODE-FLG VALUE '4L'.             Dist + Stk Code
+            88  MSF062-DIST-CURR-BUDG-YY-ST VALUE '5S'.            Dist + Curr Data + Budg Cde + Year +
+                                                                   Statistic Cde
+            88  MSF062-AUTHORISED-BY VALUE 'AU'.                   Authorised By
+            88  MSF062-DSTRCT-DOC-REF VALUE '2F'.                  Dstrct + Document Ref
+            88  MSF062-DIST-DEVICE-NO VALUE '2X'.                  District Code + Device Number
+            88  MSF062-DIST-DEVICE-TY VALUE '2V'.                  District Code + Device Type
+            88  MSF062-DSTRCT-CNT-SHEET VALUE '2U'.                District Code + Count Sheet indicator
+            88  MSF062-GOVT-ID-NO-IND VALUE 'GN'.                  Government Identification Number
+                                                                   indicator
+            88  MSF062-CUST-NO-REFERENCE VALUE '2A'.               Customer No + Customer Reference No
+            88  MSF062-DSTRCT-EQUIP-NO VALUE '2Q'.                 District + Equipment No
+            88  MSF062-DISTRICT-CUST-NUM VALUE '2Z'.               Dstrct + Customer No
+            88  MSF062-DIST-PO-ITM-NO VALUE '3O'.                  District Code + PO Number + PO Item
+                                                                   Number
+            88  MSF062-WGRP-SET-IND VALUE 'WS'.                    Work Group Set
+            88  MSF062-PERSON-REF VALUE 'PN'.                      Person Type & ID
+            88  MSF062-CAUSE-CDE VALUE 'CC'.                       Cause Code
+            88  MSF062-AR-INV-SEQ-NO VALUE '2B'.                   Account Receivable Number + Sequence
+                                                                   Number
+            88  MSF062-REQ-ID-STOCK-CDE VALUE '2Y'.                Requisitioner Id + Stock Code
+            88  MSF062-MSB777-BATCH-RUN-NO VALUE 'BT'.             Batch Run Number
+            88  MSF062-FMS-REQ-NUM VALUE 'FR'.                     FMS Requisition
+            88  MSF062-WAYBILL-NO-IND VALUE 'WB'.                  Waybill number Indicator
+            88  MSF062-FOLLOW-UP-DATE VALUE 'FU'.                  Follow Up Date
+            88  MSF062-MANIFEST-NO-IND VALUE 'MF'.                 Manifest Number Indicator
+            88  MSF062-DIST-IREQ VALUE '2H'.                       District + Ireq no
+        05  MSF062-PART-2-062   PIC X(2).                   [   3] Reference data type part 2               DB,KEY:0
+            88  MSF062-EQUIPMENT-NO-2 VALUE 'EN'.                  Equipment Number
+            88  MSF062-EQUIPMENT-NAME VALUE 'EI'.                  Equipment Name
+            88  MSF062-PERIOD-YYMM-TRAN VALUE '2T'.                Period YYMM and Transaction Id
+            88  MSF062-TRAN-DATE-TRAN-ID VALUE '2I'.               Transaction date plus Transaction Id
+            88  MSF062-YYMM-TRAN-ID-DSTRCT VALUE '3T'.             Period YYMM + Transaction ID + District
+                                                                   indicator
+            88  MSF062-EMPID-TDATE-SEQNO VALUE '3F'.               Employee ID + Tran Date + Tran Seq No
+            88  MSF062-BLANK-DATA VALUE 'CC'.                      Blank
+            88  MSF062-COMMS-ACCOUNT-CODE VALUE 'CA'.              Commitments Account Code Indicator
+            88  MSF062-NEW-ACCOUNT-CODE VALUE 'NA'.                New Account Code indicator
+            88  MSF062-WILD-ACCOUNT-CODE VALUE 'WA'.               Wildcarded Account Code indicator
+            88  MSF062-REQ-COST-ALLOC VALUE 'RC'.                  Requisition Cost Allocation indicator
+            88  MSF062-STK-REVSD-DATE-TRAN VALUE '3S'.             Stock code and reversed process date &
+                                                                   Tran no
+            88  MSF062-DSTRCT-PARENT-WO VALUE '2O'.                District Code + Parent Work Order
+            88  MSF062-DSTRCT-WORK-ORDER-2 VALUE '2W'.             District And Work Order
+            88  MSF062-DSTRCT-WO-TASK-2 VALUE '3K'.                District Code + Work Order + Wo Task No.
+            88  MSF062-BUDGET-ACCOUNT-CODE VALUE 'BA'.             Budget Account Code
+            88  MSF062-DSTRCT-DRAWING-NO VALUE '2N'.               District Code + Drawing Number
+            88  MSF062-DSTRCT-DOC-NO VALUE '2M'.                   Dstrct + Document No
+            88  MSF062-DIST-DEVICE-NAME VALUE '2C'.                District Code + Device Name
+            88  MSF062-WILD-ACCT-RPT VALUE 'WB'.                   Wildcard Account for Preview/Report
+            88  MSF062-DSTRCT-ASSET-QTY VALUE '3D'.                District Code + Asset No + Asset Qty
+                                                                   indicator
+            88  MSF062-DSTRCT-SUPPLIER-NO VALUE '2L'.              District Code and Supplier Number
+            88  MSF062-DIST-AR-INV-NO VALUE '2E'.                  Dstrct + Accts Rcv Inv No
+            88  MSF062-DSTRCT-CUST-NO VALUE 'CU'.                  Dstrct + Customer No
+            88  MSF062-DSTRCT-IREQ-ITEM VALUE '3R'.                Dstrct + WH Issue Req + Item
+            88  MSF062-DR-DIST-ST-ITM-NO VALUE 'DR'.               Dstrct+DR Itm Stat+DR No+DR Itm No
+            88  MSF062-EXTERNAL-DOC-NO VALUE 'DO'.                 External Document Number
+            88  MSF062-WORK-GRP-IND VALUE 'WG'.                    Work Group
+            88  MSF062-DIST-INC-CLM VALUE '3N'.                    District Incident Claim
+            88  MSF062-AR-PI-INV-NO VALUE '2A'.                    Accounts Receivable Periodic Installment
+            88  MSF062-MESSAGE-ITEM VALUE 'MI'.                    Message Item
+            88  MSF062-FMS-REQ-SENT VALUE 'FS'.                    Foreign Military Requisition Sent
+            88  MSF062-EMP-ETP-CODE VALUE 'EP'.                    Employee + Training Plan Code
+            88  MSF062-CONTAINER-ID-IND VALUE 'CT'.                Container Id Indicator
+            88  MSF062-SURV-SENT-DST-IREQ VALUE '4S'.              Survey + Sentence + Dist + Ireq No
+        05  MSF062-DATA-1-062.                              [   5] Reference data 1                         DB,KEY:0
+            07  MSF062-DATA-1-062-AU.                       [   5] Reference data 1
+                09  MSF062-AUTHSD-BY-AU PIC X(10).          [   5] Employee identification code             EMPLOYEE
+                09  FILLER      PIC X(14).
+            07  MSF062-DATA-1-062-CC REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-CAUSE-CODE-CC PIC X(5).          [   5] Cause Code
+                09  FILLER      PIC X(19).
+            07  MSF062-DATA-1-062-DC REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-DC PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  FILLER      PIC X(20).
+            07  MSF062-DATA-1-062-1D REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-1D PIC X(4).         [   5] District Identifier Code
+                09  FILLER      PIC X(20).
+            07  MSF062-DATA-1-062-DN REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DRAWING-NO-DN PIC X(20).         [   5] Drawing number                           OPTIONALIF
+                                                                                                            (DRAW-INDEX-INSTALLED)
+                                                                                                            DATASET (MSF580) WHERE
+                                                                                                            (DSTRCT-CODE =
+                                                                                                            WX-DSTRCT,DRAWING-NO =
+                                                                                                            MSF130-DRAWING-NO) ERROR
+                                                                                                            (6385)
+                09  FILLER      PIC X(4).
+            07  MSF062-DATA-1-062-DP REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-PAID-DATE-DP PIC X(8).           [   5] Date Paid                                DATE MANDATORY LE-TODAY
+                09  FILLER      PIC X(16).
+            07  MSF062-DATA-1-062-EN REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-EQUIP-NO-EN PIC X(12).           [   5] Equipment Number                         OPTIONAL EQUIP-NO-CODE
+                09  FILLER      PIC X(12).
+            07  MSF062-DATA-1-062-GN REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-GOVT-ID-NO-GN PIC X(14).         [   5] Government Identification Number
+                09  FILLER      PIC X(10).
+            07  MSF062-DATA-1-062-PN REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-PERSON-DATA-PN.                  [   5] Person Indicator and Identifier
+                    11  MSF062-PERSON-TYPE-PN PIC X(1).     [   5] Person Type
+                    11  MSF062-PERSON-ID-PN PIC X(10).      [   6] Person ID                                EMPLOYEE
+                09  FILLER      PIC X(13).
+            07  MSF062-DATA-1-062-2A REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-CUST-NO-2A PIC X(6).             [   5] Customer Number                          CUSTOMER MANDATORY
+                09  MSF062-CUST-REF-2A PIC X(10).           [  11] Customer Reference for this Invoice
+                09  FILLER      PIC X(8).
+            07  MSF062-DATA-1-062-2D REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2D PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-FULL-PERIOD-2D.                  [   9] Full Period
+                    11  MSF062-ACCT-PER-CC-2D PIC X(2).     [   9] Account Period
+                    11  MSF062-ACCT-PERIOD-2D PIC X(4).     [  11] Account Period                           PERIOD
+                09  FILLER      PIC X(14).
+            07  MSF062-DATA-1-062-2F REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2F PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-DOCUMENT-REF-2F PIC X(20).       [   9] Document Reference Code
+            07  MSF062-DATA-1-062-2Y REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-REQUEST-BY-2Y PIC X(10).         [   5] User Requesting issue                    EMPLOYEE
+                09  MSF062-STOCK-CODE-2Y PIC X(9).          [  15] Stock code                               STOCK-CODE
+                09  FILLER      PIC X(5).
+            07  MSF062-DATA-1-062-2J REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-JOURNAL-NO-2J PIC X(10).         [   5] Manual Journal Voucher Number
+                09  MSF062-DSTRCT-CODE-2J PIC X(4).         [  15] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  FILLER      PIC X(10).
+            07  MSF062-DATA-1-062-2P REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2P PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-PROJECT-NO-2P PIC X(8).          [   9] Project number                           OPTIONAL DATASET
+                                                                                                            (MSF660) ERROR (0313)
+                09  FILLER      PIC X(12).
+            07  MSF062-DATA-1-062-2Q REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2Q PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-EQUIP-NO-2Q PIC X(12).           [   9] Equipment Number                         OPTIONAL EQUIP-NO-CODE
+                09  FILLER      PIC X(8).
+            07  MSF062-DATA-1-062-2S REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2S PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-STOCK-CODE-2S PIC X(9).          [   9] Stock code                               STOCK-CODE
+                09  FILLER      PIC X(11).
+            07  MSF062-DATA-1-062-2U REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2U PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-COUNT-SHEET-2U PIC X(6).         [   9] Count Sheet
+                09  FILLER      PIC X(14).
+            07  MSF062-DATA-1-062-2V REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2V PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-DEVICE-TYPE-2V PIC X(1).         [   9] Device Type
+                09  FILLER      PIC X(19).
+            07  MSF062-DATA-1-062-2W REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2W PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-WORK-ORDER-2W PIC X(8).          [   9] Work Order number                        WORK-ORDER-CODE
+                09  FILLER      PIC X(12).
+            07  MSF062-DATA-1-062-2X REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2X PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-DEVICE-NUMBER-2X PIC X(4).       [   9] Device Number
+                09  FILLER      PIC X(16).
+            07  MSF062-DATA-1-062-2Z REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2Z PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-CUST-NO-2Z PIC X(6).             [   9] Customer Number                          CUSTOMER MANDATORY
+                09  FILLER      PIC X(14).
+            07  MSF062-DATA-1-062-3A REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-ASSIGN-PERSON-3A PIC X(10).      [   5] Person responsible for job               TABLE ('RC') ERROR
+                                                                                                            (0446)
+                09  MSF062-WO-STATUS-3A.                    [  15] Status of Work Order
+                    11  MSF062-WO-STATUS-M-3A PIC X(1).     [  15] System Allocated Work Order Status
+                    11  MSF062-WO-STATUS-U-3A PIC X(2).     [  16] User Defined Work Order Status
+                09  MSF062-PLAN-STR-DATE-3A PIC X(8).       [  18] Planned start date                       DATE MANDATORY LE-TODAY
+                09  FILLER      PIC X(3).
+            07  MSF062-DATA-1-062-3E REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-3E PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-EQUIP-NO-3E PIC X(12).           [   9] Equipment Number                         OPTIONAL EQUIP-NO-CODE
+                09  MSF062-PROJECT-NO-3E PIC X(8).          [  21] Project number                           OPTIONAL DATASET
+                                                                                                            (MSF660) ERROR (0313)
+            07  MSF062-DATA-1-062-3G REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-ASSIGN-PERSON-3G PIC X(10).      [   5] Person responsible for job               TABLE ('RC') ERROR
+                                                                                                            (0446)
+                09  MSF062-TASK-STATUS-3G PIC X(1).         [  15] Status of task
+                09  MSF062-PLAN-STR-DATE-3G PIC X(8).       [  16] Planned start date                       DATE MANDATORY LE-TODAY
+                09  FILLER      PIC X(5).
+            07  MSF062-DATA-1-062-3O REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-3O PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-PO-NO-3O PIC X(6).               [   9] Purchase order number
+                09  MSF062-PO-ITEM-3O PIC X(3).             [  15] Purchase Order Item Number
+                09  FILLER      PIC X(11).
+            07  MSF062-DATA-1-062-3P REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-EQUIP-NO-3P PIC X(12).           [   5] Equipment Number                         OPTIONAL EQUIP-NO-CODE
+                09  MSF062-WO-STATUS-3P.                    [  17] Status of Work Order
+                    11  MSF062-WO-STATUS-M-3P PIC X(1).     [  17] System Allocated Work Order Status
+                    11  MSF062-WO-STATUS-U-3P PIC X(2).     [  18] User Defined Work Order Status
+                09  MSF062-RAISED-DATE-3P PIC X(8).         [  20] Date raised                              DATE MANDATORY LE-TODAY
+                09  FILLER      PIC X(1).
+            07  MSF062-DATA-1-062-3U REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-EQUIP-NO-3U PIC X(12).           [   5] Equipment Number                         OPTIONAL EQUIP-NO-CODE
+                09  MSF062-WO-STATUS-3U.                    [  17] Status of Work Order
+                    11  MSF062-WO-STATUS-M-3U PIC X(1).     [  17] System Allocated Work Order Status
+                    11  MSF062-WO-STATUS-U-3U PIC X(2).     [  18] User Defined Work Order Status           OPTIONAL TABLE ('WS')
+                                                                                                            ERROR (1780)
+                09  MSF062-REVSD-RAISED-DT-3U PIC X(8).     [  20] Revsd Raised Date
+                09  FILLER      PIC X(1).
+            07  MSF062-DATA-1-062-3Q REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-EQUIP-NO-3Q PIC X(12).           [   5] Equipment Number                         OPTIONAL EQUIP-NO-CODE
+                09  MSF062-DSTRCT-CODE-3Q PIC X(4).         [  17] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-STATUS-625-3Q PIC X(2).          [  21] Parent Work order status
+                09  FILLER      PIC X(6).
+            07  MSF062-DATA-1-062-3W REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-3W PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-WORK-ORDER-3W PIC X(8).          [   9] Work Order number                        WORK-ORDER-CODE
+                09  MSF062-EQUIP-NO-3W PIC X(12).           [  17] Equipment Number                         OPTIONAL EQUIP-NO-CODE
+            07  MSF062-DATA-1-062-4G REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-WORK-GROUP-4G PIC X(7).          [   5] Work group responsible for job           DATASET (MSF720) ERROR
+                                                                                                            (6618) OPTIONAL
+                                                                                                            MANDATORYIF (WORK-CENTRE
+                                                                                                            = SPACES AND
+                                                                                                            ASSIGN-PERSON = SPACES)
+                09  MSF062-TASK-STATUS-4G PIC X(1).         [  12] Status of task
+                09  MSF062-PLAN-STR-DATE-4G PIC X(8).       [  13] Planned start date                       DATE MANDATORY LE-TODAY
+                09  FILLER      PIC X(8).
+            07  MSF062-DATA-1-062-4L REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-4L PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-STOCK-CODE-4L PIC X(9).          [   9] Stock Code Of Equipment                  STOCK-CODE
+                09  FILLER      PIC X(11).
+            07  MSF062-DATA-1-062-4T REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-4T PIC X(4).         [   5] Occurrence #2 of District Code           MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-PARENT-WO-4T PIC X(8).           [   9] Parent Work Order                        OPTIONAL DATASET
+                                                                                                            (MSF625) ERROR
+                                                                                                            (7596,7597)
+                09  MSF062-WO-STATUS-4T.                    [  17] Status of Work Order
+                    11  MSF062-WO-STATUS-M-4T PIC X(1).     [  17] System Allocated Work Order Status
+                    11  MSF062-WO-STATUS-U-4T PIC X(2).     [  18] User Defined Work Order Status
+                09  MSF062-PLAN-STR-DATE-4T PIC X(8).       [  20] Planned start date                       DATE MANDATORY LE-TODAY
+                09  FILLER      PIC X(1).
+            07  MSF062-DATA-1-062-4W REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-WORK-GROUP-4W PIC X(7).          [   5] Work group responsible for job           DATASET (MSF720) ERROR
+                                                                                                            (6618) OPTIONAL
+                                                                                                            MANDATORYIF (WORK-CENTRE
+                                                                                                            = SPACES AND
+                                                                                                            ASSIGN-PERSON = SPACES)
+                09  MSF062-WO-STATUS-4W.                    [  12] Status of Work Order
+                    11  MSF062-WO-STATUS-M-4W PIC X(1).     [  12] System Allocated Work Order Status
+                    11  MSF062-WO-STATUS-U-4W PIC X(2).     [  13] User Defined Work Order Status
+                09  MSF062-ORIG-METHOD-4W PIC X(1).         [  15] Original Method Used to Create WorkOrder
+                09  MSF062-PLAN-STR-DATE-4W PIC X(8).       [  16] Planned start date                       DATE MANDATORY LE-TODAY
+                09  FILLER      PIC X(5).
+            07  MSF062-DATA-1-062-5S REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-5S PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-CURRENCY-DATA-5S.                [   9] Currency Data
+                    11  MSF062-CURRENCY-IND-5S PIC X(1).    [   9] Currency Indicator
+                    11  MSF062-CURRENCY-5S PIC X(4).        [  10] Currency                                 MANDATORY TABLE ('CU')
+                                                                                                            ERROR (1554)
+                09  MSF062-BUDGET-CODE-5S PIC X(4).         [  14] Budget Code                              TABLE ('BT') ERROR
+                                                                                                            (7310)
+                09  MSF062-CCYY-IND-5S.                     [  18] Century year Indicator
+                    11  MSF062-CC-IND-5S PIC X(2).          [  18] Century Indicator
+                    11  MSF062-YEAR-IND-5S PIC X(2).        [  20] Last two digits of the Year              NUMERIC RANGE (0,99)
+                09  MSF062-STAT-CODE-5S PIC X(5).           [  22] Statistic Code
+                09  FILLER      PIC X(2).
+            07  MSF062-DATA-1-062-WS REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-WK-GRP-SET-WS PIC X(10).         [   5] Group of Work Groups                     MANDATORY TABLE ('WGST')
+                                                                                                            ERROR (8646)
+                09  FILLER      PIC X(14).
+            07  MSF062-DATA-1-062-WB REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-WAYBILL-NO PIC X(8).             [   5] Waybill Number
+                09  MSF062-WAYBILL-ITM-NO PIC X(3).         [  13] Waybill Item Number
+                09  FILLER      PIC X(13).
+            07  MSF062-DATA-1-062-MF REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-MANIFEST-NO PIC X(12).           [   5] Manifest Number
+                09  FILLER      PIC X(12).
+            07  MSF062-DATA-1-062-FR REDEFINES              [   5] FMS Requisition Details
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-FR PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-FMS-REQ-NO-FR.                   [   9] FMS Requistion Number
+                    11  MSF062-MILSTRIP-NO-FR PIC X(14).    [   9] Milstrip Requisition Number
+                    11  MSF062-SUFFIX-FR PIC X(1).          [  23] Suffix
+                09  MSF062-REC291-TYPE PIC X(2).            [  24] Record type of MSF291
+                    88  MSF062-HDR-REC-IND VALUE 'AA' 'FA'         Header Record Indicator
+                                'FB' 'FD' 'FC' 'FE' 'FF'
+                                'FM' 'FO' 'IA' 'SA' 'QA'
+                                'ZZ' 'TA' 'RA'.
+                    88  MSF062-PO-HDR-REC-IND VALUE 'AA'.          Indicator to use Purchase Order Header
+                                                                   Record
+                    88  MSF062-ITEM-INFO-REC-IND VALUE             Indicator to use Purchase Order Item
+                                'AB'.                              Record
+                    88  MSF062-SUPP-INFO-REC-IND VALUE             Indicator to use Supplier info record
+                                'AC'.
+                    88  MSF062-HDR-DESC-REC-IND VALUE 'AD'.        Indicator to use Header Description
+                                                                   Record
+                    88  MSF062-DLV-DESC-REC-IND VALUE 'AE'.        Indicator to use Delivery Description
+                                                                   Record
+                    88  MSF062-ITEM-DESC-REC-IND VALUE             Indicator to use Item Description Record
+                                'AF'.
+                    88  MSF062-REPR-TASK-REC-IND VALUE             Indicator To use Repairables Table Info
+                                'AR'.                              Record
+                    88  MSF062-FMS-REQ-REC-IND VALUE 'FA'.         Indicator to use FMS Description
+                    88  MSF062-FMS-BILL-REC-IND VALUE 'FB'.        Indicator to use FMS Billing Indicator
+                    88  MSF062-DISCRP-REC-IND VALUE 'FD'.          Indicator to use FMS Discrepency
+                                                                   Indicator
+                    88  MSF062-FMS-RCPT-REC-IND VALUE 'FC'.        Indicator to use FMS Receipting Record
+                    88  MSF062-MESSAGE-REC-IND VALUE 'FE'.         Indicator to use Free Format Record
+                    88  MSF062-NO-XMIT-REC-IND VALUE 'FF'.         Indicator to use FMS Dummy Requisition
+                    88  MSF062-FMS-MOV-REC-IND VALUE 'FM'.         Indicator to use MOV record type
+                    88  MSF062-FMS-ROD-REC-IND VALUE 'FO'.         Indicator to use FMS ROD record
+                    88  MSF062-INV-HEAD-REC-IND VALUE 'IA'.        Indicator To Use INV-HEAD-REC Definition
+                    88  MSF062-INV-ITEM-REC-IND VALUE 'IB'.        Invoice Item Record
+                    88  MSF062-PMT-ORD-REC-IND VALUE 'TA'.         Indicator to use Payment order Record
+                    88  MSF062-REM-HEAD-REC-IND VALUE 'RA'.        Indicator to use Remittance Advice
+                                                                   Header Record.
+                    88  MSF062-REM-ITEM-REC-IND VALUE 'RB'.        Indicator to use Remittance Advice Item
+                                                                   Record.
+                    88  MSF062-REM-ITM-CMT-REC-IND VALUE           Indicator to use Remittance Advice
+                                'RC'.                              Comment Record.
+                    88  MSF062-REM-ITM-AMD-REC-IND VALUE           Indicator to use Remittance Advice
+                                'RD'.                              Reference.
+                    88  MSF062-QUOTE-HDR-REC-IND VALUE             Indicator to use QUOTE-HEAD-REC
+                                'QA'.                              Definition
+                    88  MSF062-QUOTE-ITEM-REC-IND VALUE            Quote Item Recod
+                                'QB'.
+                    88  MSF062-Q-SUP-TXT-REC-IND VALUE             Quote Supplier Text Record
+                                'QC'.
+                    88  MSF062-ASN-HEAD-REC-IND VALUE 'SA'.        Indicator to use ASN Header Record
+                                                                   Definition
+                    88  MSF062-ASN-ITEM-REC-IND VALUE 'SB'.        Indicator to use ASN Item Record
+                                                                   Definition
+                    88  MSF062-GEN-REC-IND VALUE 'ZZ'.             Indicator To Use General Record
+                                                                   Definition
+                09  MSF062-FMS-DOC-ID PIC X(3).             [  26] FMS Document Id
+            07  MSF062-DATA-1-062-FU REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-LAST-ACTION-DT-FU PIC X(8).      [   5] Last Action Date Follow Up
+                09  FILLER      PIC X(16).
+            07  MSF062-DATA-1-062-2B REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2B PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-AR-INV-NO-2B PIC X(8).           [   9] Accounts Receivable Invoice Number       MANDATORY
+                                                                                                            AR-INVOICE-NUMBER
+                09  FILLER      PIC X(12).
+            07  MSF062-DATA-1-062-BT REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-777-RUN-NO-BT PIC X(6).          [   5] Run Number of Last MSB777 To Process ETP
+                09  FILLER      PIC X(18).
+            07  MSF062-DATA-1-062-2H REDEFINES              [   5] Reference Data 2H
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-DSTRCT-CODE-2H PIC X(4).         [   5] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                09  MSF062-IREQ-NO-2H PIC X(6).             [   9] Issue Req No 2H
+                09  FILLER      PIC X(14).
+            07  MSF062-DATA-1-062-EQ REDEFINES              [   5] Reference data 1
+                                MSF062-DATA-1-062-AU.
+                09  MSF062-EQUIP-COLLOQ-EQ PIC X(24).       [   5] Colloquial name
+        05  MSF062-AIX1-KEY-062.                            [  29] Alternate key of MSF062                  FK:1
+            07  MSF062-REVSD-XREF-062.                      [  29] Reversed Cross Reference                 DB,KEY:0,KEY:1
+                09  MSF062-PART-2-062-2 PIC X(2).           [  29] Reference data type part 2
+                09  MSF062-PART-1-062-2 PIC X(2).           [  31] Reference data type part 1
+            07  MSF062-DATA-2-062.                          [  33] Reference data 2                         DB,KEY:0,KEY:1
+                09  MSF062-DATA-2-062-3F.                   [  33] Reference data 2
+                    11  MSF062-EMPLOYEE-ID-3F PIC X(10).    [  33] Employee Identification                  EMPLOYEE
+                    11  MSF062-TRAN-DATE-3F PIC X(8).       [  43] Date of Transaction
+                    11  MSF062-TRAN-SEQ-NO-3F PIC X(6).     [  51] Transaction sequence number              NUMERIC RANGE (1, )
+                09  MSF062-DATA-2-062-CU REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-CU PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-CUST-NO-CU PIC X(6).         [  37] Customer Number                          CUSTOMER MANDATORY
+                    11  FILLER  PIC X(14).
+                09  MSF062-DATA-2-062-DO REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-EXT-DOC-NO-DO PIC X(15).     [  33] External Document Number
+                    11  FILLER  PIC X(9).
+                09  MSF062-DATA-2-062-DR REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-DR PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-DR-ITEM-STATUS-DR PIC X(1).  [  37] Discrepancy Report Item Status
+                    11  MSF062-DR-NO-DR PIC X(6).           [  38] Discrepancy Report Number
+                    11  MSF062-DR-ITEM-NO-DR PIC X(3).      [  44] Discrepancy Report Item Number           NUMERIC RANGE (1,999)
+                    11  FILLER  PIC X(10).
+                09  MSF062-DATA-2-062-EI REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-EQUIP-INC-EI PIC X(5).       [  33] Identifies Standard Name Desc for Stock  DATASET (MSF105) ERROR
+                                                                                                            (0903)
+                    11  FILLER  PIC X(19).
+                09  MSF062-DATA-2-062-EN REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-EQUIP-NO-2-EN PIC X(12).     [  33] Equipment Number                         OPTIONAL EQUIP-NO-CODE
+                    11  FILLER  PIC X(12).
+                09  MSF062-DATA-2-062-RC REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-RC PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-REQ-TYPE-RC PIC X(1).        [  37] Requisition Type
+                    11  MSF062-REQUISITION-NO-RC.           [  38] Requisition number
+                        13  MSF062-CONTRACT-NO-RC.          [  38] Contract Number
+                            15  MSF062-REQ-NO-RC PIC X(6).  [  38] Requisition number
+                            15  FILLER PIC X(2).
+                        13  MSF062-IREQ-ITEM-RC.            [  46] Issue Requisition Item number            NUMERIC DEC (0)
+                            15  MSF062-PREQ-ITEM-RC PIC     [  46] Purchase requisition item
+                                X(3).
+                            15  FILLER PIC X(1).
+                        13  MSF062-PORT-ELE-RC REDEFINES    [  46] Portion Number and Element Number
+                                MSF062-IREQ-ITEM-RC.
+                            15  MSF062-PORTION-NO-RC PIC    [  46] Portion Number
+                                X(2).
+                            15  MSF062-ELEMENT-NO-RC PIC    [  48] Element Number
+                                X(2).
+                    11  MSF062-ALLOC-COUNT-RC PIC X(2).     [  50] Allocated count
+                    11  FILLER  PIC X(5).
+                09  MSF062-DATA-2-062-EP REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-EMPLOYEE-ID-EP PIC X(10).    [  33] Employee identification code             EMPLOYEE
+                    11  MSF062-ETP-CODE-EP.                 [  43] Employee Training Plan code
+                        13  MSF062-ETP-IND PIC X(1).        [  43] Employee Training Plan Indicator
+                            88  MSF062-ETP-TRAIN-PROG VALUE        Employee Training Plan Program
+                                'P'.
+                            88  MSF062-ETP-COURSE VALUE            Employee Training Plan Course
+                                'C'.
+                        13  MSF062-ETP-ID PIC X(10).        [  44] Employee Training Plan Identifier
+                    11  MSF062-ETP-STATUS-EP PIC X(1).      [  54] Employee Training Plan Status
+                    11  FILLER  PIC X(2).
+                09  MSF062-DATA-2-062-2C REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-2C PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-DEVICE-NAME-2C PIC X(14).    [  37] Device Name
+                    11  FILLER  PIC X(6).
+                09  MSF062-DATA-2-062-2E REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-2E PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-AR-INV-NO-2E PIC X(8).       [  37] Accounts Receivable Invoice Number       MANDATORY
+                                                                                                            AR-INVOICE-NUMBER
+                    11  FILLER  PIC X(12).
+                09  MSF062-DATA-2-062-2L REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-2L PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-SUPPLIER-NO-2L PIC X(6).     [  37] Supplier Number                          SUPPLIER MANDATORY
+                    11  FILLER  PIC X(14).
+                09  MSF062-DATA-2-062-2M REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-2M PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-DOCUMENT-NO-2M PIC X(20).    [  37] Document Number                          DATASET (MSF590) ERROR
+                                                                                                            (7786)
+                09  MSF062-DATA-2-062-2N REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-2N PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-DRAWING-NO-2N PIC X(20).     [  37] Drawing number                           OPTIONALIF
+                                                                                                            (DRAW-INDEX-INSTALLED)
+                                                                                                            DATASET (MSF580) WHERE
+                                                                                                            (DSTRCT-CODE =
+                                                                                                            WX-DSTRCT,DRAWING-NO =
+                                                                                                            MSF130-DRAWING-NO) ERROR
+                                                                                                            (6385)
+                09  MSF062-DATA-2-062-2O REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-2O PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-PARENT-WO-2O PIC X(8).       [  37] Parent Work Order                        OPTIONAL DATASET
+                                                                                                            (MSF625) ERROR
+                                                                                                            (7596,7597)
+                    11  FILLER  PIC X(12).
+                09  MSF062-DATA-2-062-3D REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-3D PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-ASSET-NO-3D PIC X(12).       [  37] Asset Number
+                    11  MSF062-ASSET-QTY-3D PIC X(8).       [  49] Asset Quantity
+                09  MSF062-DATA-2-062-2A REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-2A PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-AR-INV-NO-2A PIC X(8).       [  37] Accounts Receivable Invoice Number 2A    MANDATORY
+                                                                                                            AR-INVOICE-NUMBER
+                    11  FILLER  PIC X(12).
+                09  MSF062-DATA-2-062-2W REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-2-2W PIC X(4).   [  33] Occurrence #2 of District Code           MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-WORK-ORDER-2-2W PIC X(8).    [  37] Work Order number                        WORK-ORDER-CODE
+                    11  FILLER  PIC X(12).
+                09  MSF062-DATA-2-062-3K REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-2-3K PIC X(4).   [  33] Occurrence #2 of District Code           MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-WORK-ORDER-2-3K PIC X(8).    [  37] Work Order number                        WORK-ORDER-CODE
+                    11  MSF062-WO-TASK-NO-2-3K PIC X(3).    [  45] Work Order Task number                   NUMERIC DEC (0) RANGE
+                                                                                                            (0,999) ERROR (0432)
+                    11  FILLER  PIC X(9).
+                09  MSF062-DATA-2-062-3N REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-3N PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-CLAIM-NO-3N PIC X(10).       [  37] Work Order Number                        DATASET (MSF536)
+                    11  MSF062-INCIDENT-NO-3N PIC X(10).    [  47] Incident Identification Number           DATASET (MSF510)
+                09  MSF062-DATA-2-062-3R REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-3R PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-IREQ-NO-3R PIC X(6).         [  37] Issue Requisition Number                 DATASET (MSF140) WHERE
+                                                                                                            (DSTRCT-CODE =
+                                                                                                            DSTRCT-CODE,IREQ-NO =
+                                                                                                            IREQ-NO) ERROR (0027)
+                    11  MSF062-IREQ-ITEM-3R PIC X(4).       [  43] Issue Requisition Item number            NUMERIC DEC (0)
+                    11  FILLER  PIC X(10).
+                09  MSF062-DATA-2-062-WG REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-WORK-GROUP-WG PIC X(7).      [  33] Work group responsible for job           MANDATORY DATASET
+                                                                                                            (MSF720) ERROR (6618)
+                    11  FILLER  PIC X(17).
+                09  MSF062-DATA-2-062-CT REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-CONTAINER-ID PIC X(13).      [  33] ISO Container Number                     MANDATORY
+                    11  FILLER  PIC X(11).
+                09  MSF062-DATA-2-062-MI REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-DSTRCT-CODE-MI PIC X(4).     [  33] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-MSG-291-NO-MI PIC X(9).      [  37] Message Number
+                    11  MSF062-MSG-ITM-NO-MI PIC X(5).      [  46] Message Item Number
+                    11  MSF062-FILLER-6 PIC X(6).           [  51] Filler of 6 characters
+                09  MSF062-DATA-2-062-FS REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-FMS-REQ-NO-FS PIC X(15).     [  33] FMS Requistion Number
+                    11  MSF062-REQ-CANCEL-IND-FS PIC X(1).  [  48] Requisition Cancelled Indicator
+                    11  MSF062-FOLLOW-UP-SENT-FS PIC X(1).  [  49] Follow up Sent
+                    11  FILLER  PIC X(7).
+                09  MSF062-DATA-2-062-4S REDEFINES          [  33] Reference data 2 4S
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-SURVEY-NO-4S PIC X(6).       [  33] Survey Number 4S
+                    11  MSF062-SENT-TYPE-4S PIC X(4).       [  39] Sentence Type 4S
+                    11  MSF062-DSTRCT-CODE-4S PIC X(4).     [  43] District identifier code                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                    11  MSF062-IREQ-NO-4S PIC X(6).         [  47] Issue Req No 4S
+                    11  FILLER  PIC X(4).
+                09  MSF062-DATA-2-062-CC REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-BLANK-CC PIC X(1).           [  33] MST090 1 Char Blank
+                    11  FILLER  PIC X(23).
+                09  MSF062-DATA-2-062-CA REDEFINES          [  33] Reference data 2
+                                MSF062-DATA-2-062-3F.
+                    11  MSF062-ACCOUNT-CODE-CA.             [  33] Account Code number                      ACCOUNT-CODE
+                        13  MSF062-DATA-2-062-NA.           [  33] Reference data 2
+                            15  MSF062-ACCOUNT-CODE-NA.     [  33] Account Code number                      ACCOUNT-CODE
+                               17  MSF062-DATA-2-062-PA.    [  33] Reference data 2
+                               19  MSF062-TOP-PAR-PA-PB.    [  33] Parent Account Code
+                               21  MSF062-DATA-2-062-WA.    [  33] Reference data 2
+                               23  MSF062-WLD-ACCT-WA-WB.   [  33] Account Code Number                      ACCOUNT-CODE
+                               25  MSF062-DATA-2-062-WB.    [  33] Reference data 2
+                               27  MSF062-DATA-2-062-BA.    [  33] Reference data 2
+                               29                           [  33] Account Code number                      ACCOUNT-CODE
+                                MSF062-BUDG-ACCT-CODE-BA.
+                               31  MSF062-DATA-2-062-PB PIC [  33] Reference data 2
+                                X(24).

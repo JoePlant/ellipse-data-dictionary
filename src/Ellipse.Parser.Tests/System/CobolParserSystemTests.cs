@@ -1,5 +1,6 @@
 ﻿using System;
 using Ellipse.DataDictionary.Parsers.Cobol;
+using Ellipse.DataDictionary.Parsers.Models;
 using NUnit.Framework;
 
 namespace Ellipse.DataDictionary.System
@@ -133,5 +134,17 @@ namespace Ellipse.DataDictionary.System
             ParseFile(@".\Resources\Cobol\MSF01B-RECORD.rpt");
         }
 
+
+        [Test]
+        public void MSF062_RECORD()
+        {
+            ParseFile(@".\Resources\Cobol\MSF062-RECORD.rpt");
+        }
+
+        [Test]
+        public void MSW000_RECORD()
+        {
+            ParseFile(@".\Resources\Cobol\MSW000-RECORD.rpt", new IgnoreParser());
+        }
     }
 }

@@ -4,139 +4,51 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
 {
     public class PropertyParser : CombinationParser
     {
-        private class Line03Parser : SingleLineParser
+        private class LineParser : SingleLineParser
         {
-            public Line03Parser()
+            public LineParser(string prefix)
                 : base("Property", Line.Multiple(
-                    Line.And(Line.StartsWith(Prefix.Prefix03), Line.DoesNotContain("PIC")),
+                    Line.And(Line.StartsWith(prefix), Line.DoesNotContain("PIC")),
                     Line.Optional(
                         Line.Repeat(Line.StartsWith(Prefix.Empty))
                         )
                                        ),
                        Data.OnLine(0,
-                                   Data.IgnoreStart(Prefix.Prefix03)
+                                   Data
+                                       .TruncateAtColumn(60)
+                                       .IgnoreStart(prefix)
                                        .IgnoreAfter(".")
                                        .RemoveSpaces()
                                        .Trim())
-                           .IgnoreAll(),
-                       Comment.IgnoreBefore(".").RemoveSpaces().Trim())
-            {
-            }
-        }
-
-        private class Line05Parser : SingleLineParser
-        {
-            public Line05Parser()
-                : base("Property",
-                       Line.Multiple(
-                           Line.And(Line.StartsWith(Prefix.Prefix05), Line.DoesNotContain("PIC")),
-                           Line.Optional(
-                               Line.Repeat(Line.StartsWith(Prefix.Empty))
-                               )
-                           ),
-                       Data.OnLine(0,
-                                   Data.IgnoreStart(Prefix.Prefix05)
-                                       .IgnoreAfter(".")
-                                       .RemoveSpaces()
-                                       .Trim())
-                           .IgnoreAll(),
-                       Comment.IgnoreBefore(".").RemoveSpaces().Trim())
-            {
-            }
-        }
-
-        private class Line07Parser : SingleLineParser
-        {
-            public Line07Parser()
-                : base("Property",
-                       Line.Multiple(
-                           Line.And(Line.StartsWith(Prefix.Prefix07), Line.DoesNotContain("PIC")),
-                           Line.Optional(
-                               Line.Repeat(Line.StartsWith(Prefix.Empty))
-                               )
-                           ),
-                       Data.OnLine(0,
-                                   Data.IgnoreStart(Prefix.Prefix07)
-                                       .IgnoreAfter(".")
-                                       .RemoveSpaces()
-                                       .Trim())
-                           .IgnoreAll(),
-                       Comment.IgnoreBefore(".").RemoveSpaces().Trim())
-            {
-            }
-        }
-
-        private class Line09Parser : SingleLineParser
-        {
-            public Line09Parser()
-                : base("Property",
-                       Line.Multiple(
-                           Line.And(Line.StartsWith(Prefix.Prefix09), Line.DoesNotContain("PIC")),
-                           Line.Optional(
-                               Line.Repeat(Line.StartsWith(Prefix.Empty))
-                               )
-                           ),
-                       Data.OnLine(0,
-                                   Data.IgnoreStart(Prefix.Prefix09)
-                                       .IgnoreAfter(".")
-                                       .RemoveSpaces()
-                                       .Trim())
-                           .IgnoreAll(),
-                       Comment.IgnoreBefore(".").RemoveSpaces().Trim())
-            {
-            }
-        }
-
-        private class Line11Parser : SingleLineParser
-        {
-            public Line11Parser()
-                : base("Property",
-                       Line.Multiple(
-                           Line.And(Line.StartsWith(Prefix.Prefix11), Line.DoesNotContain("PIC")),
-                           Line.Optional(
-                               Line.Repeat(Line.StartsWith(Prefix.Empty))
-                               )
-                           ),
-                       Data.OnLine(0,
-                                   Data.IgnoreStart(Prefix.Prefix11)
-                                       .IgnoreAfter(".")
-                                       .RemoveSpaces()
-                                       .Trim())
-                           .IgnoreAll(),
-                       Comment.IgnoreBefore(".").RemoveSpaces().Trim())
-            {
-            }
-        }
-
-        private class Line13Parser : SingleLineParser
-        {
-            public Line13Parser()
-                : base("Property",
-                       Line.Multiple(
-                           Line.And(Line.StartsWith(Prefix.Prefix13), Line.DoesNotContain("PIC")),
-                           Line.Optional(
-                               Line.Repeat(Line.StartsWith(Prefix.Empty))
-                               )
-                           ),
-                       Data.OnLine(0,
-                                   Data.IgnoreStart(Prefix.Prefix13)
-                                       .IgnoreAfter(".")
-                                       .RemoveSpaces()
-                                       .Trim())
-                           .IgnoreAll(),
-                       Comment.IgnoreBefore(".").RemoveSpaces().Trim())
+                           .TruncateAt(60)
+                           .IgnoreAfter(".")
+                           .RemoveSpaces()
+                           .Trim(),
+                       Comment
+                           .IgnoreBefore(".")
+                           .RemoveSpaces()
+                           .Trim()
+                    )
             {
             }
         }
 
         public PropertyParser()
             : base(
-                new Line03Parser(),
-                new Line05Parser(),
-                new Line07Parser(),
-                new Line09Parser(),
-                new Line11Parser(),
-                new Line13Parser()
+                new LineParser(Prefix.Prefix03),
+                new LineParser(Prefix.Prefix05),
+                new LineParser(Prefix.Prefix07),
+                new LineParser(Prefix.Prefix09),
+                new LineParser(Prefix.Prefix11),
+                new LineParser(Prefix.Prefix13),
+                new LineParser(Prefix.Prefix15),
+                new LineParser(Prefix.Prefix17),
+                new LineParser(Prefix.Prefix19),
+                new LineParser(Prefix.Prefix21),
+                new LineParser(Prefix.Prefix23),
+                new LineParser(Prefix.Prefix25),
+                new LineParser(Prefix.Prefix27),
+                new LineParser(Prefix.Prefix29)
                 )
         {
         }

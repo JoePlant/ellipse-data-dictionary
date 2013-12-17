@@ -8,6 +8,14 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
     public class EnumValueParserUnitTests : ParserTestFixture<EnumValueParser>
     {
         [Test]
+        public void SingleLine03()
+        {
+            StringReader reader = new StringReader(ExampleStrings.EnumValue.Case03SingleLine);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("EnumValue", "PO-NO-ITEM VALUE 'PO'", "Purchase Order Number Item"));
+        }
+
+        [Test]
         public void SingleLine07()
         {
             StringReader reader = new StringReader(ExampleStrings.EnumValue.Case07SingleLine);
@@ -24,11 +32,11 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
-        public void SingleLine03()
+        public void SingleLine11()
         {
-            StringReader reader = new StringReader(ExampleStrings.EnumValue.Case03SingleLine);
+            StringReader reader = new StringReader(ExampleStrings.EnumValue.Case11SingleLine);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsed(parser, new CobolModel("EnumValue", "PO-NO-ITEM VALUE 'PO'", "Purchase Order Number Item"));
+            AssertParsed(parser, new CobolModel("EnumValue", "RES-TY VALUE 'R'", "Resource Type"));
         }
 
         [Test]

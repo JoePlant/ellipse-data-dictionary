@@ -16,7 +16,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
-        public void MultLineLevel03()
+        public void MultiLineLevel03()
         {
             StringReader reader = new StringReader(ExampleStrings.Property.Case2);
             IDataParser parser = CreateDataParser(reader);
@@ -61,6 +61,70 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             StringReader reader = new StringReader(ExampleStrings.Property.Case7);
             IDataParser parser = CreateDataParser(reader);
             AssertParsed(parser, new CobolModel("Property", "MSF062-CONTRACT-NO-RC", "[ 38] Contract Number"));
+        }
+
+        [Test]
+        public void SingleLineLevel15()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case8);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "MSF062-ACCOUNT-CODE-NA", "[ 33] Account Code number ACCOUNT-CODE"));
+        }
+
+        [Test]
+        public void SingleLineLevel17()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case9);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "MSF062-DATA-2-062-PA", "[ 33] Reference data 2"));
+        }
+
+        [Test]
+        public void SingleLineLevel19()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case10);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "MSF062-TOP-PAR-PA-PB", "[ 33] Parent Account Code"));
+        }
+
+        [Test]
+        public void SingleLineLevel21()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case11);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "MSF062-DATA-2-062-WA", "[ 33] Reference data 2"));
+        }
+
+        [Test]
+        public void SingleLineLevel23()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case12);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "MSF062-WLD-ACCT-WA-WB", "[ 33] Account Code number ACCOUNT-CODE"));
+        }
+
+        [Test]
+        public void SingleLineLevel25()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case13);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "MSF062-DATA-2-062-WB", "[ 33] Reference data 2"));
+        }
+
+        [Test]
+        public void SingleLineLevel27()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case14);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "MSF062-DATA-2-062-BA", "[ 33] Reference data 2"));
+        }
+
+        [Test]
+        public void SingleLineLevel29()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case15);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "MSF062-BUDG-ACCT-CODE-BA", "[ 33] Account Code number ACCOUNT-CODE"));
         }
 
         [Test]

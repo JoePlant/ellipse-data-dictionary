@@ -140,7 +140,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                 new Level05Parser(),
                 new Level07Parser(),
                 new Level09Parser(),
-                //new Level11Parser(),
+                new Level11Parser(),
                 new Level13Parser()
                 )
         {

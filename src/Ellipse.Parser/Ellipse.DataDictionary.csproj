@@ -80,6 +80,7 @@
     <Compile Include="Parsers\Lines\RepeatLineMatcher.cs" />
     <Compile Include="Parsers\Models\AccessInformationParser.cs" />
     <Compile Include="Parsers\Models\CobolBlockParser.cs" />
+    <Compile Include="Parsers\Models\IgnoreParser.cs" />
     <Compile Include="Parsers\Models\TechnicalInformationParser.cs" />
     <Compile Include="Parsers\Models\ModuleParser.cs" />
     <Compile Include="Parsers\Models\ModifiedParser.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Parsers\SingleLineParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Readers\AddPrefixReader.cs" />
+    <Compile Include="Readers\TrimLeftReader.cs" />
     <Compile Include="Readers\LookupReader.cs" />
     <Compile Include="Readers\FileReader.cs" />
     <Compile Include="Readers\IReader.cs" />

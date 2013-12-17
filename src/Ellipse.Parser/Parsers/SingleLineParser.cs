@@ -43,13 +43,13 @@ namespace Ellipse.DataDictionary.Parsers
                 foreach (string line in lines)
                 {
                     string dataLine = dataParser.Parse(lineNo, line);
-                    if (dataLine != null)
+                    if (!string.IsNullOrEmpty(dataLine))
                     {
                         data.Add(dataLine);
                     }
 
                     string commentLine = commentParser.Parse(lineNo, line);
-                    if (commentLine != null)
+                    if (!string.IsNullOrEmpty(commentLine))
                     {
                         comment.Add(commentLine);
                     }
@@ -61,7 +61,7 @@ namespace Ellipse.DataDictionary.Parsers
                     return new CobolModel(name, string.Join(" ", data), string.Join("\n", comment));
                 }
 
-                return new StringModel(name, string.Join("\n", data));
+                return new CobolModel(name, string.Join(" ", data));
             }
             return null;
         }
