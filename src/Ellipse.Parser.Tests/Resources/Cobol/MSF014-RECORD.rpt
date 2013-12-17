@@ -1,0 +1,19 @@
+﻿01  MSF014-RECORD.
+    03  KEY-014.                                            [   1] Primary Key of MSF014                    FK:0
+        05  ATAX-CODE           PIC X(4).                   [   1] Additional Taxes Code                    DB,KEY:0
+        05  REL-ATAX-CODE       PIC X(4).                   [   5] Related Tax code                         DB,KEY:0
+    03  RECORD-014.                                         [   9] Details of MSF014 Record
+        05  BASE-ON             PIC X(2).                   [   9] Base Calculation On                      DB
+            88  ACCUM-VALUE     VALUE 'AV'.                        Calculate on the Accumulated Value
+            88  BASE-VALUE      VALUE 'BV'.                        Calculate on base value
+            88  BASE-FREIGHT    VALUE 'BF'.                        Calculate on base value plus freight
+            88  BASE-CTAX       VALUE 'BC'.                        Calculate on base value plus consumption
+                                                                   tax
+            88  BASE-STAX       VALUE 'BS'.                        Calculate on base value plus sales tax
+            88  BASE-ALL        VALUE 'BA'.                        Calculate on base value plus all taxes
+        05  TAX-ONLY-IND        PIC X(2).                   [  11] Calculate On Tax Only Indicator          DB
+            88  TAX-ONLY        VALUE 'AT'.                        Additional Tax Only.
+            88  FREIGHTONLY     VALUE 'FR'.                        Freight Only
+            88  CTAX-ONLY       VALUE 'CT'.                        Consumption Tax Only
+            88  STAX-ONLY       VALUE 'ST'.                        Sales Tax Only
+            88  CTAX-STAX       VALUE 'CS'.                        Consumption & Sales Tax

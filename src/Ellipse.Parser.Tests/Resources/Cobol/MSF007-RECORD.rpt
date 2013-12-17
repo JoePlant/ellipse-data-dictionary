@@ -1,0 +1,32 @@
+﻿01  MSF007-RECORD.
+    03  KEY-007.                                            [   1] MSF007 Primary Key                       FK:0
+        05  DSTRCT-CODE         PIC X(4).                   [   1] District Code                            MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB,KEY:0
+    03  DOS-PREF-GRP.                                       [   5] DOS Preferred Group
+        05  DOS-PREF-DIST-1     PIC X(4).                   [   5] DOS Preferred District 1                 DB
+        05  DOS-PREF-WH-1       PIC X(4).                   [   9] DOS Preferred Warehouse 1                DB
+        05  DOS-PREF-DIST-2     PIC X(4).                   [  13] DOS Preferred District 2                 DB
+        05  DOS-PREF-WH-2       PIC X(4).                   [  17] DOS Preferred Warehouse 2                DB
+        05  DOS-PREF-DIST-3     PIC X(4).                   [  21] DOS Preferred District 3                 DB
+        05  DOS-PREF-WH-3       PIC X(4).                   [  25] DOS Preferred Warehouse 3                DB
+        05  DOS-PREF-DIST-4     PIC X(4).                   [  29] DOS Preferred District 4                 DB
+        05  DOS-PREF-WH-4       PIC X(4).                   [  33] DOS Preferred Warehouse 4                DB
+        05  DOS-PREF-DIST-5     PIC X(4).                   [  37] DOS Preferred District 5                 DB
+        05  DOS-PREF-WH-5       PIC X(4).                   [  41] DOS Preferred Warehouse 5                DB
+    03  DOS-PREF-RPT            REDEFINES DOS-PREF-GRP.     [   5] DOS Preferred Report
+        05  DOS-PREF-DIST-WH    OCCURS 5 INDEXED BY         [   5] DOS Preferred District Warehouse
+                                DOS-PREF-GRP-IDX.
+            07  DOS-PREF-DIST   PIC X(4).                   [   5] DOS Preferred District
+            07  DOS-PREF-WH     PIC X(4).                   [   9] DOS Preferred Warehouse
+    03  UPD-ORIG-USG-IND        PIC X(1).                   [  45] Update usage-Originating Dist            DB
+        88  UPD-ORIG-DIST-USG   VALUE 'Y'.                         Update usage-Origination Dist
+    03  UPD-ISS-USG-IND         PIC X(1).                   [  46] Update Usage-Issuing Dist                DB
+        88  UPD-ISS-DIST-USG    VALUE 'Y'.                         Update Usage-issuing Dist
+    03  NO-DIST-INV-IND         PIC X(1).                   [  47] No Dist Inventory Indicator              DB
+        88  DISPLAY-ERROR       VALUE 'A'.                         Display Error
+        88  REFER-REQ           VALUE 'B'.                         Refer Req to MSF142
+        88  SEARCH-GLOBAL       VALUE 'C'.                         Search Global RD
+        88  SEARCH-GLOBAL-DOS   VALUE 'D'.                         Search Global RD and DOS
+    03  FILLER                  PIC X(1).

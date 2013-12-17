@@ -1,0 +1,216 @@
+﻿01  MSF010-RECORD.
+    03  KEY-010.                                            [   1] Primary key of MSF010                    FK:0
+        05  TABLE-TYPE          PIC X(4).                   [   1] Table file type.                         TABLE ('XX') ERROR
+                                                                                                            (0041)
+                                                                                                            DB,KEY:0
+        05  TABLE-CODE.                                     [   5] Table File Code                          DATASET (MSF010) ERROR
+                                                                                                            (0041)
+                                                                                                            DB,KEY:0
+            07  TABLE-CODE-4CH.                             [   5] Four Character of TABLE-CODE
+                09  TABLE-CODE-2CH-1.                       [   5] Two character of TABLE-CODE
+                    11  TABLE-CODE-CH1 PIC X(1).            [   5] One character of TABLE-CODE
+                    11  TABLE-CODE-CH2 PIC X(1).            [   6] One character of TABLE-CODE
+                09  TABLE-CODE-2CH-2.                       [   7] Two character of TABLE-CODE
+                    11  TABLE-CODE-CH3 PIC X(1).            [   7] One character of TABLE-CODE
+                    11  TABLE-CODE-CH4 PIC X(1).            [   8] One character of TABLE-CODE
+            07  TABLE-CDE-REST  PIC X(14).                  [   9] Rest of Table Code
+        05  WH-TABLE-CODE       REDEFINES TABLE-CODE.       [   5] Warehouse Table File Code                DATASET (MSF010) ERROR
+                                                                                                            (0041)
+            07  DSTRCT-CODE     PIC X(4).                   [   5] District Code                            MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+            07  WHOUSE-ID       PIC X(4).                   [   9] Code to uniquely identify a warehouse    TABLE ('WH') WAREHOUSE
+            07  FILLER          PIC X(10).
+    03  AIX1-KEY-010.                                       [  23] Auxilary Key of MSF010                   FK:1
+        05  TABLE-TYPE-1        PIC X(4).                   [  23] Table file type.                         TABLE ('XX') ERROR
+                                                                                                            (0041)
+                                                                                                            COPY,KEY:1
+        05  TABLE-DESC          PIC X(50).                  [  27] Table file entry description.            DB,KEY:1
+        05  TABLE-CODE-1        PIC X(18).                  [  77] Table File Code                          DATASET (MSF010) ERROR
+                                                                                                            (0041)
+                                                                                                            COPY,KEY:1
+        05  ASSOC-REC.                                      [  95] Table File Associated Values             DB,KEY:1
+            07  ERROR-REC.                                  [  95] Assoc Error Info for the 'ER' Table Type
+                09  ERROR-PROG  PIC X(6).                   [  95] Assoc Enq Program for Error Entry Enq
+                09  ERROR-TYPE  PIC X(4).                   [ 101] Assoc Enquiry Table Type for Error Entry
+                09  ERROR-SEVERITY PIC X(1).                [ 105] Sevrity of err,I=Info only,Used by macro
+                09  FILLER      PIC X(39).
+            07  ASSOC-CHAR-GRP  REDEFINES ERROR-REC.        [  95] Single character redefinition of table
+                09  ASSOC-CHAR-1 PIC X(1).                  [  95] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-2 PIC X(1).                  [  96] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-3 PIC X(1).                  [  97] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-4 PIC X(1).                  [  98] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-5 PIC X(1).                  [  99] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-6 PIC X(1).                  [ 100] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-7 PIC X(1).                  [ 101] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-8 PIC X(1).                  [ 102] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-9 PIC X(1).                  [ 103] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-10 PIC X(1).                 [ 104] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-11 PIC X(1).                 [ 105] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-12 PIC X(1).                 [ 106] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-13 PIC X(1).                 [ 107] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-14 PIC X(1).                 [ 108] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-15 PIC X(1).                 [ 109] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-16 PIC X(1).                 [ 110] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-17 PIC X(1).                 [ 111] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-18 PIC X(1).                 [ 112] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-19 PIC X(1).                 [ 113] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-20 PIC X(1).                 [ 114] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-21 PIC X(1).                 [ 115] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-22 PIC X(1).                 [ 116] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-23 PIC X(1).                 [ 117] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-24 PIC X(1).                 [ 118] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-25 PIC X(1).                 [ 119] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-26 PIC X(1).                 [ 120] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-27 PIC X(1).                 [ 121] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-28 PIC X(1).                 [ 122] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-29 PIC X(1).                 [ 123] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-30 PIC X(1).                 [ 124] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-31 PIC X(1).                 [ 125] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-32 PIC X(1).                 [ 126] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-33 PIC X(1).                 [ 127] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-34 PIC X(1).                 [ 128] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-35 PIC X(1).                 [ 129] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-36 PIC X(1).                 [ 130] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-37 PIC X(1).                 [ 131] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-38 PIC X(1).                 [ 132] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-39 PIC X(1).                 [ 133] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-40 PIC X(1).                 [ 134] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-41 PIC X(1).                 [ 135] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-42 PIC X(1).                 [ 136] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-43 PIC X(1).                 [ 137] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-44 PIC X(1).                 [ 138] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-45 PIC X(1).                 [ 139] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-46 PIC X(1).                 [ 140] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-47 PIC X(1).                 [ 141] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-48 PIC X(1).                 [ 142] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-49 PIC X(1).                 [ 143] Single Char Redef of Tbl File Assoc Val
+                09  ASSOC-CHAR-50 PIC X(1).                 [ 144] Single Char Redef of Tbl File Assoc Val
+            07  ASSOC-CHAR-RT   REDEFINES ERROR-REC.        [  95] Table File Associated Values
+                09  ASSOC-CHAR  PIC X(1) OCCURS 50 INDEXED  [  95] Single Char Redef of Tbl File Assoc Val
+                                BY ASSOC-CHAR-IDX.
+            07  HEADER-DEFINITION-REC REDEFINES ERROR-REC.  [  95] Table Type Header (XX)
+                09  HDR-TABLE-DEF PIC X(1).                 [  95] M(incom) Table or C(lient) Table
+                09  HDR-CODE-SIZE PIC 9(2).                 [  96] Maximum Length of TABLE-CODE             NUMERIC DEC (0) ERROR
+                                                                                                            (7020)
+                09  HDR-DESC-SIZE PIC 9(2).                 [  98] Max Length of Code Desc TABLE-DESC       NUMERIC DEC (0) RANGE
+                                                                                                            (1,50) ERROR (7024)
+                09  HDR-INPUT-MAND PIC X(1).                [ 100] Mandatory/Opt Flag for Table Type C0-C9
+                09  HDR-SHOW-TYPE PIC X(1).                 [ 101] Show Table Type on enquiry screen (Y/N)  VALUE ('Y','N') ERROR
+                                                                                                            (7057)
+                09  HDR-MSO010-MAINT PIC X(1).              [ 102] Maintained by MSO010 - (N=No)            VALUE ('Y','N') ERROR
+                                                                                                            (7182)
+                09  HDR-HELP-LENGTH PIC 9(2).               [ 103] Help length of Table Code
+                09  HDR-HELP-START PIC 9(2).                [ 105] Starting position of help Table Code
+                09  HDR-EXT-TEXT PIC X(1).                  [ 107] Extended text may be input               VALUE ('Y','N') ERROR
+                                                                                                            (7182)
+                09  HDR-INH-DESC PIC X(1).                  [ 108] Inhibit Description Update               VALUE ('Y','N') ERROR
+                                                                                                            (7182)
+                09  LAST-MOD-DATA.                          [ 109] Date, Time and User Id of modification
+                    11  LAST-MOD-DATE PIC X(8).             [ 109] Last Modification Date                   DATE MANDATORY LE-TODAY
+                    11  LAST-MOD-TIME PIC X(6).             [ 117] Last Modification Time                   TIME
+                    11  LAST-MOD-USER PIC X(10).            [ 123] Last Modification User Id Code           EMPLOYEE
+                09  FILLER      PIC X(12).
+            07  ITEM-DEFINITION-REC REDEFINES ERROR-REC.    [  95] Table Type Definition
+                09  ITEM-SIZE   PIC 9(2).                   [  95] Maximum length of item.                  NUMERIC DEC (0) ERROR
+                                                                                                            (7027)
+                09  ITEM-START  PIC 9(2).                   [  97] Starting Position of Item in ASSOC-REC   NUMERIC DEC (0) RANGE
+                                                                                                            (1,50) ERROR (7010)
+                09  ITEM-MANDATORY PIC X(1).                [  99] Mandatory/Opt Flag for Item in ASSOC-REC VALUE ('Y','N') ERROR
+                                                                                                            (7058)
+                09  ITEM-EDIT-TYPE PIC X(6).                [ 100] Edit Type for Item in ASSOC-REC          VALUE
+                                                                                                            ('YESNO','ALPHA','NUMBER
+                                                                                                            ','USERID') ERROR (7012)
+                09  ITEM-ERROR-MSG PIC X(4).                [ 106] Error Message No. for Item in ASSOC-REC
+                09  ITEM-TABLE-LOOKUP PIC X(4).             [ 110] Table Lookup Type for Item in ASSOC-REC
+                09  ITEM-MACH-TYPE PIC X(1).                [ 114] Machine Type
+                09  FILLER      PIC X(30).
+            07  PRINTER-DEF-REC REDEFINES ERROR-REC.        [  95] Printer Definition
+                09  PRINTER-FUTURE.                         [  95] Printer Future
+                    11  PRINTER PIC X(2).                   [  95] Printer Id
+                    11  FILLER  PIC X(2).
+                09  DEVICE-TYPE PIC X(1).                   [  99] Device Type
+                09  DEFAULT-DEVICE PIC X(1).                [ 100] Default Device
+                09  FILLER      PIC X(44).
+            07  HELP-ACTION-REC REDEFINES ERROR-REC.        [  95] Defines Assoc Values for Help Actions
+                09  ACTION-PROG PIC X(8).                   [  95] Program Action relates to
+                09  ACTION-MODULE PIC X(4).                 [ 103] Action Valid for this module only
+                09  ACTION-GE-SECUR.                        [ 107] Security must be not less for Action
+                    11  ACTION-GE-SECUR-9 PIC 9(1).         [ 107] Security must be not less for Action
+                09  ACTION-EQ-SECUR.                        [ 108] Security must be equal to for action
+                    11  ACTION-EQ-SECUR-9 PIC 9(1).         [ 108] Security must be equal to for action
+                09  ACTION-MATCH PIC X(1).                  [ 109] Must have Associated Match for Action
+                09  ACTION-ALT-PROG PIC X(8).               [ 110] Alternate program for security check
+                09  ACTION-DISP-TYPE PIC X(1).              [ 118] Action Display Type
+                09  ACTION-DESC PIC X(12).                  [ 119] Short description of action code
+                09  FILLER      PIC X(14).
+            07  TRANSACTION-REC REDEFINES ERROR-REC.        [  95] Transaction Definition
+                09  SUB-SYSTEM  PIC X(2).                   [  95] Sub-System
+                    88  SUPPLY  VALUE '01'.                        Supply Module
+                    88  ACCTS-PAY VALUE '02'.                      Accounts Payable Module
+                    88  FUEL-OIL VALUE '03'.                       Fuel and Oil Module
+                    88  PSTATS  VALUE '04'.                        Production Statistics Module
+                    88  FIXED-ASSETS VALUE '05'.                   Fixed Assets
+                    88  PAYROLL VALUE '06'.                        Payroll Module
+                    88  LAB-COST VALUE '07'.                       Labour Costing Module
+                    88  JOURNAL VALUE '08'.                        Journal Modules
+                    88  ACCTS-RECV VALUE '09'.                     Accounts Receivable Module
+                    88  GEN-LEDGER VALUE '10'.                     General Ledger Module
+                09  CATEGORY    PIC X(1).                   [  97] Category
+                    88  A-REC-IND VALUE 'A'.                       Indicator to use Stock Adjustments
+                                                                   Record
+                    88  B-REC-IND VALUE 'B'.                       Indicator to use Stock Order Adjustments
+                                                                   Record
+                    88  C-REC-IND VALUE 'C'.                       Indicator to use Cheque Number Record
+                    88  D-REC-IND VALUE 'D'.                       Indicator to use Fixed Assets Record
+                    88  E-REC-IND VALUE 'E'.                       Indicator to use Equipment Cost
+                                                                   Reallocation Record
+                    88  F-REC-IND VALUE 'F'.                       Indicator to use Stock Fuel and Oil
+                                                                   Issues Record
+                    88  G-REC-IND VALUE 'G'.                       Indicator to use Non-Stock Fuel and Oil
+                                                                   Issues Record
+                    88  I-REC-IND VALUE 'I'.                       Indicator to use Invoicing Transactions
+                                                                   Record
+                    88  L-REC-IND VALUE 'L'.                       Indicator to use Labour Costing Entries
+                                                                   Record
+                    88  M-REC-IND VALUE 'M'.                       Indicator to use Manual Journal Vouchers
+                                                                   Record
+                    88  O-REC-IND VALUE 'O'.                       Indicator to use Offset Equipment Cost
+                                                                   Reallocation Record
+                    88  P-REC-IND VALUE 'P'.                       Indicator to use Purchase Requisition
+                                                                   Order Receipts Record
+                    88  Q-REC-IND VALUE 'Q'.                       Indicator to use Purchase Requisition
+                                                                   Price Adjust Record
+                    88  R-REC-IND VALUE 'R'.                       Indicator to use Stock Order Receipts
+                                                                   Record
+                    88  S-REC-IND VALUE 'S'.                       Indicator to use Stock Issues Record
+                    88  T-REC-IND VALUE 'T'.                       Indicator to use Receipts/Allocation
+                                                                   Record
+                    88  U-REC-IND VALUE 'U'.                       Indicator to use Sales Revenue
+                                                                   Consumption Tax Record
+                    88  V-REC-IND VALUE 'V'.                       Indicator to use Sales Revenue Record
+                    88  W-REC-IND VALUE 'W'.                       Indicator to use Work Order Cost
+                                                                   Reallocation Record
+                    88  X-REC-IND VALUE 'X'.                       Indicator to use Invoicing Transactions
+                                                                   Record
+                    88  Y-REC-IND VALUE 'Y'.                       Indicator to use Cheque Number Record
+                    88  Z-REC-IND VALUE 'Z'.                       Indicator to use Offsetting Financial
+                                                                   Entries Record
+                    88  1-REC-IND VALUE '1'.                       Indicator to use Employee Payments
+                                                                   Record.
+                09  CONTROL-ACCOUNT PIC X(4).               [  98] Control Account
+                09  UPDATE-ZERO-IND PIC X(1).               [ 102] Update Zero indicator
+                    88  UPDATE-ZERO VALUE 'Y'.                     Update zero
+                09  GRP-TRAN-TYPE PIC X(3).                 [ 103] Logical Group of Transaction Types
+                09  FILLER      PIC X(39).
+            07  SECURITY-REC    REDEFINES ERROR-REC.        [  95] Table Type Security
+                09  SECUR-DATA-GRP.                         [  95] Table security data
+                    11  SECUR-USERID-1 PIC X(10).           [  95] User Permitted to Mod the Tbl File 1     EMPLOYEE
+                    11  SECUR-USERID-2 PIC X(10).           [ 105] User Permitted to Mod the Tbl File 2     EMPLOYEE
+                    11  SECUR-USERID-3 PIC X(10).           [ 115] User Permitted to Mod the Tbl File 3     EMPLOYEE
+                    11  SECUR-USERID-4 PIC X(10).           [ 125] User Permitted to Mod the Tbl File 4     EMPLOYEE
+                    11  SECUR-USERID-5 PIC X(10).           [ 135] User Permitted to Mod the Tbl File 5     EMPLOYEE
+                09  SECUR-DATA-RT REDEFINES SECUR-DATA-GRP. [  95] Table security data
+                    11  SECUR-USERID PIC X(10) OCCURS 5     [  95] User Permitted to Mod the Tbl File       EMPLOYEE
+                                INDEXED BY
+                                SECUR-USERID-IDX.

@@ -1,0 +1,33 @@
+﻿01  MSF01B-RECORD.
+    03  KEY-01B.                                            [   1] MSF01B Key                               FK:0
+        05  HIERARCHY-ID        PIC X(6).                   [   1] Hierarchy Identifier                     DB,KEY:0
+        05  HIERARCHY-VER.                                  [   7] Hierarchy Version                        DB,KEY:0
+            07  HIERARCHY-VER-9 PIC 9(3).                   [   7] Hierarchy Version
+        05  LOC-CODE            PIC X(10).                  [  10] Location Code                            TABLE ('LCGR') TABLE
+                                                                                                            ('DN')
+                                                                                                            DB,KEY:0
+        05  LOC-IND             PIC X(1).                   [  20] Location Type Indicator                  DB,KEY:0
+            88  LOC-IND-GROUP   VALUE 'L'.                         Location Group
+            88  LOC-IND-DELIVERY VALUE 'D'.                        Delivery Location
+    03  DATA-01B.                                           [  21] Data Record for MSF01B
+        05  LOC-GROUP-TYPE      PIC X(2).                   [  21] Location Group Type                      TABLE ('LCTY')
+                                                                                                            DB
+        05  PAR-LOC-CODE        PIC X(10).                  [  23] Parent Location Code                     DB
+        05  DSTRCT-CODE         PIC X(4).                   [  33] District Code                            MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB
+        05  CREATION-DATA.                                  [  37] Date, Time and User ID
+            07  CREATION-DATE   PIC X(8).                   [  37] Creation Date                            DATE MANDATORY LE-TODAY
+                                                                                                            DB
+            07  CREATION-TIME   PIC X(6).                   [  45] Creation Time                            TIME MANDATORY
+                                                                                                            DB
+            07  CREATION-USER   PIC X(10).                  [  51] Creation User ID                         EMPLOYEE
+                                                                                                            DB
+        05  MODIFICATION-DATA.                              [  61] Date,Time and User ID of Modification
+            07  LAST-MOD-DATE   PIC X(8).                   [  61] Last Modification Date                   DATE MANDATORY LE-TODAY
+                                                                                                            DB
+            07  LAST-MOD-TIME   PIC X(6).                   [  69] Last Modification Time                   TIME
+                                                                                                            DB
+            07  LAST-MOD-USER   PIC X(10).                  [  75] Last Modification User Id Code           EMPLOYEE
+                                                                                                            DB

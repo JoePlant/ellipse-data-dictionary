@@ -1,0 +1,118 @@
+﻿01  MSF011-RECORD.
+    03  KEY-011.                                            [   1] Primary Key of MSF011                    FK:0
+        05  LOCATION            PIC X(12).                  [   1] Location                                 DB,KEY:0
+    03  DATA-011.                                           [  13] Data Record of MSF011
+        05  LOCATION-TYPE       PIC X(2).                   [  13] Location Type                            DB
+        05  LOCATION-DESC       PIC X(40).                  [  15] Location Description                     DB
+        05  SHORT-DESC          PIC X(15).                  [  55] Short Description                        DB
+        05  SPECIAL-NEEDS       PIC X(2).                   [  70] Special Needs Code                       TABLE ('SNCD')
+                                                                                                            DB
+        05  COUNTRY-CODE        PIC X(3).                   [  72] Country Code                             OPTIONAL TABLE ('CR')
+                                                                                                            ERROR (4120)
+                                                                                                            DB
+        05  LOCN-ADDRESS.                                   [  75] Address for Locations
+            07  LOCN-ADDRESS-1  PIC X(32).                  [  75] Location Address Line 1                  DB
+            07  LOCN-ADDRESS-2  PIC X(32).                  [ 107] Location Address Line 2                  DB
+            07  LOCN-ADDRESS-3  PIC X(32).                  [ 139] Location Address Line 3                  DB
+        05  STATE               PIC X(2).                   [ 171] State                                    OPTIONAL TABLE ('SY')
+                                                                                                            ERROR (7385)
+                                                                                                            DB
+        05  STREET-NO           PIC X(20).                  [ 173] Street Number/Property Id                DB
+        05  STREET-NAME         PIC X(35).                  [ 193] Street Name                              DB
+        05  STREET-TYPE         PIC X(4).                   [ 228] Street Type                              DB
+        05  STREET-POSITION     PIC X(10).                  [ 232] Street Position                          DB
+        05  COUNTY-SHIRE        PIC X(20).                  [ 242] County/Shire                             DB
+        05  SUBURB              PIC X(35).                  [ 262] Suburb                                   DB
+        05  TOWN-CITY           PIC X(35).                  [ 297] Town/City                                DB
+        05  ZIP-CODE.                                       [ 332] Zip code                                 DB
+            07  POST-CODE       PIC X(6).                   [ 332] Post Code
+            07  FILLER          PIC X(4).
+        05  CONTACT-NAME        PIC X(32).                  [ 342] Contact Name                             MANDATORY
+                                                                                                            NO-QUESTION-MARK
+                                                                                                            DB
+        05  CONTACT-PHONE       PIC X(16).                  [ 374] Contact Telephone Number                 DB
+        05  CONTACT-PHONE-A     PIC X(6).                   [ 390] Contact Telephone Number Area Code       DB
+        05  FAX-NO              PIC X(16).                  [ 396] Facsimile Number                         OPTIONAL
+                                                                                                            NO-QUESTION-MARK
+                                                                                                            DB
+        05  FAX-NO-A            PIC X(6).                   [ 412] Fax Area Code                            DB
+        05  TELEX-NAME          PIC X(32).                  [ 418] Telex Name                               MANDATORY
+                                                                                                            NO-QUESTION-MARK
+                                                                                                            DB
+        05  TELEX-NO            PIC X(16).                  [ 450] Telex Number                             OPTIONAL
+                                                                                                            NO-QUESTION-MARK
+                                                                                                            DB
+        05  CUSTOMS-IND         PIC X(1).                   [ 466] Customs Indicator                        DB
+            88  CUSTOMS-LOCATION VALUE 'Y'.                        Location is a Customs Location
+        05  CURRENCY-TYPE       PIC X(4).                   [ 467] Currency Type                            MANDATORY TABLE ('CU')
+                                                                                                            ERROR (1554)
+                                                                                                            DB
+        05  GOVT-ID             PIC X(3).                   [ 471] Government Identifier                    DB
+        05  LOCN-CLASSIFS.                                  [ 474] Group field for location classification
+            07  LOCN-CLASSIF-1  PIC X(2).                   [ 474] Location Classification 1 1
+            07  LOCN-CLASSIF-2  PIC X(2).                   [ 476] Location Classification 2
+            07  LOCN-CLASSIF-3  PIC X(2).                   [ 478] Location Classification 3
+            07  LOCN-CLASSIF-4  PIC X(2).                   [ 480] Location Classification 4
+            07  LOCN-CLASSIF-5  PIC X(2).                   [ 482] Location Classification 5
+            07  LOCN-CLASSIF-6  PIC X(2).                   [ 484] Location Classification 6
+            07  LOCN-CLASSIF-7  PIC X(2).                   [ 486] Location Classification 1 7
+            07  LOCN-CLASSIF-8  PIC X(2).                   [ 488] Location Classification 1 8
+            07  LOCN-CLASSIF-9  PIC X(2).                   [ 490] Location Classification 9
+            07  LOCN-CLASSIF-10 PIC X(2).                   [ 492] Location Classification 1 10
+        05  LOCN-CLASSIFS-RT    REDEFINES LOCN-CLASSIFS.    [ 474] Group Field for Location Classifications
+            07  LOCN-CLASSIF    PIC X(2) OCCURS 10 INDEXED  [ 474] Location Classification                  DB
+                                BY LOCN-CLASSIF-IDX.
+        05  MODIFICATION-DATA.                              [ 494] Date,Time and User ID of Modification
+            07  LAST-MOD-DATE   PIC X(8).                   [ 494] Last Modification Date                   DATE MANDATORY LE-TODAY
+                                                                                                            DB
+            07  LAST-MOD-TIME   PIC X(6).                   [ 502] Last Modification Time                   TIME
+                                                                                                            DB
+            07  LAST-MOD-USER   PIC X(10).                  [ 508] Last Modification User Id Code           EMPLOYEE
+                                                                                                            DB
+        05  CREATION-DATA.                                  [ 518] Date, Time and User ID
+            07  CREATION-DATE   PIC X(8).                   [ 518] Creation Date                            DATE MANDATORY LE-TODAY
+                                                                                                            DB
+            07  CREATION-TIME   PIC X(6).                   [ 526] Creation Time                            TIME MANDATORY
+                                                                                                            DB
+            07  CREATION-USER   PIC X(10).                  [ 532] Creation User ID                         EMPLOYEE
+                                                                                                            DB
+    03  AIX1-KEY-011.                                       [ 542] Alternate Key of MSF011                  FK:1
+        05  LOCN-GIS-REF        PIC X(35).                  [ 542] GIS or Map Reference Number              DB,KEY:1
+        05  LOCATION-1          PIC X(12).                  [ 577] Location                                 COPY,KEY:1
+    03  AIX2-KEY-011.                                       [ 589] Alternate key of MSF011                  FK:2
+        05  STATE-2             PIC X(2).                   [ 589] State                                    OPTIONAL TABLE ('SY')
+                                                                                                            ERROR (7385)
+                                                                                                            COPY,KEY:2
+        05  ZIP-CODE-3          PIC X(10).                  [ 591] Zip code                                 COPY,KEY:2
+        05  LOCATION-2          PIC X(12).                  [ 601] Location                                 COPY,KEY:2
+    03  AIX3-KEY-011.                                       [ 613] Alternate key of MSF011                  FK:3
+        05  ZIP-CODE-2          PIC X(10).                  [ 613] zip code                                 COPY,KEY:3
+        05  SUBURB-3            PIC X(35).                  [ 623] Suburb                                   COPY,KEY:3
+        05  TOWN-CITY-3         PIC X(35).                  [ 658] Town/City                                COPY,KEY:3
+        05  STREET-NAME-2       PIC X(35).                  [ 693] Street Name                              COPY,KEY:3
+        05  LOCATION-3          PIC X(12).                  [ 728] Location                                 COPY,KEY:3
+    03  AIX4-KEY-011.                                       [ 740] Alternate Key 4 of MSF011                FK:4
+        05  SUBURB-2            PIC X(35).                  [ 740] Suburb                                   COPY,KEY:4
+        05  STREET-NAME-3       PIC X(35).                  [ 775] Street Name                              COPY,KEY:4
+        05  LOCATION-4          PIC X(12).                  [ 810] Location                                 COPY,KEY:4
+    03  AIX5-KEY-011.                                       [ 822] Alternate key of MSF011                  FK:5
+        05  TOWN-CITY-2         PIC X(35).                  [ 822] Town/City                                COPY,KEY:5
+        05  STREET-NAME-4       PIC X(35).                  [ 857] Street Name                              COPY,KEY:5
+        05  LOCATION-5          PIC X(12).                  [ 892] Location                                 COPY,KEY:5
+    03  AIX6-KEY-011.                                       [ 904] Alternate Key 6 of MSF011                FK:6
+        05  STATE-3             PIC X(2).                   [ 904] State                                    OPTIONAL TABLE ('SY')
+                                                                                                            ERROR (7385)
+                                                                                                            COPY,KEY:6
+        05  SUBURB-4            PIC X(35).                  [ 906] Suburb                                   COPY,KEY:6
+        05  LOCATION-6          PIC X(12).                  [ 941] Location                                 COPY,KEY:6
+    03  AIX7-KEY-011.                                       [ 953] Alternate Key 7 of MSF011                FK:7
+        05  STREET-NAME-5       PIC X(35).                  [ 953] Street Name                              COPY,KEY:7
+        05  ZIP-CODE-4          PIC X(10).                  [ 988] Zip code                                 COPY,KEY:7
+        05  STATE-4             PIC X(2).                   [ 998] State                                    OPTIONAL TABLE ('SY')
+                                                                                                            ERROR (7385)
+                                                                                                            COPY,KEY:7
+        05  LOCATION-7          PIC X(12).                  [1000] Location                                 COPY,KEY:7
+    03  AIX8-KEY-011.                                       [1012] Alternate Key 8 of MSF011                FK:8
+        05  ZIP-CODE-5          PIC X(10).                  [1012] Zip code                                 COPY,KEY:8
+        05  STREET-NO-2         PIC X(20).                  [1022] Street Number/Property Id                COPY,KEY:8
+        05  LOCATION-8          PIC X(12).                  [1042] Location                                 COPY,KEY:8

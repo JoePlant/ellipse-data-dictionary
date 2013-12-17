@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
 using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers;
 using Ellipse.DataDictionary.Readers;
 using NUnit.Framework;
+using StringReader = Ellipse.DataDictionary.Readers.StringReader;
 
 namespace Ellipse.DataDictionary
 {
@@ -69,6 +72,10 @@ namespace Ellipse.DataDictionary
 
         protected void ParseFile(string fileName)
         {
+            string methodName = new StackTrace().GetFrame(1).GetMethod().Name.Replace("_", "-");
+            FileInfo file = new FileInfo(fileName);
+            Assert.That(file.Exists, Is.True, "File doesn't exist {0}", fileName);
+
             FileReader reader = new FileReader(fileName);
             IDataParser dataParser = new DataParser(reader, new IModelParser[] { new T() });
             dataParser.OnMissingParser = s =>
@@ -79,6 +86,14 @@ namespace Ellipse.DataDictionary
             dataParser.Parse();
 
             Assert.That(dataParser.Results, Is.Not.Empty, "Results should not be empty");
+
+            CobolModel classModel = dataParser.Results[0] as CobolModel;
+            Assert.That(classModel, Is.Not.Null);
+            if (classModel != null)
+            {
+                Assert.That(file.Name, Is.StringContaining(classModel.Data), "Class name doesn't match the filename");
+                Assert.That(classModel.Data, Is.EqualTo(methodName), "Class name doesn't match the method name");
+            }
         }
     }
 }

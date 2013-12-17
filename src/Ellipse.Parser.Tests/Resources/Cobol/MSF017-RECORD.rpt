@@ -1,0 +1,26 @@
+﻿01  MSF017-RECORD.
+    03  KEY-017.                                            [   1] MSF017 Key                               FK:0
+        05  HIERARCHY-ID        PIC X(6).                   [   1] Hierarchy Identifier                     DB,KEY:0
+        05  HIERARCHY-VER.                                  [   7] Hierarchy Version                        DB,KEY:0
+            07  HIERARCHY-VER-9 PIC 9(3).                   [   7] Hierarchy Version
+    03  DATA-017.                                           [  10] Data Record For MSF017
+        05  HIERARCHY-DESC      PIC X(40).                  [  10] Hierarchy Description                    DB
+        05  STATUS-017          PIC X(1).                   [  50] Hierarchy Status                         DB
+            88  STAT-017-INACTIVE VALUE 'I'.                       Inactive Status
+            88  STAT-017-ACTIVE VALUE 'A'.                         Active Status
+        05  LATEST-VERSION      PIC X(1).                   [  51] Latest Version                           DB
+            88  LATEST-VERSION-Y VALUE 'Y'.                        Latest Version
+        05  CREATION-DATA.                                  [  52] Date, Time and User ID
+            07  CREATION-DATE   PIC X(8).                   [  52] Creation Date                            DATE MANDATORY LE-TODAY
+                                                                                                            DB
+            07  CREATION-TIME   PIC X(6).                   [  60] Creation Time                            TIME MANDATORY
+                                                                                                            DB
+            07  CREATION-USER   PIC X(10).                  [  66] Creation User ID                         EMPLOYEE
+                                                                                                            DB
+        05  MODIFICATION-DATA.                              [  76] Date,Time and User ID of Modification
+            07  LAST-MOD-DATE   PIC X(8).                   [  76] Last Modification Date                   DATE MANDATORY LE-TODAY
+                                                                                                            DB
+            07  LAST-MOD-TIME   PIC X(6).                   [  84] Last Modification Time                   TIME
+                                                                                                            DB
+            07  LAST-MOD-USER   PIC X(10).                  [  90] Last Modification User Id Code           EMPLOYEE
+                                                                                                            DB

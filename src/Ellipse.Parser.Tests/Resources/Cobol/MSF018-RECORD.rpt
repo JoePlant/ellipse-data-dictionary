@@ -1,0 +1,26 @@
+﻿01  MSF018-RECORD.
+    03  KEY-018.                                            [   1] Primary Key of MSF018                    FK:0
+        05  ROUTE-CODE          PIC X(4).                   [   1] Route Code                               DB,KEY:0
+        05  EVENT-SEQ.                                      [   5] Event Sequence Number                    DB,KEY:0
+            07  EVENT-SEQ-9     PIC S9(3).                  [   5] Event Sequence Number
+        05  STEP-SEQ.                                       [   8] Step Sequence Number                     DB,KEY:0
+            07  STEP-SEQ-9      PIC S9(3).                  [   8] Step Sequence Number
+    03  DETAIL-018.                                         [  11] Details of MSF018
+        05  ITEM-CODE           PIC X(4).                   [  11] Event/Step Code                          DB
+        05  ITEM-DESC           PIC X(40).                  [  15] Item description                         DB
+        05  MAND-IND            PIC X(1).                   [  55] Mandatory Indicator                      DB
+            88  MANDATORY-ITEM  VALUE 'Y'.                         Mandatory Item
+        05  SERVICE-LEVEL-CODE  PIC X(2).                   [  56] Service Level Code                       TABLE ('RQSL')
+                                                                                                            DB
+        05  LAST-MOD-DATE       PIC X(8).                   [  58] Last Modification Date                   DATE MANDATORY LE-TODAY
+                                                                                                            DB
+        05  LAST-MOD-TIME       PIC X(6).                   [  66] Last Modification Time                   TIME
+                                                                                                            DB
+        05  LAST-MOD-USER       PIC X(10).                  [  72] Last Modification User Id Code           EMPLOYEE
+                                                                                                            DB
+        05  CREATE-DATE         PIC X(8).                   [  82] Creation Date                            DATE
+                                                                                                            DB
+        05  CREATE-TIME         PIC X(6).                   [  90] Creation time                            TIME
+                                                                                                            DB
+        05  CREATE-BY           PIC X(10).                  [  96] Creation By User                         EMPLOYEE
+                                                                                                            DB

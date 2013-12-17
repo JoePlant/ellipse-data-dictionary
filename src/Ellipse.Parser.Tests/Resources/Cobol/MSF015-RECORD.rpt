@@ -1,0 +1,16 @@
+﻿01  MSF015-RECORD.
+    03  KEY-015.                                            [   1] Primary Key of MSF015                    FK:0
+        05  ATAX-CODE           PIC X(4).                   [   1] Additional Taxes Code                    DB,KEY:0
+        05  DSTRCT-CODE         PIC X(4).                   [   5] District Code                            MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB,KEY:0
+    03  RECORD-015.                                         [   9] Details of MSF015 Record
+        05  DR-ACCOUNT-CDE      PIC X(24).                  [   9] Debit Account Code Number                ACCOUNT-CODE
+                                                                                                            DB
+        05  DR-EXP-ELEMENT      PIC X(8).                   [  33] Dr Expense Element for costing system    EXPENSE-ELEMENT
+                                                                                                            DB
+        05  CR-ACCOUNT-CDE      PIC X(24).                  [  41] Credit Account Code Number               ACCOUNT-CODE
+                                                                                                            DB
+        05  CR-EXP-ELEMENT      PIC X(8).                   [  65] Cr Expense Element for costing system    EXPENSE-ELEMENT
+                                                                                                            DB

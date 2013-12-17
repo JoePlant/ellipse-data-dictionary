@@ -1,0 +1,30 @@
+﻿01  MSF012-RECORD.
+    03  KEY-012.                                            [   1] Primary Key of MSF012                    FK:0
+        05  DATA-TYPE           PIC X(1).                   [   1] Client/Mincom Indicator                  DB,KEY:0
+            88  STD-INTERFACE   VALUE 'S'.                         Mincom Supplied Standard Interface
+            88  CLIENT-INTERFACE VALUE 'C'.                        Client Defined Interface
+            88  MINCOM-INTERFACE VALUE 'M'.                        Mincom Supplied Client Specific
+                                                                   Interface
+        05  KEY-VALUE           PIC X(63).                  [   2] Free Format Key Layout                   DB,KEY:0
+    03  KEY-STRUCTURE           REDEFINES KEY-012.          [   1] Suggested Use Of Key For I/F
+        05  DATA-TYPE-2         PIC X(1).                   [   1] Client/Mincom Indicator
+            88  STD-INTERFACE   VALUE 'S'.                         Mincom Supplied Standard Interface
+            88  CLIENT-INTERFACE VALUE 'C'.                        Client Defined Interface
+            88  MINCOM-INTERFACE VALUE 'M'.                        Mincom Supplied Client Specific
+                                                                   Interface
+        05  INTERFACE-ID        PIC X(8).                   [   2] Interface/Program Identifier
+        05  RECORD-STATUS       PIC X(2).                   [  10] Status of Interface Record
+        05  PROC-DATE           PIC X(8).                   [  12] Date of Creation CCYYMMDD                DATE MANDATORY LE-TODAY
+        05  BATCH-NUMBER.                                   [  20] Sequential Batch Number
+            07  BATCH-NUMBER-9  PIC 9(4).                   [  20] Sequential Batch Number
+        05  RUN-NUM.                                        [  24] Sequential Run Number Within
+            07  RUN-NUM-9       PIC 9(8).                   [  24] Sequential Run Number Within
+        05  RECORD-TYPE         PIC X(1).                   [  32] Type of help record
+            88  TOPIC-REC-IND   VALUE 'T'.                         Indicator to use TOPIC-REC definition
+            88  GLOSSARY-REC-IND VALUE 'G'.                        Indicator to use GLOSSARY-REC definition
+            88  SAMPLE-REC-IND  VALUE 'S'.                         Indicator to use SAMPLE-REC definition
+        05  RECORD-NUMBER.                                  [  33] Record Number
+            07  RECORD-NUMBER-9 PIC 9(5).                   [  33] Record Number
+        05  REST-OF-KEY         PIC X(27).                  [  38] Undefined
+    03  DATA-AREA               PIC X(934).                 [  65] Area For Interface Use                   DB,RAW
+    03  FILLER                  PIC X(2).

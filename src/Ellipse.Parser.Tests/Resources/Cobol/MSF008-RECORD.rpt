@@ -1,0 +1,19 @@
+﻿01  MSF008-RECORD.
+    03  KEY-008.                                            [   1] Primary Key of MSf008                    FK:0
+        05  DSTRCT-CODE         PIC X(4).                   [   1] District Code                            MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB,KEY:0
+    03  DEF-LAB-CATEG           PIC X(10).                  [   5] Default Labour Category                  DB
+    03  DEF-MAT-CATEG           PIC X(10).                  [  15] Default Material Category                DB
+    03  DEF-EQP-CATEG           PIC X(10).                  [  25] Default Equipment Category               DB
+    03  DEF-OTH-CATEG           PIC X(10).                  [  35] Default Other Category                   DB
+    03  DEF-REV-CATEG           PIC X(10).                  [  45] Deafault Revenue Category                DB
+    03  POSTING-GROUP.                                      [  55] Posting Criteria Group
+        05  POSTING-RULES       OCCURS 12 INDEXED BY        [  55] Posting Criteria                         DB
+                                POST-RULE-IDX.
+            07  CRITERIA-TYPE   PIC X(2).                   [  55] Posting Criteria Type
+                88  ACC-CODE    VALUE 'AC'.                        Account Code
+                88  TRN-TYPE    VALUE 'TT'.                        Transaction Type
+                88  TRAN-CATEG  VALUE 'TC'.                        Transaction Category
+            07  CRITERIA-MASK   PIC X(37).                  [  57] Posting Criteria Mask

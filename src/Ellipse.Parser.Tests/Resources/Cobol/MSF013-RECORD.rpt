@@ -1,0 +1,79 @@
+﻿01  MSF013-RECORD.
+    03  KEY-013.                                            [   1] Primary Key of MSF013                    FK:0
+        05  ATAX-CODE           PIC X(4).                   [   1] Additional Taxes Code                    DB,KEY:0
+    03  RECORD-013.                                         [   5] Details of MSF013 Record
+        05  DESCRIPTION         PIC X(40).                  [   5] Subscripted Description                  DATE MANDATORY LE-TODAY
+                                                                                                            DB
+        05  ATAX-RATE-9         PIC S9(4)V9(5) COMP-3.      [  45] Additional Tax Percentage                NUMERIC DEC (5) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  BASE-ON             PIC X(2).                   [  50] Base Calculation On                      DB
+            88  ACCUM-VALUE     VALUE 'AV'.                        Calculate on the Accumulated Value
+            88  BASE-VALUE      VALUE 'BV'.                        Calculate on base value
+            88  BASE-FREIGHT    VALUE 'BF'.                        Calculate on base value plus freight
+            88  BASE-CTAX       VALUE 'BC'.                        Calculate on base value plus consumption
+                                                                   tax
+            88  BASE-STAX       VALUE 'BS'.                        Calculate on base value plus sales tax
+            88  BASE-ALL        VALUE 'BA'.                        Calculate on base value plus all taxes
+        05  MIN-TAX-VAL-9       PIC S9(13)V9(2) COMP-3.     [  52] Minimum Taxable Value                    numeric dec (2) range
+                                                                                                            (0, )
+                                                                                                            DB
+        05  MAX-TAX-VAL-9       PIC S9(13)V9(2) COMP-3.     [  60] Maximum Taxable Value                    numeric dec (2) range
+                                                                                                            (0, )
+                                                                                                            DB
+        05  TAX-REF             PIC X(20).                  [  68] Tax Reference                            DB
+        05  VIEW-DETAIL-SW      PIC X(1).                   [  88] View Tax Details at Load                 DB
+            88  VIEW-DETAIL     VALUE 'Y'.                         View Tax Details
+        05  CALC-ON-IND         PIC X(1).                   [  89] Calculate on Indicator                   DB
+            88  CALC-ON-VAL     VALUE 'V'.                         Calculate on Value
+            88  CALC-ON-QTY     VALUE 'Q'.                         Calculate on Quantity
+        05  DR-ACCOUNT-CDE      PIC X(24).                  [  90] Debit Account Code Number                ACCOUNT-CODE
+                                                                                                            DB
+        05  DR-EXP-ELEMENT      PIC X(8).                   [ 114] Dr Expense Element for costing system    EXPENSE-ELEMENT
+                                                                                                            DB
+        05  CR-ACCOUNT-CDE      PIC X(24).                  [ 122] Credit Account Code Number               ACCOUNT-CODE
+                                                                                                            DB
+        05  CR-EXP-ELEMENT      PIC X(8).                   [ 146] Cr Expense Element for costing system    EXPENSE-ELEMENT
+                                                                                                            DB
+        05  RND-TRUNC-IND       PIC X(1).                   [ 154] Rounding Indicator                       DB
+            88  TAX-ROUNDED     VALUE 'R'.                         Round Tax Calculated
+            88  TAX-TRUNCATED   VALUE 'T'.                         Truncate Tax Calculated
+            88  TAX-LOWEST      VALUE 'L'.                         Round to lowest unit of currency
+        05  NO-OF-DEC.                                      [ 155] No of Dec Places for Tax Rate/Percent    NUMERIC DEC (0) RANGE
+                                                                                                            (0)
+                                                                                                            DB
+            07  NO-OF-DEC-9     PIC 9(1).                   [ 155] No of Decimal places                     NUMERIC DEC (0) RANGE
+                                                                                                            (0, )
+        05  DEFAULTED-IND       PIC X(1).                   [ 156] Ind Tax Code was Defaulted from Inv Head NUMERIC DEC (0) RANGE
+                                                                                                            (0)
+                                                                                                            DB
+            88  DEFAULTED       VALUE 'Y'.                         Defaulted TAx
+        05  DEDUCT-SW           PIC X(1).                   [ 157] Deduct Tax from Price indicator          DB
+            88  DEDUCT-TAX      VALUE 'Y'.                         Deduct Tax
+            88  ADD-TAX         VALUE 'N'.                         Add Tax
+        05  TIMING-IND          PIC X(1).                   [ 158] Determines when Tax Val are Calculated   DB
+            88  TAX-AT-LOAD     VALUE 'L'.                         Indicates when withholding tax applies
+            88  TAX-AT-PAYMENT  VALUE 'P'.                         At invoice payment
+        05  IN-PRICE-SW         PIC X(1).                   [ 159] Tax in price indicator                   DB
+            88  IN-PRICE        VALUE 'Y'.                         Tax included in price
+        05  RECOVER-SW          PIC X(1).                   [ 160] Recoverable Indicator                    DB
+            88  RECOVERABLE     VALUE 'Y'.                         Recoverable
+        05  PAY-SUPPLIER-SW     PIC X(1).                   [ 161] Pay Supplier Indicator                   DB
+            88  PAY-SUPP        VALUE 'Y'.                         Pay Supplier
+        05  GRP-LEVEL-IND       PIC X(1).                   [ 162] Group Level Indicator                    DB
+            88  GRP-LEVEL       VALUE 'Y'.                         Group Level
+        05  TAX-ONLY-IND        PIC X(2).                   [ 163] Calculate On Tax Only Indicator          DB
+            88  TAX-ONLY        VALUE 'AT'.                        Additional Tax Only.
+            88  FREIGHTONLY     VALUE 'FR'.                        Freight Only
+            88  CTAX-ONLY       VALUE 'CT'.                        Consumption Tax Only
+            88  STAX-ONLY       VALUE 'ST'.                        Sales Tax Only
+            88  CTAX-STAX       VALUE 'CS'.                        Consumption & Sales Tax
+        05  EFFECTIVE-DATE      PIC X(8).                   [ 165] Effective Date                           DATE MANDATORY
+                                                                                                            DB
+        05  ADJ-SETL-DISC       PIC X(1).                   [ 173] Settlement discount tax adjustment ind.  DB
+            88  NO-ADJUST       VALUE 'N'.                         No Adjustment
+            88  ADJUST-AT-PAYMENT VALUE 'P'.                       Adjustment at Payment
+            88  LOAD-SD-ADJUST  VALUE 'L'.                         Calc Tax on Value Net of Setl Disc
+        05  EXCEP-PROC-SW       PIC X(1).                   [ 174] Indicates exception processing for atax  DB
+            88  EXCEP-PROC      VALUE 'Y'.                         Exception Processing Enabled
+        05  VALUE-WHEN-ZERO     PIC S9(1)V9(2) COMP-3.      [ 175] Tax Rounding Value When Calc Tax is Zero DB

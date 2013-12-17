@@ -1,0 +1,16 @@
+﻿01  MSF01A-RECORD.
+    03  KEY-01A.                                            [   1] Primary Key for MSF01A                   FK:0
+        05  ENTITY-TYPE-019     PIC X(2).                   [   1] Entity Type (Work Request)               DB,KEY:0
+        05  ASSIGNED-TYPE       PIC X(2).                   [   3] Assigned Type                            DB,KEY:0
+            88  WORK-GROUP-01A  VALUE 'WG'.                        Work Group
+            88  EMPLOYEE-ID-01A VALUE 'EM'.                        Employee Id
+        05  ASSIGNED-ID         PIC X(10).                  [   5] Assigned To                              DB,KEY:0
+        05  DUE-DATE            PIC X(8).                   [  15] Due Date                                 DATE MANDATORY
+                                                                                                            DB,KEY:0
+        05  ENTITY-019          PIC X(12).                  [  23] Entity (For Work Request)                DB,KEY:0
+        05  SUB-ENTITY-TYPE     PIC X(2).                   [  35] Sub Entity Type (For Work Request)       DB,KEY:0
+        05  SUB-ENTITY          PIC X(12).                  [  37] Sub Entity                               DB,KEY:0
+        05  EVENT-SEQ.                                      [  49] Event Sequence Number                    DB,KEY:0
+            07  EVENT-SEQ-9     PIC S9(3).                  [  49] Event Sequence Number
+        05  STEP-SEQ.                                       [  52] Step Sequence Number                     DB,KEY:0
+            07  STEP-SEQ-9      PIC S9(3).                  [  52] Step Sequence Number

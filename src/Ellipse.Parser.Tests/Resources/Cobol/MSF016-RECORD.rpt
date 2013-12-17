@@ -1,0 +1,27 @@
+﻿01  MSF016-RECORD.
+    03  KEY-016.                                            [   1] Primary Key of MSF016                    FK:0
+        05  CLAUSE-ID           PIC X(20).                  [   1] Standard Clause Identification           MANDATORY
+                                                                                                            DB,KEY:0
+        05  CLAUSE-VER-NO.                                  [  21] Clause Version Number                    NUMERIC RANGE (0,9999)
+                                                                                                            MANDATORY
+                                                                                                            DB,KEY:0
+            07  CLAUSE-VER-NO-9 PIC 9(4).                   [  21] Numeric Clause Version Number
+    03  AIX1-KEY-016.                                       [  25] Alternate Key of MSF016                  FK:1
+        05  CLAUSE-ID-2         PIC X(20).                  [  25] Copy of Standard Clause Identification   COPY,KEY:1
+        05  CLAUSE-VER-REVSD.                               [  45] Clause Version Number Reversed           NUMERIC RANGE (0,9999)
+                                                                                                            DB,KEY:1
+            07  CLAUSE-VER-REVSD-9 PIC 9(4).                [  45] Clause Version Reversed
+    03  DATA-016.                                           [  49] Data Portion of Record
+        05  CLAUSE-DESC-GRP.                                [  49] Clause Description
+            07  CLAUSE-DESC1    PIC X(50).                  [  49] Description 1 of the Clause              DB
+            07  CLAUSE-DESC2    PIC X(50).                  [  99] Description 2 of the Clause              DB
+            07  CLAUSE-DESC3    PIC X(50).                  [ 149] Description 3 of the Clause              DB
+            07  CLAUSE-DESC4    PIC X(50).                  [ 199] Description 4 of the Clause              DB
+            07  CLAUSE-DESC5    PIC X(50).                  [ 249] Description 5 of the Clause              DB
+        05  CLAUSE-TYPE         PIC X(1).                   [ 299] Indicates the Nature of the Clause       DB
+            88  CLAUSE-FIXED    VALUE 'F'.                         Fixed Clause
+            88  CLAUSE-VARIABLE VALUE 'V'.                         Variable Clause
+        05  CREATION-DATE       PIC X(8).                   [ 300] Creation Date                            DATE MANDATORY LE-TODAY
+                                                                                                            DB
+        05  CREATION-USER       PIC X(10).                  [ 308] Creation User ID                         EMPLOYEE
+                                                                                                            DB

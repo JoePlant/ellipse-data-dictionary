@@ -1,0 +1,82 @@
+﻿01  MSF019-RECORD.
+    03  KEY-019.                                            [   1] Primary Key to MSF019                    FK:0
+        05  ENTITY-TYPE-019     PIC X(2).                   [   1] Entity Type (Work Request)               DB,KEY:0
+        05  ENTITY-019          PIC X(12).                  [   3] Entity (For Work Request)                DB,KEY:0
+        05  SUB-ENTITY-TYPE     PIC X(2).                   [  15] Sub Entity Type (For Work Request)       DB,KEY:0
+        05  SUB-ENTITY          PIC X(12).                  [  17] Sub Entity                               DB,KEY:0
+        05  EVENT-SEQ.                                      [  29] Event Sequence Number                    DB,KEY:0
+            07  EVENT-SEQ-9     PIC S9(3).                  [  29] Event Sequence Number
+        05  STEP-SEQ.                                       [  32] Step Sequence Number                     DB,KEY:0
+            07  STEP-SEQ-9      PIC S9(3).                  [  32] Step Sequence Number
+    03  AIX1-KEY-019.                                       [  35] 1st Alternate Index for MSF019           FK:1
+        05  ENTITY-TYPE-019-2   PIC X(2).                   [  35] Entity Type (Work Request)               COPY,KEY:1
+        05  EVENT-CODE          PIC X(4).                   [  37] Event Code                               DB,KEY:1
+        05  STEP-CODE           PIC X(4).                   [  41] Step Code                                DB,KEY:1
+        05  RTE-ITEM-STATUS     PIC X(1).                   [  45] Route Item Status                        DB,KEY:1
+            88  ITEM-UNACTIONED VALUE 'U'.                         Item has been Unactioned
+            88  IN-PROGRESS     VALUE 'P'.                         In Progress
+            88  STEPS-COMPLETE  VALUE 'S'.                         Event steps have been completed
+            88  RTE-ITEM-COMPLETE VALUE 'C'.                       Route Item is fully completed
+        05  ENTITY-019-2        PIC X(12).                  [  46] Entity (For Work Request)                COPY,KEY:1
+        05  SUB-ENTITY-TYPE-2   PIC X(2).                   [  58] Sub Entity Type (For Work Request)       COPY,KEY:1
+        05  SUB-ENTITY-2        PIC X(12).                  [  60] Sub Entity                               COPY,KEY:1
+        05  EVENT-SEQ-2         PIC X(3).                   [  72] Event Sequence Number                    COPY,KEY:1
+        05  STEP-SEQ-2          PIC X(3).                   [  75] Step Sequence Number                     COPY,KEY:1
+    03  AIX2-KEY-019.                                       [  78] 2nd Alternate Index for MSF019           FK:2
+        05  ENTITY-TYPE-019-3   PIC X(2).                   [  78] Entity Type (Work Request)               COPY,KEY:2
+        05  ROUTE-ITEM-TYPE     PIC X(1).                   [  80] Route Item Type                          DB,KEY:2
+            88  ROUTE-EVENT     VALUE 'E'.                         Route Event
+            88  ROUTE-STEP      VALUE 'S'.                         Route Step
+        05  ITEM-CODE           PIC X(4).                   [  81] Event/Step Code                          DB,KEY:2
+        05  RTE-ITEM-STATUS-3   PIC X(1).                   [  85] Route Item Status                        COPY,KEY:2
+            88  ITEM-UNACTIONED VALUE 'U'.                         Item has been Unactioned
+            88  IN-PROGRESS     VALUE 'P'.                         In Progress
+            88  STEPS-COMPLETE  VALUE 'S'.                         Event steps have been completed
+            88  RTE-ITEM-COMPLETE VALUE 'C'.                       Route Item is fully completed
+        05  ENTITY-019-3        PIC X(12).                  [  86] Entity (For Work Request)                COPY,KEY:2
+        05  SUB-ENTITY-TYPE-3   PIC X(2).                   [  98] Sub Entity Type (For Work Request)       COPY,KEY:2
+        05  SUB-ENTITY-3        PIC X(12).                  [ 100] Sub Entity                               COPY,KEY:2
+        05  EVENT-SEQ-3         PIC X(3).                   [ 112] Event Sequence Number                    COPY,KEY:2
+        05  STEP-SEQ-3          PIC X(3).                   [ 115] Step Sequence Number                     COPY,KEY:2
+    03  DETAIL-019.                                         [ 118] Detail of MSF019
+        05  ITEM-DESC           PIC X(40).                  [ 118] Item description                         DB
+        05  ASSIGNED-TO         PIC X(10).                  [ 158] Assigned To                              DB
+        05  WORK-GROUP          PIC X(7).                   [ 168] Work Group                               DATASET (MSF720) ERROR
+                                                                                                            (6618) OPTIONAL
+                                                                                                            MANDATORYIF (WORK-CENTRE
+                                                                                                            = SPACES AND
+                                                                                                            ASSIGN-PERSON = SPACES)
+                                                                                                            DB
+        05  ASSIGNED-DATE       PIC X(8).                   [ 175] Assigned Date                            DATE MANDATORY LE-TODAY
+                                                                                                            DB
+        05  ASSIGNED-TIME       PIC X(6).                   [ 183] Assigned time                            DB
+        05  SERVICE-LEVEL-CODE  PIC X(2).                   [ 189] Service Level Code                       TABLE ('RQSL')
+                                                                                                            DB
+        05  SERVICE-FAIL        PIC X(2).                   [ 191] Service Level Failure Code               DB
+        05  DUE-DATE            PIC X(8).                   [ 193] Due Date                                 DATE MANDATORY
+                                                                                                            DB
+        05  DUE-TIME            PIC X(6).                   [ 201] Due Time of Notice                       DB
+        05  MAND-IND            PIC X(1).                   [ 207] Mandatory Indicator                      DB
+            88  MANDATORY-ITEM  VALUE 'Y'.                         Mandatory Item
+        05  COMPL-BY            PIC X(10).                  [ 208] Completed by Employee ID                 EMPLOYEE
+                                                                                                            DB
+        05  COMPL-DATE          PIC X(8).                   [ 218] Completed Date                           DATE
+                                                                                                            DB
+        05  COMPL-TIME          PIC X(6).                   [ 226] Completed Time                           DB
+        05  COMPL-CODE          PIC X(2).                   [ 232] Completion Code                          TABLE ('SC')
+                                                                                                            DB
+        05  CURRENT-ROUTE       PIC X(1).                   [ 234] Current Route                            DB
+            88  FROM-CURRENT-ROUTE VALUE 'Y'.                      Generated from Current Route Template
+            88  FROM-PREVIOUS-ROUTE VALUE 'N'.                     Generated from previous route template
+        05  LAST-MOD-DATE       PIC X(8).                   [ 235] Last Modification Date                   DATE MANDATORY LE-TODAY
+                                                                                                            DB
+        05  LAST-MOD-TIME       PIC X(6).                   [ 243] Last Modification Time                   TIME
+                                                                                                            DB
+        05  LAST-MOD-USER       PIC X(10).                  [ 249] Last Modification User Id Code           EMPLOYEE
+                                                                                                            DB
+        05  CREATE-DATE         PIC X(8).                   [ 259] Creation Date                            DATE
+                                                                                                            DB
+        05  CREATE-TIME         PIC X(6).                   [ 267] Creation time                            TIME
+                                                                                                            DB
+        05  CREATE-BY           PIC X(10).                  [ 273] Creation By User                         EMPLOYEE
+                                                                                                            DB
