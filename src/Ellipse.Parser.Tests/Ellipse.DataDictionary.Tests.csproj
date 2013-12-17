@@ -58,6 +58,7 @@
     <Compile Include="Parsers\Cobol\ExampleStrings.cs" />
     <Compile Include="Parsers\Cobol\PropertyParserUnitTests.cs" />
     <Compile Include="ParserTestFixture.cs" />
+    <Compile Include="System\CobolParserSystemTests.cs" />
     <Compile Include="System\CobolUnitTests.cs" />
     <Compile Include="Parsers\Lines\MultipleLineMatcherUnitTests.cs" />
     <Compile Include="Parsers\Lines\FollowByLineMatcherUnitTests.cs" />
@@ -90,6 +91,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\Cobol\MSF002-RECORD.rpt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Cobol\MSF001-RECORD.rpt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Cobol\MSF000-RECORD.rpt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Cobol\MSF006-RECORD.rpt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

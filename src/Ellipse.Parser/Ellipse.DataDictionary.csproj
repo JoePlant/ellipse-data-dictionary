@@ -52,6 +52,7 @@
     <Compile Include="Models\CobolModel.cs" />
     <Compile Include="Models\StringModel.cs" />
     <Compile Include="Parsers\BlockParser.cs" />
+    <Compile Include="Parsers\Cobol\CobolParser.cs" />
     <Compile Include="Parsers\Cobol\Prefix.cs" />
     <Compile Include="Parsers\Cobol\DataTypeParser.cs" />
     <Compile Include="Parsers\Cobol\PropertyParser.cs" />
@@ -78,7 +79,7 @@
     <Compile Include="Parsers\Lines\OrLineMatcher.cs" />
     <Compile Include="Parsers\Lines\RepeatLineMatcher.cs" />
     <Compile Include="Parsers\Models\AccessInformationParser.cs" />
-    <Compile Include="Parsers\Models\CobolParser.cs" />
+    <Compile Include="Parsers\Models\CobolBlockParser.cs" />
     <Compile Include="Parsers\Models\TechnicalInformationParser.cs" />
     <Compile Include="Parsers\Models\ModuleParser.cs" />
     <Compile Include="Parsers\Models\ModifiedParser.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Parsers\Models\RecordParser.cs" />
     <Compile Include="Parsers\SingleLineParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Readers\AddPrefixReader.cs" />
     <Compile Include="Readers\LookupReader.cs" />
     <Compile Include="Readers\FileReader.cs" />
     <Compile Include="Readers\IReader.cs" />

@@ -32,6 +32,11 @@
             return new LineParser().IgnoreBefore(marker);
         }
 
+        public static ILineParser IgnoreBefore(int columnNo)
+        {
+            return new LineParser().IgnoreBefore(columnNo);
+        }
+
         public static ILineParser IgnoreAll()
         {
             return new LineParser().IgnoreAll();

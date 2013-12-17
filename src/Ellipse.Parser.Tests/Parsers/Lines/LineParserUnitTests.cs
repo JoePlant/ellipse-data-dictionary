@@ -63,6 +63,27 @@ namespace Ellipse.DataDictionary.Parsers.Lines
             AssertNoChange(lineParser, "One", "there is no dot", "dot", ",");
         }
 
+        [Test]
+        public void TruncateAt()
+        {
+            ILineParser lineParser = Data.TruncateAtColumn(3);
+
+            AssertWillParse(lineParser, "One", "One", "OneTwo", "One Two");
+            AssertWillParse(lineParser, "On", "On");
+            AssertWillParse(lineParser, "O", "O");
+
+            AssertWillParse(lineParser, "O  ", "O  Two", "O  ");
+        }
+
+        [Test]
+        public void IgnoreBeforeColumn()
+        {
+            ILineParser lineParser = Comment.IgnoreBefore(3);
+
+            AssertWillParse(lineParser, "Two", "OneTwo", "On Two", "O  Two", "   Two");
+            AssertWillParse(lineParser, "", "", "A", "On");
+        }
+
         private void AssertWillParse(ILineParser parser, string expected, params string[] args)
         {
             foreach (string line in args)

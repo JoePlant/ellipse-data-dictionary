@@ -56,14 +56,29 @@ namespace Ellipse.DataDictionary
         protected static string BuildStringModel(IList<Model> modelList)
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("Elements: {0}\n", modelList.Count);
+            
             int index = 0;
             foreach (Model model in modelList)
             {
                 index++;
                 builder.AppendFormat("{0}: {1}\n", index, model);
             }
+            builder.AppendFormat("Elements: {0}", modelList.Count);
             return builder.ToString();
+        }
+
+        protected void ParseFile(string fileName)
+        {
+            FileReader reader = new FileReader(fileName);
+            IDataParser dataParser = new DataParser(reader, new IModelParser[] { new T() });
+            dataParser.OnMissingParser = s =>
+                {
+                    Assert.Fail("Unable to Parse: {0}", reader);
+                    return false;
+                };
+            dataParser.Parse();
+
+            Assert.That(dataParser.Results, Is.Not.Empty, "Results should not be empty");
         }
     }
 }

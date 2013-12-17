@@ -1,0 +1,1526 @@
+﻿01  MSF000-RECORD.
+    03  KEY-000.                                            [   1] Primary key of MSF000                    FK:0
+        05  DSTRCT-CODE         PIC X(4).                   [   1] District Code                            MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB,KEY:0
+        05  CONTROL-REC.                                    [   5] Control Record Type
+            07  CONTROL-REC-TYPE PIC X(2).                  [   5] Identifies format of control record      DB,KEY:0,ID
+                88  AD-REC-IND  VALUE 'AD'.                        Indicator to use AD-REC definition
+                88  BK-REC-IND  VALUE 'BK'.                        Indicator to use BK-REC definition
+                88  CA-REC-IND  VALUE 'CA'.                        Indicator to use CA-REC definition
+                88  CC-REC-IND  VALUE 'CC'.                        Indicator to use CC-REC definition
+                88  CL-REC-IND  VALUE 'CL'.                        Indicator for Fixed Assets Accounts
+                88  CP-REC-IND  VALUE 'CP'.                        Indicator to use CP-REC definition
+                88  CS-LEVEL-REC-IND VALUE 'CS'.                   Indicator to use CS-LEVEL-REC definition
+                88  EC-LEVEL-REC-IND VALUE 'EC'.                   Indicator to use EC-LEVEL-REC definition
+                88  FI-REC-IND  VALUE 'FI'.                        Indicator to use FI-REC definition
+                88  JC-RUN-REC-IND VALUE 'JC'.                     Indicator to use JC-RUN-REC definition
+                88  PCYYMM-REC-IND VALUE 'PC'.                     Indicator to use PCYYMM-REC definition
+                88  PR-PRG-REC-IND VALUE 'PR'.                     Indicator to use PR-PROG-REC definition
+                88  PT-REC-IND  VALUE 'PT'.                        Indicator to use PT-REC definition
+                88  PU-LEVEL-REC-IND VALUE 'PU'.                   Indicator to use PU-LEVEL-REC definition
+                88  WO-REC-IND  VALUE 'WO'.                        Indicator to use WO-REC definition
+            07  CONTROL-REC-NO.                             [   7] Control rec no.                          DB,KEY:0,ID
+                09  CONTROL-REC-NO-9 PIC 9(4).              [   7] Record Number, Within Type
+                09  ACCTYRMN    REDEFINES CONTROL-REC-NO-9. [   7] Accounting year and month
+                    11  ACCTYRMN-9 PIC 9(4).                [   7] Accounting year and month
+        05  CONTROL-REC-IND     REDEFINES CONTROL-REC PIC   [   5] Control Record Indicator
+                                X(6).
+            88  DC0001-REC-IND  VALUE 'DC0001'.                    Indicator to use DC0001-REC definition
+            88  DC0002-REC-IND  VALUE 'DC0002'.                    Indicator to use DC0002-REC definition
+            88  DC0003-REC-IND  VALUE 'DC0003'.                    Indicator to use DC0003-REC definition
+            88  DC0004-REC-IND  VALUE 'DC0004'.                    Indicator to use DC0004-REC definition
+            88  DC0005-REC-IND  VALUE 'DC0005'.                    Indicator to use DC0005-REC definition
+            88  DC0010-REC-IND  VALUE 'DC0010'.                    Indicator to use DC0010-REC definition
+            88  DC0011-REC-IND  VALUE 'DC0011'.                    Indicator to use DC0011-REC definition
+            88  DC0012-REC-IND  VALUE 'DC0012'.                    Indicator to use DC0012-REC definition
+            88  DC0013-REC-IND  VALUE 'DC0013'.                    Indicator to use DC0013-REC definition
+            88  DC0014-REC-IND  VALUE 'DC0014'.                    Indicator to use DC0014-REC definition
+            88  DC0015-REC-IND  VALUE 'DC0015'.                    Indicator to use DC0015-REC definition
+            88  DC0016-REC-IND  VALUE 'DC0016'.                    Indicator to use DC0016-REC definition
+            88  DC0017-REC-IND  VALUE 'DC0017'.                    Indicator to use DC0017-REC definition
+            88  DC0018-REC-IND  VALUE 'DC0018'.                    Indicator to use DC0018-REC definition
+            88  DC0019-REC-IND  VALUE 'DC0019'.                    Indicator to use DC0019-REC definition
+            88  DC0020-REC-IND  VALUE 'DC0020'.                    District Control Record 20
+            88  DC0021-REC-IND  VALUE 'DC0021'.                    District Control Record 21
+            88  DC0022-REC-IND  VALUE 'DC0022'.                    District Control Record 22
+            88  DC0023-REC-IND  VALUE 'DC0023'.                    Indicator to use Accounts Receivable
+                                                                   Last Receipt Number
+            88  DC0049-REC-IND  VALUE 'DC0049'.                    Indicator to use DC0049-REC definition
+            88  SC0001-REC-IND  VALUE 'SC0001'.                    Indicator to use SC0001-REC definition
+            88  SC0002-REC-IND  VALUE 'SC0002'.                    Indicator to use SC0002-REC definition
+            88  SC0010-REC-IND  VALUE 'SC0010'.                    Indicator to use SC0010-REC definition
+            88  SC0011-REC-IND  VALUE 'SC0011'.                    Indicator to use SC0011-REC definition
+            88  SC0013-REC-IND  VALUE 'SC0013'.                    Indicator to use SC0013-REC definition
+            88  SC0014-REC-IND  VALUE 'SC0014'.                    Indicator to use SC0014-REC definition
+            88  SC0015-REC-IND  VALUE 'SC0015'.                    Indicator to use SC0015-REC definition
+            88  SC0019-REC-IND  VALUE 'SC0019'.                    Indicator to use SC0019-REC definition
+            88  SC0020-REC-IND  VALUE 'SC0020'.                    Indicator to use SC0001-REC definition
+            88  SC0021-REC-IND  VALUE 'SC0021'.                    Indicator to use SC0021-REC definition
+            88  SC0022-REC-IND  VALUE 'SC0022'.                    Indicator to use SC0022-REC definition
+            88  SC0023-REC-IND  VALUE 'SC0023'.                    Indicator to use SC0023-REC definition
+            88  SC0024-REC-IND  VALUE 'SC0024'.                    Indicator to use SC0024-REC definition
+            88  SC0025-REC-IND  VALUE 'SC0025'.                    Indicator to use Last Proforma Invoice
+                                                                   Report Run
+            88  SC0050-REC-IND  VALUE 'SC0050'.                    Indicator to use customer Works
+                                                                   Management record
+            88  SC0051-REC-IND  VALUE 'SC0051'.                    Indicator to use SC0051-REC definition
+            88  SC0052-REC-IND  VALUE 'SC0052'.                    Indicator to use SC0052-REC definition
+    03  PCYYMM-REC.                                         [  11] District Cntrl Acctg Prd Control         ST,ID1:PC
+        05  YE-CASH-COMPL-SW    PIC X(1).                   [  11] Year End Cash Completed indicator        DB
+            88  YE-CASH-COMPLETED VALUE 'Y'.                       Year End Cash Completed
+        05  THIS-ME-DATE        PIC X(8).                   [  12] Month end date CCYYMMDD of this period   DB
+        05  FIRST-TRAN-KEY      PIC X(28).                  [  20] First transaction key reported           DB
+        05  LAST-TRAN-KEY       PIC X(28).                  [  48] Last Transaction reported                DB
+        05  YE-COMPLETED-SW     PIC X(1).                   [  76] Year end completed indicator             DB
+            88  YE-COMPLETED    VALUE 'Y'.                         Year end completed indicator
+        05  POSTING-IND         PIC X(1).                   [  77] Indicates if posting allowed or not      VALUE ('P','N') ERROR
+                                                                                                            (7262)
+                                                                                                            DB
+            88  POSTING-ALLOWED VALUE 'P'.                         Indicates posting allowed
+            88  POSTING-NOT-ALLOWED VALUE 'N'.                     Indicates posting not allowed
+        05  SUB-SYS-CTL-REC.                                [  78] Accounting sub system control data.
+            07  SUB-SYS-CTL.                                [  78] Accounting sub-system control data
+                09  ME-COMP-DATE PIC X(8) OCCURS 12 INDEXED [  78] Month End completion date                DATE MANDATORY LE-TODAY
+                                BY ME-COMP-DATE-IDX.                                                        DB
+                09  ME-COMP-TIME OCCURS 12 INDEXED BY       [ 174] Time of Month end Completion (HHMMSS)    DB
+                                ME-COMP-TIME-IDX.
+                    11  ME-COMP-TIME-9 PIC 9(6).            [ 174] Time of Month end completion (HHMMSS)
+        05  FILLER              PIC X(29).
+    03  AD-REC                  REDEFINES PCYYMM-REC.       [  11] District Cntrl Availability              ST,ID1:AD
+        05  DSTRCT-STATUS       PIC X(1).                   [  11] District status                          DB
+            88  ACTIVE-DISTRICT VALUE 'A'.                         Indicates a district is active.
+            88  INACTIVE-DISTRICT VALUE ' '.                       Indicates a district is inactive
+        05  FILLER              PIC X(263).
+    03  BK-REC                  REDEFINES PCYYMM-REC.       [  11] District Cntrl Bank Accounts             ST,ID1:BK
+        05  BRANCH-CODE         PIC X(15).                  [  11] Branch Code                              DB
+        05  BRANCH-NAME         PIC X(40).                  [  26] Branch where bank account is held        DB
+        05  BANK-ACCT-NO        PIC X(20).                  [  66] Bank Account Number                      DB
+        05  ACCT-NAME           PIC X(40).                  [  86] Name of bank account                     DB
+        05  OWNED-BY            PIC X(4).                   [ 126] District running this bank account       MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB
+        05  GL-ACCT-NO          PIC X(24).                  [ 130] General Ledger account                   DB
+        05  CURRENCY-TYPE       PIC X(4).                   [ 154] Currency Type                            MANDATORY TABLE ('CU')
+                                                                                                            ERROR (1554)
+                                                                                                            DB
+        05  EXCHANGE-RATE       PIC S9(8)V9(7) COMP-3.      [ 158] Rate of currency exchange                NUMERIC DEC (7) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  LST-CHQ-RUN-NO.                                 [ 166] Last cheque run number                   DB
+            07  LST-CHQ-RUN-NO-9 PIC 9(6).                  [ 166] Last cheque run number
+        05  DEFAULT-IND         PIC X(1).                   [ 172] Default Indicator                        DB
+        05  LAST-CHQ-NO-USED.                               [ 173] Last cheque number used                  NUMERIC
+                                                                                                            DB
+            07  LAST-CHQ-NO-USED-9 PIC 9(6).                [ 173] Last cheque number used
+        05  BANK-ACCT-TYPE      PIC X(4).                   [ 179] Bank Account Type                        DB
+        05  CEMTEX-DAYS.                                    [ 183] Days + PP End Date = Cemtex Lodge Date
+            07  CEMTEX-DAYS-9   PIC S9(3) COMP-3.           [ 183] Days + PP End Date = Cemtex Lodge Date   DB
+        05  CEMTEX-DD.                                      [ 185] Actual Cemtex Lodge Day Number           DB
+            07  CEMTEX-DD-9     PIC 9(2).                   [ 185] Actual Cemtex Lodge Day Number
+        05  CEMTEX-NUM          PIC X(10).                  [ 187] Cemtex User Number                       DB
+        05  FILLER              PIC X(78).
+    03  CA-REC                  REDEFINES PCYYMM-REC.       [  11] System Cntrl Contract Admin              ST,ID1:CA
+        05  TENDER-NO.                                      [  11] Tender Number                            DB
+            07  TENDER-NO-9     PIC 9(8).                   [  11] Tender Number
+        05  CONTRACT-NO.                                    [  19] Contract Number                          DB
+            07  CONTRACT-NO-9   PIC 9(8).                   [  19] Contract Number
+        05  FILLER              PIC X(248).
+    03  CC-REC                  REDEFINES PCYYMM-REC.       [  11] District Cntrl Stocktake Params          ST,ID1:CC
+        05  CYCLE-START-DATE    PIC X(8).                   [  11] Starting date of stocktake               DATE MANDATORY LE-TODAY
+                                                                                                            DB
+        05  CYCLE-STATUS        PIC X(1).                   [  19] Status of current Stocktake Cycle        DB
+            88  STAKE-PLAN-STR  VALUE 'S'.                         Stocktake Plan Started indicator
+            88  STAKE-PLAN-NOT-STR VALUE 'N'.                      Stocktake Plan Not Started indicator
+        05  CL-7-CY-WEEKS       PIC S9(3) COMP-3.           [  20] Weeks in which to count stock type       DB
+        05  RUN-NO              PIC S9(5) COMP-3.           [  22] Run no. of Stocktake                     NUMERIC RANGE (1, )
+                                                                                                            DB
+        05  CYCLSEL-REC         OCCURS 6 INDEXED BY         [  25] Array of Stocktake Cycle Parameters      RT
+                                CYCLSEL-REC-IDX.
+            07  CYCLE-CLASS     PIC X(1).                   [  25] Classification of Stock for Stocktake    DB
+            07  CLASS           PIC X(1).                   [  26] Stock Classification                     TABLE ('CL') ERROR
+                                                                                                            (0051)
+                                                                                                            DB
+            07  STOCK-TYPE      PIC X(1).                   [  27] Stock Type                               TABLE ('ST') ERROR
+                                                                                                            (0056)
+                                                                                                            DB
+            07  SECTION-CODES.                              [  28] Group Item for Stock Section Codes
+                09  STOCK-SECTION-N.                        [  28] Group item for stock-section-n.
+                    11  STOCK-SECTION PIC X(2) OCCURS 10    [  28] Internal Stock Sections (Positional)     DB
+                                INDEXED BY
+                                STOCK-SECTION-IDX.
+            07  ABCD-LEVEL      PIC X(1).                   [  48] ABCD level for inventory                 VALUE ('A','B','C','D')
+                                                                                                            ERROR (0962)
+                                                                                                            DB
+                88  A-LEVEL     VALUE 'A'.                         Inventory A level indicator
+                88  B-LEVEL     VALUE 'B'.                         Inventory B level indicator
+                88  C-LEVEL     VALUE 'C'.                         Inventory C level indicator
+                88  D-LEVEL     VALUE 'D'.                         Inventory D level indicator
+            07  XYZ-LEVEL       PIC X(1).                   [  49] XYZ level for Inventory                  VALUE ('X','Y','Z')
+                                                                                                            ERROR (0962)
+                                                                                                            DB
+                88  X-LEVEL     VALUE 'X'.                         Inventory X level indicator
+                88  Y-LEVEL     VALUE 'Y'.                         Inventory Y level indicator
+                88  Z-LEVEL     VALUE 'Z'.                         Inventory Z level indicator
+            07  CYCLE-WEEKS     PIC S9(3) COMP-3.           [  50] Weeks in which to count stock type       DB
+        05  FILLER              PIC X(88).
+    03  CL-REC                  REDEFINES PCYYMM-REC.       [  11] District Cntrl Cost Ledger Cntl          ST,ID1:CL
+        05  GL-ACCOUNT          PIC X(24).                  [  11] General Ledger account                   DB
+        05  ACCOUNT-DESC        PIC X(40).                  [  35] Description of cost ledger account       DB
+        05  DEPR-RATE           PIC S9(3)V9(4) COMP-3.      [  75] Depreciation Rate                        DB
+        05  SALV-RATE           PIC S9(3)V9(4) COMP-3.      [  79] Salvage Rate                             DB
+        05  COR-RATE            PIC S9(3)V9(4) COMP-3.      [  83] Cost of Removal Rate                     DB
+        05  ACCUM-DEPR          PIC S9(13)V9(2) COMP-3.     [  87] Accumulated Depreciation                 DB
+        05  FILLER              PIC X(180).
+    03  CP-REC                  REDEFINES PCYYMM-REC.       [  11] District Cntrl Accounting Prds           ST,ID1:CP
+        05  CURR-ACCT-YRMN.                                 [  11] Current Accounting Year/Month
+            07  CURR-ACCT-YR.                               [  11] Current accounting year.                 NUMERIC DEC (0)
+                                                                                                            RANGE(0,99)
+                                                                                                            DB
+                09  CURR-ACCT-YR-9 PIC 9(2).                [  11] Current Accounting Year
+            07  CURR-ACCT-MN.                               [  13] Current accounting month.                NUMERIC DEC (0)
+                                                                                                            DB
+                09  CURR-ACCT-MN-9 PIC 9(2).                [  13] Current Accounting Month
+        05  ME-PROC-YRMN.                                   [  15] Month end Accounting Year/Month
+            07  ME-PROC-YR.                                 [  15] Last period financial year               DB
+                09  ME-PROC-YR-9 PIC 9(2).                  [  15] Last period financial year
+            07  ME-PROC-MN.                                 [  17] Last period number                       DB
+                09  ME-PROC-MN-9 PIC 9(2).                  [  17] Last period number
+        05  ME-STATUS.                                      [  19] Status of month end processing.          DB
+            07  ME-STATUS-9     PIC 9(1).                   [  19] Status of Month end Processing
+        05  FILLER              PIC X(255).
+    03  CS-LEVEL-REC            REDEFINES PCYYMM-REC.       [  11] District Cntrl CostC Level Defn          ST,ID1:CS
+        05  CCTRE-SEG-LGTH.                                 [  11] Cost Centre segment length               NUMERIC DEC (0) RANGE
+                                                                                                            (1,24)
+                                                                                                            DB
+            07  CCTRE-SEG-LGTH-9 PIC 9(2).                  [  11] Cost Centre segment length
+        05  SHORT-SEG-NAME      PIC X(20).                  [  13] Short segment name                       DB
+        05  LONG-SEG-NAME       PIC X(40).                  [  33] Long segment name                        DB
+        05  DFLT-SEG-CODE       PIC X(24).                  [  73] Default segment code                     DB
+        05  MAND-CCTRE-IND      PIC X(1).                   [  97] Mandatory Cost Centre Indicator          VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  MANDATORY-COST-CENTRE VALUE 'Y'.                   Indicates Cost Centre is mandatory
+        05  VAL-CCTRE-IND       PIC X(1).                   [  98] Validation Cost Centre indicator         VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  VALIDATION-CCTRE VALUE 'Y'.                        Indicates Validation Cost Centre
+        05  FILLER              PIC X(176).
+    03  DC0001-REC              REDEFINES PCYYMM-REC.       [  11] Distrct Cntrl 1                          ST,ID1:DC,ID2:0001
+        05  DSTRCT-NAME         PIC X(40).                  [  11] Name of district for reports & screens   DB
+        05  SUPP-LEAD-TIME.                                 [  51] Supplier lead time                       NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  SUPP-LEAD-TIME-9 PIC 9(4).                  [  51] Supply Lead Time
+        05  WH-SERVICE-TIME     PIC S9(3) COMP-3.           [  55] Average warehouse service time           DB
+        05  NO-OF-MTHS-USG      PIC S9(3) COMP-3.           [  57] No. of months usage for EOQ calculation  DB
+        05  INV-APPR-IND        PIC X(1).                   [  59] Invoice approval report                  DB
+        05  MATCHING-TOL-PC     PIC S9(3)V9(2) COMP-3.      [  60] Matching tolerance percent               NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  MATCHING-TOL-COST   PIC S9(5)V9(2) COMP-3.      [  63] Matching tolerance dollars               NUMERIC DEC (2)
+                                                                                                            DB
+        05  RO-CTL-REC.                                     [  67] Recommended order control fields
+            07  NON-ACTION-DAYS.                            [  67] Days allowed before RO non-action report NUMERIC RANGE (1,99)
+                                                                                                            DB
+                09  NON-ACTION-DAYS-9 PIC 9(2).             [  67] Days allowed before RO non-action report
+            07  INV-REV-DAYS.                               [  69] Inventory Review Days                    DB
+                09  INV-REV-DAYS-9 PIC 9(4).                [  69] Inventory Review Days
+            07  PUR-REV-DAYS.                               [  73] Purchasing Review Days                   DB
+                09  PUR-REV-DAYS-9 PIC 9(4).                [  73] Purchasing Review Days
+            07  RO-PRINT-IND    PIC X(1).                   [  77] Combined recommended print indicator     VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+                88  COMBINE-REC-ORDERS VALUE 'Y'.                  Print combined recomm. orders
+        05  CTAX-FLG            PIC X(1).                   [  78] Consumption Tax Flag                     DB
+            88  CONSUMP-TAX     VALUE 'Y'.                         Consumption Tax
+            88  AR-CONSUMP-TAX  VALUE 'Y' 'R'.                     Cunsumption Tax AR
+        05  CONSUMP-TYPE        PIC X(3).                   [  79] Consumption Type                         DB
+        05  VALIDATE-BIN        PIC X(1).                   [  82] Validate Bin                             DB
+        05  STK-MOVE-HISTORY    PIC X(1).                   [  83] Stock Movement History                   DB
+            88  STK-MVT-HISTORY VALUE 'Y'.                         Record history on stock movements
+        05  IDIST-REQ-IND       PIC X(1).                   [  84] Interdistrict Requisitioning Indicator   DB
+            88  AUTO-IDIST-REQ  VALUE 'A'.                         Auto Interdistrict Requisitioning
+            88  MAN-IDIST-REQ   VALUE 'M'.                         Manual Interdistrict Requisitioning
+            88  NO-IDIST-REQ    VALUE 'N'.                         No Interdistrict Requisitioning
+        05  DIR-CHGE-OFST       PIC X(1).                   [  85] Dr Cost Codes at Time of Rec Offsite Ind DB
+        05  NPV-DFLT-IND        PIC X(1).                   [  86] Net Present Value Default Indicator      DB
+            88  NPV-APPLIES     VALUE 'A' 'D' 'O'.                 NPV Applies
+            88  NO-NPV          VALUE ' '.                         NPV Does Not Apply
+            88  NPV-DEFAULT-ONLY VALUE 'D'.                        NPV Default Only
+            88  NPV-MANUAL-ONLY VALUE 'O'.                         NPV Manual Only
+            88  NPV-MANUAL-DEFAULT VALUE 'A'.                      NPV Manual Default
+        05  OBSOLETE-11-L       PIC X(11).                  [  87] Filler                                   DB
+        05  SUP-REC.                                        [  98] Parameters for late Delivery Analysis
+            07  CATEG-1-DAYS    PIC S9(3) COMP-3.           [  98] Days late assigned to category 1         NUMERIC RANGE (1,999)
+                                                                                                            DB
+            07  CATEG-2-DAYS    PIC S9(3) COMP-3.           [ 100] Days late assigned to category 2         NUMERIC RANGE (1,999)
+                                                                                                            DB
+            07  CATEG-3-DAYS    PIC S9(3) COMP-3.           [ 102] Days late assigned to category 3         NUMERIC RANGE (1,999)
+                                                                                                            DB
+        05  MULTIWHOUSE         PIC X(1).                   [ 104] Multi warehouse indicator                VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  MULTI-WHOUSE    VALUE 'Y' 'E'.                     Multiple warehouses
+            88  SINGLE-WHOUSE   VALUE ' ' 'N'.                     Single warehouse
+            88  MULTI-WHOUSE-EXCL VALUE 'E'.                       Multiple Warehouse Excluded
+        05  OFFSITE-RCPTS       PIC X(1).                   [ 105] Flag to indicate if offsite receiving OC VALUE ('Y','A',' ')
+                                                                                                            DB
+            88  OFFSITE-ACCOUNTING VALUE 'Y'.                      Offsite accounting indicator
+            88  OFFSITE-RECEIPTS VALUE 'Y' 'A'.                    Receiving Offsite
+        05  PO-PRINT-IND        PIC X(1).                   [ 106] Stock/dir charge separate or combined    VALUE ('0','1','2')
+                                                                                                            ERROR (0688)
+                                                                                                            DB
+            88  MIX-STOCK-DIRECT VALUE '0'.                        Mixture of stock and direct charge
+                                                                   ind1cator
+            88  SEPARATE-STOCK-DIRECT VALUE '1'.                   Separate stock and direct charge
+                                                                   indicator
+            88  ONE-DIRECT-PER-ORDER VALUE '2'.                    One direct charge per order indicator
+        05  SALES-TAX-FLAG      PIC X(1).                   [ 107] Indicates if district pays sales tax     VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  SALES-TAX       VALUE 'Y'.                         District pays Sales Tax
+            88  NO-SALES-TAX    VALUE ' ' 'N'.                     District does not pay Sales Tax
+        05  NO-OF-PERIODS.                                  [ 108] Number of periods                        NUMERIC RANGE (12,13)
+                                                                                                            DB
+            07  NO-OF-PERIODS-9 PIC 9(2).                   [ 108] Number of periods
+        05  ISS-PRE-POSTED      PIC X(1).                   [ 110] Pre posted indicator                     VALUE ('A','Y','N')
+                                                                                                            ERROR (7186)
+                                                                                                            DB
+            88  PRE-POST-ISSUE  VALUE 'Y'.                         Issues are pre-posted
+        05  GOODS-REQ-HOLD      PIC X(1).                   [ 111] Goods Requisiton Holding Indicator       DB
+            88  GOODS-REQ-HOLDING VALUE 'Y'.                       Goods reqs are placed in holding
+        05  COSTING-OPTION.                                 [ 112] Cost centre/equip/work order relation    NUMERIC RANGE (1,5)
+                                                                                                            DB
+            07  COSTING-OPTION-9 PIC 9(2).                  [ 112] Cost centre/equip/work order relation
+        05  SERVICE-LEVEL       PIC S9(3)V9(2) COMP-3.      [ 114] Service level percentage                 NUMERIC DEC (2) RANGE
+                                                                                                            (0,999.99)
+                                                                                                            DB
+        05  COST-OF-ORDER.                                  [ 117] Cost of placing an order                 NUMERIC RANGE (1,999)
+                                                                                                            DB
+            07  COST-OF-ORDER-9 PIC 9(3).                   [ 117] Cost of placing an order
+        05  COST-OF-HOLDING.                                [ 120] Holding cost (% per annum as a fraction) NUMERIC DEC (0) RANGE
+                                                                                                            (1,99)
+                                                                                                            DB
+            07  COST-OF-HOLDING-9 PIC V9(2).                [ 120] Holding cost (% per annum as a fraction)
+        05  INVENT-COST-DFLT    PIC X(1).                   [ 122] District default for inventory costing   VALUE ('A','L','S')
+                                                                                                            ERROR (0558)
+                                                                                                            DB
+        05  RAF-DEFAULT         PIC X(2).                   [ 123] District default for reorder algorithm   TABLE ('RA') ERROR
+                                                                                                            (0068)
+                                                                                                            DB
+        05  WHOUSE-ID           PIC X(4).                   [ 125] Code to uniquely identify a warehouse    TABLE ('WH') WAREHOUSE
+                                                                                                            DB
+        05  FRT-ONCOST-PC.                                  [ 129] Freight oncost % for issues              NUMERIC DEC (2) RANGE
+                                                                                                            (0.01, ) ERROR (0800)
+                                                                                                            DB
+            07  FRT-ONCOST-PC-9 PIC 9(2)V9(2).              [ 129] Freight oncost % for issues
+        05  EXPEDITE-CODE       PIC X(2).                   [ 133] Expedite Code                            TABLE ('EX') ERROR
+                                                                                                            (0805)
+                                                                                                            DB
+        05  STOCK-AT-BIN        PIC X(1).                   [ 135] Stock Held at Bin Level Indicator        VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  STOCK-HELD-AT-BIN VALUE 'Y'.                       SOH is held at bin level
+        05  MSB180-REQUEST      PIC X(1).                   [ 136] Warehouse transfers requestable or auto  VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+        05  SCR-DFLT-LVL.                                   [ 137] Screen Default Level                     DB
+            07  SCR-DFLT-LVL-9  PIC 9(1).                   [ 137] Screen Default Level
+                88  SCR-DFLT-ALLOW VALUE 1 THRU 9.                 Screen Default Allowed
+        05  CATEG-MGT-FLG       PIC X(1).                   [ 138] Category Management Flag                 DB
+            88  CATEGORY-MGT    VALUE 'Y'.                         Category Management
+        05  DFLT-INVENT-CAT     PIC X(2).                   [ 139] Default Inventory Category               TABLE ('IG')
+                                                                                                            DB
+        05  DFLT-COND-CODE      PIC X(2).                   [ 141] Default Condition Code                   OPTIONAL TABLE ('CD')
+                                                                                                            DB
+        05  MIXED-CAT-TYP-FLG   PIC X(1).                   [ 143] Mixed Category Types Flag                DB
+            88  MIXED-CAT-TYPES VALUE 'Y'.                         Mixed Category Types Allowed
+        05  CAT-COSTING         PIC X(1).                   [ 144] Category Costing Flag                    VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  CAT-COST-ALLOWED VALUE 'Y'.                        Category Costing Allowed
+        05  BANNER-REQD         PIC X(1).                   [ 145] Inds if a Banner is Required on Reports  VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  BANNER-REQUIRED VALUE 'Y'.                         Indicates if Banner required for Reports
+        05  PASSWORD-EXPIRY.                                [ 146] The Max Life Span of a Password, in Days NUMERIC
+                                                                                                            DB
+            07  PASSWORD-EXPIRY-9 PIC 9(4).                 [ 146] Numeric picture of PASSWORD-EXPIRY
+        05  RETENTION-DAYS.                                 [ 150] No of Days Rpt retain, if Med was Online NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  RETENTION-DAYS-9 PIC 9(3).                  [ 150] No of Days Rpt retain, if Med was Online
+        05  COUNTRY-CODE        PIC X(3).                   [ 153] Country Code                             OPTIONAL TABLE ('CR')
+                                                                                                            ERROR (4120)
+                                                                                                            DB
+        05  LOCAL-CURRENCY      PIC X(4).                   [ 156] Local Currency type                      TABLE ('CU') ERROR
+                                                                                                            (1554)
+                                                                                                            DB
+        05  ALPHA-FACTOR        PIC S9(1)V9(2) COMP-3.      [ 160] Alpha Factor                             NUMERIC DEC (2)
+                                                                                                            DB
+        05  AVAIL-DSTRCT        PIC X(4).                   [ 162] Dist for Rules & Hierarchy of Equip Aval MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB
+        05  SECOND-CURR         PIC X(4).                   [ 166] Supp Dual Curr Invt Eval-Secondary Curr  TABLE ('CU') ERROR
+                                                                                                            (1554)
+                                                                                                            DB
+        05  RETAIN-RO-STATS     PIC X(1).                   [ 170] Retain Recommended Order for Statistics  DB
+            88  RETAIN-RO       VALUE 'Y'.                         Retain Recommended Orders
+        05  COST-IMPORT-ORD.                                [ 171] Cost of Placing an import order          DB
+            07  COST-IMPORT-ORD-9 PIC 9(3).                 [ 171] Cost of Placing an import order
+        05  CPA-ADJ-FLAG        PIC X(1).                   [ 174] Consumer Price Adjustment Indicator      VALUE ('Y','N')
+                                                                                                            DB
+            88  CPA-ADJ         VALUE 'Y'.                         Use Price Adjustments
+        05  STAX-XFERS-IND      PIC X(1).                   [ 175] Cal Sales Tax on Interdistrict Transfers VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  STAX-ON-XFERS   VALUE 'Y'.                         Sales Tax on Transfer
+        05  LOCAT-VAL-IND       PIC X(1).                   [ 176] Location Combination Validation Ind      VALUE ('I','V','N')
+                                                                                                            DB
+            88  INVALID-LOC-COMB VALUE 'I'.                        Validate Location Combinations using
+                                                                   Invalid Rules
+            88  VALID-LOC-COMB  VALUE 'V'.                         Validate Location Combinations using
+                                                                   Valid Rules
+            88  NO-LOC-COMB     VALUE 'N'.                         Do not validate location combinations
+        05  BYPASS-ESTAB-IND    PIC X(1).                   [ 177] Bypass Establishment Indicator           VALUE ('Y','N')
+                                                                                                            DB
+            88  BYPASS-ESTAB    VALUE 'Y'.                         Bypass Establishment at District Level
+        05  ESTAB-COMM-IND      PIC X(1).                   [ 178] Establishment Comments Indicator         DB
+            88  ESTAB-COMM      VALUE 'N'.                         Establishment Comments Indicator
+        05  LOC-DATA-GRP.                                   [ 179] Location
+            07  LO-LEVEL-1.                                 [ 179] Geographical location levels data
+                09  LO-LEVEL-NAME-1 PIC X(10).              [ 179] Geographical location level name 1       DB
+                09  LO-LEVEL-SIZE-1.                        [ 189] Geographical location level size 1       NUMERIC RANGE(1,99)
+                                                                                                            DB
+                    11  LO-LEVEL-SIZE-1-9 PIC 9(2).         [ 189] Geographical location level size
+                09  LO-LEVEL-MAND-1 PIC X(1).               [ 191] Geographical Locn Lvl Mandatory Ind 1    DB
+                09  LO-LEVEL-EDIT-1 PIC X(1).               [ 192] Geographical Locn Lvl Validation Ind 1   DB
+            07  LO-LEVEL-2.                                 [ 193] Geographical location levels data
+                09  LO-LEVEL-NAME-2 PIC X(10).              [ 193] Geographical location level name 2       DB
+                09  LO-LEVEL-SIZE-2.                        [ 203] Geographical location level size 2       NUMERIC RANGE(1,99)
+                                                                                                            DB
+                    11  LO-LEVEL-SIZE-2-9 PIC 9(2).         [ 203] Geographical location level size
+                09  LO-LEVEL-MAND-2 PIC X(1).               [ 205] Geographical Locn Lvl Mandatory Ind 2    DB
+                09  LO-LEVEL-EDIT-2 PIC X(1).               [ 206] Geographical Locn Lvl Validation Ind 2   DB
+            07  LO-LEVEL-3.                                 [ 207] Geographical location levels data
+                09  LO-LEVEL-NAME-3 PIC X(10).              [ 207] Geographical location level name 3       DB
+                09  LO-LEVEL-SIZE-3.                        [ 217] Geographical location level size 3       NUMERIC RANGE(1,99)
+                                                                                                            DB
+                    11  LO-LEVEL-SIZE-3-9 PIC 9(2).         [ 217] Geographical location level size
+                09  LO-LEVEL-MAND-3 PIC X(1).               [ 219] Geographical Locn Lvl Mandatory Ind 3    DB
+                09  LO-LEVEL-EDIT-3 PIC X(1).               [ 220] Geographical Locn Lvl Validation Ind 3   DB
+            07  LO-LEVEL-4.                                 [ 221] Geographical location levels data
+                09  LO-LEVEL-NAME-4 PIC X(10).              [ 221] Geographical location level name 4       DB
+                09  LO-LEVEL-SIZE-4.                        [ 231] Geographical location level size 4       NUMERIC RANGE(1,99)
+                                                                                                            DB
+                    11  LO-LEVEL-SIZE-4-9 PIC 9(2).         [ 231] Geographical location level size
+                09  LO-LEVEL-MAND-4 PIC X(1).               [ 233] Geographical Locn Lvl Mandatory Ind 4    DB
+                09  LO-LEVEL-EDIT-4 PIC X(1).               [ 234] Geographical Locn Lvl Validation Ind 4   DB
+            07  LO-LEVEL-5.                                 [ 235] Geographical location levels data
+                09  LO-LEVEL-NAME-5 PIC X(10).              [ 235] Geographical location level name 5       DB
+                09  LO-LEVEL-SIZE-5.                        [ 245] Geographical location level size 5       NUMERIC RANGE(1,99)
+                                                                                                            DB
+                    11  LO-LEVEL-SIZE-5-9 PIC 9(2).         [ 245] Geographical location level size
+                09  LO-LEVEL-MAND-5 PIC X(1).               [ 247] Geographical Locn Lvl Mandatory Ind 5    DB
+                09  LO-LEVEL-EDIT-5 PIC X(1).               [ 248] Geographical Locn Lvl Validation Ind 5   DB
+        05  LOCATION-DATA       REDEFINES LOC-DATA-GRP.     [ 179] Location Structure definition
+            07  LO-LEVELS       OCCURS 5 INDEXED BY         [ 179] Geographical location levels data
+                                LO-LEVELS-IDX.
+                09  LO-LEVEL-NAME PIC X(10).                [ 179] Geographical location level name
+                09  LO-LEVEL-SIZE.                          [ 189] Geographical location level size         NUMERIC RANGE(1,99)
+                    11  LO-LEVEL-SIZE-9 PIC 9(2).           [ 189] Geographical location level size
+                09  LO-LEVEL-MAND PIC X(1).                 [ 191] Geographical Location Lvl Mandatory Ind
+                09  LO-LEVEL-EDIT PIC X(1).                 [ 192] Geographical Location Lvl Validation Ind
+        05  DFLT-WH-XF-CAT      PIC X(2).                   [ 249] Warhouse transfer Catalogue              DB
+        05  FILLER              PIC X(24).
+    03  DC0002-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl 2                         ST,ID1:DC,ID2:0002
+        05  ITA-DSTRCT          PIC X(4).                   [  11] District for Intercompany Table Accounts MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB
+        05  GRID-SIZE.                                      [  15] Length of grid part of bin location      NUMERIC DEC(0) RANGE
+                                                                                                            (1,99)
+                                                                                                            DB
+            07  GRID-SIZE-9     PIC 9(2).                   [  15] Length of grid part of bin location
+        05  USAGE-ARRAY-IND     PIC X(2).                   [  17] Indicates usage array format             VALUE ('P','Q') ERROR
+                                                                                                            (0800)
+                                                                                                            DB
+            88  USAGE-IN-PERIODS VALUE 'P '.                       Usage format in Periods
+            88  USAGE-IN-QUARTERS VALUE 'Q '.                      Usage format in Quarters
+        05  USAGE-ARRAY-LIT     PIC X(8).                   [  19] Description of usage array displays      DB
+        05  USAGE-MAX.                                      [  27] Max value for usage array displays       DB
+            07  USAGE-MAX-9     PIC 9(2).                   [  27] Max value for usage array displays
+        05  USAGE-START.                                    [  29] Start value for usage array displays     DB
+            07  USAGE-START-9   PIC 9(2).                   [  29] Start valus for usage array displays
+        05  MSB141-SORT         PIC X(1).                   [  31] Picking slip sort in bin order flag      VALUE ('B','N') ERROR
+                                                                                                            (2306)
+                                                                                                            DB
+            88  PICKING-SLIP-NO-SORT VALUE 'N' ' '.                Picking slips not sorted in bin order
+            88  PICKING-SLIP-BIN-ORD VALUE 'B'.                    Picking slips are sorted in bin order
+        05  MSB900-RUN-NO.                                  [  32] MSB900 run number                        DB
+            07  MSB900-RUN-NO-9 PIC 9(4).                   [  32] MSB900 run number
+        05  XFER-DSTRCT-CODE    PIC X(4).                   [  36] Default transfer district code           DB
+        05  ALL-MAN-RCPT-IND    PIC X(1).                   [  40] Allow Manual Receipt Indicator           DB
+            88  ALLOW-MAN-RCPT  VALUE 'Y'.                         Allow Manual Receipt
+        05  ALLOW-MAN-INV-IND   PIC X(1).                   [  41] Allow Manual Invoice Indicator           VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  ALLOW-MAN-INV   VALUE 'Y'.                         Allow Manual Invoice
+        05  ODUE-CATEG-GRP.                                 [  42] Overdue Category Group
+            07  ODUE-CATEG-1.                               [  42] Overdue Category 1
+                09  ODUE-CATEG-9-1 PIC 9(3).                [  42] Overdue Category
+            07  ODUE-CATEG-2.                               [  45] Overdue Category 2
+                09  ODUE-CATEG-9-2 PIC 9(3).                [  45] Overdue Category
+            07  ODUE-CATEG-3.                               [  48] Overdue Category 3
+                09  ODUE-CATEG-9-3 PIC 9(3).                [  48] Overdue Category
+            07  ODUE-CATEG-4.                               [  51] Overdue Category 4
+                09  ODUE-CATEG-9-4 PIC 9(3).                [  51] Overdue Category
+        05  ODUE-CATEG-RT       REDEFINES ODUE-CATEG-GRP.   [  42] Overdue Category Group
+            07  ODUE-CATEG      OCCURS 4 INDEXED BY         [  42] Overdue Category                         DB
+                                ODUE-CATEG-IDX.
+                09  ODUE-CATEG-9 PIC 9(3).                  [  42] Overdue Category 9
+        05  WAGON-DESC          PIC X(12).                  [  54] Description of wagon displays            DB
+        05  CAGE-DESC           PIC X(12).                  [  66] Description of cage displays             DB
+        05  LAST-QUOTE.                                     [  78] Last quote                               DB
+            07  LAST-QUOTE-PFX  PIC X(1).                   [  78] Last quote prefix
+            07  LAST-QUOTE-NO.                              [  79] Last quotation number
+                09  LAST-QUOTE-NO-9 PIC 9(4).               [  79] Last quotation number
+        05  TELEX-PO-CODE       PIC X(4).                   [  83] Default telex order format               DB
+        05  FUEL-OIL-BIN        PIC X(12).                  [  87] Default bin location for fuel & oil      DB
+        05  FUEL-OIL-WH         PIC X(4).                   [  99] Fuel and Oil Warehouse                   TABLE ('WH') ERROR
+                                                                                                            (0064)
+                                                                                                            DB
+        05  MSB90A-RUN-NO.                                  [ 103] MSB90A Run Number                        DB
+            07  MSB90A-RUN-NO-9 PIC 9(4).                   [ 103] MSB90A Run Number
+        05  AUTO-AUTH-WO        PIC X(1).                   [ 107] Automatic WO Authorisation indicator     DB
+            88  AUTO-AUTHORISE-WO VALUE 'A'.                       Authorise Work Orders Automatically on
+                                                                   Creation
+        05  EXP-ELEMENT         PIC X(8).                   [ 108] Expense Element for costing system       EXPENSE-ELEMENT
+                                                                                                            DB
+        05  PO-HIST-IN          PIC X(1).                   [ 116] Purchase order history                   VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  PO-HISTORY-INSTALLED VALUE 'Y'.                    Purchase order history
+        05  AUTO-CHG-ORD        PIC X(1).                   [ 117] Auto generate change order ind.          VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  AUTO-PRINT-CHANGE-PO VALUE 'Y'.                    Auto generate change order
+        05  MSB222-PO-ORDER     PIC X(1).                   [ 118] Print P.O. in P.O. sequence indicator    VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  PO-PRINT-PO-SEQ VALUE 'Y'.                         Print PO in PO sequence indicator
+        05  MRP-PREFIX          PIC X(1).                   [ 119] Prefix of MRP number                     DB
+        05  LAST-MRP-NO.                                    [ 120] Last MRP number                          NUMERIC DEC (0) RANGE
+                                                                                                            (0,99999)
+                                                                                                            DB
+            07  LAST-MRP-NO-9   PIC 9(5).                   [ 120] Last MRP number
+        05  CCTRE-NO-LEVLS.                                 [ 125] No of levels in Cost Centre Structure    NUMERIC DEC (0) RANGE
+                                                                                                            (1,24) ERROR (0559)
+                                                                                                            DB
+            07  CCTRE-NO-LEVLS-9 PIC 9(2).                  [ 125] No of levels in Cost Centre Structure
+        05  GL-CODE-LGTH.                                   [ 127] Account Code length                      NUMERIC DEC (0) RANGE
+                                                                                                            (1,24) ERROR (0559)
+                                                                                                            DB
+            07  GL-CODE-LGTH-9  PIC 9(2).                   [ 127] Account Code length
+        05  COST-CTRE-LGTH.                                 [ 129] Cost Centre length                       NUMERIC DEC (0) RANGE
+                                                                                                            (1,24) ERROR (0559)
+                                                                                                            DB
+            07  COST-CTRE-LGTH-9 PIC 9(2).                  [ 129] Cost Centre length
+        05  EXP-ELE-LENGTH.                                 [ 131] Expense Element Length                   NUMERIC DEC (0) RANGE
+                                                                                                            (1,24) ERROR (0559)
+                                                                                                            DB
+            07  EXP-ELE-LENGTH-9 PIC 9(2).                  [ 131] Expense Element length
+        05  PC-STRUCT-IND       PIC X(1).                   [ 133] Post Account Structure Indicator         VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  POST-CCDE-STRUCTURE VALUE 'Y'.                     Post Account Structure Indicator
+        05  PP-STRUCT-IND       PIC X(1).                   [ 134] Post Parent Structure Indicator          VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  POST-PARENT-STRUCTURE VALUE 'Y'.                   Post Parent Structure indicator
+        05  PU-STRUCT-IND       PIC X(1).                   [ 135] Post User Structure indicator            VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  POST-USER-STRUCTURE VALUE 'Y'.                     Post User Structure indicator
+            88  POST-USER-CCDE  VALUE 'C'.                         Post only cost code types to user struct
+            88  POST-USER-GLCD  VALUE 'G'.                         Post only GL code types to user struct
+        05  ACCT-VAL-IND        PIC X(1).                   [ 136] Account Validation Indicator             DB
+            88  ACCEPT-VAL-NOLINK VALUE 'A'.                       Indicator to Accept an Account Code Val
+                                                                   on COA
+            88  ERROR-NO-LINK   VALUE 'E'.                         Ind to Reject an Acct Code Not
+                                                                   Established as Valid Link
+            88  WARN-VAL-NOLINK VALUE 'W'.                         Indicator To Warn If Account On COA But
+                                                                   Not Linked
+        05  POST-COMMS-IND      PIC X(1).                   [ 137] Post Commitments Indicator               VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  POST-COMMITMENTS VALUE 'Y'.                        Post Commitments indicator
+        05  GL-CODE-DSTRCT      PIC X(4).                   [ 138] Account District Code                    MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB
+        05  CCTRE-DSTRCT        PIC X(4).                   [ 142] District for Cost Centre                 MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB
+        05  EXP-ELE-DSTRCT      PIC X(4).                   [ 146] District for Expense Element             MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB
+        05  FILLER-1            PIC X(1).                   [ 150] Filler
+        05  EQUIP-SUM-TY-1      PIC X(2).                   [ 151] Equipment summary type 1                 TABLE ('SU') ERROR ( )
+                                                                                                            DB
+        05  EQUIP-SUM-TY-2      PIC X(2).                   [ 153] Equipment summary type 2                 TABLE ('SU') ERROR ( )
+                                                                                                            DB
+        05  EQUIP-SUM-TY-3      PIC X(2).                   [ 155] Equipment summary type 3                 TABLE ('SU') ERROR ( )
+                                                                                                            DB
+        05  EQUIP-SUM-TY-4      PIC X(2).                   [ 157] Equipment summary type 4                 TABLE ('SU') ERROR ( )
+                                                                                                            DB
+        05  PROJ-SUM-TY-1       PIC X(2).                   [ 159] Project summary type 1                   TABLE ('SU') ERROR
+                                                                                                            (6757)
+                                                                                                            DB
+        05  PROJ-SUM-TY-2       PIC X(2).                   [ 161] Project summary type 2                   TABLE ('SU') ERROR
+                                                                                                            (6757)
+                                                                                                            DB
+        05  PROJ-SUM-TY-3       PIC X(2).                   [ 163] Project summary type 3                   TABLE ('SU') ERROR
+                                                                                                            (6757)
+                                                                                                            DB
+        05  PROJ-SUM-TY-4       PIC X(2).                   [ 165] Project summary type 4                   TABLE ('SU') ERROR
+                                                                                                            (6757)
+                                                                                                            DB
+        05  WO-RLOC-DR-EE       PIC X(8).                   [ 167] Default WO RLOC Debit Expense Element    EXPENSE-ELEMENT
+                                                                                                            DB
+        05  WO-RLOC-CR-EE       PIC X(8).                   [ 175] Default WO RLOC Credit Expense Element   EXPENSE-ELEMENT
+                                                                                                            DB
+        05  MAN-REQ-OPT         PIC X(1).                   [ 183] Defs Entry Opt for Manual Requisition No DB
+        05  MSB240-NXT-RUN.                                 [ 184] Next MSB240 run number                   NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  MSB240-NXT-RUN-9 PIC 9(4).                  [ 184] Next MSB240 run number
+        05  REQ-ENTRY-OPT       PIC X(1).                   [ 188] Defines Entry Option for Requisition No  DB
+        05  FRT-EXP-ELE         PIC X(8).                   [ 189] Freight Expense Element for Costing Sys  EXPENSE-ELEMENT
+                                                                                                            DB
+        05  NOPRINT-SOH-SW      PIC X(1).                   [ 197] Suppress Prt of SOH on Stock Count Sheet DB
+            88  NOPRINT-SOH     VALUE 'Y'.                         Do not print SOH on stock count sheets
+                                                                   indicator.
+        05  EXPED-RUN-NO.                                   [ 198] Expedite Run Number                      NUMERIC DEC (0) RANGE
+                                                                                                            (0,999)
+                                                                                                            DB
+            07  EXPED-RUN-NO-9  PIC 9(3).                   [ 198] Expedite run number to be used
+        05  EQ-LST-ARC-PER      PIC X(4).                   [ 201] Period code                              DB
+        05  MSB240-LR-DATE      PIC X(8).                   [ 205] MSB240 LR Date                           DATE
+                                                                                                            DB
+        05  CUST-ONCOST-SW      PIC X(1).                   [ 213] Customs On-costing indicator             VALUE ('Y','N') ERROR
+                                                                                                            (0006)
+                                                                                                            DB
+            88  CUST-ONCOST-ON  VALUE 'Y'.                         Customs On-costing set on
+        05  ORIG-TARIFF-SW      PIC X(1).                   [ 214] Origin and Tariff code use indicator     VALUE ('Y','N') ERROR
+                                                                                                            (0006)
+                                                                                                            DB
+            88  ORIG-TARIFF-ON  VALUE 'Y'.                         Origin and Tariff codes in use
+        05  DFLT-ORIGIN         PIC X(2).                   [ 215] Default Origin Code for Customs On-cost  TABLE ('OR') ERROR
+                                                                                                            (6806)
+                                                                                                            DB
+        05  CUST-EXP-ELE        PIC X(8).                   [ 217] Expense Element for Customs Charges      EXPENSE-ELEMENT
+                                                                                                            DB
+        05  FO-TRAN-TYPE        PIC X(2).                   [ 225] Fuel and Oil default transaction type    TABLE ('IT') ERROR
+                                                                                                            (0066)
+                                                                                                            DB
+        05  FRT-ACCTNG-SW       PIC X(1).                   [ 227] Freight Accounting Indicator             VALUE ('Y','N') ERROR
+                                                                                                            (0006)
+                                                                                                            DB
+            88  FRT-ACCTNG-ON   VALUE 'Y'.                         Freight Accounting set on
+        05  DFLT-FRT-RATE       PIC X(2).                   [ 228] Default Freight Rate Code                TABLE ('FW') ERROR
+                                                                                                            (6922)
+                                                                                                            DB
+        05  MSB915-RUN-LN.                                  [ 230] Last MSB915 Run Number                   NUMERIC RANGE (1, )
+                                                                                                            DB
+            07  MSB915-RUN-LN-9 PIC 9(4).                   [ 230] Last MSB915 Run Number
+        05  MSB918-RUN-LN.                                  [ 234] Last MSB918 Run Number                   NUMERIC RANGE (1, )
+                                                                                                            DB
+            07  MSB918-RUN-LN-9 PIC 9(4).                   [ 234] Last MSB918 Run Number
+        05  LAST-SD-NO.                                     [ 238] Last Shutdown Number Allocated           OPTIONAL DATASET
+                                                                                                            (MSF750)
+                                                                                                            DB
+            07  LAST-SD-NO-9    PIC 9(6).                   [ 238] Last Shutdown Number Allocated
+        05  SUBLEDGER-SW        PIC X(1).                   [ 244] Indicates Use Of Subledgers              VALUE ('Y','N')
+                                                                                                            DB
+            88  SUBLEDGER-USED  VALUE 'Y'.                         Indicates Use Of Subledgers
+        05  JNL-TYPE-SW         PIC X(1).                   [ 245] Indicates Journal Type                   VALUE ('Y','N')
+                                                                                                            DB
+            88  JNL-TYPE        VALUE 'Y'.                         Mandatory for Journal Entry
+        05  PREQ-REQ-OPT        PIC X(1).                   [ 246] Purchase Requistion Req Option           DB
+        05  DSTRCT-DTE-FMT      PIC X(1).                   [ 247] Defines date format for district         VALUE ('A','U','I','M')
+                                                                                                            ERROR (0985) ALIAS OF
+                                                                                                            DATE-FORMAT
+                                                                                                            DB
+        05  TIME-DIFF-9         PIC S9(3)V9(2) COMP-3.      [ 248] Hrs/mins Diff b/t the Sys and Local Time NUMERIC DEC (2) RANGE
+                                                                                                            (-23.59, 23.59)
+                                                                                                            DB
+        05  FILLER              PIC X(24).
+    03  DC0003-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Accounts Payable          ST,ID1:DC,ID2:0003
+        05  REVIEW-RCPTS        PIC X(1).                   [  11] Review Receipts Prompt Indicator         VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  REVIEW-RECEIPTS VALUE 'Y'.                         Indicates Review Receipts
+        05  DEFAULT-RSPNS       PIC X(1).                   [  12] Default Response (Y/N)                   DB
+        05  KEEP-CANC-INV       PIC X(1).                   [  13] Ind to Keep Cancelled Invoices on File   VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  KEEP-CANCELLED-INVS VALUE 'Y'.                     Indicates to keep cancelled invoices on
+                                                                   file
+        05  APPROVE-SRI         PIC X(1).                   [  14] Approve Service invoices on load         VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  APPROVE-SERVICE-INVS VALUE 'Y'.                    Indicates to approve service invoices
+        05  APPROVE-FRI         PIC X(1).                   [  15] Approve Field Release Invoices on load   VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  APPROVE-FIELDREL-INVS VALUE 'Y'.                   Indicates to approve field relese
+                                                                   invoices
+        05  APPROVE-NOI         PIC X(1).                   [  16] Approve Non Order invoices on load       VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  APPROVE-NONORDER-INVS VALUE 'Y'.                   Indicates to Approve non order invoices
+        05  APPROVE-PPY         PIC X(1).                   [  17] Approve Prepay                           DB
+            88  APPROVE-PREPAY-INV VALUE 'Y'.                      Approve Prepay Invoice
+        05  INV-UP-TOL-PC       PIC S9(3)V9(2) COMP-3.      [  18] Upper Tolerance % for Matching Comp Inv  NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  INV-UP-TOL-VAL      PIC S9(7)V9(2) COMP-3.      [  21] Uppr Tolerance Val for Matching Comp Inv NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  INV-LO-TOL-PC       PIC S9(3)V9(2) COMP-3.      [  26] Lower Tolerance % for Matching Comp Invs NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  INV-LO-TOL-VAL      PIC S9(7)V9(2) COMP-3.      [  29] Lowr Tolerance Val for Matchng Comp Invs NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  ITM-UP-TOL-PC       PIC S9(3)V9(2) COMP-3.      [  34] Upper Tolerance % for Matching Inv Items NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  ITM-UP-TOL-VAL      PIC S9(7)V9(2) COMP-3.      [  37] Uppr Tolerance Val for Matching Inv Itms NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  ITM-LO-TOL-PC       PIC S9(3)V9(2) COMP-3.      [  42] Lower Tolerance % for Matching Inv Items NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  ITM-LO-TOL-VAL      PIC S9(7)V9(2) COMP-3.      [  45] Lowr Tolerance Val for Matching Inv Itms NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  TAX-MATCH-TOL-UP    PIC S9(7)V9(2) COMP-3.      [  50] Upper Tolerance Value for Matching Add   NUMERIC DEC (2) RANGE
+                                                                   Tax                                      (0, )
+                                                                                                            DB
+        05  TAX-MATCH-TOL-LO    PIC S9(7)V9(2) COMP-3.      [  55] Lower Tolerance Value for Matching Add   NUMERIC DEC (2) RANGE
+                                                                   Tax                                      (0, )
+                                                                                                            DB
+        05  TAX-TOL-PC          PIC S9(3)V9(2) COMP-3.      [  60] Tax Tolerance Percentage                 NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  TAX-TOL-VAL         PIC S9(7)V9(2) COMP-3.      [  63] Tax Tolerance Value                      NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+        05  RPT-APPR-AFTER.                                 [  68] Rpt for Approval After these No of days  NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  RPT-APPR-AFTER-9 PIC 9(4).                  [  68] Rpt for Approval After these No of days
+        05  RPT-APPR-EVERY.                                 [  72] Rpt for Approval Every these No of days  NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  RPT-APPR-EVERY-9 PIC 9(4).                  [  72] Rpt for Approval Every these No of days
+        05  RPT-PMM-AFTER.                                  [  76] Rpt Pr Mismatches After these No of days NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  RPT-PMM-AFTER-9 PIC 9(4).                   [  76] Rpt Pr Mismatches After these No of days
+        05  RPT-PMM-EVERY.                                  [  80] Rpt Pr Mismatches Every these No of days NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  RPT-PMM-EVERY-9 PIC 9(4).                   [  80] Rpt Pr Mismatches Every these No of days
+        05  RPT-QMM-AFTER.                                  [  84] Rpt Qty Mismatches Aft these No of days  NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  RPT-QMM-AFTER-9 PIC 9(4).                   [  84] Rpt Qty Mismatches Aft these No of days
+        05  RPT-QMM-EVERY.                                  [  88] Rpt Qty Mismatche Every these No of days NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  RPT-QMM-EVERY-9 PIC 9(4).                   [  88] Rpt Qty Mismatche Every these No of days
+        05  MULTIBANK           PIC X(1).                   [  92] Multibank indicator                      VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  MULTI-BANK      VALUE 'Y'.                         Multiple banks
+            88  SINGLE-BANK     VALUE ' ' 'N'.                     Single bank
+        05  LAST-RP-NO.                                     [  93] Last recurring payment number            NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  LAST-RP-NO-9    PIC 9(4).                   [  93] Last recurring payments number
+        05  KEEP-PRES-CHQS.                                 [  97] Keep Presented Cheques for these No Days NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  KEEP-PRES-CHQS-9 PIC 9(4).                  [  97] Keep Presented Cheques for these No Days
+        05  KEEP-CANC-CHQS.                                 [ 101] Keep Cancelled Cheques for these No Days NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  KEEP-CANC-CHQS-9 PIC 9(4).                  [ 101] Keep Cancelled Cheques for these No Days
+        05  LAST-PP-NO.                                     [ 105] Last Progress Payment                    DB
+            07  LAST-PP-NO-9    PIC 9(8).                   [ 105] Last Progress Payment
+        05  SI-COSTING          PIC X(1).                   [ 113] Governs if Cost is Init for Serv Ord Inv DB
+            88  SI-COST-LOAD    VALUE 'L'.                         Costing initiated at invoice load
+            88  SI-COST-APPR    VALUE 'A'.                         Costing initiated at invoice approval
+        05  PAYEE-REF-NO        PIC X(11).                  [ 114] Payee reference Number                   DB
+        05  BA-DETS-MAND        PIC X(1).                   [ 125] Batch A/c Details are Mand on Inv Load   VALUE ('Y','N') ERROR
+                                                                                                            (0006)
+                                                                                                            DB
+            88  BA-DETAILS-MAND VALUE 'Y'.                         Bank Account details are mandatory on
+                                                                   invoice load
+        05  WH-TAX-FLAG         PIC X(1).                   [ 126] Indicates when withholding tax applies   DB
+            88  AT-INVOICE-LOAD VALUE 'I'.                         Indicates when withholding tax applies
+            88  AT-PAYMENT      VALUE 'P'.                         Indicates when withholding tax applies
+        05  STAX-MATCH-METH     PIC X(1).                   [ 127] Sales Tax Matching Method                VALUE ('I','S')
+                                                                                                            DB
+            88  STAX-INCLUSIVE  VALUE 'I'.                         Match Value Inclusive of Sales Tax
+            88  STAX-SEPERATE   VALUE 'S'.                         Match Sales Tax Seperately
+        05  DISP-CANC-RCTS      PIC X(1).                   [ 128] Display cancelled receipts when matching VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  DISP-CANC-RCPTS VALUE 'Y'.                         Display cancelled receipts when matching
+        05  MAN-WHSE-SELECT     PIC X(1).                   [ 129] Mandatory Warehouse Select               DB
+            88  MAND-WH-SELECT  VALUE 'Y'.                         Mandatory Warehouse Select
+        05  REQ-DATE-TODAY      PIC X(1).                   [ 130] Default Req Date To Today                DB
+            88  REQ-DAY-TODAY   VALUE 'Y'.                         Default Req Date To Today
+        05  UPD-WH-XFR-USE      PIC X(1).                   [ 131] Update Warehouse Transfer Usage          DB
+            88  UPD-WH-XF-USE   VALUE 'Y'.                         Update Warehouse Transfer Usage
+        05  DFLT-ACCTS-CLERK    PIC X(10).                  [ 132] Default A/c Clerk used for EDI Inv Load  DB
+        05  SUB-ASSET-NO-MAND   PIC X(1).                   [ 142] Sub Asset Number Flag                    VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+        05  ACAL-APPLY-SW       PIC X(1).                   [ 143] Acct code access validation indicator    VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  ACAL-APPLIES    VALUE 'Y'.                         Acct code access validation applies
+        05  AOK-NO-ACAL-SW      PIC X(1).                   [ 144] Ok if no Access Defined indicator        VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  ACCT-OK-NO-ACAL VALUE 'Y'.                         OK if no Access Defined
+        05  ACAL-VIOL-ACT       PIC X(1).                   [ 145] Acct access violation action indicator   VALUE ('E','W')
+                                                                                                            DB
+            88  ACAL-ERROR      VALUE 'E'.                         Error on acct access violation
+            88  ACAL-WARN       VALUE 'W'.                         Warn on acct access violation
+        05  DEFER-POSTING-IND   PIC X(1).                   [ 146] Requisition Posting Indicator            DB
+            88  DEFER-POSTING   VALUE 'Y'.                         Defer Posting
+        05  HOME-WHSE-CODE      PIC X(1).                   [ 147] Flag to determine if Home WHS of stck    DB
+                                                                   item to be used 1st
+        05  HOME-WHSE-QTY       PIC X(1).                   [ 148] field to select if stck qty to be issued DB
+                                                                   from home whse
+        05  TAX-FULL-RINVVAL    PIC X(1).                   [ 149] Calc Tax on full inv val of 1st paymt    DB
+                                                                   for reten inv
+        05  FILLER              PIC X(125).
+    03  DC0004-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Address                   ST,ID1:DC,ID2:0004
+        05  DSTRCT-ADDR-DATA.                               [  11] District address
+            07  DSTRCT-ADDR-1   PIC X(32).                  [  11] First line of district address           DB
+            07  DSTRCT-ADDR-2   PIC X(32).                  [  43] Second line of district address          DB
+            07  DSTRCT-ADDR-3   PIC X(32).                  [  75] Third line of district address           DB
+        05  DSTRCT-ZIP-CODE.                                [ 107] District Zip Code                        DB
+            07  DSTRCT-PCODE    PIC X(4).                   [ 107] District Post Code
+            07  FILLER          PIC X(6).
+        05  DSTRCT-PHONE        PIC X(16).                  [ 117] District Phone number                    DB
+        05  DSTRCT-STATE        PIC X(2).                   [ 133] State where district is situated         DB
+        05  DSTRCT-FAX-NO       PIC X(16).                  [ 135] District fax number                      OPTIONAL
+                                                                                                            NO-QUESTION-MARK
+                                                                                                            DB
+        05  DSTRCT-TLX-NAME     PIC X(32).                  [ 151] Name of Telex in district                DB
+        05  DSTRCT-TLX-NO       PIC X(22).                  [ 183] Number of telex in district              DB
+        05  DSTRCT-ACN-NO       PIC X(14).                  [ 205] Government Identification Number         DB
+        05  FILLER              PIC X(56).
+    03  DC0005-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Invoice Address           ST,ID1:DC,ID2:0005
+        05  INVOICE-ADDR-DATA.                              [  11] Address to print on invoices
+            07  INV-ADDR-1      PIC X(32).                  [  11] 1st line of Address to Print on Invoices MANDATORY
+                                                                                                            NO-QUESTION-MARK
+                                                                                                            DB
+            07  INV-ADDR-2      PIC X(32).                  [  43] 2nd line of Address to Print on Invoices DB
+            07  INV-ADDR-3      PIC X(32).                  [  75] 3rd line of Address to Print on Invoices DB
+        05  INV-ZIP-CODE.                                   [ 107] Invoice zip code                         DB
+            07  INV-PCODE       PIC X(4).                   [ 107] Invoice post code
+            07  FILLER          PIC X(6).
+        05  INV-PHONE           PIC X(16).                  [ 117] Invoice phone number                     DB
+        05  INV-CONTACT         PIC X(32).                  [ 133] Contact name to print on invoices        DB
+        05  INV-STATE           PIC X(2).                   [ 165] State to print on invoices               DB
+        05  INV-FAX-NO          PIC X(16).                  [ 167] Fax number to print on invoices          OPTIONAL
+                                                                                                            NO-QUESTION-MARK
+                                                                                                            DB
+        05  INV-TLX-NAME        PIC X(32).                  [ 183] Telex name to print on invoices          DB
+        05  INV-TLX-NO          PIC X(22).                  [ 215] Telex number to print on invoices        DB
+        05  FILLER              PIC X(38).
+    03  DC0010-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Last Issue Req            ST,ID1:DC,ID2:0010
+        05  LAST-REQ-NO.                                    [  11] Last issue requisition for district      NUMERIC DEC (0) RANGE
+                                                                                                            (1,999999)
+                                                                                                            DB
+            07  LAST-REQ-NO-9   PIC 9(6).                   [  11] Last issue requisition for district
+        05  FILLER              PIC X(258).
+    03  DC0011-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Last Purchase Req         ST,ID1:DC,ID2:0011
+        05  LAST-PURCH-REQ-NO.                              [  11] Last purchase requisition for district   NUMERIC DEC (0) RANGE
+                                                                                                            (1,999999)
+                                                                                                            DB
+            07  LAST-PURCH-REQ-NO-9 PIC 9(6).               [  11] Last purchase requisition for district
+        05  MSB231-RUN-NO.                                  [  17] MSB230 run number                        NUMERIC RANGE (1, )
+                                                                                                            DB
+            07  MSB231-RUN-NO-9 PIC 9(4).                   [  17] MSB230 run number
+        05  FILLER              PIC X(254).
+    03  DC0012-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Purchase Order            ST,ID1:DC,ID2:0012
+        05  LAST-ORD-NO.                                    [  11] Purchase order number for last order
+            07  PURCH-ORDER-PREF PIC X(1).                  [  11] Prefix for all Purchase Orders           DB
+            07  LAST-PO-ALLOC.                              [  12] Last Purchase Order No. Allocated        NUMERIC DEC (0) RANGE
+                                                                                                            (1,99999)
+                                                                                                            DB
+                09  LAST-PO-ALLOC-9 PIC 9(5).               [  12] Last Purchase Order No. Allocated        NUMERIC DEC (0) RANGE
+                                                                                                            (1,99999)
+        05  LAST-ORD-NO-R       REDEFINES LAST-ORD-NO.      [  11] Purchase order number for last order
+            07  PURC-ORD-PFX-R  PIC X(2).                   [  11] Purchase Order Prefix
+            07  LST-PO-ALLOC-R  PIC X(4).                   [  13] Last Purchase Order Allocated
+        05  ORD-PFX-TYPE-R      PIC X(1).                   [  17] Order Prefix Type                        VALUE ('1','2')
+                                                                                                            DB
+            88  NORMAL-PO-PREFIX VALUE '1'.                        Normal Purchase Order Prefix
+            88  TWO-CHAR-PO-PREFIX VALUE '2'.                      Two Character Purchase Order Prefix
+        05  FILLER              PIC X(257).
+    03  DC0013-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Last Job No's             ST,ID1:DC,ID2:0013
+        05  LAST-PAR-SJ-NO.                                 [  11] Last Parent Standard Job No Allocated    OPTIONAL STD-JOB-NO-CODE
+                                                                                                            DB
+            07  LAST-PAR-SJ-NO-9 PIC 9(6).                  [  11] Last Parent Standard Job No Allocated
+        05  LAST-SJ-NO.                                     [  17] Last Standard Job number allocated       OPTIONAL STD-JOB-NO-CODE
+                                                                                                            DB
+            07  LAST-SJ-NO-9    PIC 9(6).                   [  17] Last Standard Job number allocated
+        05  LAST-SJP-NO.                                    [  23] Last Standard Job Plan Number Allocated  OPTIONAL STD-JOB-NO-CODE
+                                                                                                            DB
+            07  LAST-SJP-NO-9   PIC 9(6).                   [  23] Last Standard Job Plan Number Allocated
+        05  FILLER              PIC X(246).
+    03  DC0014-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Last MSB222               ST,ID1:DC,ID2:0014
+        05  MSB222-RUN-NO.                                  [  11] Last run number for PO print             NUMERIC DEC (0) RANGE
+                                                                                                            (1,9999)
+                                                                                                            DB
+            07  MSB222-RUN-NO-9 PIC 9(4).                   [  11] Last run number for PO print
+        05  FILLER              PIC X(260).
+    03  DC0015-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Last Whouse Xfer          ST,ID1:DC,ID2:0015
+        05  WAREHOUSE-XFER-NO.                              [  11] Next warehouse transfer number (MSF000)
+            07  WH-XFER-PREFIX  PIC X(1).                   [  11] Prefix for warehouse transfer number     ALPHA
+                                                                                                            DB
+            07  WH-XFER-NO.                                 [  12] Next warehouse transfer number           NUMERIC DEC (0) RANGE
+                                                                                                            (1,99999)
+                                                                                                            DB
+                09  WH-XFER-NO-9 PIC 9(5).                  [  12] Next warehouse transfer number
+        05  FILLER              PIC X(258).
+    03  DC0016-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Last Man Journal          ST,ID1:DC,ID2:0016
+        05  LAST-MJV-PFX        PIC X(1).                   [  11] Last Manual Jnl Voucher Prefix Allocated DB
+        05  LAST-MJV-NO.                                    [  12] Last Manual Journal Voucher No Allocated DB
+            07  LAST-MJV-NO-9   PIC 9(9).                   [  12] Last Manual Journal Voucher No Allocated
+        05  FILLER              PIC X(254).
+    03  DC0017-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Asset No's                ST,ID1:DC,ID2:0017
+        05  FA-DEPN             PIC X(1).                   [  11] Depreciation at district level switch    DB
+        05  FA-PRO-RATE         PIC X(1).                   [  12] Fixed Assets Pro Rate indicator          DB
+        05  LAST-ASSET-NO.                                  [  13] Last Asset Number                        DB
+            07  LAST-ASSET-NO-9 PIC 9(12).                  [  13] Last Asset Number
+        05  LST-CNT-SHT-NO.                                 [  25] Last Count Sheet Number                  DB
+            07  LST-CNT-SHT-NO-9 PIC 9(6).                  [  25] Last Count Sheet Number
+        05  FILLER              PIC X(244).
+    03  DC0018-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl ABCD Details              ST,ID1:DC,ID2:0018
+        05  ABCD-ALGORITHM      PIC X(1).                   [  11] Indicator for Value or Percent Algorithm DB
+            88  ALGORITHM-VALUE VALUE '1'.                         Algorithm value
+            88  ALGORITHM-PERC  VALUE '2'.                         Algorithm Percent
+        05  INVENT-ANAL-REC.                                [  12] Inventory Analysis Control fields
+            07  ABCD-A-VALUE    PIC S9(9) COMP-3.           [  12] Cut off $ amount or % level A            NUMERIC RANGE (1, )
+                                                                                                            DB
+            07  ABCD-B-VALUE    PIC S9(9) COMP-3.           [  17] Cut off $ amount or % level B            NUMERIC RANGE (1, )
+                                                                                                            DB
+            07  XYZ-X-VALUE     PIC S9(9) COMP-3.           [  22] Cut off $ amount for X level             NUMERIC RANGE (1, )
+                                                                                                            DB
+            07  XYZ-Y-VALUE     PIC S9(9) COMP-3.           [  27] Cut off $ amount for Y level             NUMERIC RANGE (1, )
+                                                                                                            DB
+        05  MSB178-RUN-DATE     PIC X(8).                   [  32] Last run date for MSB178                 DATE MANDATORY LE-TODAY
+                                                                                                            DB
+        05  MSB178-RUN-NO.                                  [  40] Last run number for MSB178               NUMERIC RANGE (1, )
+                                                                                                            DB
+            07  MSB178-RUN-NO-9 PIC 9(4).                   [  40] Last run number for MSB178
+        05  FILLER              PIC X(231).
+    03  DC0019-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Last MSB622 Trans         ST,ID1:DC,ID2:0019
+        05  MSB622-LST-TRN      PIC X(13).                  [  11] Last transaction processed by MSB622     DB
+        05  FILLER              PIC X(251).
+    03  DC0020-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Accounts Receiv           ST,ID1:DC,ID2:0020
+        05  LAST-AR-INV-NO.                                 [  11] Last Accounts Receivable Invoice Number  MANDATORY
+                                                                                                            AR-INVOICE-NUMBER
+            07  INV-NO-PREF     PIC X(1).                   [  11] Accounts Receivable Invoice No Prefix    DB
+            07  LAST-INV-NO.                                [  12] Last Invoice Number                      DB
+                09  LAST-INV-NO-9 PIC 9(7).                 [  12] Last Invoice Number
+        05  LAST-CR-NOTE-NO.                                [  19] Last Credit Note Number
+            07  CR-NOTE-PREF    PIC X(1).                   [  19] Credit Note Prefix                       DB
+            07  LAST-CR-NOTE.                               [  20] Last Credit Note                         DB
+                09  LAST-CR-NOTE-9 PIC 9(7).                [  20] Last Credit Note
+        05  LAST-SI-NO.                                     [  27] Last Standing Invoice Number
+            07  SI-NO-PREF      PIC X(1).                   [  27] Standing Invoice Prefix                  DB
+            07  SI-NO.                                      [  28] Last Standing Invoice Number Allocated   DB
+                09  SI-NO-9     PIC 9(7).                   [  28] Last Standing Invoice Number Allocated
+        05  LAST-WR-NO.                                     [  35] Last Write Off Number
+            07  WR-OFF-PREF     PIC X(1).                   [  35] Write Off Prefix                         DB
+            07  LAST-WR-OFF.                                [  36] Last Write Off                           DB
+                09  LAST-WR-OFF-9 PIC 9(7).                 [  36] Last Write Off
+        05  TAX-REG-NO          PIC X(20).                  [  43] Tax Registration Number                  DB
+        05  CTAX-CODE           PIC X(2).                   [  63] Consumption Tax Code                     TABLE ('CM') ERROR
+                                                                                                            (1864)
+                                                                                                            DB
+        05  FILLER              PIC X(210).
+    03  DC0021-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Next Invoice Run          ST,ID1:DC,ID2:0021
+        05  NEXT-INV-RUN.                                   [  11] Next Invoice Run Number                  OPTIONAL DEC (0) NUMERIC
+                                                                                                            DB
+            07  NEXT-INV-RUN-9  PIC 9(4).                   [  11] Next Invoice Run Number
+        05  MSB566-RUN-NO.                                  [  15] MSB566 Run Number                        NUMERIC RANGE (11)
+                                                                                                            DB
+            07  MSB566-RUN-9    PIC 9(4).                   [  15] MSB566 Run Number 9                      NUMERCI RANGE (0,9999)
+        05  FILLER              PIC X(256).
+    03  DC0022-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Customer Terms            ST,ID1:DC,ID2:0022
+        05  CUST-TERMS.                                     [  11] Customer Terms
+            07  DAYS-TO-PAY     PIC S9(3) COMP-3.           [  11] Days to Pay                              NUMERIC DEC (0) RANGE
+                                                                                                            (0,999)
+                                                                                                            DB
+            07  DAYS-GRACE      PIC S9(3) COMP-3.           [  13] Days Grace                               NUMERIC DEC (0) RANGE
+                                                                                                            (0,999)
+                                                                                                            DB
+            07  ODUE-INT-RT     PIC S9(3)V9(2) COMP-3.      [  15] Overdue Interest Rate                    NUMERIC DEC (2) RANGE
+                                                                                                            (0,100)
+                                                                                                            DB
+            07  SETTLE-PC-A     PIC S9(3)V9(2) COMP-3.      [  18] Settlement discount-1 percentage         NUMERIC DEC (2) RANGE
+                                                                                                            (0, )
+                                                                                                            DB
+            07  SETTLE-DAYS-A   PIC S9(3) COMP-3.           [  21] Days discount-1 available                NUMERIC RANGE (0, )
+                                                                                                            DB
+            07  CR-LIMIT        PIC S9(15) COMP-3.          [  23] Credit Limit                             NUMERIC DEC (0) OPTIONAL
+                                                                                                            DB
+            07  CR-TERMS        PIC X(1).                   [  31] Credit Terms                             OPTIONAL VALUE
+                                                                                                            ('C','L','U') ERROR ( )
+                                                                                                            DB
+                88  CASH-ONLY   VALUE 'C'.                         Cash Only
+                88  CHECK-LIMIT VALUE 'L'.                         Check Credit Limit
+                88  UNLIMITED   VALUE 'U'.                         Unlimited
+            07  STMT-REQ-SW     PIC X(1).                   [  32] Statement Required Switch                ERROR (0012) VALUE
+                                                                                                            ('Y','N')
+                                                                                                            DB
+                88  STMT-REQ    VALUE 'Y'.                         Statement Required
+                88  STMT-NOT-REQ VALUE 'N'.                        Statement not required
+            07  INV-MEDIUM-IND  PIC X(1).                   [  33] Invoice Medium Indicator                 VALUE ('T','F','P','E')
+                                                                                                            MANDATORY
+                                                                                                            DB
+                88  TELEX-INV   VALUE 'T'.                         Telex Invoice Medium
+                88  FAX-INV     VALUE 'F'.                         Fax Invoice Medium
+                88  PRINT-INV   VALUE 'P'.                         Printer Invoice Medium
+                88  EDI-INV     VALUE 'E'.                         EDI Invoice Medium
+            07  DUNNING-CODE    PIC X(2).                   [  34] Dunning code                             TABLE ('DU') ERROR
+                                                                                                            (1924) OPTIONAL
+                                                                                                            DB
+            07  CASH-CUST-PFX   PIC X(4).                   [  36] Cash Customer Prefix                     DB
+            07  NEXT-STMT-RUN.                              [  40] Next Statement Run Number                OPTIONAL DEC (0) NUMERIC
+                                                                                                            DB
+                09  NEXT-STMT-RUN-9 PIC 9(4).               [  40] Next Statement Run Number
+        05  FILLER              PIC X(231).
+    03  DC0023-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl AR Last Receipt           ST,ID1:DC,ID2:0023
+        05  LAST-AR-RCPT-NUM.                               [  11] Last Accounts Receivable Receipt Number
+            07  RCPT-NUM-PREF   PIC X(1).                   [  11] Receipt Number Prefix                    DB
+            07  LAST-RCPT-NUM.                              [  12] Last Receipt Number                      DB
+                09  LAST-RCPT-NUM-9 PIC 9(7).               [  12] Last Receipt Number
+        05  FILLER              PIC X(256).
+    03  DC0049-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl AFUDC                     ST,ID1:DC,ID2:0049
+        05  AFUDC-LITERAL       PIC X(5).                   [  11] AFUDC-Literal to be used                 DB
+        05  AFUDC-PRJ-SEG.                                  [  16] AFUDC project account segment level      DB
+            07  AFUDC-PRJ-SEG-9 PIC 9(2).                   [  16] AFUDC project account segment level
+        05  AFUDC-DEBT-RTE      PIC S9(3)V9(6) COMP-3.      [  18] AFUDC Debt Rate Percentage               DB
+        05  AFUDC-DEBT-TYP      PIC X(1).                   [  23] AFUDC Debt Rate, Monthly or Yearly       DB
+            88  AFUDC-DEBT-TYP-MTHLY VALUE 'M'.                    Monthly Debt Rate Type
+            88  AFUDC-DEBT-TYP-YRLY VALUE 'Y'.                     Yearly Debt rate type
+        05  AFUDC-DEBT-EE       PIC X(8).                   [  24] AFUDC Equity Rate Expense Element        DB
+        05  AFUDC-EQTY-RTE      PIC S9(3)V9(6) COMP-3.      [  32] AFUDC Equity Rate Percentage             DB
+        05  AFUDC-EQTY-TYP      PIC X(1).                   [  37] AFUDC Equity Rate Type                   DB
+            88  AFUDC-EQTY-TYP-MTHLY VALUE 'M'.                    AFUDC-EQTY-TYP-MTHLY
+            88  AFUDC-EQTY-TYP-YRLY VALUE 'Y'.                     AFUDC-EQTY-TYP-YRLY
+        05  AFUDC-EQTY-EE       PIC X(8).                   [  38] AFUDC Equity Rate TYpe                   DB
+        05  JT-SEG-LEVEL.                                   [  46] Job Type Segment Level                   DB
+            07  JT-SEG-LEVEL-9  PIC 9(2).                   [  46] Job Type Segment Level
+        05  BC-SEG-LEVEL.                                   [  48] Business Category Segment Level          DB
+            07  BC-SEG-LEVEL-9  PIC 9(2).                   [  48] Business Category Segment Level
+        05  INT-TOL-PERC.                                   [  50] Max Additional Internal Cost as Percent  DB
+            07  INT-TOL-PERC-9  PIC S9(3)V9(4) COMP-3.      [  50] Max Additional Internal Cost as Percent
+        05  INT-TOL-AMT         PIC S9(13)V9(2) COMP-3.     [  54] Max Additional Internal Cost as an Amt   DB
+        05  EXT-TOL-PERC.                                   [  62] Max Additional Ext Cost as a Percent     DB
+            07  EXT-TOL-PERC-9  PIC S9(3)V9(4) COMP-3.      [  62] Max Additional Ext Cost as a Percent
+        05  EXT-TOL-AMT         PIC S9(13)V9(2) COMP-3.     [  66] Max Additional External Cost as an Amt   DB
+        05  PA-PRINTER          PIC X(14).                  [  74] Property Acc printer name                DB
+        05  LST-USED-BPU.                                   [  88] Last Used Bill of Property Unit          DB
+            07  LST-USED-BPU-9  PIC 9(8).                   [  88] Last used Bill of property Unit
+        05  CPR-LOC.                                        [  96] CPR Category and Location                TABLE ('LN') ERROR
+                                                                                                            (5145)
+                                                                                                            DB
+            07  CPR-CTGY        PIC X(4).                   [  96] CPR Category                             TABLE ('LG') ERROR
+                                                                                                            (5144)
+            07  CPR-LOCN        PIC X(4).                   [ 100] CPR Location
+        05  LST-INST-ID.                                    [ 104] Last Installation Identifier             DB
+            07  LST-INST-ID-9   PIC 9(8).                   [ 104] Last Installation Identifier (Numeric)
+        05  JOB-TYPE-CC-SW      PIC X(1).                   [ 112] Determines if Costing Info Defs Job Type VALUE ('Y','N') ERROR
+                                                                                                            (0006)
+                                                                                                            DB
+            88  JOB-TYPE-CC     VALUE 'Y'.                         Costing information defines job type
+        05  UNIT-METHOD         PIC X(1).                   [ 113] Unit Method                              DB
+            88  UNIT-MTHD-ACT   VALUE 'A'.                         Unit Method - Actual Hours
+            88  UNIT-MTHD-PC    VALUE 'P'.                         Unit Method - Percent
+            88  UNIT-MTHD-UCM   VALUE 'U'.                         Unit Method - UCM
+            88  UNIT-MTHD-EST   VALUE 'E'.                         Unit Method - Estiamted Hours
+            88  UNIT-MTHD-PU-MAT VALUE 'M'.                        Unit Method - PU Material
+        05  ALLOW-UCM-SW        PIC X(1).                   [ 114] If UCM Unitisation Method is Allowed     VALUE ('Y','N') ERROR
+                                                                                                            (0006)
+                                                                                                            DB
+            88  ALLOW-UCM       VALUE 'Y'.                         UCM unitisation method is allowed
+        05  TOT-TOL-AMT         PIC S9(13)V9(2) COMP-3.     [ 115] Maximum total tolerance as an amount     NUMERIC DEC (2)
+                                                                                                            DB
+        05  TOT-TOL-PERC.                                   [ 123] Maximum total tolerance as a percentage  NUMERIC DEC (4)
+                                                                                                            DB
+            07  TOT-TOL-PERC-9  PIC S9(3)V9(4) COMP-3.      [ 123] Maximum total tolerance as a percentage
+        05  AUTO-TOL-AMT        PIC S9(13)V9(2) COMP-3.     [ 127] Max Tolerance for Auto Unitise as an Amt NUMERIC DEC (2)
+                                                                                                            DB
+        05  AUTO-TOL-PERC.                                  [ 135] Max Tolerance as Perc for Auto Unitise   NUMERIC DEC (4)
+                                                                                                            DB
+            07  AUTO-TOL-PERC-9 PIC S9(3)V9(4) COMP-3.      [ 135] Max Tolerance as Perc for Auto Unitise
+        05  UNIT-EXP-ELE        PIC X(8).                   [ 139] Unitisation Expense Element              DB
+        05  FILLER              PIC X(128).
+    03  EC-LEVEL-REC            REDEFINES PCYYMM-REC.       [  11] System Cntrl Equip Class defn            ST,ID1:EC
+        05  EC-LEVELS           OCCURS 6 INDEXED BY         [  11] Equipment Class Level Array              RT
+                                EC-LEVELS-IDX.
+            07  EC-LEVEL-NAME   PIC X(10).                  [  11] Equipment Class Level name               DB
+            07  EC-LEVEL-SZE.                               [  21] Equipment Class Level size in characters NUMERIC DEC (0) RANGE
+                                                                                                            (1,10)
+                                                                                                            DB,D9
+                09  EC-LEVEL-SZE-9 PIC 9(2).                [  21] Equipment Class level size in characters
+            07  EC-LEVEL-MAND   PIC X(1).                   [  23] Equipment Class Level Mandatory Ind      VALUE ('Y','N')
+                                                                                                            ERROR(0012)
+                                                                                                            DB
+            07  EC-LEVEL-EDIT   PIC X(1).                   [  24] Equipment Class Level Validation Ind     VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+        05  FILLER              PIC X(180).
+    03  FI-REC                  REDEFINES PCYYMM-REC.       [  11] District Cntrl Fax Interface             ST,ID1:FI
+        05  XMIT-ID.                                        [  11] Fax / Telex Identification
+            07  XMIT-PREFIX     PIC X(1).                   [  11] Transmission Prefix                      DB
+            07  XMIT-NO.                                    [  12] Transmission Number                      DB
+                09  XMIT-NO-9   PIC 9(5).                   [  12] Transmission Number
+        05  RNTN-DAYS.                                      [  17] Retention Days                           DB
+            07  RNTN-DAYS-9     PIC 9(3).                   [  17] Retention Days
+        05  TLX-CNTRY-CODE      PIC X(3).                   [  20] Telex Local Country Code                 DB
+        05  FAX-INTER-TY        PIC X(1).                   [  23] Fax Interface Type                       TABLE ('FI')
+                                                                                                            DB
+        05  FILLER              PIC X(251).
+    03  JC-RUN-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Cash Post MSB90A          ST,ID1:JC
+        05  LOWEST-KEY-905-C    PIC X(41).                  [  11] Lowest Key of transaction posted         DB
+        05  HIGHEST-KEY-905-C   PIC X(41).                  [  52] Highest Key of transaction posted        DB
+        05  TRANS-POSTED-C      PIC S9(9) COMP-3.           [  93] Number of transactions posted            DB
+        05  ERR-TRANS-POST-C    PIC S9(5) COMP-3.           [  98] No of Transactions in Error and Posted   DB
+        05  ERR-TRANS-NPOST-C   PIC S9(5) COMP-3.           [ 101] No Transactions in Error and not Posted  DB
+        05  POST-RUN-DATE-C     PIC X(8).                   [ 104] Posting Run Date                         DATE MANDATORY LE-TODAY
+                                                                                                            DB
+        05  POST-RUN-TIME-C     PIC X(6).                   [ 112] Default defer time for batch run         DB
+        05  MSF960-POSTS-C      PIC S9(7) COMP-3.           [ 118] Number of MSF960 posting record created  DB
+        05  MSF962-POSTS-C      PIC S9(7) COMP-3.           [ 122] Number of MSF962 posting record created  DB
+        05  PERIOD-1-C          PIC X(4).                   [ 126] Period code 1 C                          DB
+        05  DRS-POSTED-1-C      PIC S9(13)V9(2) COMP-3.     [ 130] Debits posted for period 1 C             NUMERIC DEC (2)
+                                                                                                            DB
+        05  CRS-POSTED-1-C      PIC S9(13)V9(2) COMP-3.     [ 138] Credits posted for period 1 C            NUMERIC DEC (2)
+                                                                                                            DB
+        05  PERIOD-2-C          PIC X(4).                   [ 146] Period code 2 C                          DB
+        05  DRS-POSTED-2-C      PIC S9(13)V9(2) COMP-3.     [ 150] Debits posted for period 2 C             NUMERIC DEC (2)
+                                                                                                            DB
+        05  CRS-POSTED-2-C      PIC S9(13)V9(2) COMP-3.     [ 158] Credits posted for period 2 C            NUMERIC DEC (2)
+                                                                                                            DB
+        05  PERIOD-3-C          PIC X(4).                   [ 166] Period code 3 C                          DB
+        05  DRS-POSTED-3-C      PIC S9(13)V9(2) COMP-3.     [ 170] Debits posted for period 3 C             NUMERIC DEC (2)
+                                                                                                            DB
+        05  CRS-POSTED-3-C      PIC S9(13)V9(2) COMP-3.     [ 178] Credits posted for period 3 C            NUMERIC DEC (2)
+                                                                                                            DB
+        05  PERIOD-4-C          PIC X(4).                   [ 186] Period code 4 C                          DB
+        05  DRS-POSTED-4-C      PIC S9(13)V9(2) COMP-3.     [ 190] Debits posted for period 4 C             NUMERIC DEC (2)
+                                                                                                            DB
+        05  CRS-POSTED-4-C      PIC S9(13)V9(2) COMP-3.     [ 198] Credits posted for period 4 C            NUMERIC DEC (2)
+                                                                                                            DB
+        05  PERIOD-5-C          PIC X(4).                   [ 206] Period code 5 C                          DB
+        05  DRS-POSTED-5-C      PIC S9(13)V9(2) COMP-3.     [ 210] Debits posted for period 5 C             NUMERIC DEC (2)
+                                                                                                            DB
+        05  CRS-POSTED-5-C      PIC S9(13)V9(2) COMP-3.     [ 218] Credits posted for period 5 C            NUMERIC DEC (2)
+                                                                                                            DB
+        05  PERIOD-6-C          PIC X(4).                   [ 226] Period code 6 C                          DB
+        05  DRS-POSTED-6-C      PIC S9(13)V9(2) COMP-3.     [ 230] Debits posted for period 6 C             NUMERIC DEC (2)
+                                                                                                            DB
+        05  CRS-POSTED-6-C      PIC S9(13)V9(2) COMP-3.     [ 238] Credits posted for period 6 C            NUMERIC DEC (2)
+                                                                                                            DB
+        05  OTHER-PER-DRS-C     PIC S9(13)V9(2) COMP-3.     [ 246] Debits posted in other periods           NUMERIC DEC (2)
+                                                                                                            DB
+        05  OTHER-PER-CRS-C     PIC S9(13)V9(2) COMP-3.     [ 254] Credits posted in other periods          NUMERIC DEC (2)
+                                                                                                            DB
+        05  FILLER              PIC X(13).
+    03  PR-PRG-REC              REDEFINES PCYYMM-REC.       [  11] District Cntrl Printer                   ST,ID1:PR
+        05  PRINTER-NAME        PIC X(14).                  [  11] Name of Printer                          *DATASET (MSF010) ERROR
+                                                                                                            (0086) WHERE (TABLE-TYPE
+                                                                                                            = 'PR', TABLE-CODE =
+                                                                                                            DISTRICT+PRINTER-NAME)
+                                                                                                            DB
+        05  NO-OF-COPIES.                                   [  25] No. of copies for Reports                NUMERIC DEC (0) RANGE
+                                                                                                            (1,99)
+                                                                                                            DB
+            07  NO-OF-COPIES-9  PIC 9(2).                   [  25] No. of Copies for Reports
+        05  TABLE-DESC          PIC X(50).                  [  27] Table file entry description.            DB
+        05  PRINTER             PIC X(2).                   [  77] Printer Id                               DB
+        05  FILLER              PIC X(196).
+    03  PT-REC                  REDEFINES PCYYMM-REC.       [  11] District Cntrl Purchase Approval         ST,ID1:PT
+        05  NORMAL-ORD-FC-IND   PIC X(1).                   [  11] Normal Order Funds Check indicator       DB
+            88  NORM-ORD-FC-REQD VALUE 'Y'.                        Normal Order Funds Check required
+        05  CONSIGN-ORD-FC-IND  PIC X(1).                   [  12] Consignment Order Funds Check indicator  DB
+            88  CON-ORD-FC-REQD VALUE 'Y'.                         Consignment Order Funds Check required
+        05  XFER-ORD-FC-IND     PIC X(1).                   [  13] Transfer Order Funds Check indicator     DB
+            88  XFER-ORD-FC-REQD VALUE 'Y'.                        Transfer Order Funds Check required
+        05  WSHOP-ORD-FC-IND    PIC X(1).                   [  14] Workshop Order Funds Check indicator     DB
+            88  WSHOP-ORD-FC-REQD VALUE 'Y'.                       Workshop Order Funds Check required
+        05  FREL-FC-IND         PIC X(1).                   [  15] Field Release Funds Check indicator      DB
+            88  FREL-FC-REQD    VALUE 'Y'.                         Field Release Funds Check required
+        05  PO-FC-IND           PIC X(1).                   [  16] Purchase Orders Funds Check indicator    VALUE ('Y')
+                                                                                                            DB
+            88  PURCH-ORD-FC-REQD VALUE 'Y'.                       Purchase Orders Funds Check required
+        05  PR-FC-IND           PIC X(1).                   [  17] Purchase Requisition Funds Check Ind     VALUE ('Y')
+                                                                                                            DB
+            88  PURCH-REC-FC-REQD VALUE 'Y'.                       Purchase Requisition Funds Check
+                                                                   required
+        05  RO-FC-IND           PIC X(1).                   [  18] Recommended Orders Funds Check indicator VALUE ('Y')
+                                                                                                            DB
+            88  REC-ORD-FC-REQD VALUE 'Y'.                         Recommended Orders Funds Check required
+        05  FILLER              PIC X(256).
+    03  PU-LEVEL-REC            REDEFINES PCYYMM-REC.       [  11] District Cntrl Post Level defn           ST,ID1:PU
+        05  SHORT-PU-NAME       PIC X(20).                  [  11] Shor name for Post User accounts         DB
+        05  LONG-PU-NAME        PIC X(40).                  [  31] Long Name for Post user Accounts         DB
+        05  ACCT-START-POS.                                 [  71] Account Start Position                   NUMERIC DEC (0)
+                                                                                                            RANGE(1,24)
+                                                                                                            DB
+            07  ACCT-START-POS-9 PIC 9(2).                  [  71] Account Start Position
+        05  ACCOUNT-LENGTH.                                 [  73] Account Length                           NUMERIC DEC (0) RANGE
+                                                                                                            (1,24)
+                                                                                                            DB
+            07  ACCOUNT-LENGTH-9 PIC 9(2).                  [  73] Account Length
+        05  FILLER              PIC X(200).
+    03  SC0001-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl 1                           ST,ID1:SC,ID2:0001
+        05  COY-NAME            PIC X(40).                  [  11] System wide company name                 DB
+        05  MULTIDSTRCT         PIC X(1).                   [  51] Multi-district indicator                 DB
+        05  MSB143-MSF900-NO.                               [  52] Next trans No. to be used by MSB143      NUMERIC DEC (0) RANGE
+                                                                                                            (0,99999999)
+                                                                                                            DB
+            07  MSB143-MSF900-NO-9 PIC 9(8).                [  52] Next Trans No. to be used by MSB143
+        05  CENTRAL-PURCH       PIC X(1).                   [  60] Centralised purchasing indicator         VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  CENTRAL-PURCHASE VALUE 'Y'.                        Centralised Purchasing
+            88  DSTRCT-PURCHASE VALUE 'N'.                         District Purchasing
+        05  MSB240-REQUESTED    PIC X(1).                   [  61] Y/N to indicate MSB240 requestable       VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+        05  USERNO.                                         [  62] MIMS User sequence number                DB
+            07  USERNO-9        PIC 9(4).                   [  62] MIMS User sequence number
+        05  DEFER-TIME.                                     [  66] Default defer time for batch run         DB
+            07  DEFER-TIME-9    PIC 9(6).                   [  66] Default defer time for batch run
+        05  RCPT-SERV-IN        PIC X(1).                   [  72] Flag to indicate receipt of service      VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  RECEIPT-SERVICE VALUE 'Y'.                         Service must be received
+        05  FILLER-32           PIC X(32).                  [  73] Filler of 32 characters
+        05  DATE-FORMAT         PIC X(1).                   [ 105] Defines date format                      VALUE ('A','U','I','M')
+                                                                                                            ERROR (0985)
+                                                                                                            DB
+            88  USA-DATE-FORMAT VALUE 'U'.                         USA Date Format
+            88  AUST-DATE-FORMAT VALUE 'A'.                        Normal Date Format
+            88  ISO-DATE-FORMAT VALUE 'I'.                         ISO date format
+            88  MILITARY-DATE-FORMAT VALUE 'M'.                    Military date format
+        05  TEST-IND            PIC X(1).                   [ 106] To indicate on Prime test or demo (T/D)  DB
+            88  TEST-MODE       VALUE 'T'.                         Test Mode
+            88  DEMO-MODE       VALUE 'D'.                         Demonstration Mode (fixed data)
+        05  TEST-DATE           PIC X(8).                   [ 107] Test date CCYYMMDD for demo systems      DATE MANDATORY LE-TODAY
+                                                                                                            DB
+        05  MSB900-BATCH-NO     PIC S9(5) COMP-3.           [ 115] Batch number for accounting interface    DB
+        05  MSF096-KEY-NO       PIC S9(15) COMP-3.          [ 118] Key for MSF096 if > 24 ch. no assigned   DB
+        05  MAX-IOS.                                        [ 126] Maximum I/O's for search enquiries       NUMERIC DEC (0) RANGE
+                                                                                                            (1,999)
+                                                                                                            DB
+            07  MAX-IOS-9       PIC 9(3).                   [ 126] Maximum I/O's for search enquiries
+        05  STD-TEXT-COMP       PIC X(1).                   [ 129] Standard Text Compressed Indicator       VALUE ('Y','N')
+                                                                                                            ERROR(0012)
+                                                                                                            DB
+            88  STD-TEXT-COMP-IND VALUE 'Y'.                       Std Text Compressed Indicator
+        05  PLANT-NO-IND        PIC X(1).                   [ 130] Plant Number indicator                   VALUE ('Y','N')
+                                                                                                            ERROR(0012)
+                                                                                                            DB
+            88  PLANT-NOS-ALLOWED VALUE 'Y'.                       Plant Numbers allowed indicator
+        05  TWO-STEP-AUTH       PIC X(1).                   [ 131] Two Step Authorisation indicator         VALUE ('Y','N')
+                                                                                                            ERROR(0012)
+                                                                                                            DB
+            88  TWOSTEP-AUTH-ALLOWED VALUE 'Y'.                    Two Step Authorisation allowed indicator
+        05  RUN-MSB288-IN       PIC X(1).                   [ 132] Indicates to run MSB288                  DB
+            88  RUN-MSB288      VALUE 'Y'.                         Indicates to run MSB288
+        05  MSB262-NXT-RUN.                                 [ 133] Next run number of MSB262                DB
+            07  MSB262-NXT-RUN-9 PIC 9(6).                  [ 133] Next run number of MSB262
+        05  MSB265-NXT-RUN.                                 [ 139] Next run number of MSB265                DB
+            07  MSB265-NXT-RUN-9 PIC 9(6).                  [ 139] Next run number of MSB265
+        05  MSB267-NXT-RUN.                                 [ 145] Next Run number of MSB267                DB
+            07  MSB267-NXT-RUN-9 PIC 9(6).                  [ 145] Next Run number of MSB267
+        05  SCREEN-MESS-SW      PIC X(1).                   [ 151] Ind Allow Msg from MM Tbl to App on Scr  DB
+            88  SCREEN-MESSAGES VALUE 'Y'.                         Screen message indicator
+        05  CURRENT-HIER.                                   [ 152] Current hierarchy                        DB
+            07  HIER-TYPE       PIC X(1).                   [ 152] Hierarchy Type
+            07  HIER-VERSION    PIC X(3).                   [ 153] Hierarchy version
+        05  COST-SERV-IND       PIC X(1).                   [ 156] Sub-sys A/c Valid. for Service Items Ind DB
+            88  COST-SERVICE    VALUE 'Y'.                         Validate sub-sys when creating service
+                                                                   item costing alloc
+        05  MAX-LOGN-ATMPT.                                 [ 157] Maximum Num of Login Errors before Halt  DB
+            07  MAX-LOGN-ATMPT-9 PIC 9(1).                  [ 157] Maximum Num of Login Errors before Halt
+        05  BYPASS-WELCOME      PIC X(1).                   [ 158] Don't Display MIMS Welcome/Password Scrn DB
+        05  GEN-AUTH-DFLT       PIC X(1).                   [ 159] General Authority Default                DB
+        05  PART-AUTH-DFLT      PIC X(1).                   [ 160] Partial Authority Default                DB
+        05  MACHINE-TYPE        PIC X(1).                   [ 161] Currently not in use                     DB
+        05  MAX-UPDATES.                                    [ 162] Maximum Updates                          DB
+            07  MAX-UPDATES-9   PIC 9(8).                   [ 162] Maximum updates in a logical transaction NUMERIC RANGE (0, )
+        05  MAX-READS.                                      [ 170] Number Of Reads In A Logical Transaction DB
+            07  MAX-READS-9     PIC 9(8).                   [ 170] Number Of Reads In A Logical Transaction
+        05  CUST-TWOSTEP-AUTH   PIC X(1).                   [ 178] Customer Two Step Authorisation Ind      VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  CUST-TWOSTEP-ALL VALUE 'Y'.                        Customer Two Step Authorisation
+                                                                   indicator
+        05  CASH-ACCT-IND       PIC X(1).                   [ 179] Cash Accounting Indicator                DB
+            88  CASH-ACCOUNTING VALUE 'Y'.                         Cash Accounting
+        05  FC-METHOD-IND       PIC X(1).                   [ 180] Funds Check Method Indicator             DB
+        05  LST-EFT-PMT-ID.                                 [ 181] Last Electornic Funds Xfer Payment ID
+            07  LST-EFT-PMT-ALPHA PIC X(1).                 [ 181] Last Electronic Funds Xfer Payment Alpha DB
+            07  LST-EFT-PMT-NO.                             [ 182] Last Electronic Funds Xfer Payment No    DB
+                09  LST-EFT-PMT-NO-9 PIC 9(5).              [ 182] Last Electronic Funds Xfer Payment No
+        05  LST-PAY-PMT-ID.                                 [ 187] Last Payment Authorisation Payment ID
+            07  LST-PAY-PMT-ALPHA PIC X(1).                 [ 187] Last Payment Authorisation Payment Alpha DB
+            07  LST-PAY-PMT-NO.                             [ 188] Last Payment Authorisation Payment No    DB
+                09  LST-PAY-PMT-NO-9 PIC 9(5).              [ 188] Last Payment Authorisation Payment No
+        05  ACT-CTR-RO-MAX.                                 [ 193] Max Recommended Order Activity Counter   NUMERIC RANGE (1, )
+                                                                                                            DB
+            07  ACT-CTR-RO-MAX-9 PIC 9(3).                  [ 193] Max Recommended Order Activity Counter
+        05  CON-AST-DELM        PIC X(1).                   [ 196] Continuous Asset Delimiter               DB
+            88  CON-ASSET-OFF   VALUE ' '.                         Continuous Assets Flag
+        05  ACCOUNT-DELM        PIC X(1).                   [ 197] Cost Code Segments Delimiter             DB
+        05  SUBLEDGER-DELM      PIC X(1).                   [ 198] Subledger Key Delimiter                  DB
+            88  SUBLEDGER-OFF   VALUE ' '.                         Subledger Key Delimiter
+        05  IDSTRCT-TBL-SW      PIC X(1).                   [ 199] Ind Use of Interdistrict Table of A/cs   VALUE ('Y','H')
+                                                                                                            DB
+            88  IDSTRCT-TBL-USED VALUE 'Y'.                        Indicates Use Of Interdistrict Table Of
+                                                                   Accounts
+        05  FMS-CURR            PIC X(4).                   [ 200] FMS Currency                             DB
+        05  CASE-REQ-PC.                                    [ 204] CASE Requisition Percentage              DB
+            07  CASE-REQ-PC-9   PIC 9(3).                   [ 204] CASE Requisition Percent
+        05  HASTEN-DAYS-1.                                  [ 207] FMS Hastening Days 1                     DB
+            07  HASTEN-DAYS-1-9 PIC 9(3).                   [ 207] FMS Hastening Days
+        05  HASTEN-DAYS-2.                                  [ 210] FMS Hastening Days 2                     DB
+            07  HASTEN-DAYS-2-9 PIC 9(3).                   [ 210] FMS Hastening Days
+        05  FOLLOW-UP-DAYS.                                 [ 213] FMS Follow Up Days                       DB
+            07  FOLLOW-UP-DAYS-9 PIC 9(3).                  [ 213] Follow Up Days
+        05  PRICE-TOL-PC.                                   [ 216] Price Tolerence Percentage               DB
+            07  PRICE-TOL-PC-9  PIC 9(3).                   [ 216] Price Tolerence Percentage
+        05  DIST-XFER-CAT       PIC X(2).                   [ 219] District Transfer Catalogue              DB
+        05  STAX-DIST-XFR       PIC X(1).                   [ 221] Sales Tax Returns                        DB
+            88  STAX-DIST-XFER  VALUE 'Y'.                         Sales Tax
+        05  UPD-XFR-USAGE       PIC X(1).                   [ 222] Update Transfer Usage                    DB
+            88  UPD-XFER-USAGE  VALUE 'Y'.                         Update Transfer Usage
+        05  MIN-AVE-DAYS.                                   [ 223] Min Days for Op Stats Average            DB
+            07  MIN-AVE-DAYS-9  PIC 9(3).                   [ 223] Minimum Average days
+        05  MAX-AVE-DAYS.                                   [ 226] Max Days for Operating Statistics Avg    DB
+            07  MAX-AVE-DAYS-9  PIC 9(3).                   [ 226] Max Days for Operating Statistics Avg
+        05  MAX-EMAIL-LNE.                                  [ 229] Maximum Email Lines                      DB
+            07  MAX-EMAIL-LNE-9 PIC 9(5).                   [ 229] Maximum Lines in an Email Message        NUMERIC RANGE (0, )
+        05  EMAIL-TRNS          PIC X(1).                   [ 234] Email Txn Authorisation Indicator        DB
+            88  EMAIL-UNAUTHSED-TRNS VALUE 'Y'.                    Email Unauthorised Txns
+        05  VAL-PONO-FR-IN      PIC X(1).                   [ 235] Pur-Order Validation Ind for Fld Release DB
+            88  VAL-PONO-FR     VALUE 'Y'.                         Validate Purchase Order Number
+            88  NOVAL-PONO-FR   VALUE 'N'.                         Do Not Validate Purchase Order Number
+        05  VAL-CTL-ACCT-IND    PIC X(1).                   [ 236] Indicating Account setup in System       DB
+                                                                   Control be validated
+            88  VAL-CTL-ACCT    VALUE 'Y'.                         Validate Account for System Control
+                                                                   setup
+        05  EURO-CURR           PIC X(4).                   [ 237] EURO currency                            TABLE ('CU') ERROR
+                                                                                                            (1554)
+                                                                                                            DB
+        05  ORDER-TRXNS-SW      PIC X(1).                   [ 241] Acct Seq of Txns                         DB
+            88  ORDER-TRXNS     VALUE 'Y'.                         Account Sequence of Transactions
+        05  AUS-ENABLED         PIC X(1).                   [ 242] Advanced User Security                   DB
+        05  PWD-UNCH-DAYS.                                  [ 243] Password unchanged days                  DB
+            07  PWD-UNCH-DAYS-9 PIC 9(3).                   [ 243] Password unchanged days
+        05  FILLER              PIC X(29).
+    03  SC0002-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl 2                           ST,ID1:SC,ID2:0002
+        05  XFERS-ALLOWED       PIC X(1).                   [  11] SW to allow intra district transfers     VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+            88  XFERS-ARE-ALLOWED VALUE 'Y'.                       Intra District Transfers are allowed
+        05  EXCESS-XFER-PRICE   PIC S9(7) COMP-3.           [  12] Unit price for transfers - excess        NUMERIC DEC (0) RANGE
+                                                                                                            (0,9999999)
+                                                                                                            DB
+        05  EXCESS-XFER-VALUE   PIC S9(7) COMP-3.           [  16] Eligible total value of RO for transfers NUMERIC DEC (0) RANGE
+                                                                                                            (0,9999999)
+                                                                                                            DB
+        05  XFER-ITEM-PRICE     PIC S9(7) COMP-3.           [  20] Eligible unit price for transfers        NUMERIC DEC (0) RANGE
+                                                                                                            (0,9999999)
+                                                                                                            DB
+        05  XFER-NO-RORD-PRICE  PIC S9(7) COMP-3.           [  24] Xfer unit price - non reorderable stock  NUMERIC DEC (0) RANGE
+                                                                                                            (0,9999999)
+                                                                                                            DB
+        05  LAST-XFER-NO-REC.                               [  28] Transfer prefix and number
+            07  XFER-PREFIX     PIC X(1).                   [  28] Prefix for computer generated transfer   DB
+            07  LAST-XFER-NUMBER.                           [  29] Last computer generated transfer No.     NUMERIC DEC (0) RANGE
+                                                                                                            (0,9999)
+                                                                                                            DB
+                09  LAST-XFER-NUMBER-9 PIC 9(5).            [  29] Last computer generated transfer No.
+        05  LST-XFER-REC-R      REDEFINES LAST-XFER-NO-REC. [  28] Transfer Prefix and Number
+            07  XFER-PREFIX-R   PIC X(2).                   [  28] Transfer Number Prefix
+            07  LST-XFER-NUM-R  PIC X(4).                   [  30] Last Transfer Number
+        05  MSB912-MSF900-NO.                               [  34] Last number printed                      DB
+            07  MSB912-MSF900-NO-9 PIC 9(8).                [  34] Last number printed
+        05  LAST-MRP-RUN.                                   [  42] Last MRP run number.                     DB
+            07  LAST-MRP-RUN-9  PIC 9(1).                   [  42] Last MRP run number
+        05  CAT-SEQ-NUMBERS.                                [  43] Sequence Numbers for MSO100 screens
+            07  ITEM-CLASS-ORD-NO.                          [  43] Catalogue Sequence no. for Item Class    NUMERIC DEC (0) RANGE
+                                                                                                            (0,7)
+                                                                                                            DB
+                09  ITEM-CLASS-ORD-NO-9 PIC 9(1).           [  43] Screen Order No. for Item Class screen
+            07  PART-NO-ORD-NO.                             [  44] Screen Order No. for Part Number screen  NUMERIC DEC (0) RANGE
+                                                                                                            (0,7)
+                                                                                                            DB
+                09  PART-NO-ORD-NO-9 PIC 9(1).              [  44] Screen Order No. for Part Number screen
+            07  COLLOQUIAL-ORD-NO.                          [  45] Screen Order No. for the Colloq. screen  NUMERIC DEC (0) RANGE
+                                                                                                            (0,7)
+                                                                                                            DB
+                09  COLLOQUIAL-ORD-NO-9 PIC 9(1).           [  45] Screen Order No. for Colloq. screen
+            07  APL-FITMENT-ORD-NO.                         [  46] Screen Order No. for APL Fitment screen  NUMERIC DEC (0) RANGE
+                                                                                                            (0,7)
+                                                                                                            DB
+                09  APL-FITMENT-ORD-NO-9 PIC 9(1).          [  46] Screen Order No. for APL fitment screen
+            07  CROSS-REF-ORD-NO.                           [  47] Screen Order No. for Xref screen         NUMERIC DEC (0) RANGE
+                                                                                                            (0,7)
+                                                                                                            DB
+                09  CROSS-REF-ORD-NO-9 PIC 9(1).            [  47] Screen Order No. for Xref screen
+            07  ITEM-COMM-ORD-NO.                           [  48] Screen Order No. for Item Comment screen NUMERIC DEC (0) RANGE
+                                                                                                            (0,7)
+                                                                                                            DB
+                09  ITEM-COMM-ORD-NO-9 PIC 9(1).            [  48] Screen Order No. for Item Comment screen
+            07  EXT-DESC-ORD-NO.                            [  49] Screen Order No for Extended Desc Screen NUMERIC DEC (0) RANGE
+                                                                                                            (0,7)
+                                                                                                            DB
+                09  EXT-DESC-ORD-NO-9 PIC 9(1).             [  49] Screen Order No for Extended Desc Screen
+            07  EXTRA-FLD-ORD-NO.                           [  50] Extra field - not yet used               DB
+                09  EXTRA-FLD-ORD-NO-9 PIC 9(1).            [  50] Extra field - not yet used
+        05  FIRST-SCR-SEARCH    PIC X(1).                   [  51] First Screen to search (A or B)          VALUE ('A' or 'B') ERROR
+                                                                                                            (0014)
+                                                                                                            DB
+        05  LAST-XFER-REQ-PFX   PIC X(1).                   [  52] Last transfer requisition prefix         DB
+        05  LAST-XFER-REQ-NO.                               [  53] Last transfer requisition number         DB
+            07  LAST-XFER-REQ-NO-9 PIC 9(5).                [  53] Last transfer requisition number
+        05  XFER-PREF-TYPE      PIC X(1).                   [  58] Transfer Prefix Type                     VALUE ('1','2')
+                                                                                                            DB
+            88  NORMAL-XFER-PREFIX VALUE '1'.                      Normal Transfer Prefix
+            88  TWO-CHAR-XFER-PFX VALUE '2'.                       Two Character Transfer Prefix
+        05  PO-VERSIONS-SW      PIC X(1).                   [  59] Ind Version of a PO are to be kept       VALUE ('Y','N')
+                                                                                                            DB
+        05  GLOBAL-ORDERS-IND   PIC X(1).                   [  60] Global Orders Indicator                  VALUE ('Y','N')
+                                                                                                            DB
+        05  PO-CONS-DELIV-IND   PIC X(1).                   [  61] Purchase Order Consolidationn Indicator  VALUE ('Y','N')
+                                                                                                            DB
+        05  SUPP-CLASS-HDG-A    PIC X(6).                   [  62] Column heading to name gene Market Share DB
+        05  SUPP-CLASS-HDG-B    PIC X(6).                   [  68] Column head-b to name gener Market Share DB
+        05  FILLER              PIC X(201).
+    03  SC0010-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Last Stock Code             ST,ID1:SC,ID2:0010
+        05  LAST-STK-CODE.                                  [  11] Last stock number allocated              NUMERIC DEC (0) RANGE
+                                                                                                            (0,99999999)
+                                                                                                            DB
+            07  LAST-STK-CODE-9 PIC 9(8).                   [  11] Last stock number allocated
+        05  FILLER              PIC X(256).
+    03  SC0011-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Last INC No                 ST,ID1:SC,ID2:0011
+        05  LAST-INC-NO.                                    [  11] Last INC number allocated                NUMERIC DEC (0) RANGE
+                                                                                                            (0,99999)
+                                                                                                            DB
+            07  LAST-INC-NO-9   PIC 9(5).                   [  11] Last INC number allocated
+        05  EXTENDED-INC-IND    PIC X(1).                   [  16] System Control Parameter to enable 9 or  DB
+                                                                   5 digit INC
+        05  FILLER              PIC X(258).
+    03  SC0013-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Last Supplier No            ST,ID1:SC,ID2:0013
+        05  LAST-SUP-NO.                                    [  11] Last supplier name                       NUMERIC DEC (0) RANGE
+                                                                                                            (0,999999)
+                                                                                                            DB
+            07  LAST-SUP-NO-9   PIC 9(6).                   [  11] Last supplier name
+        05  FILLER              PIC X(258).
+    03  SC0014-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Last bank charge            ST,ID1:SC,ID2:0014
+        05  LAST-BANK-TRAN.                                 [  11] Last bank charge transaction             DB
+            07  LAST-BANK-TRAN-9 PIC 9(6).                  [  11] Last bank charge transaction
+        05  FILLER              PIC X(258).
+    03  SC0015-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Last Maint Sch Run          ST,ID1:SC,ID2:0015
+        05  LAST-SCH-RUN.                                   [  11] Last Maintenance Schedule Run Number     NUMERIC RANGE (1, )
+                                                                                                            DB
+            07  LAST-SCH-RUN-9  PIC 9(6).                   [  11] Last Maintenance Schedule Run Number
+        05  FILLER              PIC X(258).
+    03  SC0019-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Last Equip No.              ST,ID1:SC,ID2:0019
+        05  LAST-EQUIP-NO.                                  [  11] Last equipment number assigned           NUMERIC DEC (0) RANGE
+                                                                                                            (0,999999999999)
+                                                                                                            DB
+            07  LAST-EQUIP-NO-9 PIC 9(12).                  [  11] Last equipment number allowed
+        05  FILLER              PIC X(252).
+    03  SC0020-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl System Version              ST,ID1:SC,ID2:0020
+        05  SYSTEM-VERSION      PIC X(1).                   [  11] System version                           DB
+        05  RELEASE-VERSION     PIC X(6).                   [  12] Release version                          DB
+        05  FILLER              PIC X(257).
+    03  SC0021-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Last InterDstrct Jrnl       ST,ID1:SC,ID2:0021
+        05  LAST-IDJ-PFX        PIC X(1).                   [  11] Last Inter Dist Journal Prefix Allocated DB
+        05  LAST-IDJ-NO.                                    [  12] Last Inter District Journal No Allocated DB
+            07  LAST-IDJ-NO-9   PIC 9(9).                   [  12] Last Inter District Journal No Allocated
+        05  FILLER              PIC X(254).
+    03  SC0022-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Warranty WO Type            ST,ID1:SC,ID2:0022
+        05  WARR-WO-TYPE        PIC X(2).                   [  11] Warranty Work Order Type                 TABLE ('WO') ERROR
+                                                                                                            (0082) MANDATORY
+                                                                                                            DB
+        05  FILLER              PIC X(262).
+    03  SC0023-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Last Archive Run            ST,ID1:SC,ID2:0023
+        05  LAST-ARCH-RUN.                                  [  11] Last Archiving Run Number                NUMERIC RANGE (1, )
+                                                                                                            DB
+            07  LAST-ARCH-RUN-9 PIC 9(4).                   [  11] Last Archiving Run Number
+        05  FILLER              PIC X(260).
+    03  SC0024-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Last Cust No                ST,ID1:SC,ID2:0024
+        05  LAST-CUST-NO.                                   [  11] Last Customer Number                     CUSTOMER MANDATORY
+                                                                                                            DB
+            07  LAST-CUST-NO-9  PIC 9(6).                   [  11] Last Customer Number
+        05  FILLER              PIC X(258).
+    03  SC0025-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Proforma Invoice Run        ST,ID1:SC,ID2:0025
+        05  LAST-PFI-RUN-NO.                                [  11] Last Proforma Invoice Run Number         NUMERIC RANGE (1, )
+                                                                                                            DB
+            07  LAST-PFI-RUN-NO-9 PIC 9(4).                 [  11] Last Proforma Invoice Run Number
+        05  FILLER              PIC X(260).
+    03  SC0050-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Works Management            ST,ID1:SC,ID2:0050
+        05  LAST-REQUESTOR-ID.                              [  11] Last Requestor Identifier                DB
+            07  LAST-REQUESTOR-ID-9 PIC 9(12).              [  11] Last Requestor Identification
+        05  LAST-REQUEST-ID.                                [  23] Last Request Identifier                  DB
+            07  LAST-REQUEST-ID-9 PIC 9(12).                [  23] Last Request Identification
+        05  LAST-CONTACT-ID.                                [  35] Last Contact Identifier                  DB
+            07  LAST-CONTACT-ID-9 PIC 9(12).                [  35] Last Contact Identifier
+        05  LAST-LOCATION.                                  [  47] Last Location Identifier                 DB
+            07  LAST-LOCATION-9 PIC 9(12).                  [  47] Last Location Identifier
+        05  LAST-CU-NO.                                     [  59] Last Compatible Unit Identifier          DB
+            07  LAST-CU-NO-9    PIC 9(12).                  [  59] Last Compatible Unit Identifier
+        05  LAST-EST-NO.                                    [  71] Last Estimate Identifier                 DB
+            07  LAST-EST-NO-9   PIC 9(12).                  [  71] Last Estimate Identifier
+        05  FILLER              PIC X(192).
+    03  SC0051-REC              REDEFINES PCYYMM-REC.       [  11] System Cntrl Last Notice Loc No          ST,ID1:SC,ID2:0051
+        05  LAST-NOTICE-LOCN    PIC X(12).                  [  11] Last Notice Location Number              DB
+        05  FILLER              PIC X(252).
+    03  SC0052-REC              REDEFINES PCYYMM-REC.       [  11] System Control - Last Nameplate Number   ST,ID1:SC,ID2:0052
+        05  LAST-NAMEPLATE.                                 [  11] Last Nameplate Number                    DB
+            07  LAST-NAMEPLATE-9 PIC 9(6).                  [  11] Last Nameplate Number
+        05  FILLER              PIC X(258).
+    03  WO-REC                  REDEFINES PCYYMM-REC.       [  11] District Cntrl Work Order                ST,ID1:WO
+        05  WO-PFX-DESC         PIC X(40).                  [  11] Work Order prefix description            DB
+        05  LAST-PAR-WO-NO.                                 [  51] Last parent work order number            DB
+            07  PART-LAST-PAR-WO-NO PIC X(2).               [  51] Filler
+            07  PARENT-WO-9     PIC 9(6).                   [  53] Parent work order number
+        05  LAST-PAR-WO-NO-9    REDEFINES LAST-PAR-WO-NO    [  51] Last parent work order number
+                                PIC 9(8).
+        05  LAST-WO-NO.                                     [  59] Last work order number                   DB
+            07  PART-LAST-WO-NO PIC X(2).                   [  59] Filler
+            07  WO-NUMBER-9     PIC 9(6).                   [  61] Work order number
+        05  LAST-WO-NO-9        REDEFINES LAST-WO-NO PIC    [  59] Last work order number
+                                9(8).
+        05  LEADING-ZEROS       PIC X(1).                   [  67] Y Inds Leading Zeros to be Suppressed    VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+        05  FILLER              PIC X(207).

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Ellipse.DataDictionary.Models;
-using Ellipse.DataDictionary.Parsers;
 using Ellipse.DataDictionary.Parsers.Cobol;
 using Ellipse.DataDictionary.Readers;
 using NUnit.Framework;
@@ -10,24 +8,14 @@ using NUnit.Framework;
 namespace Ellipse.DataDictionary.System
 {
     [TestFixture]
-    public class CobolUnitTests : TestFixture
+    public class CobolUnitTests : ParserTestFixture<CobolParser>
     {
-        private readonly IModelParser[] parsers = new IModelParser[] {
-                    new ClassParser(), 
-                    new PropertyParser(), 
-             
-                    new EnumValueParser(), 
-                    new EnumParser(),
-                    new DataTypeParser(), 
-                    new CommentParser()
-                };
-
 
         [Test]
         public void ParseMSF003_RECORD()
         {
             FileReader reader = new FileReader(@".\Resources\Cobol\MSF003-RECORD.rpt");
-            IDataParser dataParser = new DataParser(reader, parsers);
+            IDataParser dataParser = CreateDataParser(reader);
             dataParser.Corrections = null;
             dataParser.OnMissingParser = line =>
             {
@@ -47,7 +35,7 @@ namespace Ellipse.DataDictionary.System
                     
                     new CobolModel("DataType", "AGE-METHOD PIC X(2)", "comment"),
                 };
-            AssertModel(dataParser.Results, expected);
+            AssertParsed(dataParser, expected.ToArray());
         }
 
         
@@ -55,7 +43,7 @@ namespace Ellipse.DataDictionary.System
         public void ParseMSF004_RECORD()
         {
             FileReader reader = new FileReader(@".\Resources\Cobol\MSF004-RECORD.rpt");
-            IDataParser dataParser = new DataParser(reader, parsers);
+            IDataParser dataParser = CreateDataParser(reader);
             dataParser.Corrections = null;
             dataParser.OnMissingParser = line =>
             {
@@ -79,14 +67,14 @@ namespace Ellipse.DataDictionary.System
                     
                     new CobolModel("DataType", "TAX-PERIOD-CLOSED PIC X(1)", "comment"),
                 };
-            AssertModel(dataParser.Results, expected);
+            AssertParsed(dataParser, expected.ToArray());
         }
 
         [Test]
         public void ParseMSF005_RECORD()
         {
             FileReader reader = new FileReader(@".\Resources\Cobol\MSF005-RECORD.rpt");
-            IDataParser dataParser = new DataParser(reader, parsers);
+            IDataParser dataParser = CreateDataParser(reader);
             dataParser.Corrections = null;
             dataParser.OnMissingParser = line =>
             {
@@ -108,14 +96,14 @@ namespace Ellipse.DataDictionary.System
                     
                     new CobolModel("DataType", "TLX-TEXT PIC X(72)", "comment"),
                 };
-            AssertModel(dataParser.Results, expected);
+            AssertParsed(dataParser, expected.ToArray());
         }
 
         [Test]
         public void ParseMSF006_RECORD()
         {
             FileReader reader = new FileReader(@".\Resources\Cobol\MSF006-RECORD.rpt");
-            IDataParser dataParser = new DataParser(reader, parsers);
+            IDataParser dataParser = CreateDataParser(reader);
             dataParser.Corrections = null;
             dataParser.OnMissingParser = line =>
                 {
@@ -166,31 +154,7 @@ namespace Ellipse.DataDictionary.System
                     new CobolModel("EnumValue", "TARGT-OFF-DIST VALUE 'Y'", "comment"),
                     new CobolModel("EnumValue", "TARGT-NO-OFF-DIST VALUE 'N'", "comment"),
                 };
-            AssertModel(dataParser.Results, expected);
-        }
-
-
-        private void AssertModel(IList<Model> results, IList<Model> expected)
-        {
-            string actual = BuildStringModel(results);
-            string expect = BuildStringModel(expected);
-
-            Assert.That(actual, Is.EqualTo(expect));
-        }
-
-        private static string BuildStringModel(IList<Model> modelList)
-        {
-            StringBuilder builder = new StringBuilder();
-            int index = 0;
-            foreach (Model model in modelList)
-            {
-                index++;
-                builder.AppendFormat("{0}: {1}\n", index, model);
-            }
-
-            builder.AppendFormat("Elements: {0}", modelList.Count);
-
-            return builder.ToString();
+            AssertParsed(dataParser, expected.ToArray());
         }
     }
 }

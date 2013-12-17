@@ -17,6 +17,11 @@
             return new LineParser().IgnoreAfter(marker);
         }
 
+        public static ILineParser IgnoreAfter(int columnNo)
+        {
+            return new LineParser().TruncateAt(columnNo);
+        }
+
         public static ILineParser Trim()
         {
             return new LineParser().Trim();
@@ -30,6 +35,11 @@
         public static ILineParser OnLine(int lineNo, ILineParser lineParser)
         {
             return new LineParser().OnLineNumber(lineNo, lineParser);
+        }
+
+        public static ILineParser TruncateAtColumn(int column)
+        {
+            return new LineParser().TruncateAt(column);
         }
     }
 }

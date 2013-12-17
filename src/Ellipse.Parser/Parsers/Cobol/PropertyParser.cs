@@ -87,8 +87,57 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             }
         }
 
+        private class Line11Parser : SingleLineParser
+        {
+            public Line11Parser()
+                : base("Property",
+                       Line.Multiple(
+                           Line.And(Line.StartsWith(Prefix.Prefix11), Line.DoesNotContain("PIC")),
+                           Line.Optional(
+                               Line.Repeat(Line.StartsWith(Prefix.Empty))
+                               )
+                           ),
+                       Data.OnLine(0,
+                                   Data.IgnoreStart(Prefix.Prefix11)
+                                       .IgnoreAfter(".")
+                                       .RemoveSpaces()
+                                       .Trim())
+                           .IgnoreAll(),
+                       Comment.IgnoreBefore(".").RemoveSpaces().Trim())
+            {
+            }
+        }
+
+        private class Line13Parser : SingleLineParser
+        {
+            public Line13Parser()
+                : base("Property",
+                       Line.Multiple(
+                           Line.And(Line.StartsWith(Prefix.Prefix13), Line.DoesNotContain("PIC")),
+                           Line.Optional(
+                               Line.Repeat(Line.StartsWith(Prefix.Empty))
+                               )
+                           ),
+                       Data.OnLine(0,
+                                   Data.IgnoreStart(Prefix.Prefix13)
+                                       .IgnoreAfter(".")
+                                       .RemoveSpaces()
+                                       .Trim())
+                           .IgnoreAll(),
+                       Comment.IgnoreBefore(".").RemoveSpaces().Trim())
+            {
+            }
+        }
+
         public PropertyParser()
-            : base(new Line03Parser(), new Line05Parser(), new Line07Parser(), new Line09Parser())
+            : base(
+                new Line03Parser(),
+                new Line05Parser(),
+                new Line07Parser(),
+                new Line09Parser(),
+                new Line11Parser(),
+                new Line13Parser()
+                )
         {
         }
     }

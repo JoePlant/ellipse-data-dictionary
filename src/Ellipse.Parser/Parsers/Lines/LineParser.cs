@@ -66,6 +66,15 @@ namespace Ellipse.DataDictionary.Parsers.Lines
             return this;
         }
 
+        public ILineParser IgnoreBefore(int columnNo)
+        {
+            standardParseList.Add(
+                (i, line) => (line != null && line.Length >= columnNo)
+                            ? line.Substring(columnNo)
+                            : ""
+                );
+            return this;
+        }
         public ILineParser Trim()
         {
             standardParseList.Add(
@@ -97,6 +106,16 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         public ILineParser OnLineNumber(int lineNo, ILineParser lineParser)
         {
             lineDictionary.Add(lineNo, lineParser);
+            return this;
+        }
+
+        public ILineParser TruncateAt(int columnNo)
+        {
+            standardParseList.Add(
+                (i, line) => line != null && line.Length > columnNo
+                            ? line.Substring(0, columnNo)
+                            : line
+                );
             return this;
         }
     }

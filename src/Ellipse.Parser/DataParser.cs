@@ -44,6 +44,14 @@ namespace Ellipse.DataDictionary
                     parser = FindParser(currentReader, parsers);
                 }
 
+                // Try fixing by adding a prefix
+                if (parser == null)
+                {
+                    currentReader = new AddPrefixReader(reader, " ");
+                    parser = FindParser(currentReader, parsers);
+                }
+
+
                 // Try fixing by replacing known Corrections
                 if (parser == null)
                 {

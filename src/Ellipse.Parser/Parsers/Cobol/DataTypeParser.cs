@@ -64,6 +64,26 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             }
         }
 
+        private class Line09Parser : SingleLineParser
+        {
+            public Line09Parser()
+                : base("DataType",
+                       Line.Multiple(
+                           Line.And(Line.StartsWith(Prefix.Prefix09), Line.Contains("PIC")),
+                           Line.Optional(
+                               Line.Repeat(Line.StartsWith(Prefix.Empty))
+                               )
+                           ), Data.OnLine(0,
+                                          Data.IgnoreStart(Prefix.Prefix09)
+                                              .IgnoreAfter(".")
+                                              .RemoveSpaces()
+                                              .Trim())
+                                  .IgnoreAll(),
+                       Comment.IgnoreBefore(".").RemoveSpaces().Trim())
+            {
+            }
+        }
+
         private class Line11Parser : SingleLineParser
         {
             public Line11Parser()
@@ -83,8 +103,57 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             {
             }
         }
+
+        private class Line13Parser : SingleLineParser
+        {
+            public Line13Parser()
+                : base("DataType",
+                       Line.Multiple(
+                           Line.And(Line.StartsWith(Prefix.Prefix13), Line.Contains("PIC")),
+                           Line.Optional(
+                               Line.Repeat(Line.StartsWith(Prefix.Empty))
+                               )
+                           ), Data.OnLine(0,
+                                          Data.IgnoreStart(Prefix.Prefix13)
+                                              .IgnoreAfter(".")
+                                              .RemoveSpaces()
+                                              .Trim())
+                                  .IgnoreAll(),
+                       Comment.IgnoreBefore(".").RemoveSpaces().Trim())
+            {
+            }
+        }
+
+        private class Line15Parser : SingleLineParser
+        {
+            public Line15Parser()
+                : base("DataType",
+                       Line.Multiple(
+                           Line.And(Line.StartsWith(Prefix.Prefix15), Line.Contains("PIC")),
+                           Line.Optional(
+                               Line.Repeat(Line.StartsWith(Prefix.Empty))
+                               )
+                           ), Data.OnLine(0,
+                                          Data.IgnoreStart(Prefix.Prefix15)
+                                              .IgnoreAfter(".")
+                                              .RemoveSpaces()
+                                              .Trim())
+                                  .IgnoreAll(),
+                       Comment.IgnoreBefore(".").RemoveSpaces().Trim())
+            {
+            }
+        }
+
         public DataTypeParser()
-            : base(new Line03Parser(), new Line05Parser(), new Line07Parser(), new Line11Parser())
+            : base(
+                new Line03Parser(),
+                new Line05Parser(),
+                new Line07Parser(),
+                new Line09Parser(),
+                new Line11Parser(),
+                new Line13Parser(),
+                new Line15Parser()
+                )
         {
         }
     }

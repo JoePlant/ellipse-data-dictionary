@@ -1,0 +1,247 @@
+﻿01  MSF002-RECORD.
+    03  KEY-002.                                            [   1] Primary Key of MSF002                    FK:0
+        05  DSTRCT-CODE         PIC X(4).                   [   1] District Code                            MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB,KEY:0
+        05  CONTROL-REC.                                    [   5] Control Record Type
+            07  CTL-REC-TY      PIC X(2).                   [   5] Identifies Format of Control Record      DB,KEY:0,ID
+                88  EM-REC-IND  VALUE 'EM'.                        Indicator to use EM-REC Definition
+                88  NE-REC-IND  VALUE 'NE'.                        Indicator to use NE-REC Definition
+                88  PO-REC-IND  VALUE 'PO'.                        PO-Rec Definition
+            07  CONTROL-REC-NO.                             [   7] Control rec no.                          DB,KEY:0,ID
+                09  CONTROL-REC-NO-9 PIC 9(4).              [   7] Record Number, Within Type
+                09  WHOUSE-ID   REDEFINES CONTROL-REC-NO-9  [   7] Code to uniquely identify a warehouse    TABLE ('WH') WAREHOUSE
+                                PIC X(4).
+        05  CTL-RECORD-IND      REDEFINES CONTROL-REC PIC   [   5] Control Record Indicator
+                                X(6).
+            88  DC3801-REC-IND  VALUE 'DC3801'.                    Indicator to use HR District Control
+                                                                   Record
+            88  SC3801-REC-IND  VALUE 'SC3801'.                    Indicator to use HR System Control
+                                                                   Record
+            88  DC3510-REC-IND  VALUE 'DC3510'.                    Indicator to use the OHS Record
+            88  DC3770-REC-IND  VALUE 'DC3770'.                    DC3770 Indicator
+    03  SC3801-REC.                                         [  11] System Cntrl HR/Payroll                  ST,ID1:SC,ID2:3801
+        05  AUTO-EMP-NO         PIC X(1).                   [  11] Auto Allocate Employee ID                DB
+        05  AUTO-NON-EMP        PIC X(1).                   [  12] Auto Allocate Non-Employee ID            DB
+        05  PRS-LEVELS.                                     [  13] Number of PRS Levels                     Numeric Range (0,10)
+                                                                                                            DB
+            07  PRS-LEVELS-9    PIC 9(2).                   [  13] Number of PRS Levels
+        05  ESTAB-HIS-FLAG      PIC X(1).                   [  15] Retain Establishment History             Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  DATA-REF-REQD       PIC X(1).                   [  16] Data Reference Required                  Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  DATA-REF-UNIQ       PIC X(1).                   [  17] Data Reference Unique                    VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+        05  DEFAULT-DSTRCT      PIC X(4).                   [  18] Default District                         MANDATORY VALUE
+                                                                                                            (DSTRCT-CODE) ERROR
+                                                                                                            (6534) ACTIVE
+                                                                                                            DB
+        05  SUSPEND-POS         PIC X(10).                  [  22] Position Used In Suspending Employees    DATASET (MSF870)
+                                                                                                            DB
+        05  TERMINATE-POS       PIC X(10).                  [  32] Position Used In Terminating Employees   DATASET (MSF870)
+                                                                                                            DB
+        05  DFLT-POSN-DTLS      PIC X(1).                   [  42] Default Position Details To Emp          VALUE ('Y','N') ERROR
+                                                                                                            (0012)
+                                                                                                            DB
+        05  AUTO-POSN-NO        PIC X(1).                   [  43] Auto Allocate Position Numbers           DB
+        05  CONS-YTD-TOTS       PIC X(1).                   [  44] Consolidate YTD Totals                   Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  LAST-GC-RUN.                                    [  45] Last GC Run Number Allocated             NUMERIC DEC (0)
+                                                                                                            DB
+            07  LAST-GC-RUN-9   PIC 9(5).                   [  45] Last GC Run Number Allocated
+        05  PROT-EXTRA-ALW      PIC X(1).                   [  50] Protect T & A Extra Allowances           VALUE ('Y','N') ERROR
+                                                                                                            0012
+                                                                                                            DB
+        05  ALLOC-INC-NUM       PIC X(1).                   [  51] Allocate Incident Number Indicator (Y/N) VALUE ('Y','N')
+                                                                                                            DB
+        05  LAST-INC-NUM.                                   [  52] Last Incident Number Allocated           DATASET (MSF510)
+                                                                                                            DB
+            07  LAST-INC-NUM-9  PIC 9(10).                  [  52] Last Incident Number Allocated
+        05  ALLOC-CLAIM-NO      PIC X(1).                   [  62] Allocate Claim Number Indicator (Y/N)    VALUE ('Y','N')
+                                                                                                            DB
+        05  LAST-CLAIM-NO.                                  [  63] Last Claim Number Allocated              DATASET (MSF536)
+                                                                                                            DB
+            07  LAST-CLAIM-NO-9 PIC 9(10).                  [  63] Last Claim Number Allocated
+        05  DFLT-PAY-EARN       PIC X(3).                   [  73] Default Payment Earnings Code            DB
+        05  DFLT-ABS-WC         PIC X(2).                   [  76] Default Absence Work Code                HR TABLE ('R1') ERROR
+                                                                                                            (8241)
+                                                                                                            DB
+        05  DFLT-ABS-EARN       PIC X(3).                   [  78] Default Absence Earnings Code            DB
+        05  DFLT-LVE-RSN-CDE    PIC X(1).                   [  81] Default Leave Reason Code                TABLE ('LVER') ERROR
+                                                                                                            (0629)
+                                                                                                            DB
+        05  DFLT-MAKE-EARN      PIC X(3).                   [  82] Default Makeup Earnings Code             DB
+        05  MULTI-INJURIES      PIC X(1).                   [  85] Multiple Injuries Per Employee (Y/N)     VALUE ('Y','N')
+                                                                                                            DB
+        05  LAST-PAY-NO.                                    [  86] Last Employee Pay Number Allocated       DB
+            07  LAST-PAY-NO-9   PIC 9(5).                   [  86] Last Employee Pay Number Allocated       DATASET (MSF818)
+        05  FILLER              PIC X(160).
+    03  DC3801-REC              REDEFINES SC3801-REC.       [  11] District Cntrl HR/Payroll                ST,ID1:DC,ID2:3801
+        05  NAME-FORMAT         PIC X(5).                   [  11] Format of Name Display                   Value (I,F,2)
+                                                                                                            DB
+        05  LVE-ACCR-COST       PIC X(1).                   [  16] Include Leave Accrual Costing            Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  DEDN-TAX-CODE       PIC X(3).                   [  17] Deduction Code for Tax                   HR TABLE ('D') ERROR
+                                                                                                            (0604)
+                                                                                                            DB
+        05  DEDN-TAX-LS-A       PIC X(3).                   [  20] Tax Deduction Code for LS-A              HR TABLE ('D') ERROR
+                                                                                                            (0604)
+                                                                                                            DB
+        05  DEDN-TAX-LS-B       PIC X(3).                   [  23] Tax Deduction Code for LS-B              HR TABLE ('D') ERROR
+                                                                                                            (0604)
+                                                                                                            DB
+        05  DEDN-TAX-LS-C       PIC X(3).                   [  26] Tax Deduction Code for LS-C              HR TABLE ('D') ERROR
+                                                                                                            (0604)
+                                                                                                            DB
+        05  DEDN-TAX-LS-D       PIC X(3).                   [  29] Tax Deduction Code for LS-D              HR TABLE ('D') ERROR
+                                                                                                            (0604)
+                                                                                                            DB
+        05  DEDN-TAX-LS-E       PIC X(3).                   [  32] Tax Deduction Code for LS-E              HR TABLE ('D') ERROR
+                                                                                                            (0604)
+                                                                                                            DB
+        05  DEDN-RECOV-CDE      PIC X(3).                   [  35] Deduction Code for Recoveries            HR TABLE ('D') ERROR
+                                                                                                            (0604)
+                                                                                                            DB
+        05  DEDN-NEG-NET        PIC X(3).                   [  38] Negative Net Deduction Code              HR TABLE ('D') ERROR
+                                                                                                            (0604)
+                                                                                                            DB
+        05  TERM-THRESHOLDS.                                [  41] Term Thresholds
+            07  LR-THRESH-AMT   PIC S9(13)V9(2) COMP-3.     [  41] Low Rate Threshold Amount                NUMERIC DEC (2)
+                                                                                                            DB
+            07  TAX-FREE-AMT    PIC S9(13)V9(2) COMP-3.     [  49] Tax Free Amount                          NUMERIC DEC (2)
+                                                                                                            DB
+            07  TAX-FREE-AMT-YR PIC S9(13)V9(2) COMP-3.     [  57] Tax Free Threshold per Service Year      NUMERIC DEC (2)
+                                                                                                            DB
+            07  MAX-TAX-FREE    PIC S9(13)V9(2) COMP-3.     [  65] Maximum Amount of Tax Free Threshold     NUMERIC DEC (2)
+                                                                                                            DB
+        05  COST-WARN-IND       PIC X(1).                   [  73] Reconcile Costing Warning                Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  REASON-CHECKS       PIC X(1).                   [  74] Reasonabliness Checks                    Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  ACTUAL-RATE         PIC X(1).                   [  75] Actual Rate Labour Costing               Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  COST-DAY            PIC X(1).                   [  76] Whole Day Labour Costing                 Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  DEF-CDE-ORD         PIC X(3).                   [  77] Default Ordinary Hours Earnings Code     TABLE ('EA')
+                                                                                                            DB
+        05  DEF-CDE-OT          PIC X(3).                   [  80] Default Overtime Hours Earnings Code     TABLE ('EA')
+                                                                                                            DB
+        05  COST-RNTN-DAYS.                                 [  83] Processed Labour Cost Trn Retention Days DB
+            07  COST-RNTN-DAYS-9 PIC 9(3).                  [  83] Processed Labour Cost Trn Retention Days
+        05  ROST-RNTN-PER.                                  [  86] Uncosted Roster Trans Retention Period   NUMERIC
+                                                                                                            DB
+            07  ROST-RNTN-PER-9 PIC 9(2).                   [  86] Uncosted Rost Trans Retention Period No
+        05  SHOW-WIP            PIC X(1).                   [  88] Show Work In Progress Details            Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  INPUT-ACCOUNT       PIC X(1).                   [  89] Input Account code                       Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  INPUT-WO            PIC X(1).                   [  90] Input Work-Order                         Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  INPUT-WO-TASK       PIC X(1).                   [  91] Input Work-Order/ Task                   Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  INPUT-PROJECT       PIC X(1).                   [  92] Input Project                            Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  INPUT-EQUIP         PIC X(1).                   [  93] Input Equipment                          Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  INPUT-EARN          PIC X(1).                   [  94] Input Earnings Class Code                Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  INPUT-LAB-CL        PIC X(1).                   [  95] Input Labour Cost Class                  Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  INPUT-DSTRCT        PIC X(1).                   [  96] Input District Code                      Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  AIRFARES-REQ        PIC X(1).                   [  97] Include Airfares with Booked Leave       DB
+        05  EQ-RNTN-DAYS.                                   [  98] Proc. Equip Hire Trans Retention Days    DB
+            07  EQ-RNTN-DAYS-9  PIC 9(3).                   [  98] Proc. Equip Hire Trans Retention Days
+        05  COMP-PAID-ALW       PIC X(1).                   [ 101] Employee Based Comp's Paid as Allowances DB
+        05  LAST-INVOICE        PIC X(10).                  [ 102] Last Invoice Number                      DB
+        05  TIMEK-SORT-ORD      PIC X(1).                   [ 112] Timekeeping Sort Order                   DB
+            88  EMPLOYEE-ORDER  VALUE 'E'.                         Employee Id Order
+            88  SURNAME-ORDER   VALUE 'S'.                         Employee Surname Order
+        05  EMP-COMP-USED       PIC X(1).                   [ 113] Employee Components used in Rate Calc    VALUE ('Y','N') ERROR
+                                                                                                            0012
+                                                                                                            DB
+        05  WK-END-DY           PIC X(1).                   [ 114] Week End Day                             TABLE (PDOW)
+                                                                                                            DB
+        05  DAILY-HRS-LIM       PIC S9(7)V9(2) COMP-3.      [ 115] Daily Hours Limit                        DB
+        05  WEEKLY-HRS-LIM      PIC S9(7)V9(2) COMP-3.      [ 120] Weekly Hours Limit                       DB
+        05  FILLER              PIC X(126).
+    03  DC3510-REC              REDEFINES SC3801-REC.       [  11] District Cntrl Occ Health & Safety       ST,ID1:DC,ID2:3510
+        05  WO-COSTING          PIC X(1).                   [  11] Work Order Costing Indicator (Y/N)       DB
+        05  DFLT-WO-PREFIX      PIC X(2).                   [  12] Default Work Order Prefix                DB
+        05  DFLT-CLAIM-TY       PIC X(5).                   [  14] Default Claim Type                       TABLE ('OHCL') ERROR ( )
+                                                                                                            DB
+        05  DFLT-INSURER        PIC X(6).                   [  19] Default Insurer Code                     TABLE ('OHIN') ERROR ( )
+                                                                                                            DB
+        05  WC-LOCN-STAT        PIC X(1).                   [  25] Workers Comp Location Statistics Ind     Value ('Y','N') Error
+                                                                                                            0012
+                                                                                                            DB
+        05  DFLT-MED-WC         PIC X(2).                   [  26] Default Medical Details Work Code        HR TABLE('R1') ERROR
+                                                                                                            (8241)
+                                                                                                            DB
+        05  SELF-INSURER        PIC X(1).                   [  28] Self Insurer (Y/N)                       VALUE ('Y','N')
+                                                                                                            DB
+        05  INSURER-NAME        PIC X(40).                  [  29] Insurer Name                             DB
+        05  WC-LOCATION         PIC X(7).                   [  69] Workers Comp Location ID                 TABLE ('WCLC') ERROR
+                                                                                                            (3756)
+                                                                                                            DB
+        05  DB-ACCT-CODE        PIC X(24).                  [  76] Accounts Payable Debit Account Code      ACCOUNT-CODE
+                                                                                                            DB
+        05  DB-EXP-ELE          PIC X(8).                   [ 100] Accounts Payable Debit Expense Element   DB
+        05  START-WC-DATE.                                  [ 108] Start Workers Compensation Year Date     DATE MANDATORY LE-TODAY
+                                                                                                            DB
+            07  START-WC-DATE-9 PIC 9(8).                   [ 108] Start Workers Compensation Year Date
+        05  END-WC-DATE.                                    [ 116] End Workers Compensation Year Date       DATE MANDATORY LE-TODAY
+                                                                                                            DB
+            07  END-WC-DATE-9   PIC 9(8).                   [ 116] End Workers Compensation Year Date
+        05  FILLER              PIC X(127).
+    03  DC3770-REC              REDEFINES SC3801-REC.       [  11] District Cntrl Training                  ST,ID1:DC,ID2:3770
+        05  TRAIN-UNROS-WC      PIC X(2).                   [  11] Training Crse Wrk Cde for Unrostered Day HR TABLE('R1') ERROR
+                                                                                                            (8241)
+                                                                                                            DB
+        05  TRAIN-RDO-WC        PIC X(2).                   [  13] Training Course Work Code for RDO Days.  HR TABLE('R1') ERROR
+                                                                                                            (8241)
+                                                                                                            DB
+        05  TRN-PH-RDO-WC       PIC X(2).                   [  15] Trng Crse WrkCde for Paid Pub Hol on RDO HR TABLE('R1') ERROR
+                                                                                                            (8241)
+                                                                                                            DB
+        05  TRN-WRK-PH-WC       PIC X(2).                   [  17] Training Crse Work Cde for Works Pub Hol HR TABLE('R1') ERROR
+                                                                                                            (8241)
+                                                                                                            DB
+        05  TRAIN-WC            PIC X(2).                   [  19] Training Course Wrk Cde for Rostered Day HR TABLE('R1') ERROR
+                                                                                                            (8241)
+                                                                                                            DB
+        05  FILLER              PIC X(230).
+    03  EM-REC                  REDEFINES SC3801-REC.       [  11] System Cntrl - Last Employee No          ST,ID1:EM
+        05  LAST-EMP-NO.                                    [  11] Last Employee Number                     EMPLOYEE
+                                                                                                            DB
+            07  LAST-EMP-NO-9   PIC 9(10).                  [  11] Last Employee Number
+        05  FILLER              PIC X(230).
+    03  NE-REC                  REDEFINES SC3801-REC.       [  11] System Cntrl - Last Non-Emp No           ST,ID1:NE
+        05  LAST-NON-EMP.                                   [  11] Last Non-Employee Number                 EMPLOYEE
+                                                                                                            DB
+            07  LAST-NON-EMP-9  PIC 9(10).                  [  11] Last Non-Employee Number
+        05  FILLER              PIC X(230).
+    03  PO-REC                  REDEFINES SC3801-REC.       [  11] System Cntrl - Last Position No          ST,ID1:PO
+        05  LAST-POSN-NO.                                   [  11] Last Position Number                     DATASET (MSF870)
+                                                                                                            DB
+            07  LAST-POSN-NO-9  PIC 9(10).                  [  11] Last Position Number
+        05  FILLER              PIC X(230).

@@ -48,9 +48,25 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
+        public void SingleLineLevel11()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case6);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "MSF061-DATA-1-061-1A", "[ 5] Reference Data 1a"));
+        }
+
+        [Test]
+        public void SingleLineLevel13()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.Case7);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "MSF062-CONTRACT-NO-RC", "[ 38] Contract Number"));
+        }
+
+        [Test]
         public void PropertyFollowedByDataType()
         {
-            StringReader reader = new StringReader(ExampleStrings.Property.FollowingCase6);
+            StringReader reader = new StringReader(ExampleStrings.Property.FollowingCase7);
             IDataParser parser = CreateDataParser(reader, new DataTypeParser());
             AssertParsed(parser,
                          new CobolModel("Property", "LINE-NO", "[  19] Line No. of description"),

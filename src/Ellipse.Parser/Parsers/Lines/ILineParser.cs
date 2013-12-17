@@ -9,6 +9,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         ILineParser Trim();
         ILineParser RemoveSpaces();
         ILineParser IgnoreAll();
+        ILineParser TruncateAt(int columnNo);
 
         string Parse(int lineNo, string line);
 

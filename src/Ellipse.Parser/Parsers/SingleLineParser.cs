@@ -58,7 +58,7 @@ namespace Ellipse.DataDictionary.Parsers
 
                 if (comment.Count > 0)
                 {
-                    return new CobolModel(name, string.Join("\n", data), string.Join("\n", comment));
+                    return new CobolModel(name, string.Join(" ", data), string.Join("\n", comment));
                 }
 
                 return new StringModel(name, string.Join("\n", data));

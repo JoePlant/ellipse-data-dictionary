@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ellipse.DataDictionary.Parsers;
+using Ellipse.DataDictionary.Parsers.Cobol;
 using Ellipse.DataDictionary.Parsers.Models;
 using Ellipse.DataDictionary.Readers;
 using NUnit.Framework;
@@ -59,6 +60,31 @@ namespace Ellipse.DataDictionary
             };
 
         [Test]
+        public void SystemBlockTests()
+        {
+            IReader reader = new FileReader(@".\Resources\DataDictionary\datadict.rpt");
+            IModelParser[] parsers = new IModelParser[] {
+                    new AccessInformationParser(),
+                    new DescriptionParser(),
+                    new DetailsParser(),
+                    new ModifiedParser(),
+                    new ModuleParser(),
+                    new PageHeaderParser(),
+                    new RecordLengthParser(),
+                    new RecordParser(),
+                    new TechnicalInformationParser(),
+                    new CobolBlockParser(), 
+                };
+            IDataParser dataParser = new DataParser(reader, parsers);
+            dataParser.Corrections = corrections;
+            dataParser.OnMissingParser = (line) => {
+                                                       throw new InvalidOperationException("No Parser for: " + reader);
+            };
+            dataParser.Parse();
+        }
+
+        [Test]
+        [Explicit("Work in progress")]
         public void SystemTests()
         {
             IReader reader = new FileReader(@".\Resources\DataDictionary\datadict.rpt");
@@ -76,8 +102,9 @@ namespace Ellipse.DataDictionary
                 };
             IDataParser dataParser = new DataParser(reader, parsers);
             dataParser.Corrections = corrections;
-            dataParser.OnMissingParser = (line) => {
-                                                       throw new InvalidOperationException("No Parser for: " + reader);
+            dataParser.OnMissingParser = (line) =>
+            {
+                throw new InvalidOperationException("No Parser for: " + reader);
             };
             dataParser.Parse();
         }

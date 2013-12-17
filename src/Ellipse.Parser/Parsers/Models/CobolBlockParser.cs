@@ -3,7 +3,7 @@ using Ellipse.DataDictionary.Parsers.Lines;
 
 namespace Ellipse.DataDictionary.Parsers.Models
 {
-    public class CobolParser : BlockParser
+    public class CobolBlockParser : BlockParser
     {
         private static readonly ILineMatcher[] CobolBlock = new[]
             {
@@ -11,7 +11,7 @@ namespace Ellipse.DataDictionary.Parsers.Models
                 Line.Repeat(Line.Any()).Until(Line.IsEmpty()),
             };
 
-        public CobolParser() : base(CobolBlock)
+        public CobolBlockParser() : base(CobolBlock)
         {
         }
 
