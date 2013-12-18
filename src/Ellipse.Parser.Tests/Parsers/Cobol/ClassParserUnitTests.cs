@@ -10,7 +10,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         [Test]
         public void SingleLine()
         {
-            StringReader reader = new StringReader(ExampleStrings.Class.Case1);
+            StringReader reader = new StringReader(ExampleStrings.Class.SingleLine01);
             
             IDataParser parser = CreateDataParser(reader);
 

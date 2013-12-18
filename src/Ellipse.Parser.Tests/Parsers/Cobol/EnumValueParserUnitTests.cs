@@ -10,7 +10,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         [Test]
         public void SingleLine03()
         {
-            StringReader reader = new StringReader(ExampleStrings.EnumValue.Case03SingleLine);
+            StringReader reader = new StringReader(ExampleStrings.EnumValue.SingleLine03);
             IDataParser parser = CreateDataParser(reader);
             AssertParsed(parser, new CobolModel("EnumValue", "PO-NO-ITEM VALUE 'PO'", "Purchase Order Number Item"));
         }
@@ -18,7 +18,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         [Test]
         public void SingleLine07()
         {
-            StringReader reader = new StringReader(ExampleStrings.EnumValue.Case07SingleLine);
+            StringReader reader = new StringReader(ExampleStrings.EnumValue.SingleLine07);
             IDataParser parser = CreateDataParser(reader);
             AssertParsed(parser, new CobolModel("EnumValue", "MIMS-CONTROL VALUE 'M'", "Indicates MIMS System Control Account"));
         }
@@ -26,7 +26,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         [Test]
         public void SingleLine09()
         {
-            StringReader reader = new StringReader(ExampleStrings.EnumValue.Case09SingleLine);
+            StringReader reader = new StringReader(ExampleStrings.EnumValue.SingleLine09);
             IDataParser parser = CreateDataParser(reader);
             AssertParsed(parser, new CobolModel("EnumValue", "EGI-TYPE VALUE 'G'", "EGI type record"));
         }
@@ -34,7 +34,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         [Test]
         public void SingleLine11()
         {
-            StringReader reader = new StringReader(ExampleStrings.EnumValue.Case11SingleLine);
+            StringReader reader = new StringReader(ExampleStrings.EnumValue.SingleLine11);
             IDataParser parser = CreateDataParser(reader);
             AssertParsed(parser, new CobolModel("EnumValue", "RES-TY VALUE 'R'", "Resource Type"));
         }
@@ -42,7 +42,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         [Test]
         public void MultiLine03()
         {
-            StringReader reader = new StringReader(ExampleStrings.EnumValue.Case03MultiLine);
+            StringReader reader = new StringReader(ExampleStrings.EnumValue.MultiLine03);
             IDataParser parser = CreateDataParser(reader);
             AssertParsed(parser, new CobolModel("EnumValue", "TARGT-NO-AUTOGEN VALUE 'N'", "No Autogenerate Interdistrict Account\nEntries"));
         }
@@ -51,7 +51,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         [Test]
         public void MultiLine13()
         {
-            StringReader reader = new StringReader(ExampleStrings.EnumValue.Case13MultiLine);
+            StringReader reader = new StringReader(ExampleStrings.EnumValue.SingleLine13);
             IDataParser parser = CreateDataParser(reader);
             AssertParsed(parser, new CobolModel("EnumValue", "MSF062-ETP-TRAIN-PROG VALUE 'P'", "Employee Training Plan Program"));
         }

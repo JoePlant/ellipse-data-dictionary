@@ -19,7 +19,7 @@ namespace Ellipse.DataDictionary
             List<IModelParser> parsers = new List<IModelParser> {new T()};
             parsers.AddRange(optional);
             IDataParser dataParser = new DataParser(reader, parsers.ToArray());
-            dataParser.OnMissingParser = (line) =>
+            dataParser.OnMissingParser = line =>
             {
                 throw new InvalidOperationException("No Parser for: " + reader);
             };
