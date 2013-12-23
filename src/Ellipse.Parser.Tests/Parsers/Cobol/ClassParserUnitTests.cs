@@ -18,6 +18,16 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
+        public void SingleLineWithSpace()
+        {
+            StringReader reader = new StringReader(" " + ExampleStrings.Class.SingleLine01);
+
+            IDataParser parser = CreateDataParser(reader);
+
+            AssertParsed(parser, new StringModel("Class", "MSF001-RECORD"));
+        }
+
+        [Test]
         public void PropertyCases()
         {
             AssertDoesNotParse(ExampleStrings.Property.SimpleCases());
@@ -35,5 +45,10 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             AssertDoesNotParse(ExampleStrings.EnumValue.AllCases());
         }
 
+        [Test]
+        public void RedefinesDataTypeCases()
+        {
+            AssertDoesNotParse(ExampleStrings.Redefines.AllCases());
+        }
     }
 }

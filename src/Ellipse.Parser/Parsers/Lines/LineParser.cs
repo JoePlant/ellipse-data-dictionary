@@ -60,7 +60,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             standardParseList.Add(
                 (i, line) => (line != null && line.Contains(marker))
-                            ? line.Substring(line.IndexOf(marker, StringComparison.InvariantCulture)+1)
+                            ? line.Substring(line.IndexOf(marker, StringComparison.InvariantCulture)+marker.Length)
                             : line
                 );
             return this;

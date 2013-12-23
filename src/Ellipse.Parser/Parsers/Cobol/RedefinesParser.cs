@@ -3,11 +3,11 @@ using Ellipse.DataDictionary.Parsers.Lines;
 
 namespace Ellipse.DataDictionary.Parsers.Cobol
 {
-    public class DataTypeParser : CombinationParser
+    public class RedefinesParser : CombinationParser
     {
         private static readonly Dictionary<int, string> LevelDictionary = new Dictionary<int, string>
             {
-                //{01, Prefix.Prefix01},
+                {01, Prefix.Prefix01},
                 {02, Prefix.Prefix03},
                 {03, Prefix.Prefix05},
                 {04, Prefix.Prefix07},
@@ -25,53 +25,55 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                 {16, Prefix.Prefix31},
             };
 
-        private class LevelParser : SingleLineParser
+        private class LineParser : SingleLineParser
         {
-            public LevelParser(int level)
-                : base("DataType",
+            public LineParser(int level)
+                : base("Redefines",
                        Line.Multiple(
                            Line.And(
                                Line.StartsWithMarker(Prefix.Marker(level)),
-                               Line.Contains("PIC ")),
+                               Line.Contains("REDEFINES")
+                               ),
                            Line.Optional(
                                Line.Repeat(Line.StartsWith(Prefix.Empty))
                                )
                            ),
                        Data.OnLine(0,
                                    Data
-                                       .TruncateAtColumn(59)
+                                       .TruncateAtColumn(60)
                                        .IgnoreBefore(Prefix.Marker(level))
                                        .IgnoreAfter(".")
                                        .RemoveSpaces()
                                        .Trim())
-                           .TruncateAt(59)
+                           .TruncateAt(60)
                            .IgnoreAfter(".")
+                           .RemoveSpaces()
                            .Trim(),
                        Comment
                            .IgnoreBefore(".")
                            .RemoveSpaces()
-                           .Trim())
+                           .Trim()
+                    )
             {
             }
         }
 
-        public DataTypeParser()
+        public RedefinesParser()
             : base(
-                SimpleLevelParser(2),
-                SimpleLevelParser(3),
-                SimpleLevelParser(4),
-                SimpleLevelParser(5),
-                SimpleLevelParser(6),
-                SimpleLevelParser(7),
-                SimpleLevelParser(8),
-                SimpleLevelParser(9),
-                SimpleLevelParser(10),
-                SimpleLevelParser(11),
-                SimpleLevelParser(12),
-                SimpleLevelParser(13),
-                SimpleLevelParser(14),
-                SimpleLevelParser(15),
-                SimpleLevelParser(16)
+                new LineParser(2),
+                new LineParser(3),
+                new LineParser(4),
+                new LineParser(5),
+                new LineParser(6),
+                new LineParser(7)
+                //new LineParser(8),
+                //new LineParser(9),
+                //new LineParser(10),
+                //new LineParser(11),
+                //new LineParser(12),
+                //new LineParser(13),
+                //new LineParser(14),
+                //new LineParser(15)
                 )
         {
         }
@@ -80,23 +82,14 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             if (LevelDictionary.ContainsKey(level))
             {
-                return new HierarchyParser(
-                    SimpleLevelParser(level),
-                    new[]
-                        {
-                            EnumValueParser.HierarchyParser(level + 1)
-                        }
-                    );
+                return new HierarchyParser(new LineParser(level), new[]
+                    {
+                        PropertyParser.HierarchyParser(level + 1),
+                        DataTypeParser.HierarchyParser(level + 1),
+                        RedefinesParser.HierarchyParser(level + 1)
+                    });
             }
-            return new EmptyParser();
-        }
 
-        private static IModelParser SimpleLevelParser(int level)
-        {
-            if (LevelDictionary.ContainsKey(level))
-            {
-                return new LevelParser(level);
-            }
             return new EmptyParser();
         }
     }

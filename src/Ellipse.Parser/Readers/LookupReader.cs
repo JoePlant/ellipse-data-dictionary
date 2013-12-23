@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Ellipse.DataDictionary.Readers
 {
     public class LookupReader : ModifyReader
     {
         public LookupReader(IReader reader, IDictionary<string, string> corrections)
-            : base(reader, (line) => Correct(corrections, line))
+            : base(reader, line => Correct(corrections, line))
         {
         }
 

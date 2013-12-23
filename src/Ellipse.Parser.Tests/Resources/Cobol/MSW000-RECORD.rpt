@@ -14,4 +14,3 @@
                      11  W000-DATA PIC X(95) OCCURS 3        [  16] Ninety five bytes 0f work data
                                  INDEXED BY W000-DATA-IDX.
      03  FILLER                  PIC X(4).
-1

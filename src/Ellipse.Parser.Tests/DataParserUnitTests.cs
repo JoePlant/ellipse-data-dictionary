@@ -113,5 +113,31 @@ namespace Ellipse.DataDictionary
             };
             dataParser.Parse();
         }
+
+        [Test]
+        public void HierarchySystemTests()
+        {
+            IReader reader = new FileReader(@".\Resources\DataDictionary\datadict.rpt");
+            IModelParser[] parsers = new IModelParser[] {
+                    new AccessInformationParser(),
+                    new DescriptionParser(),
+                    new DetailsParser(),
+                    new ModifiedParser(),
+                    new ModuleParser(),
+                    new PageHeaderParser(),
+                    new RecordLengthParser(),
+                    new RecordParser(),
+                    new TechnicalInformationParser(),
+                    CobolParser.CobolHierarchy(), 
+                    new IgnoreParser(), 
+                };
+            IDataParser dataParser = new DataParser(reader, parsers);
+            dataParser.Corrections = corrections;
+            dataParser.OnMissingParser = (line) =>
+            {
+                throw new InvalidOperationException("No Parser for: " + reader);
+            };
+            dataParser.Parse();
+        }
     }
 }

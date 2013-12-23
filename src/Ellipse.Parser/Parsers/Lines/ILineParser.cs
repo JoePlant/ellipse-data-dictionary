@@ -6,6 +6,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         ILineParser IgnoreStart(string start);
         ILineParser IgnoreEnd(string end);
         ILineParser IgnoreAfter(string marker);
+        ILineParser IgnoreBefore(string marker);
         ILineParser Trim();
         ILineParser RemoveSpaces();
         ILineParser IgnoreAll();

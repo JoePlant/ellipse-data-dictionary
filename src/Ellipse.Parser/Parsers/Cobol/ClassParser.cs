@@ -5,10 +5,16 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
     public class ClassParser : SingleLineParser
     {
         public ClassParser()
-            : base("Class", 
-            Line.StartsWith(Prefix.Prefix01), 
-            Data.IgnoreStart(Prefix.Prefix01).IgnoreAfter("."),
-            Comment.IgnoreBefore("."))
+            : base("Class",
+                   Line
+                       .StartsWithMarker(Prefix.Marker(1)),
+                   Data
+                       .IgnoreBefore(Prefix.Marker(1))
+                       .IgnoreAfter(".")
+                       .Trim(),
+                   Comment
+                       .IgnoreBefore(".")
+                )
         {
         }
     }

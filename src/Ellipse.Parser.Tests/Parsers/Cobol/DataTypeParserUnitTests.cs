@@ -24,6 +24,14 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
+        public void SingleLine05Trimmed()
+        {
+            StringReader reader = new StringReader(ExampleStrings.DataType.SingleLine05.Substring(2));
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("DataType", "FULL-PERIOD PIC X(6)", "[ 5] Full Period CCYYPP DB,KEY:0"));
+        }
+
+        [Test]
         public void SingleLine09()
         {
             StringReader reader = new StringReader(ExampleStrings.DataType.SingleLine09);
@@ -64,6 +72,22 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
+        public void MultiLine07()
+        {
+            StringReader reader = new StringReader(ExampleStrings.DataType.MultiLines07);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("DataType", "CURR-ACCUM-A PIC X(1) OCCURS 10 INDEXED BY CURR-ACC-A-IDX", "[ 183] Current Period Accumulation Identifiers DB"));
+        }
+
+        [Test]
+        public void MultiLine11()
+        {
+            StringReader reader = new StringReader(ExampleStrings.DataType.MultiLines11);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("DataType", "W000-DATA PIC X(95) OCCURS 3 INDEXED BY W000-DATA-IDX", "[ 16] Ninety five bytes 0f work data"));
+        }
+
+        [Test]
         public void MultiLine31()
         {
             StringReader reader = new StringReader(ExampleStrings.DataType.MultiLines31);
@@ -89,5 +113,10 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             AssertDoesNotParse(ExampleStrings.EnumValue.AllCases());
         }
 
+        [Test]
+        public void RedefinesDataTypeCases()
+        {
+            AssertDoesNotParse(ExampleStrings.Redefines.AllCases());
+        }
     }
 }

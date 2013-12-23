@@ -7,6 +7,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         public class LineStartsWith : LineMatcher
         {
             private readonly string startsWith;
+            private bool ignoreSpaces;
 
             public LineStartsWith(string startsWith)
             {
@@ -15,7 +16,18 @@ namespace Ellipse.DataDictionary.Parsers.Lines
 
             public override bool Matches(string line)
             {
-                return line != null && line.StartsWith(startsWith);
+                return line != null && (
+                                           (line.StartsWith(startsWith)
+                                            || (ignoreSpaces &&
+                                                line.TrimStart(' ').StartsWith(startsWith))
+                                           )
+                                       );
+            }
+            
+            public ILineMatcher IgnoreLeadingSpaces()
+            {
+                ignoreSpaces = true;
+                return this;
             }
         }
 

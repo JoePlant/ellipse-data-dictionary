@@ -25,10 +25,11 @@
             {
                 return new[]
                     {
-                        SingleLine03, SingleLine07, 
-                        SingleLine11, SingleLine13, SingleLine15, SingleLine17, SingleLine19, 
+                        SingleLine03, SingleLine07,
+                        SingleLine11, SingleLine13, SingleLine15, SingleLine17, SingleLine19,
                         SingleLine21, SingleLine23, SingleLine25, SingleLine27,
-                        MultiLine03, MultiLine05, MultiLine09, MultiLine29
+                        MultiLine03, MultiLine05, MultiLine09, MultiLine29,
+                        PropertyContainingReservedWord
                     };
             }
 
@@ -130,10 +131,12 @@
             /// <summary>
             ///  Property followed by DataType
             /// </summary>
-            public const string SingleLineFollowing05 =
+            public const string Property05DataType07 =
                 "        05  LINE-NO.                                        [  19] Line No. of description                  DB,KEY:0\n" +
                 "            07  LINE-NO-9       PIC 9(4).                   [  19] Line No. of description";
 
+            public const string PropertyContainingReservedWord =
+                "        05  LST-CON-PICK-NO.                                [  11] Last Consolidate Picking Slip Number     DB";
         }
 
         public static class DataType
@@ -142,9 +145,9 @@
             {
                 return new[]
                     {
-                        SingleLine03, SingleLine05, SingleLine09, 
-                        SingleLine11, SingleLine13, SingleLine15, 
-                        MultiLines05, MultiLines31
+                        SingleLine03, SingleLine05, SingleLine09,
+                        SingleLine11, SingleLine13, SingleLine15,
+                        MultiLines05, MultiLines07, MultiLines11, MultiLines31
                     };
             }
 
@@ -172,6 +175,14 @@
                 "                                                                                                            (6534) ACTIVE\n" +
                 "                                                                                                            DB,KEY:0";
 
+            public const string MultiLines07 =
+                "           07  CURR-ACCUM-A    PIC X(1) OCCURS 10 INDEXED  [ 183] Current Period Accumulation Identifiers  DB\r\n" +
+                "                               BY CURR-ACC-A-IDX.";
+
+            public const string MultiLines11 =
+                "                     11  W000-DATA PIC X(95) OCCURS 3        [  16] Ninety five bytes 0f work data\r\n" +
+                "                                 INDEXED BY W000-DATA-IDX.";
+
             public const string MultiLines31 =
                 "                               31  MSF062-DATA-2-062-PB PIC [  33] Reference data 2\n" +
                 "                                X(24).";
@@ -183,30 +194,83 @@
             {
                 return new[]
                     {
-                        SingleLine03, SingleLine07, SingleLine09, 
-                        SingleLine11, SingleLine13, MultiLine03
+                        SingleLine05, SingleLine09, SingleLine11,
+                        SingleLine13, SingleLine15, MultiLine05
+                    };
+            }
+
+            public const string SingleLine05 =
+                "        88  PO-NO-ITEM          VALUE 'PO'.                        Purchase Order Number Item";
+
+            public const string SingleLine09 =
+                "                88  MIMS-CONTROL VALUE 'M'.                        Indicates MIMS System Control Account";
+
+            public const string SingleLine11 =
+                "                    88  EGI-TYPE VALUE 'G'.                        EGI type record";
+
+            public const string SingleLine13 =
+                "                        88  RES-TY VALUE 'R'.                      Resource Type";
+
+            public const string SingleLine15 =
+                "                            88  MSF062-ETP-TRAIN-PROG VALUE        Employee Training Plan Program\n" +
+                "                                'P'.";
+
+            public const string MultiLine05 =
+                "        88  TARGT-NO-AUTOGEN    VALUE 'N'.                         No Autogenerate Interdistrict Account\n" +
+                "                                                                   Entries";
+        }
+
+        public static class Redefines
+        {
+            public static string[] AllCases()
+            {
+                return new[]
+                    {
+                        SingleLine03, MultiLine05, MultiLine07, SingleLine09, MultiLine11
                     };
             }
 
             public const string SingleLine03 =
-                "        88  PO-NO-ITEM          VALUE 'PO'.                        Purchase Order Number Item";
+                "    03  DOS-PREF-RPT            REDEFINES DOS-PREF-GRP.     [   5] DOS Preferred Report";
 
-            public const string SingleLine07 =
-                "                88  MIMS-CONTROL VALUE 'M'.                        Indicates MIMS System Control Account";
+            public const string MultiLine05 =
+                "        05  WH-TABLE-CODE       REDEFINES TABLE-CODE.       [   5] Warehouse Table File Code                DATASET (MSF010) ERROR\n" +
+                "                                                                                                            (0041)";
+
+            public const string MultiLine07 =
+                "            07  MSF062-DATA-1-062-CC REDEFINES              [   5] Reference data 1\n" +
+                "                                MSF062-DATA-1-062-AU.";
 
             public const string SingleLine09 =
-                "                    88  EGI-TYPE VALUE 'G'.                        EGI type record";
+                "                09  ACCTYRMN    REDEFINES CONTROL-REC-NO-9. [   7] Accounting year and month";
 
-            public const string SingleLine11 =
-                "                        88  RES-TY VALUE 'R'.                      Resource Type";
+            public const string MultiLine11 =
+                "                    11  MSF061-DATA-1-061-CB REDEFINES      [   5] Reference data 1\n" +
+                "                                MSF061-DATA-1-061-1A.";
 
-            public const string SingleLine13 =
-                "                            88  MSF062-ETP-TRAIN-PROG VALUE        Employee Training Plan Program\n" +
-                "                                'P'.";
+            public const string MultiLine13 =
+                "                        13  MSF062-PORT-ELE-RC REDEFINES    [  46] Portion Number and Element Number\n" +
+                "                                MSF062-IREQ-ITEM-RC.";
 
-            public const string MultiLine03 =
-                "        88  TARGT-NO-AUTOGEN    VALUE 'N'.                         No Autogenerate Interdistrict Account\n" +
-                "                                                                   Entries";
+            public const string Level03CompositeA =
+                "    03  DC0028-REC              REDEFINES DO-REC.           [  11] District Cntrl Last Internal Invoice     ST,ID1:DC,ID2:0028\r\n" +
+                "        05  LST-INT-INV-NO.                                 [  11] Last Internal Invoice Number Allocated   DB\r\n" +
+                "            07  LST-INT-INV-NO-9 PIC 9(9).                  [  11] Last Internal Invoice Number Allocated\r\n" +
+                "        05  FILLER              PIC X(255).";
+
+            public const string Level03CompositeB =
+                "    03  DC0027-REC              REDEFINES DO-REC.           [  11] District Cntrl Last Picking Slip         ST,ID1:DC,ID2:0027\r\n" +
+                "        05  LST-CON-PICK-NO.                                [  11] Last Consolidate Picking Slip Number     DB\r\n" +
+                "            07  LST-CON-PICK-NO-9 PIC 9(6).                 [  11] Last Consolidate Picking Slip Number\r\n" +
+                "        05  FILLER              PIC X(258).";
+
+            public const string Level07Composite =
+                "             07  W000-DATA-RT    REDEFINES W000-DATA-GRP.    [  16] Work file data\r\n" +
+                "                 09  W000-REDEF-REC.                         [  16] Work file data\r\n" +
+                "                     11  W000-DATA PIC X(95) OCCURS 3        [  16] Ninety five bytes 0f work data\r\n" +
+                "                                 INDEXED BY W000-DATA-IDX.";
+
+
         }
     }
 }

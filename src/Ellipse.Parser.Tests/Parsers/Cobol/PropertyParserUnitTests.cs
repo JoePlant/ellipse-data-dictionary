@@ -16,6 +16,14 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
+        public void SingleLine03Trimmed()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.SingleLine03.Substring(2));
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "KEY-004", "[ 1] key of MSF004 FK:0"));
+        }
+
+        [Test]
         public void MultiLineLevel03()
         {
             StringReader reader = new StringReader(ExampleStrings.Property.MultiLine03);
@@ -130,11 +138,24 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         [Test]
         public void PropertyFollowedByDataType()
         {
-            StringReader reader = new StringReader(ExampleStrings.Property.SingleLineFollowing05);
-            IDataParser parser = CreateDataParser(reader, new DataTypeParser());
-            AssertParsed(parser,
-                         new CobolModel("Property", "LINE-NO", "[  19] Line No. of description"),
-                         new CobolModel("DataType", "LINE-NO-9 PIC 9(4)", "[  19] Line No. of description"));
+            StringReader reader = new StringReader(ExampleStrings.Property.Property05DataType07);
+            IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(3));
+
+            Model model = Build
+                .Property("LINE-NO", "[ 19] Line No. of description")
+                .With(
+                    Build.DataType("LINE-NO-9 PIC 9(4)", "[ 19] Line No. of description")
+                ).Model();
+
+            AssertParsed(parser,model);
+        }
+
+        [Test]
+        public void PropertyContainingPic()
+        {
+            StringReader reader = new StringReader(ExampleStrings.Property.PropertyContainingReservedWord);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsed(parser, new CobolModel("Property", "LST-CON-PICK-NO", "[ 11] Last Consolidate Picking Slip Number DB"));
         }
 
         [Test]
@@ -155,5 +176,10 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             AssertDoesNotParse(ExampleStrings.EnumValue.AllCases());
         }
 
+        [Test]
+        public void RedefinesDataTypeCases()
+        {
+            AssertDoesNotParse(ExampleStrings.Redefines.AllCases());
+        }
     }
 }

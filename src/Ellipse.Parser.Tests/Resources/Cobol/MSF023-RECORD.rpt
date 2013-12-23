@@ -1,0 +1,31 @@
+﻿01  MSF023-RECORD.
+   03  KEY-023.                                            [   1] Primary Key of MSF023                    FK:0
+       05  USER-ID             PIC X(10).                  [   1] User Identification Code                 DB,KEY:0
+       05  POSITION-ID         PIC X(10).                  [  11] Position Identification Code             DATASET (MSF870)
+                                                                                                           DB,KEY:0
+       05  ACCESS-EMP-ID       PIC X(10).                  [  21] Employee Identification                  EMPLOYEE
+                                                                                                           DB,KEY:0
+   03  EMPLOYEE-ID             PIC X(10).                  [  31] Employee Identification                  EMPLOYEE
+                                                                                                           DB
+   03  AIX1-KEY-023.                                       [  41] Alternate Key of MSF023                  FK:1
+       05  ACCESS-EMP-ID-2     PIC X(10).                  [  41] Employee Identification                  EMPLOYEE
+                                                                                                           COPY,KEY:1
+       05  USER-ID-2           PIC X(10).                  [  51] User Identification Code                 COPY,KEY:1
+       05  POSITION-ID-2       PIC X(10).                  [  61] Position Identification Code             DATASET (MSF870)
+                                                                                                           COPY,KEY:1
+   03  AIX2-KEY-023.                                       [  71] Alternate Key 2 of MSF023                FK:2
+       05  EMPLOYEE-ID-3       PIC X(10).                  [  71] Employee identification code             EMPLOYEE
+                                                                                                           COPY,KEY:2
+       05  POSITION-ID-3       PIC X(10).                  [  81] Position Identification Code             DATASET (MSF870)
+                                                                                                           COPY,KEY:2
+       05  ACCESS-EMP-ID-3     PIC X(10).                  [  91] Employee Identification                  EMPLOYEE
+                                                                                                           COPY,KEY:2
+       05  USER-ID-3           PIC X(10).                  [ 101] User Identification Code                 COPY,KEY:2
+   03  AIX3-KEY-023.                                       [ 111] Alternate Key 3 of MSF023                FK:3
+       05  EMPLOYEE-ID-4       PIC X(10).                  [ 111] Employee identification code             EMPLOYEE
+                                                                                                           COPY,KEY:3
+       05  USER-ID-4           PIC X(10).                  [ 121] User Identification Code                 COPY,KEY:3
+       05  POSITION-ID-4       PIC X(10).                  [ 131] Position Identification Code             DATASET (MSF870)
+                                                                                                           COPY,KEY:3
+       05  ACCESS-EMP-ID-4     PIC X(10).                  [ 141] Employee Identification                  EMPLOYEE
+                                                                                                           COPY,KEY:3

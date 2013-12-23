@@ -7,9 +7,19 @@
                 new ClassParser(),
                 new PropertyParser(),
                 new DataTypeParser(),
+                new RedefinesParser(),
                 new EnumValueParser()
                 )
         {
+        }
+
+        public static IModelParser CobolHierarchy()
+        {
+            return new HierarchyParser(
+                new ClassParser(),
+                PropertyParser.HierarchyParser(2),
+                DataTypeParser.HierarchyParser(2),
+                RedefinesParser.HierarchyParser(2));
         }
     }
 }

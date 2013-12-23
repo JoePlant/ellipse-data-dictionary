@@ -9,7 +9,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         public EnumParser()
             : base("Enum",
                    Line.FollowedBy(Line.StartsWith(Prefix.Prefix05),
-                                   Line.StartsWith(Prefix.Level0788)),
+                                   Line.StartsWith(Prefix.Level0988)),
                    Data.IgnoreStart(Prefix.Prefix05).IgnoreAfter(marker))
         {
         }

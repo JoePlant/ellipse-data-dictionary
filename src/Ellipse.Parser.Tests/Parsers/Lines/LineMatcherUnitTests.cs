@@ -16,6 +16,15 @@ namespace Ellipse.DataDictionary.Parsers.Lines
             AssertMatches(lineMatcher, "Testing", "Testing  ", "Testing that this line matches", "TestingWithoutSpaces");
         }
 
+        [Test]
+        public void LineStartsWithIgnoreSpaces()
+        {
+            ILineMatcher lineMatcher = Line.StartsWithMarker("Testing");
+
+            AssertDoesNotMatch(lineMatcher, null, "", "    ", "TESTING: ", "Testin",  "testing",
+                               "Ending with Testing");
+            AssertMatches(lineMatcher, "Testing", "Testing  ", "Testing that this line matches", "TestingWithoutSpaces", " Testing", "  Testing", "   Testing");
+        }
 
         [Test]
         public void LineOr()

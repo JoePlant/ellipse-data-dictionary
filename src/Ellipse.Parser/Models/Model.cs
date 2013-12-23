@@ -2,5 +2,9 @@
 {
     public class Model
     {
+        public override string ToString()
+        {
+            return "[Model]";
+        }
     }
 }

@@ -46,6 +46,16 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         }
 
         [Test]
+        public void IgnoreBefore2Chars()
+        {
+            ILineParser lineParser = Comment.IgnoreBefore("./");
+
+            AssertWillParse(lineParser, "Data", "TEsting./Data", "./Data", "Testing    ./Data");
+            AssertWillParse(lineParser, "", "./", "", "Data./");
+            AssertNoChange(lineParser, "Data", "there is no dot", "dot", ",", ".", "/", "/.");
+        }
+
+        [Test]
         public void IgnoreAll()
         {
             ILineParser lineParser = Comment.IgnoreAll();

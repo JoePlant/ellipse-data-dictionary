@@ -134,6 +134,11 @@ namespace Ellipse.DataDictionary.System
             ParseFile(@".\Resources\Cobol\MSF01B-RECORD.rpt");
         }
 
+        [Test]
+        public void MSF023_RECORD()
+        {
+            ParseFile(@".\Resources\Cobol\MSF023-RECORD.rpt");
+        }
 
         [Test]
         public void MSF062_RECORD()

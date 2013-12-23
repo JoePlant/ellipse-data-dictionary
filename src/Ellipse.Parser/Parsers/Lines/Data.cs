@@ -12,6 +12,11 @@
             return new LineParser().IgnoreEnd(end);
         }
 
+        public static ILineParser IgnoreBefore(string marker)
+        {
+            return new LineParser().IgnoreBefore(marker);
+        }
+
         public static ILineParser IgnoreAfter(string marker)
         {
             return new LineParser().IgnoreAfter(marker);

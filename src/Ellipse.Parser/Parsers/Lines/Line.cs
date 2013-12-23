@@ -2,6 +2,12 @@
 {
     public class Line
     {
+        public static ILineMatcher StartsWithMarker(string startsWith)
+        {
+            return new LineMatcher.LineStartsWith(startsWith)
+                .IgnoreLeadingSpaces();
+        }
+
         public static ILineMatcher StartsWith(string startsWith)
         {
             return new LineMatcher.LineStartsWith(startsWith);
