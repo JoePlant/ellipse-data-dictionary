@@ -5,17 +5,15 @@ using System.IO;
 using System.Text;
 using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers;
-using Ellipse.DataDictionary.Parsers.Models;
 using Ellipse.DataDictionary.Readers;
 using NUnit.Framework;
-using StringReader = Ellipse.DataDictionary.Readers.StringReader;
 
 namespace Ellipse.DataDictionary
 {
     [TestFixture]
     public abstract class ParserTestFixture<T> : TestFixture where T : IModelParser, new()
     {
-        private readonly Func<IModelParser> parserFunc;
+        private readonly IModelParser modelParser; 
 
         protected ParserTestFixture() : this(() => new T())
         {
@@ -23,7 +21,7 @@ namespace Ellipse.DataDictionary
 
         protected ParserTestFixture(Func<IModelParser> parserFunc)
         {
-            this.parserFunc = parserFunc;
+            modelParser = parserFunc();
         }
 
         protected static IDataParser CreateDataParser(IReader reader, IModelParser modelParser, params IModelParser[] optionalParsers)
@@ -50,16 +48,21 @@ namespace Ellipse.DataDictionary
 
         protected void AssertDoesNotParse(string[] cases)
         {
-            AssertDoesNotParse(cases, parserFunc);
+            AssertDoesNotParse(cases, modelParser);
         }
 
         protected static void AssertDoesNotParse(string[] cases, Func<IModelParser> parserFunc )
         {
+            AssertDoesNotParse(cases, parserFunc());
+        }
+
+        protected static void AssertDoesNotParse(string[] cases, IModelParser modelParser)
+        {
             foreach (string line in cases)
             {
                 bool isMissing = false;
-                StringReader reader = new StringReader(line);
-                IDataParser dataParser = new DataParser(reader, new [] { parserFunc() });
+                Reader reader = Reader.CreateStringReader(line);
+                IDataParser dataParser = new DataParser(reader, new[] { modelParser });
                 dataParser.OnMissingParser = s => isMissing = true;
                 dataParser.Parse();
 
@@ -68,7 +71,7 @@ namespace Ellipse.DataDictionary
             }
         }
 
-        protected void AssertParsed(IDataParser dataParser, Model[] expectedModel)
+        protected void AssertParsed(IDataParser dataParser, IModel[] expectedModel)
         {
             dataParser.Parse();
             string actual = BuildStringModel(dataParser.Results);
@@ -78,7 +81,7 @@ namespace Ellipse.DataDictionary
             Assert.That(actual, Is.EqualTo(expect));
         }
 
-        protected void AssertParsed(IDataParser dataParser, Model expectedModel)
+        protected void AssertParsed(IDataParser dataParser, IModel expectedModel)
         {
             dataParser.Parse();
             Assert.That(dataParser.Results.Count, Is.EqualTo(1), "Only one model allowed.");
@@ -86,12 +89,12 @@ namespace Ellipse.DataDictionary
             AssertModelIsSame(dataParser.Results[0], expectedModel);
         }
 
-        protected static string BuildStringModel(IList<Model> modelList)
+        protected static string BuildStringModel(IList<IModel> modelList)
         {
             StringBuilder builder = new StringBuilder();
             
             int index = 0;
-            foreach (Model model in modelList)
+            foreach (IModel model in modelList)
             {
                 index++;
                 builder.AppendFormat("{0}: {1}", index, model);
@@ -104,7 +107,7 @@ namespace Ellipse.DataDictionary
             return builder.ToString();
         }
 
-        protected void AssertModelIsSame(Model actualModel, Model expectedModel)
+        protected void AssertModelIsSame(IModel actualModel, IModel expectedModel)
         {
             string actual = new ModelFormatter(actualModel){IncludeModelPaths = true}.Render();
             string expected = new ModelFormatter(expectedModel) { IncludeModelPaths = true }.Render();
@@ -120,7 +123,7 @@ namespace Ellipse.DataDictionary
             Assert.That(file.Exists, Is.True, "File doesn't exist {0}", fileName);
 
             FileReader reader = new FileReader(fileName);
-            List<IModelParser> list = new List<IModelParser> { parserFunc() };
+            List<IModelParser> list = new List<IModelParser> { modelParser };
         
             IDataParser dataParser = new DataParser(reader, list.ToArray());
             dataParser.OnMissingParser = s =>

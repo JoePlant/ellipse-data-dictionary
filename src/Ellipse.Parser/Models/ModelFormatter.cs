@@ -5,11 +5,11 @@ namespace Ellipse.DataDictionary.Models
 {
     public class ModelFormatter
     {
-        private readonly Model model;
+        private readonly IModel formatModel;
 
-        public ModelFormatter(Model model)
+        public ModelFormatter(IModel formatModel)
         {
-            this.model = model;
+            this.formatModel = formatModel;
             IncludeModelPaths = false;
         }
 
@@ -18,11 +18,11 @@ namespace Ellipse.DataDictionary.Models
         public string Render()
         {
             StringBuilder builder = new StringBuilder();
-            Render(builder, model, 0, "1");
+            Render(builder, formatModel, 0, "1");
             return builder.ToString();
         }
 
-        private void Render(StringBuilder builder, Model renderModel, int depth, string path)
+        private void Render(StringBuilder builder, IModel renderModel, int depth, string path)
         {
             HierarchyModel hierarchy = renderModel as HierarchyModel;
             if (hierarchy != null)
@@ -35,7 +35,7 @@ namespace Ellipse.DataDictionary.Models
             }
         }
 
-        private void RenderModel(StringBuilder builder, Model renderModel, int depth, string path)
+        private void RenderModel(StringBuilder builder, IModel renderModel, int depth, string path)
         {
             if (renderModel is HierarchyModel) throw new ArgumentException("Should not be a hierarchy model");
             if (IncludeModelPaths)

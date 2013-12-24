@@ -24,12 +24,12 @@ namespace Ellipse.DataDictionary.Parsers
             return false;
         }
 
-        public Model Parse(IReader reader)
+        public IModel Parse(IReader reader)
         {
-            Model currentModel = modelParser.Parse(reader);
-            Model childModel = childrenParser.Parse(reader);
+            IModel currentModel = modelParser.Parse(reader);
+            IModel childModel = childrenParser.Parse(reader);
             
-            List<Model> children = new List<Model>();
+            List<IModel> children = new List<IModel>();
             while (childModel != null)
             {
                 children.Add(childModel);

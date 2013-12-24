@@ -53,13 +53,13 @@ namespace Ellipse.DataDictionary.Parsers.Models
             string text = detailsText[0];
 
             Assert.That(text,Is.Not.StringContaining("TSUB"));
-            IReader reader = new StringReader(text);
+            IReader reader = Reader.CreateStringReader(text);
 
             Assert.That(reader.LineNumber, Is.EqualTo(1));
 
             Assert.That(parser.Matches(reader), Is.False);
 
-            Model model = parser.Parse(reader);
+            IModel model = parser.Parse(reader);
             Assert.That(model, Is.Null);
             
             Assert.That(reader.LineNumber, Is.EqualTo(1));
@@ -71,13 +71,13 @@ namespace Ellipse.DataDictionary.Parsers.Models
         {
             string text = string.Join(lineFeed, detailsText);
 
-            IReader reader = new StringReader(text);
+            IReader reader = Reader.CreateStringReader(text);
 
             Assert.That(reader.LineNumber, Is.EqualTo(1));
 
             Assert.That(parser.Matches(reader), Is.True);
 
-            Model model = parser.Parse(reader);
+            IModel model = parser.Parse(reader);
             Assert.That(model, Is.Not.Null);
 
             Assert.That(model, Is.InstanceOf<StringModel>());
@@ -98,11 +98,11 @@ namespace Ellipse.DataDictionary.Parsers.Models
 
             Assert.That(completeText, Is.StringStarting(text));
 
-            IReader reader = new StringReader(completeText);
+            IReader reader = Reader.CreateStringReader(completeText);
 
             Assert.That(reader.LineNumber, Is.EqualTo(1));
 
-            Model model = parser.Parse(reader);
+            IModel model = parser.Parse(reader);
             Assert.That(model, Is.Not.Null);
 
             Assert.That(model, Is.InstanceOf<StringModel>());

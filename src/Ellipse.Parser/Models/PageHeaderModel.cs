@@ -1,8 +1,9 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 
 namespace Ellipse.DataDictionary.Models
 {
-    public class PageHeaderModel : Model
+    public class PageHeaderModel : IModel
     {
         private readonly string[] lines;
 
@@ -20,6 +21,24 @@ namespace Ellipse.DataDictionary.Models
                 builder.AppendLine(line);
             }
             return builder.ToString();
+        }
+
+        public string Name
+        {
+            get { return "Page"; }
+        }
+
+        public IModel GetModel(string path)
+        {
+            return this;
+        }
+
+        public IDictionary<string, string> GetModelParts()
+        {
+            return new Dictionary<string, string>
+                {
+                    {"lines", string.Join("\r\n", lines)}
+                };
         }
     }
 }

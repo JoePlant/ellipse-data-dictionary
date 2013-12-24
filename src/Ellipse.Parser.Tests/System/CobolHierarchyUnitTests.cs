@@ -24,7 +24,7 @@ namespace Ellipse.DataDictionary.System
                 };
             dataParser.Parse();
 
-            Model expected =
+            IModel expected =
                 Build.Class("MSF003-RECORD")
                      .With(
                          Build.Property("KEY-003", "comment")
@@ -53,7 +53,7 @@ namespace Ellipse.DataDictionary.System
             };
             dataParser.Parse();
 
-            Model expected =
+            IModel expected =
                 Build.Class("MSF004-RECORD")
                      .With(
                          Build.Property("KEY-004", "comment")
@@ -85,7 +85,7 @@ namespace Ellipse.DataDictionary.System
                 throw new InvalidOperationException("No Parser for: " + reader);
             };
             dataParser.Parse();
-            Model expected =
+            IModel expected =
                 Build.Class("MSF005-RECORD")
                      .With(
                          Build.Property("KEY-005", "comment")
@@ -115,7 +115,7 @@ namespace Ellipse.DataDictionary.System
                 };
             dataParser.Parse();
 
-            Model expected = Build
+            IModel expected = Build
                 .Class("MSF006-RECORD")
                 .With(
                     Build.Property("KEY-006", "comment")
@@ -187,7 +187,7 @@ namespace Ellipse.DataDictionary.System
                     throw new InvalidOperationException("No Parser for: " + reader);
                 };
             dataParser.Parse();
-            Model expected =
+            IModel expected =
                 Build.Class("MSW000-RECORD")
                      .With(
                          Build.Property("KEY-W000", "comment")

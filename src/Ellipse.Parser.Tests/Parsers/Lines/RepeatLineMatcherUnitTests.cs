@@ -11,7 +11,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             ILineMatcher repeat = Line.Repeat(Line.Any()).Until(Line.Contains("Stop"));
 
-            StringReader reader = new StringReader("One\nTwo\nThree\nStop\nFour");
+            Reader reader = Reader.CreateStringReader("One\nTwo\nThree\nStop\nFour");
             int linesRead;
             Assert.That(repeat.Matches(reader, 0, out linesRead), Is.True);
             Assert.That(linesRead, Is.EqualTo(3));
@@ -22,7 +22,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             ILineMatcher repeat = Line.Repeat(Line.Any()).Until(Line.Contains("Stop"));
 
-            StringReader reader = new StringReader("One\nStop\nTwo");
+            Reader reader = Reader.CreateStringReader("One\nStop\nTwo");
             int linesRead;
             Assert.That(repeat.Matches(reader, 0, out linesRead), Is.True);
             Assert.That(linesRead, Is.EqualTo(1));
@@ -33,7 +33,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             ILineMatcher repeat = Line.Repeat(Line.Any()).Until(Line.Contains("Stop"));
 
-            StringReader reader = new StringReader("One\nTwo");
+            Reader reader = Reader.CreateStringReader("One\nTwo");
             int linesRead;
             Assert.That(repeat.Matches(reader, 0, out linesRead), Is.True);
             Assert.That(linesRead, Is.EqualTo(2));
@@ -44,7 +44,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             ILineMatcher repeat = Line.Repeat(Line.Any()).Until(Line.Contains("Stop"));
 
-            StringReader reader = new StringReader("Stop\nOne\nTwo");
+            Reader reader = Reader.CreateStringReader("Stop\nOne\nTwo");
             int linesRead;
             Assert.That(repeat.Matches(reader, 0, out linesRead), Is.False);
             Assert.That(linesRead, Is.EqualTo(0));

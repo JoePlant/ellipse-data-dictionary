@@ -9,7 +9,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void BuildClass()
         {
-            Model model = Build.Class("CLASS001").Model();
+            IModel model = Build.Class("CLASS001").Model();
 
             AssertCobolModel(model, "1", "Class", "CLASS001");
         }
@@ -17,7 +17,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void BuildClassWithProperty()
         {
-            Model model = Build
+            IModel model = Build
                 .Class("MSF001")
                 .With(
                     Build.Property("PROP001")
@@ -31,7 +31,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void BuildClassWithPropertyAndDataType()
         {
-            Model model = Build
+            IModel model = Build
                 .Class("MSF001")
                 .With(
                     Build.Property("PROP001")
@@ -49,7 +49,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void SameModelConstructed()
         {
-            Model simpleModel = Build
+            IModel simpleModel = Build
                 .Class("MSF006-RECORD")
                 .With(
                     Build.Property("KEY-006", "comment")
@@ -68,7 +68,7 @@ namespace Ellipse.DataDictionary.Models
 
                 ).Model();
 
-            Model verboseModel = Build
+            IModel verboseModel = Build
                 .Class("MSF006-RECORD")
                 .With(
                     Build.Property("KEY-006", "comment")
@@ -93,7 +93,7 @@ namespace Ellipse.DataDictionary.Models
             Assert.That(simple, Is.EqualTo(verbose));
         }
 
-        private void AssertCobolModel(Model model, string path, string name, string value)
+        private void AssertCobolModel(IModel model, string path, string name, string value)
         {
             Assert.That(model, Is.Not.Null, "Model is null");
             IModel iModel = model as IModel;
@@ -101,7 +101,7 @@ namespace Ellipse.DataDictionary.Models
 
             if (iModel != null)
             {
-                Model selected = iModel.GetModel(path);
+                IModel selected = iModel.GetModel(path);
                 Assert.That(selected, Is.Not.Null, "Selected: {0}", path);
                 CobolModel cobolModel = selected as CobolModel;
 

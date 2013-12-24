@@ -1,7 +1,12 @@
-﻿namespace Ellipse.DataDictionary.Models
+﻿
+using System.Collections.Generic;
+
+namespace Ellipse.DataDictionary.Models
 {
     public interface IModel
     {
-        Model GetModel(string path);
+        string Name { get; }
+        IModel GetModel(string path);
+        IDictionary<string, string> GetModelParts();
     }
 }

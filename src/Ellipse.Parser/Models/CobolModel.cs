@@ -1,6 +1,9 @@
-﻿namespace Ellipse.DataDictionary.Models
+﻿
+using System.Collections.Generic;
+
+namespace Ellipse.DataDictionary.Models
 {
-    public class CobolModel : StringModel, IModel
+    public class CobolModel : StringModel
     {
         public CobolModel(string name, string data) : base(name, data)
         {
@@ -19,13 +22,13 @@
             return base.ToString() + comment;
         }
 
-        public Model GetModel(string path)
+        public override IDictionary<string, string> GetModelParts()
         {
-            if (path == "" || path == "1")
-            {
-                return this;
-            }
-            return null;
+            return new Dictionary<string, string>
+                {
+                    {"data", Data},
+                    {"comment", Comment}
+                };
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Ellipse.DataDictionary.Models
+﻿using System.Collections.Generic;
+
+namespace Ellipse.DataDictionary.Models
 {
-    public class StringModel : Model
+    public class StringModel : IModel
     {
         public StringModel(string name, string data)
         {
@@ -9,6 +11,23 @@
         }
 
         public string Name { get; private set; }
+
+        public IModel GetModel(string path)
+        {
+            if (path == "" || path == "1")
+            {
+                return this;
+            }
+            return null;
+        }
+
+        public virtual IDictionary<string, string> GetModelParts()
+        {
+            return new Dictionary<string, string>
+                {
+                    {"data", Data}
+                };
+        }
 
         public string Data { get; private set; }
 

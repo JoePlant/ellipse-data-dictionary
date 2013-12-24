@@ -9,6 +9,6 @@ namespace Ellipse.DataDictionary
         void Parse();
         Func<string, bool> OnMissingParser { set; }
         IDictionary<string, string> Corrections { set; }
-        IList<Model> Results { get; }
+        IList<IModel> Results { get; }
     }
 }

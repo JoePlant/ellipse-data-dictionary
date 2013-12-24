@@ -20,7 +20,7 @@ namespace Ellipse.DataDictionary.Models
         public void GetModelRoot()
         {
             HierarchyModel model = new HierarchyModel(new CobolModel("Class", "CLASS001"));
-            Model result = model.GetModel("");
+            IModel result = model.GetModel("");
             Assert.That(result, Is.EqualTo(model.Model));
         }
 
@@ -28,7 +28,7 @@ namespace Ellipse.DataDictionary.Models
         public void GetModel1()
         {
             HierarchyModel model = new HierarchyModel(new CobolModel("Class", "CLASS001"));
-            Model result = model.GetModel("1");
+            IModel result = model.GetModel("1");
             Assert.That(result, Is.EqualTo(model.Model));
             Assert.That(model.GetModel("1.1"), Is.EqualTo(null));
             Assert.That(model.GetModel("1.2"), Is.EqualTo(null));
@@ -37,7 +37,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void GetModel11()
         {
-            HierarchyModel model = new HierarchyModel(new CobolModel("Class", "CLASS001"), new Model[] { new CobolModel("Property", "PROP001"), });
+            HierarchyModel model = new HierarchyModel(new CobolModel("Class", "CLASS001"), new IModel[] { new CobolModel("Property", "PROP001"), });
             Assert.That(model.GetModel("1"), Is.EqualTo(model.Model));
             Assert.That(model.GetModel("1.0"), Is.EqualTo(null));
             Assert.That(model.GetModel("1.1"), Is.EqualTo(model.ChildModels[0]));
@@ -47,7 +47,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void GetModel12()
         {
-            HierarchyModel model = new HierarchyModel(new CobolModel("Class", "CLASS001"), new Model[] { new CobolModel("Property", "PROP001"), new CobolModel("Property", "PROP002"),  });
+            HierarchyModel model = new HierarchyModel(new CobolModel("Class", "CLASS001"), new IModel[] { new CobolModel("Property", "PROP001"), new CobolModel("Property", "PROP002"), });
             Assert.That(model.GetModel("1"), Is.EqualTo(model.Model));
             Assert.That(model.GetModel("1.0"), Is.EqualTo(null));
             Assert.That(model.GetModel("1.1"), Is.EqualTo(model.ChildModels[0]));
@@ -61,9 +61,9 @@ namespace Ellipse.DataDictionary.Models
         public void GetModel121()
         {
             HierarchyModel model = new HierarchyModel(new CobolModel("Class", "CLASS001"),
-                                                      new Model[]
+                                                      new IModel[]
                                                           {
-                                                              new HierarchyModel(new CobolModel("Property", "PROP001"), new Model[]
+                                                              new HierarchyModel(new CobolModel("Property", "PROP001"), new IModel[]
                                                                   {
                                                                       new CobolModel("DataType", "DATA001"), 
                                                                   }),

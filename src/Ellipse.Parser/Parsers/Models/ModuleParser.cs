@@ -17,7 +17,7 @@ namespace Ellipse.DataDictionary.Parsers.Models
         {
         }
 
-        protected override Model CreateModel(string[] lines)
+        protected override IModel CreateModel(string[] lines)
         {
             return new StringModel("MODULE", string.Join(Environment.NewLine, lines));
         }

@@ -3,8 +3,13 @@ using System.IO;
 
 namespace Ellipse.DataDictionary.Readers
 {
-    public abstract class Reader : IReader
+    public class Reader : IReader
     {
+        public static Reader CreateStringReader(string text)
+        {
+            return new Reader(new StringReader(string.IsNullOrEmpty(text) ? "" : text));
+        }
+
         private readonly List<string> lines = new List<string>();
         private int lineNo;
         private readonly int maxLines;

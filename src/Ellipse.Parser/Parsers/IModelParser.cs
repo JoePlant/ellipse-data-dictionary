@@ -7,6 +7,6 @@ namespace Ellipse.DataDictionary.Parsers
     {
         bool Matches(IReader reader);
 
-        Model Parse(IReader reader);
+        IModel Parse(IReader reader);
     }
 }

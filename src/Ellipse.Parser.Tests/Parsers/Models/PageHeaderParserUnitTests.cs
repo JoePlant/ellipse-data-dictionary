@@ -37,13 +37,13 @@ namespace Ellipse.DataDictionary.Parsers.Models
 
             Assert.That(incomplete, Is.Not.EqualTo(text));
 
-            IReader reader = new StringReader(incomplete);
+            IReader reader = Reader.CreateStringReader(incomplete);
 
             Assert.That(reader.LineNumber, Is.EqualTo(1));
 
             Assert.That(parser.Matches(reader), Is.False);
 
-            Model model = parser.Parse(reader);
+            IModel model = parser.Parse(reader);
             Assert.That(model, Is.Null);
             
             Assert.That(reader.LineNumber, Is.EqualTo(1));
@@ -55,13 +55,13 @@ namespace Ellipse.DataDictionary.Parsers.Models
         {
             string text = string.Join(lineFeed, pageHeader);
 
-            IReader reader = new StringReader(text + "\n");
+            IReader reader = Reader.CreateStringReader(text + "\n");
 
             Assert.That(reader.LineNumber, Is.EqualTo(1));
 
             Assert.That(parser.Matches(reader), Is.True);
 
-            Model model = parser.Parse(reader);
+            IModel model = parser.Parse(reader);
             Assert.That(model, Is.Not.Null);
 
             Assert.That(model, Is.InstanceOf<PageHeaderModel>());
@@ -78,13 +78,13 @@ namespace Ellipse.DataDictionary.Parsers.Models
 
             Assert.That(completeText, Is.StringStarting(text));
 
-            IReader reader = new StringReader(completeText);
+            IReader reader = Reader.CreateStringReader(completeText);
 
             Assert.That(reader.LineNumber, Is.EqualTo(1));
 
             Assert.That(parser.Matches(reader), Is.True);
 
-            Model model = parser.Parse(reader);
+            IModel model = parser.Parse(reader);
             Assert.That(model, Is.Not.Null);
 
             Assert.That(model, Is.InstanceOf<PageHeaderModel>());

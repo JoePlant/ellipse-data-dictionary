@@ -25,7 +25,7 @@ namespace Ellipse.DataDictionary
             return parser != null;
         }
 
-        public Model Parse(IReader reader)
+        public IModel Parse(IReader reader)
         {
             IModelParser parser = parsers.FirstOrDefault(p => p.Matches(reader));
             return parser != null ? parser.Parse(reader) : null;

@@ -5,21 +5,6 @@ namespace Ellipse.DataDictionary.Models
     public class ModelFormatterUnitTests : TestFixture
     {
         [Test]
-        public void Model()
-        {
-            ModelFormatter formatter = new ModelFormatter(new Model());
-
-            Assert.That(formatter.Render(), Is.EqualTo("[Model]"));
-        }
-
-        [Test]
-        public void ModelWithPath()
-        {
-            ModelFormatter formatter = new ModelFormatter(new Model()) {IncludeModelPaths = true};
-            Assert.That(formatter.Render(), Is.EqualTo("1: [Model]"));
-        }
-
-        [Test]
         public void StringModel()
         {
             ModelFormatter formatter = new ModelFormatter(new StringModel("Name", "Data"));
@@ -78,7 +63,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void ClassWithProperty()
         {
-            Model model = Build.Class("Class001").WithProperty("PROP001", "Comment").Model();
+            IModel model = Build.Class("Class001").WithProperty("PROP001", "Comment").Model();
             ModelFormatter formatter = new ModelFormatter(model);
 
             Assert.That(formatter.Render(), Is.EqualTo("[Class] Class001\r\n  [Property] PROP001 /*...*/"));
@@ -87,7 +72,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void ClassWithPropertyWithPath()
         {
-            Model model = Build.Class("Class001").WithProperty("PROP001", "Comment").Model();
+            IModel model = Build.Class("Class001").WithProperty("PROP001", "Comment").Model();
             ModelFormatter formatter = new ModelFormatter(model) {IncludeModelPaths = true};
             
             Assert.That(formatter.Render(), Is.EqualTo("1: [Class] Class001\r\n1.1: [Property] PROP001 /*...*/"));
@@ -96,7 +81,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void ClassWith2Properties()
         {
-            Model model = Build.Class("Class001").WithProperty("PROP001", "Comment").WithProperty("PROP002", "Comment").Model();
+            IModel model = Build.Class("Class001").WithProperty("PROP001", "Comment").WithProperty("PROP002", "Comment").Model();
             ModelFormatter formatter = new ModelFormatter(model);
 
             Assert.That(formatter.Render(), Is.EqualTo("[Class] Class001\r\n  [Property] PROP001 /*...*/\r\n  [Property] PROP002 /*...*/"));
@@ -105,7 +90,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void ClassWith2PropertiesWithPath()
         {
-            Model model = Build.Class("Class001").WithProperty("PROP001", "Comment").WithProperty("PROP002", "Comment").Model();
+            IModel model = Build.Class("Class001").WithProperty("PROP001", "Comment").WithProperty("PROP002", "Comment").Model();
             ModelFormatter formatter = new ModelFormatter(model){IncludeModelPaths = true};
 
             Assert.That(formatter.Render(), Is.EqualTo("1: [Class] Class001\r\n1.1: [Property] PROP001 /*...*/\r\n1.2: [Property] PROP002 /*...*/"));
@@ -114,7 +99,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void ClassWith2DeepProperties()
         {
-            Model model = Build.Class("Class001")
+            IModel model = Build.Class("Class001")
                                .With(Build.Property("PROP001", "Comment")
                                           .WithProperty("PROP002", "Comment"))
                                .Model();
@@ -126,7 +111,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void ClassWith2DeepPropertiesWithPath()
         {
-            Model model = Build.Class("Class001")
+            IModel model = Build.Class("Class001")
                                .With(Build.Property("PROP001", "Comment")
                                           .WithProperty("PROP002", "Comment"))
                                .Model();
@@ -138,7 +123,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void ClassWith2BranchesOfProperties()
         {
-            Model model = Build
+            IModel model = Build
                 .Class("Class001").With(
                     Build.Property("PROP00A", "Comment").WithProperty("PROP0A1", "Comment").WithProperty("PROP0A2", "Comment")
                 )
@@ -162,7 +147,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void ClassWith2BranchesOfPropertiesWithPath()
         {
-            Model model = Build
+            IModel model = Build
                 .Class("Class001").With(
                     Build.Property("PROP00A", "Comment").WithProperty("PROP0A1", "Comment").WithProperty("PROP0A2", "Comment")
                 )

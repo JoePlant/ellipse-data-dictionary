@@ -31,7 +31,7 @@ namespace Ellipse.DataDictionary.Parsers
             return lineMatcher.Matches(reader, 0, out lines);
         }
         
-        public Model Parse(IReader reader)
+        public IModel Parse(IReader reader)
         {
             int numLines;
             if (lineMatcher.Matches(reader, 0, out numLines))

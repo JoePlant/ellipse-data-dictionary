@@ -13,9 +13,9 @@ namespace Ellipse.DataDictionary.Parsers.Models
             const string text = "Record          : MSF000-RECORD / MIMS";
             IModelParser parser = new RecordParser();
 
-            IReader reader = new StringReader(text);
+            IReader reader = Reader.CreateStringReader(text);
             Assert.That(parser.Matches(reader), Is.True);
-            Model model = parser.Parse(reader);
+            IModel model = parser.Parse(reader);
             Assert.That(model, Is.Not.Null);
             Assert.That(model, Is.InstanceOf<StringModel>());
 

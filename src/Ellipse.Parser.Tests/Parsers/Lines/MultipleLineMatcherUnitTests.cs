@@ -11,7 +11,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             ILineMatcher multiple = Line.Multiple(Line.IsEqual("One"), Line.IsEqual("Two"));
 
-            StringReader reader = new StringReader("One\nTwo\nThree\nStop\nFour");
+            Reader reader = Reader.CreateStringReader("One\nTwo\nThree\nStop\nFour");
             int linesRead;
             Assert.That(multiple.Matches(reader, 0, out linesRead), Is.True);
             Assert.That(linesRead, Is.EqualTo(2));
@@ -22,7 +22,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             ILineMatcher multiple = Line.Multiple(Line.IsEqual("One"), Line.IsEqual("Two"));
 
-            StringReader reader = new StringReader("Two\nOne\nThree\nStop\nFour");
+            Reader reader = Reader.CreateStringReader("Two\nOne\nThree\nStop\nFour");
             int linesRead;
             Assert.That(multiple.Matches(reader, 0, out linesRead), Is.False);
             Assert.That(linesRead, Is.EqualTo(0));
@@ -33,7 +33,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             ILineMatcher multiple = Line.Multiple(Line.Repeat(Line.Any()).Until(Line.Contains("Stop")), Line.Contains("Stop"));
 
-            StringReader reader = new StringReader("One\nTwo\nStop\nThree");
+            Reader reader = Reader.CreateStringReader("One\nTwo\nStop\nThree");
             int linesRead;
             Assert.That(multiple.Matches(reader, 0, out linesRead), Is.True);
             Assert.That(linesRead, Is.EqualTo(3));
@@ -44,7 +44,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             ILineMatcher repeat = Line.Multiple(Line.Repeat(Line.Any()).Until(Line.Contains("Stop")));
 
-            StringReader reader = new StringReader("One\nTwo");
+            Reader reader = Reader.CreateStringReader("One\nTwo");
             int linesRead;
             Assert.That(repeat.Matches(reader, 0, out linesRead), Is.True);
             Assert.That(linesRead, Is.EqualTo(2));
@@ -55,7 +55,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             ILineMatcher repeat = Line.Multiple(Line.Optional(Line.Contains("Stop")), Line.IsEqual("One"));
 
-            StringReader reader = new StringReader("Stop\nOne\nTwo");
+            Reader reader = Reader.CreateStringReader("Stop\nOne\nTwo");
             int linesRead;
             Assert.That(repeat.Matches(reader, 0, out linesRead), Is.True);
             Assert.That(linesRead, Is.EqualTo(2));
@@ -66,7 +66,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             ILineMatcher repeat = Line.Multiple(Line.Optional(Line.Contains("Stop")), Line.IsEqual("One"));
 
-            StringReader reader = new StringReader("One\nTwo");
+            Reader reader = Reader.CreateStringReader("One\nTwo");
             int linesRead;
             Assert.That(repeat.Matches(reader, 0, out linesRead), Is.True);
             Assert.That(linesRead, Is.EqualTo(1));

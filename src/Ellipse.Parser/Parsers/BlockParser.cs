@@ -36,9 +36,9 @@ namespace Ellipse.DataDictionary.Parsers
             return linesRead > 0;
         }
 
-        protected abstract Model CreateModel(string[] lines);
+        protected abstract IModel CreateModel(string[] lines);
 
-        public Model Parse(IReader reader)
+        public IModel Parse(IReader reader)
         {
             int linesRead;
             if (MatchLines(reader, out linesRead))

@@ -4,7 +4,7 @@ namespace Ellipse.DataDictionary.Models
 {
     public interface IBuilder
     {
-        Model Model();
+        IModel Model();
 
         IBuilder With(IBuilder builder);
 
@@ -52,12 +52,12 @@ namespace Ellipse.DataDictionary.Models
                 this.model = model;
             }
             
-            public Model Model()
+            public IModel Model()
             {
-                List<Model> childModels = new List<Model>();
+                List<IModel> childModels = new List<IModel>();
                 foreach (IBuilder builder in children)
                 {
-                    Model child = builder.Model();
+                    IModel child = builder.Model();
                     if (child != null)
                     {
                         childModels.Add(child);
@@ -65,7 +65,7 @@ namespace Ellipse.DataDictionary.Models
                 }
 
                 return childModels.Count > 0 
-                    ? (Model) new HierarchyModel(model, childModels.ToArray()) 
+                    ? (IModel) new HierarchyModel(model, childModels.ToArray()) 
                     : model;
             }
 

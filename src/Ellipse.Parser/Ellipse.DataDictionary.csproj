@@ -50,6 +50,7 @@
     <Compile Include="DataParser.cs" />
     <Compile Include="IDataParser.cs" />
     <Compile Include="Models\CobolModel.cs" />
+    <Compile Include="Models\ModelXmlFormatter.cs" />
     <Compile Include="Models\HierarchyModel.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Models\ModelFormatter.cs" />
@@ -78,7 +79,6 @@
     <Compile Include="Parsers\Lines\Line.cs" />
     <Compile Include="Parsers\Lines\LineMatcher.cs" />
     <Compile Include="Models\IgnoreModel.cs" />
-    <Compile Include="Models\Model.cs" />
     <Compile Include="Parsers\Lines\ILineMatcher.cs" />
     <Compile Include="Parsers\Lines\ILineParser.cs" />
     <Compile Include="Parsers\Lines\LineParser.cs" />
@@ -104,7 +104,6 @@
     <Compile Include="Readers\FileReader.cs" />
     <Compile Include="Readers\IReader.cs" />
     <Compile Include="Readers\Reader.cs" />
-    <Compile Include="Readers\StringReader.cs" />
     <Compile Include="Readers\ModifyReader.cs" />
     <Compile Include="Readers\TrimReader.cs" />
   </ItemGroup>

@@ -8,7 +8,7 @@ namespace Ellipse.DataDictionary.Readers
         [Test]
         public void PeekEmptyString()
         {
-            IReader reader = new StringReader("");
+            IReader reader = Reader.CreateStringReader("");
             Assert.That(reader.PeekAhead(0), Is.EqualTo(null));
             Assert.That(reader.PeekAhead(+1), Is.Null);
             Assert.That(reader.LineNumber, Is.EqualTo(1));
@@ -18,7 +18,7 @@ namespace Ellipse.DataDictionary.Readers
         [Test]
         public void PeekString()
         {
-            IReader reader = new StringReader("One");
+            IReader reader = Reader.CreateStringReader("One");
             Assert.That(reader.PeekAhead(0), Is.EqualTo("One"));
             Assert.That(reader.PeekAhead(+1), Is.Null);
             Assert.That(reader.LineNumber, Is.EqualTo(1));
@@ -30,7 +30,7 @@ namespace Ellipse.DataDictionary.Readers
         [Test]
         public void IsEndOfFileSingleLine()
         {
-            IReader reader = new StringReader("One");
+            IReader reader = Reader.CreateStringReader("One");
             Assert.That(reader.PeekAhead(0), Is.EqualTo("One"));
             Assert.That(reader.PeekAhead(+1), Is.Null);
             Assert.That(reader.IsEndOfFile(0), Is.False);
@@ -51,7 +51,7 @@ namespace Ellipse.DataDictionary.Readers
         [Test]
         public void IsEndOfFileMulitpleLines()
         {
-            IReader reader = new StringReader("One\r\nTwo");
+            IReader reader = Reader.CreateStringReader("One\r\nTwo");
             Assert.That(reader.PeekAhead(0), Is.EqualTo("One"));
             Assert.That(reader.PeekAhead(+1), Is.EqualTo("Two"));
             Assert.That(reader.PeekAhead(+2), Is.Null);
@@ -78,7 +78,7 @@ namespace Ellipse.DataDictionary.Readers
         [Test]
         public void ReadEmptyString()
         {
-            IReader reader = new StringReader("");
+            IReader reader = Reader.CreateStringReader("");
             Assert.That(reader.LineNumber, Is.EqualTo(1));
             Assert.That(reader.ReadLines(1), Is.EqualTo(new string[] {}));
             Assert.That(reader.PeekAhead(0), Is.Null);
@@ -91,7 +91,7 @@ namespace Ellipse.DataDictionary.Readers
         [Test]
         public void EndOfFile()
         {
-            IReader reader = new StringReader("One");
+            IReader reader = Reader.CreateStringReader("One");
             Assert.That(reader.EndOfFile, Is.False);
             Assert.That(reader.ReadLines(1), Is.EqualTo(new string[] {"One"}));
             Assert.That(reader.EndOfFile, Is.True);
@@ -100,7 +100,7 @@ namespace Ellipse.DataDictionary.Readers
         [Test]
         public void EndOfFileWithContent()
         {
-            IReader reader = new StringReader("One\r\nTwo\r\nThree\r\n");
+            IReader reader = Reader.CreateStringReader("One\r\nTwo\r\nThree\r\n");
             Assert.That(reader.EndOfFile, Is.False);
             Assert.That(reader.ReadLines(2), Is.EqualTo(new[] {"One", "Two"}));
             Assert.That(reader.EndOfFile, Is.False);
@@ -111,7 +111,7 @@ namespace Ellipse.DataDictionary.Readers
         [Test]
         public void ReadLine()
         {
-            IReader reader = new StringReader("One\r\nTwo\r\nThree\r\nFour");
+            IReader reader = Reader.CreateStringReader("One\r\nTwo\r\nThree\r\nFour");
             Assert.That(reader.LineNumber, Is.EqualTo(1));
             Assert.That(reader.ReadLines(1), Is.EqualTo(new[] {"One"}));
             Assert.That(reader.PeekAhead(0), Is.EqualTo("Two"));
@@ -131,7 +131,7 @@ namespace Ellipse.DataDictionary.Readers
         [Test]
         public void TestToString()
         {
-            IReader reader = new StringReader("One\r\nTwo\r\nThree\r\nFour");
+            IReader reader = Reader.CreateStringReader("One\r\nTwo\r\nThree\r\nFour");
             Assert.That(reader.ToString(), Is.EqualTo("Line: 1 'One'"));
             reader.ReadLine();
             Assert.That(reader.ToString(), Is.EqualTo("Line: 2 'Two'"));

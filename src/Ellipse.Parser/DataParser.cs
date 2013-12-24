@@ -14,7 +14,7 @@ namespace Ellipse.DataDictionary
     {
         private readonly IReader reader;
         private readonly IModelParser[] parsers;
-        private readonly List<Model> results = new List<Model>();
+        private readonly List<IModel> results = new List<IModel>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataParser"/> class.
@@ -83,7 +83,7 @@ namespace Ellipse.DataDictionary
                 if (parser != null)
                 {
                     int lineNo = currentReader.LineNumber;
-                    Model model = parser.Parse(currentReader);
+                    IModel model = parser.Parse(currentReader);
                     if (model != null)
                     {
                         results.Add(model);
@@ -99,7 +99,7 @@ namespace Ellipse.DataDictionary
         public Func<string, bool> OnMissingParser { private get; set; }
 
         public IDictionary<string,string> Corrections { private get; set; }
-        public IList<Model> Results { get { return results; } }
+        public IList<IModel> Results { get { return results; } }
 
         private static IModelParser FindParser(IReader reader, IEnumerable<IModelParser> parsers)
         {

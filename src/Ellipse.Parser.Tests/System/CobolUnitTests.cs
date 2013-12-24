@@ -23,7 +23,7 @@ namespace Ellipse.DataDictionary.System
             };
             dataParser.Parse();
 
-            List<Model> expected = new List<Model>
+            List<IModel> expected = new List<IModel>
                 {
                     new CobolModel("Class", "MSF003-RECORD"),
                     
@@ -51,7 +51,7 @@ namespace Ellipse.DataDictionary.System
             };
             dataParser.Parse();
 
-            List<Model> expected = new List<Model>
+            List<IModel> expected = new List<IModel>
                 {
                     new CobolModel("Class", "MSF004-RECORD"),
                     
@@ -82,7 +82,7 @@ namespace Ellipse.DataDictionary.System
             };
             dataParser.Parse();
 
-            List<Model> expected = new List<Model>
+            List<IModel> expected = new List<IModel>
                 {
                     new CobolModel("Class", "MSF005-RECORD"),
                     
@@ -111,7 +111,7 @@ namespace Ellipse.DataDictionary.System
                 };
             dataParser.Parse();
 
-            List<Model> expected = new List<Model>
+            List<IModel> expected = new List<IModel>
                 {
                     new CobolModel("Class", "MSF006-RECORD"),
 

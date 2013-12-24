@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="DataParserUnitTests.cs" />
     <Compile Include="Models\CobolBuilderUnitTests.cs" />
+    <Compile Include="Models\ModelXmlFormatterUnitTests.cs" />
     <Compile Include="Models\HierarchyModelUnitTests.cs" />
     <Compile Include="Models\ModelFormatterUnitTests.cs" />
     <Compile Include="Models\PageHeaderModelUnitTests.cs" />

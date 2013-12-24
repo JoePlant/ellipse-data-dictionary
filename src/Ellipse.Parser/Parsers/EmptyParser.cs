@@ -10,7 +10,7 @@ namespace Ellipse.DataDictionary.Parsers
             return false;
         }
 
-        public Model Parse(IReader reader)
+        public IModel Parse(IReader reader)
         {
             return null;
         }

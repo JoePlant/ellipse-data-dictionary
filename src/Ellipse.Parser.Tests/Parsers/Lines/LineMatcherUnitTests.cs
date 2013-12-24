@@ -99,7 +99,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         public void LineContainsMultiplePositions()
         {
             ILineMatcher lineMatcher = new LineMatcher.LineContains("Test");
-            StringReader reader = new StringReader("Test\nTest\nTest");
+            Reader reader = Reader.CreateStringReader("Test\nTest\nTest");
             AssertDoesMatch(lineMatcher, reader, 0,1,2);
             AssertDoesNotMatch(lineMatcher, reader, 3);
 
@@ -137,7 +137,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             foreach (string line in args)
             {
-                StringReader reader = new StringReader(line);
+                Reader reader = Reader.CreateStringReader(line);
                 int lines;
                 Assert.That(matcher.Matches(reader, 0, out lines), Is.True, "Line: '{0}'", line);
             }
@@ -147,7 +147,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         {
             foreach (string line in args)
             {
-                StringReader reader = new StringReader(line);
+                Reader reader = Reader.CreateStringReader(line);
                 int lines;
                 Assert.That(matcher.Matches(reader, 0, out lines), Is.False, line);
             }
