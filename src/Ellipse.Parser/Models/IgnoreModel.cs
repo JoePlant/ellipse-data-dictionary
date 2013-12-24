@@ -23,12 +23,19 @@ namespace Ellipse.DataDictionary.Models
 
         public IModel GetModel(string path)
         {
-            throw new System.NotImplementedException();
+            if (path == "" || path == "1")
+            {
+                return this;
+            }
+            return null;
         }
 
         public IDictionary<string, string> GetModelParts()
         {
-            throw new System.NotImplementedException();
+            return new Dictionary<string, string>
+                {
+                    {"line", Line}
+                };
         }
     }
 }

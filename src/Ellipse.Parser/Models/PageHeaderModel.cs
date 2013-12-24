@@ -30,7 +30,11 @@ namespace Ellipse.DataDictionary.Models
 
         public IModel GetModel(string path)
         {
-            return this;
+            if (path == "" || path == "1")
+            {
+                return this;
+            }
+            return null;
         }
 
         public IDictionary<string, string> GetModelParts()

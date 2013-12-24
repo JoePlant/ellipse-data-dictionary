@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System.Xml;
+using NUnit.Framework;
 namespace Ellipse.DataDictionary.Models
 {
     [TestFixture]
-    [Ignore("Under construction")]
     public class ModelXmlFormatterUnitTests : TestFixture
     {
         [Test]
@@ -10,7 +10,7 @@ namespace Ellipse.DataDictionary.Models
         {
             ModelXmlFormatter formatter = new ModelXmlFormatter(new StringModel("Name", "Data"));
 
-            AssertXmlIsSame(formatter.Render(), "<String name='Name' data='Data' path='1' />");
+            AssertXmlIsSame(formatter.Render(), "<Name data='Data' path='1' />");
         }
 
         [Test]
@@ -18,7 +18,7 @@ namespace Ellipse.DataDictionary.Models
         {
             ModelXmlFormatter formatter = new ModelXmlFormatter(new CobolModel("Name", "Data"));
 
-            AssertXmlIsSame(formatter.Render(), "<Cobol name='Name' data='Data' path='1' />");
+            AssertXmlIsSame(formatter.Render(), "<Name data='Data' comment='' path='1' />");
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace Ellipse.DataDictionary.Models
         {
             ModelXmlFormatter formatter = new ModelXmlFormatter(new CobolModel("Name", "Data", "Comment"));
 
-            AssertXmlIsSame(formatter.Render(), "<Cobol name='Name' data='Data' comment='Comment' />");
+            AssertXmlIsSame(formatter.Render(), "<Name data='Data' comment='Comment' path='1' />");
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Ellipse.DataDictionary.Models
         {
             ModelXmlFormatter formatter = new ModelXmlFormatter(new IgnoreModel("This is some data"));
 
-            AssertXmlIsSame(formatter.Render(), "<Ignore data='This is some data' />");
+            AssertXmlIsSame(formatter.Render(), "<Ignore line='This is some data' path='1' />");
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace Ellipse.DataDictionary.Models
         {
             ModelXmlFormatter formatter = new ModelXmlFormatter(new PageHeaderModel(new[] { "One", "Two", "Three" }));
 
-            AssertXmlIsSame(formatter.Render(), "<Page lines='One\r\nTwo\r\nThree\r\n' />");
+            AssertXmlIsSame(formatter.Render(), "<Page lines='One\r\nTwo\r\nThree' path='1'/>");
         }
 
         [Test]
@@ -51,7 +51,9 @@ namespace Ellipse.DataDictionary.Models
             IModel model = Build.Class("Class001").WithProperty("PROP001", "Comment").Model();
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
-            AssertXmlIsSame(formatter.Render(), "<Class data='Class001' path='1'><Property data='PROP001' comment='Comment' path='1.1'/></Class001>");
+            AssertXmlIsSame(formatter.Render(), "<Class data='Class001' comment='' path='1'>" +
+                                                "  <Property data='PROP001' comment='Comment' path='1.1'/>" +
+                                                "</Class>");
         }
 
         [Test]
@@ -60,7 +62,10 @@ namespace Ellipse.DataDictionary.Models
             IModel model = Build.Class("Class001").WithProperty("PROP001", "Comment").WithProperty("PROP002", "Comment").Model();
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
-            AssertXmlIsSame(formatter.Render(), "[Class] Class001\r\n  [Property] PROP001 /*...*/\r\n  [Property] PROP002 /*...*/");
+            AssertXmlIsSame(formatter.Render(), "<Class data='Class001' comment='' path='1'>" +
+                                                "  <Property data='PROP001' comment='Comment' path='1.1' />" +
+                                                "  <Property data='PROP002' comment='Comment' path='1.2' />" +
+                                                "</Class>");
         }
 
         [Test]
@@ -72,8 +77,11 @@ namespace Ellipse.DataDictionary.Models
                                .Model();
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
-            AssertXmlIsSame(formatter.Render(),
-                            "[Class] Class001\r\n  [Property] PROP001 /*...*/\r\n    [Property] PROP002 /*...*/");
+            AssertXmlIsSame(formatter.Render(), "<Class data='Class001' comment='' path='1'>" +
+                                                "  <Property data='PROP001' comment='Comment' path='1.1'>" +
+                                                "    <Property data='PROP002' comment='Comment' path='1.1.1' />" +
+                                                "  </Property>" +
+                                                "</Class>");
         }
 
         [Test]
@@ -88,21 +96,28 @@ namespace Ellipse.DataDictionary.Models
                 ).Model();
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
-            const string expected = "1: [Class] Class001\r\n" +
-                                    "1.1: [Property] PROP00A /*...*/\r\n" +
-                                    "1.1.1: [Property] PROP0A1 /*...*/\r\n" +
-                                    "1.1.2: [Property] PROP0A2 /*...*/\r\n" +
-                                    "1.2: [Property] PROP00B /*...*/\r\n" +
-                                    "1.2.1: [Property] PROP0B1 /*...*/\r\n" +
-                                    "1.2.2: [Property] PROP0B2 /*...*/" +
-                                    "";
+            const string expected = "<Class data='Class001' comment='' path='1'>" +
+                                    "  <Property data='PROP00A' comment='Comment' path='1.1'>" +
+                                    "    <Property data='PROP0A1' comment='Comment' path='1.1.1' />" +
+                                    "    <Property data='PROP0A2' comment='Comment' path='1.1.2' />" +
+                                    "  </Property>" +
+                                    "  <Property data='PROP00B' comment='Comment' path='1.2'>" +
+                                    "    <Property data='PROP0B1' comment='Comment' path='1.2.1' />" +
+                                    "    <Property data='PROP0B2' comment='Comment' path='1.2.2' />" +
+                                    "  </Property>" +
+                                    "</Class>";
 
             AssertXmlIsSame(formatter.Render(), expected);
         }
 
         private void AssertXmlIsSame(string actual, string expected)
         {
-            Assert.That(actual, Is.EqualTo(expected));
+            XmlDocument actualDoc = new XmlDocument();
+            actualDoc.LoadXml(actual);
+
+            XmlDocument expectedDoc = new XmlDocument();
+            expectedDoc.LoadXml(expected);
+            Assert.That(actualDoc.OuterXml, Is.EqualTo(expectedDoc.OuterXml));
         }
     }
 }
