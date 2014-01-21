@@ -12,7 +12,7 @@
             return new LineParser().IgnoreEnd(end);
         }
 
-        public static ILineParser IgnoreAfter(string marker)
+        public static ILineParserWithMarker IgnoreAfter(string marker)
         {
             return new LineParser().IgnoreAfter(marker);
         }
@@ -27,7 +27,7 @@
             return new LineParser().RemoveSpaces();
         }
 
-        public static ILineParser IgnoreBefore(string marker)
+        public static ILineParserWithMarker IgnoreBefore(string marker)
         {
             return new LineParser().IgnoreBefore(marker);
         }

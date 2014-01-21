@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Ellipse.DataDictionary.Models
 {
-    public class ModelFormatter
+    public class ModelFormatter : IModelFormatter
     {
         private readonly IModel formatModel;
 

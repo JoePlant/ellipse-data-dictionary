@@ -50,6 +50,7 @@
     <Compile Include="DataParser.cs" />
     <Compile Include="IDataParser.cs" />
     <Compile Include="Models\CobolModel.cs" />
+    <Compile Include="Models\IModelFormatter.cs" />
     <Compile Include="Models\ModelXmlFormatter.cs" />
     <Compile Include="Models\HierarchyModel.cs" />
     <Compile Include="Models\IModel.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Models\StringModel.cs" />
     <Compile Include="Parsers\BlockParser.cs" />
     <Compile Include="Parsers\Cobol\CobolParser.cs" />
+    <Compile Include="Parsers\Cobol\OccursParser.cs" />
     <Compile Include="Parsers\Cobol\RedefinesParser.cs" />
     <Compile Include="Parsers\Cobol\Prefix.cs" />
     <Compile Include="Parsers\Cobol\DataTypeParser.cs" />
@@ -66,11 +68,18 @@
     <Compile Include="Parsers\Cobol\EnumValueParser.cs" />
     <Compile Include="Parsers\Cobol\ClassParser.cs" />
     <Compile Include="Parsers\EmptyParser.cs" />
+    <Compile Include="Parsers\HierarchicalImpliedModelParser.cs" />
     <Compile Include="Parsers\HierarchyParser.cs" />
     <Compile Include="Parsers\IModelParser.cs" />
     <Compile Include="Models\PageHeaderModel.cs" />
+    <Compile Include="Parsers\IImpliedModelParser.cs" />
+    <Compile Include="Parsers\ImpliedModelParser.cs" />
     <Compile Include="Parsers\Lines\Comment.cs" />
     <Compile Include="Parsers\Lines\AndLineMatcher.cs" />
+    <Compile Include="Parsers\Lines\ILineParserWithMarker.cs" />
+    <Compile Include="Parsers\Lines\ILineSplitter.cs" />
+    <Compile Include="Parsers\Lines\LineParserWithMarker.cs" />
+    <Compile Include="Parsers\Lines\LineSplitter.cs" />
     <Compile Include="Parsers\Lines\MultipleLineMatcher.cs" />
     <Compile Include="Parsers\Lines\FollowedByMatcher.cs" />
     <Compile Include="Parsers\Lines\OptionalLineMatcher.cs" />

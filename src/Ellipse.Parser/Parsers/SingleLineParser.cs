@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers.Lines;
 using Ellipse.DataDictionary.Readers;
@@ -11,18 +12,25 @@ namespace Ellipse.DataDictionary.Parsers
         private readonly ILineMatcher lineMatcher;
         private readonly ILineParser dataParser;
         private readonly ILineParser commentParser;
+        private readonly IImpliedModelParser[] impliedModelParsers;
 
         protected SingleLineParser(string name, ILineMatcher lineMatcher, ILineParser dataParser)
-            : this(name, lineMatcher, dataParser, Comment.IgnoreAll())
+            : this(name, lineMatcher, dataParser, Comment.IgnoreAll(), null)
         {
         }
 
         protected SingleLineParser(string name, ILineMatcher lineMatcher, ILineParser dataParser, ILineParser commentParser)
+            : this(name, lineMatcher, dataParser, commentParser, null)
+        {
+        }
+
+        protected SingleLineParser(string name, ILineMatcher lineMatcher, ILineParser dataParser, ILineParser commentParser, IImpliedModelParser[] impliedModelParsers)
         {
             this.name = name;
             this.lineMatcher = lineMatcher;
             this.dataParser = dataParser;
             this.commentParser = commentParser;
+            this.impliedModelParsers = impliedModelParsers;
         }
 
         public bool Matches(IReader reader)
@@ -56,12 +64,15 @@ namespace Ellipse.DataDictionary.Parsers
                     lineNo++;
                 }
 
-                if (comment.Count > 0)
-                {
-                    return new CobolModel(name, string.Join(" ", data), string.Join("\n", comment));
-                }
+                IModel model = comment.Count > 0
+                                   ? new CobolModel(name, string.Join(" ", data), string.Join("\n", comment))
+                                   : new CobolModel(name, string.Join(" ", data));
 
-                return new CobolModel(name, string.Join(" ", data));
+                if (impliedModelParsers != null)
+                {
+                    return impliedModelParsers.Aggregate(model, (current, impliedParser) => impliedParser.Matches(current) ? impliedParser.Parse(current) : current);
+                }
+                return model;
             }
             return null;
         }

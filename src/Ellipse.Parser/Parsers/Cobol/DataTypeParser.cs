@@ -25,6 +25,8 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                 {16, Prefix.Prefix31},
             };
 
+        private static readonly Dictionary<int, HierarchyParser> ParserDictionary = new Dictionary<int, HierarchyParser>();
+
         private class LevelParser : SingleLineParser
         {
             public LevelParser(int level)
@@ -32,7 +34,8 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                        Line.Multiple(
                            Line.And(
                                Line.StartsWithMarker(Prefix.Marker(level)),
-                               Line.Contains("PIC ")),
+                               Line.Contains("PIC ")
+                               ),
                            Line.Optional(
                                Line.Repeat(Line.StartsWith(Prefix.Empty))
                                )
@@ -40,17 +43,28 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                        Data.OnLine(0,
                                    Data
                                        .TruncateAtColumn(59)
-                                       .IgnoreBefore(Prefix.Marker(level))
-                                       .IgnoreAfter(".")
+                                       .IgnoreBefore(Prefix.Marker(level)).ExcludeMarker()
+                                       .IgnoreAfter(".").ExcludeMarker()
                                        .RemoveSpaces()
                                        .Trim())
                            .TruncateAt(59)
-                           .IgnoreAfter(".")
+                           .IgnoreAfter(".").ExcludeMarker()
                            .Trim(),
                        Comment
-                           .IgnoreBefore(".")
+                           .IgnoreBefore(59)
                            .RemoveSpaces()
                            .Trim())
+            {
+            }
+        }
+
+        private class ImpliedDataTypeParser : ImpliedModelParser
+        {
+            public ImpliedDataTypeParser()
+                : base("DataType",
+                       Line.Contains("PIC "),
+                       Data.SplitOn(" ").Find("PIC").Ignore(0, +1).Join(" "),
+                       Data.SplitOn(" ").Find("PIC").Select(0, +1).Join(" "))
             {
             }
         }
@@ -80,17 +94,23 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             if (LevelDictionary.ContainsKey(level))
             {
-                return new HierarchyParser(
-                    SimpleLevelParser(level),
-                    new[]
-                        {
-                            EnumValueParser.HierarchyParser(level + 1)
-                        }
-                    );
+                HierarchyParser hierarchyParser;
+                if (!ParserDictionary.TryGetValue(level, out hierarchyParser))
+                {
+                    hierarchyParser = new HierarchyParser(
+                        SimpleLevelParser(level),
+                        new[]
+                            {
+                                EnumValueParser.HierarchyParser(level + 1)
+                            }
+                        );
+                    ParserDictionary.Add(level, hierarchyParser);
+                }
+                return hierarchyParser;
             }
             return new EmptyParser();
         }
-
+        
         private static IModelParser SimpleLevelParser(int level)
         {
             if (LevelDictionary.ContainsKey(level))
@@ -98,6 +118,11 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                 return new LevelParser(level);
             }
             return new EmptyParser();
+        }
+
+        public static IImpliedModelParser ImpliedParser()
+        {
+            return new ImpliedDataTypeParser();
         }
     }
 }

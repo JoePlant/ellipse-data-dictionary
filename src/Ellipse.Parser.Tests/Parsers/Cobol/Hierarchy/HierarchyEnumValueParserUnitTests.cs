@@ -12,7 +12,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.SingleLine05);
             IDataParser parser = CreateDataParser(reader, EnumValueParser.HierarchyParser(3));
-            AssertParsed(parser, new CobolModel("EnumValue", "PO-NO-ITEM VALUE 'PO'", "Purchase Order Number Item"));
+            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "PO-NO-ITEM VALUE 'PO'", "Purchase Order Number Item"));
         }
 
         [Test]
@@ -20,7 +20,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.SingleLine09);
             IDataParser parser = CreateDataParser(reader, EnumValueParser.HierarchyParser(5));
-            AssertParsed(parser, new CobolModel("EnumValue", "MIMS-CONTROL VALUE 'M'", "Indicates MIMS System Control Account"));
+            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "MIMS-CONTROL VALUE 'M'", "Indicates MIMS System Control Account"));
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.SingleLine11);
             IDataParser parser = CreateDataParser(reader, EnumValueParser.HierarchyParser(6));
-            AssertParsed(parser, new CobolModel("EnumValue", "EGI-TYPE VALUE 'G'", "EGI type record"));
+            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "EGI-TYPE VALUE 'G'", "EGI type record"));
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.SingleLine13);
             IDataParser parser = CreateDataParser(reader, EnumValueParser.HierarchyParser(7));
-            AssertParsed(parser, new CobolModel("EnumValue", "RES-TY VALUE 'R'", "Resource Type"));
+            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "RES-TY VALUE 'R'", "Resource Type"));
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.MultiLine05);
             IDataParser parser = CreateDataParser(reader, EnumValueParser.HierarchyParser(3));
-            AssertParsed(parser, new CobolModel("EnumValue", "TARGT-NO-AUTOGEN VALUE 'N'", "No Autogenerate Interdistrict Account\nEntries"));
+            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "TARGT-NO-AUTOGEN VALUE 'N'", "No Autogenerate Interdistrict Account\nEntries"));
         }
 
 
@@ -53,7 +53,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.SingleLine15);
             IDataParser parser = CreateDataParser(reader, EnumValueParser.HierarchyParser(8));
-            AssertParsed(parser, new CobolModel("EnumValue", "MSF062-ETP-TRAIN-PROG VALUE 'P'", "Employee Training Plan Program"));
+            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "MSF062-ETP-TRAIN-PROG VALUE 'P'", "Employee Training Plan Program"));
         }
 
         [Test]

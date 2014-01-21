@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using System.Collections.Generic;
 
 namespace Ellipse.DataDictionary.Models
@@ -13,6 +14,11 @@ namespace Ellipse.DataDictionary.Models
 
         public HierarchyModel(IModel model, IModel[] childModels)
         {
+            if (model is HierarchyModel)
+            {
+                string xml = new ModelXmlFormatter(model).Render();
+                throw new InvalidOperationException("Invalid Model \r\n" + xml);
+            }
             Model = model;
             ChildModels = childModels;
         }
@@ -34,7 +40,7 @@ namespace Ellipse.DataDictionary.Models
                     int position = int.Parse(parts[1]);
                     if (position > 0 && position <= ChildModels.Length)
                     {
-                        IModel model = ChildModels[position - 1] as IModel;
+                        IModel model = ChildModels[position - 1] ;
                         if (model != null)
                         {
                             parts[1] = "1";

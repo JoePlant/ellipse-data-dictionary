@@ -3,11 +3,11 @@ using Ellipse.DataDictionary.Parsers.Lines;
 
 namespace Ellipse.DataDictionary.Parsers.Cobol
 {
-    public class RedefinesParser : CombinationParser
+    public class OccursParser : CombinationParser
     {
         private static readonly Dictionary<int, string> LevelDictionary = new Dictionary<int, string>
             {
-                {01, Prefix.Prefix01},
+                //{01, Prefix.Prefix01},
                 {02, Prefix.Prefix03},
                 {03, Prefix.Prefix05},
                 {04, Prefix.Prefix07},
@@ -27,14 +27,14 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
 
         private static readonly Dictionary<int, HierarchyParser> ParserDictionary = new Dictionary<int, HierarchyParser>();
 
-        private class LineParser : SingleLineParser
+        private class LevelParser : SingleLineParser
         {
-            public LineParser(int level)
-                : base("Redefines",
+            public LevelParser(int level)
+                : base("Occurs",
                        Line.Multiple(
                            Line.And(
                                Line.StartsWithMarker(Prefix.Marker(level)),
-                               Line.Contains("REDEFINES")
+                               Line.Contains("OCCURS ")
                                ),
                            Line.Optional(
                                Line.Repeat(Line.StartsWith(Prefix.Empty))
@@ -49,7 +49,6 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                                        .Trim())
                            .TruncateAt(59)
                            .IgnoreAfter(".").ExcludeMarker()
-                           .RemoveSpaces()
                            .Trim(),
                        Comment
                            .IgnoreBefore(59)
@@ -57,49 +56,46 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                            .Trim(),
                        new[]
                            {
-                              OccursAndDataImpliedParser(),
-                               DataTypeParser.ImpliedParser(),
-                               OccursParser.ImpliedParser(),
+                               DataTypeParser.ImpliedParser()
                            }
                     )
             {
             }
         }
 
-        public RedefinesParser()
+        private class ImpliedOccursParser : ImpliedModelParser
+        {
+            public ImpliedOccursParser()
+                : base("Occurs",
+                       Line.Contains(" OCCURS "),
+                       Data.SplitOn(" ").Find("OCCURS").Ignore(0).AndFollowing().Join(" "),
+                       Data.SplitOn(" ").Find("OCCURS").Select(0).AndFollowing().Join(" "))
+            {
+            }
+        }
+
+
+        public OccursParser()
             : base(
-                new LineParser(2),
-                new LineParser(3),
-                new LineParser(4),
-                new LineParser(5),
-                new LineParser(6),
-                new LineParser(7)
-                //new LineParser(8),
-                //new LineParser(9),
-                //new LineParser(10),
-                //new LineParser(11),
-                //new LineParser(12),
-                //new LineParser(13),
-                //new LineParser(14),
-                //new LineParser(15)
+                SimpleLevelParser(2),
+                SimpleLevelParser(3),
+                SimpleLevelParser(4),
+                SimpleLevelParser(5),
+                SimpleLevelParser(6),
+                SimpleLevelParser(7),
+                SimpleLevelParser(8),
+                SimpleLevelParser(9),
+                SimpleLevelParser(10),
+                SimpleLevelParser(11),
+                SimpleLevelParser(12),
+                SimpleLevelParser(13),
+                SimpleLevelParser(14),
+                SimpleLevelParser(15),
+                SimpleLevelParser(16)
                 )
         {
         }
 
-        private class OccursAndDataTypeImpliedParser : ImpliedModelParser
-        {
-            public OccursAndDataTypeImpliedParser()
-                : base("Occurs",
-                       Line.And(
-                           Line.Contains(" PIC "),
-                           Line.Contains(" OCCURS ")
-                           ),
-                       Data.SplitOn(" ").Find("PIC").Ignore(0).AndFollowing().Join(" "),
-                       Data.SplitOn(" ").Find("PIC").Select(0).AndFollowing().Join(" "))
-            {
-            }
-        }
-        
         public static IModelParser HierarchyParser(int level)
         {
             if (LevelDictionary.ContainsKey(level))
@@ -108,29 +104,35 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                 if (!ParserDictionary.TryGetValue(level, out hierarchyParser))
                 {
                     hierarchyParser = new HierarchyParser(
-                        new LineParser(level), 
+                        SimpleLevelParser(level),
                         new[]
-                        {
-                            PropertyParser.HierarchyParser(level + 1),
-                            DataTypeParser.HierarchyParser(level + 1),
-                            RedefinesParser.HierarchyParser(level + 1),
-                            OccursParser.HierarchyParser(level + 1)
-                        });
-                        
+                            {
+                                PropertyParser.HierarchyParser(level + 1),
+                                DataTypeParser.HierarchyParser(level + 1),
+                                OccursParser.HierarchyParser(level + 1),
+                                RedefinesParser.HierarchyParser(level + 1)
+                            }
+                        );
                     ParserDictionary.Add(level, hierarchyParser);
                 }
                 return hierarchyParser;
             }
-
             return new EmptyParser();
         }
 
-        public static IImpliedModelParser OccursAndDataImpliedParser()
+        private static IModelParser SimpleLevelParser(int level)
         {
-            return new HierarchicalImpliedModelParser(
-                new OccursAndDataTypeImpliedParser(),
-                DataTypeParser.ImpliedParser()
-                );
+            if (LevelDictionary.ContainsKey(level))
+            {
+                return new LevelParser(level);
+            }
+            return new EmptyParser();
+        }
+
+
+        public static IImpliedModelParser ImpliedParser()
+        {
+            return new ImpliedOccursParser();
         }
     }
 }

@@ -46,24 +46,25 @@ namespace Ellipse.DataDictionary.Parsers.Lines
             return this;
         }
 
-        public ILineParser IgnoreAfter(string marker)
+        public ILineParserWithMarker IgnoreAfter(string marker)
         {
-            standardParseList.Add(
-                (i, line) => (line != null && line.Contains(marker))
-                            ? line.Substring(0, line.IndexOf(marker, StringComparison.InvariantCulture))
-                            : line
-                );
-            return this;
+            LineParserWithMarker lineParserWithMarker = new LineParserWithMarker(this, marker);
+            standardParseList.Add(lineParserWithMarker.IgnoreAfter);
+            return lineParserWithMarker;
         }
 
-        public ILineParser IgnoreBefore(string marker)
+        public ILineParserWithMarker IgnoreBefore(string marker)
         {
-            standardParseList.Add(
-                (i, line) => (line != null && line.Contains(marker))
-                            ? line.Substring(line.IndexOf(marker, StringComparison.InvariantCulture)+marker.Length)
-                            : line
-                );
-            return this;
+            LineParserWithMarker lineParserWithMarker = new LineParserWithMarker(this, marker);
+            standardParseList.Add(lineParserWithMarker.IgnoreBefore);
+            return lineParserWithMarker;
+        }
+
+        public ILineSplitter SplitOn(string marker)
+        {
+            LineSplitter lineSplitter = new LineSplitter(this, marker);
+            standardParseList.Add(lineSplitter.Parse);
+            return lineSplitter;
         }
 
         public ILineParser IgnoreBefore(int columnNo)
@@ -118,5 +119,6 @@ namespace Ellipse.DataDictionary.Parsers.Lines
                 );
             return this;
         }
+
     }
 }

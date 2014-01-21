@@ -68,6 +68,11 @@
             return new AndLineMatcher(primary, alternate);
         }
 
+        public static ILineMatcher And(ILineMatcher one, ILineMatcher two, ILineMatcher three)
+        {
+            return new AndLineMatcher(new AndLineMatcher(one, two), three);
+        }
+
         public static ILineMatcher FollowedBy(ILineMatcher line, ILineMatcher followedBy)
         {
             return new FollowedByMatcher(line, followedBy);

@@ -81,12 +81,20 @@ namespace Ellipse.DataDictionary
             Assert.That(actual, Is.EqualTo(expect));
         }
 
-        protected void AssertParsed(IDataParser dataParser, IModel expectedModel)
+        protected void AssertParsedUsingXml(IDataParser dataParser, IModel expectedModel)
         {
             dataParser.Parse();
             Assert.That(dataParser.Results.Count, Is.EqualTo(1), "Only one model allowed.");
 
-            AssertModelIsSame(dataParser.Results[0], expectedModel);
+            AssertModelIsSame(dataParser.Results[0], expectedModel, true);
+        }
+
+        protected void AssertParsedUsingToString(IDataParser dataParser, IModel expectedModel)
+        {
+            dataParser.Parse();
+            Assert.That(dataParser.Results.Count, Is.EqualTo(1), "Only one model allowed.");
+
+            AssertModelIsSame(dataParser.Results[0], expectedModel, false);
         }
 
         protected static string BuildStringModel(IList<IModel> modelList)
@@ -107,14 +115,20 @@ namespace Ellipse.DataDictionary
             return builder.ToString();
         }
 
-        protected void AssertModelIsSame(IModel actualModel, IModel expectedModel)
+        protected void AssertModelIsSame(IModel actualModel, IModel expectedModel, bool useXml)
         {
-            string actual = new ModelFormatter(actualModel){IncludeModelPaths = true}.Render();
-            string expected = new ModelFormatter(expectedModel) { IncludeModelPaths = true }.Render();
+            IModelFormatter actualFormatter = useXml
+                                                  ? (IModelFormatter) new ModelXmlFormatter(actualModel)
+                                                  : new ModelFormatter(actualModel) { IncludeModelPaths = true };
 
-            Assert.That(actual, Is.EqualTo(expected), "Actual: \r\n{0}\r\nExpected:\r\n{1}",actual, expected);
+            IModelFormatter expectedFormatter = useXml
+                                      ? (IModelFormatter)new ModelXmlFormatter(expectedModel)
+                                      : new ModelFormatter(expectedModel) { IncludeModelPaths = true };
+            string actual = actualFormatter.Render();
+            string expected = expectedFormatter.Render();
+
+            Assert.That(actual, Is.EqualTo(expected), "Actual: \r\n{0}\r\nExpected:\r\n{1}", actual, expected);
         }
-
 
         protected HierarchyModel ParseHierarchicalFile(string fileName)
         {
@@ -178,6 +192,42 @@ namespace Ellipse.DataDictionary
                 Assert.That(file.Name, Is.StringContaining(classModel.Data), "Class name doesn't match the filename");
                 Assert.That(classModel.Data, Is.EqualTo(methodName), "Class name doesn't match the method name");
             }
+        }
+
+        public void SaveAsXml(IModel model)
+        {
+            string methodName = new StackTrace().GetFrame(1).GetMethod().Name.Replace("_", "-");
+            string typename = GetType().Name;
+
+            ModelXmlFormatter xmlFormatter = new ModelXmlFormatter(model);
+            string xml = xmlFormatter.Render();
+
+            string directory = Path.Combine(".", typename);
+
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            string fileName = directory + @"\" + methodName + ".xml";
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+
+            Assert.That(File.Exists(fileName), Is.False);
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                writer.Write(xml);
+            }
+        }
+
+        protected void AssertSameParser(Func<IModelParser> parserFunc)
+        {
+            IModelParser instance1 = parserFunc();
+            IModelParser instance2 = parserFunc();
+
+            Assert.That(instance2, Is.SameAs(instance1));
         }
     }
 }

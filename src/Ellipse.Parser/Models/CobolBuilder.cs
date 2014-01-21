@@ -42,6 +42,11 @@ namespace Ellipse.DataDictionary.Models
             return new ModelBuilder(new CobolModel("Redefines", name, comment));
         }
 
+        public static IBuilder Occurs(string name, string comment = null)
+        {
+            return new ModelBuilder(new CobolModel("Occurs", name, comment));
+        }
+
         private class ModelBuilder : IBuilder
         {
             private readonly CobolModel model;

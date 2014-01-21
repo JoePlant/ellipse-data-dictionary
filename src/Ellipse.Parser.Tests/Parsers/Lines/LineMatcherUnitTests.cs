@@ -36,12 +36,21 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         }
 
         [Test]
-        public void LineAnd()
+        public void LineAnd2()
         {
             ILineMatcher lineMatcher = Line.And(Line.Contains("One"), Line.Contains("Two"));
 
             AssertDoesNotMatch(lineMatcher, null, "", "    ", "One", "Two", "Three", "One One", "Two Two");
             AssertMatches(lineMatcher, "OneTwo", "TwoOne", "  One  Two  ", "  Two  One  ", "One  Two", "Two  One", "One One Two", "One Two Two");
+        }
+
+        [Test]
+        public void LineAnd3()
+        {
+            ILineMatcher lineMatcher = Line.And(Line.Contains("One"), Line.Contains("Two"), Line.Contains("Three"));
+
+            AssertDoesNotMatch(lineMatcher, null, "", "    ", "One", "Two", "Three", "One One", "Two Two", "One Two", "One Three", "Three One");
+            AssertMatches(lineMatcher, "OneTwoThree", "ThreeTwoOne", "  One  Two  Three  ", "  Three  Two  One  ", "One  Two  Three", "Three  Two  One", "One One Two Three", "One Two Two Three", "One Two Three Three");
         }
 
         [Test]

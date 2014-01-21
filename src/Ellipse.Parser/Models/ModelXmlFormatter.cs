@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace Ellipse.DataDictionary.Models
 {
-    public class ModelXmlFormatter
+    public class ModelXmlFormatter : IModelFormatter
     {
         private readonly IModel formatModel;
 

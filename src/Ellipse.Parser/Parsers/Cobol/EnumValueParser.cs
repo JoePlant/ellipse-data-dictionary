@@ -15,6 +15,8 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                 {08, Prefix.Level1588},
             };
 
+        private static readonly Dictionary<int, IModelParser> ParserDictionary = new Dictionary<int, IModelParser>();  
+
         private class LevelParser : SingleLineParser
         {
             public LevelParser(int level)
@@ -28,14 +30,16 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                        Data.OnLine(0,
                                    Data
                                        .TruncateAtColumn(60)
-                                       .IgnoreBefore(Prefix.Marker(88))
-                                       .IgnoreAfter(".")
+                                       .IgnoreBefore(Prefix.Marker(88)).ExcludeMarker()
+                                       .IgnoreAfter(".").ExcludeMarker()
                                        .RemoveSpaces()
                                        .Trim())
                            .TruncateAt(60)
-                           .IgnoreAfter(".")
+                           .IgnoreAfter(".").ExcludeMarker()
                            .Trim(),
-                       Comment.IgnoreBefore("."))
+                       Comment
+                           .IgnoreBefore(60)
+                           .Trim())
             {
             }
         }
@@ -43,12 +47,12 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
 
         public EnumValueParser()
             : base(
-                new LevelParser(3),
-                new LevelParser(4),
-                new LevelParser(5),
-                new LevelParser(6),
-                new LevelParser(7),
-                new LevelParser(8)
+                SimpleLineParser(3),
+                SimpleLineParser(4),
+                SimpleLineParser(5),
+                SimpleLineParser(6),
+                SimpleLineParser(7),
+                SimpleLineParser(8)
                 )
         {
         }
@@ -57,7 +61,13 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             if (LevelDictionary.ContainsKey(level))
             {
-                return new LevelParser(level);
+                IModelParser parser;
+                if (!ParserDictionary.TryGetValue(level, out parser))
+                {
+                    parser = SimpleLineParser(level);
+                    ParserDictionary.Add(level, parser);
+                }
+                return parser;
             }
             return new EmptyParser();
         }

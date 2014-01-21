@@ -12,12 +12,12 @@
             return new LineParser().IgnoreEnd(end);
         }
 
-        public static ILineParser IgnoreBefore(string marker)
+        public static ILineParserWithMarker IgnoreBefore(string marker)
         {
             return new LineParser().IgnoreBefore(marker);
         }
 
-        public static ILineParser IgnoreAfter(string marker)
+        public static ILineParserWithMarker IgnoreAfter(string marker)
         {
             return new LineParser().IgnoreAfter(marker);
         }
@@ -45,6 +45,11 @@
         public static ILineParser TruncateAtColumn(int column)
         {
             return new LineParser().TruncateAt(column);
+        }
+
+        public static ILineSplitter SplitOn(string marker)
+        {
+            return new LineParser().SplitOn(marker);
         }
     }
 }

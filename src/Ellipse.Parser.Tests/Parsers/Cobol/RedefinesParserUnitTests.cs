@@ -12,7 +12,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.SingleLine03);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsed(parser, new CobolModel("Redefines", "DOS-PREF-RPT REDEFINES DOS-PREF-GRP", "[ 5] DOS Preferred Report"));
+            AssertParsedUsingXml(parser, new CobolModel("Redefines", "DOS-PREF-RPT REDEFINES DOS-PREF-GRP", "[ 5] DOS Preferred Report"));
         }
 
         [Test]
@@ -20,15 +20,16 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.MultiLine05);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsed(parser, new CobolModel("Redefines", "WH-TABLE-CODE REDEFINES TABLE-CODE", "[ 5] Warehouse Table File Code DATASET (MSF010) ERROR\n(0041)"));
+            AssertParsedUsingXml(parser, new CobolModel("Redefines", "WH-TABLE-CODE REDEFINES TABLE-CODE", "[ 5] Warehouse Table File Code DATASET (MSF010) ERROR\n(0041)"));
         }
+
 
         [Test]
         public void MultiLine07()
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.MultiLine07);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsed(parser, new CobolModel("Redefines", "MSF062-DATA-1-062-CC REDEFINES MSF062-DATA-1-062-AU", "[ 5] Reference data 1"));
+            AssertParsedUsingXml(parser, new CobolModel("Redefines", "MSF062-DATA-1-062-CC REDEFINES MSF062-DATA-1-062-AU", "[ 5] Reference data 1"));
         }
 
         [Test]
@@ -36,15 +37,15 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.SingleLine09);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsed(parser, new CobolModel("Redefines", "ACCTYRMN REDEFINES CONTROL-REC-NO-9", "[ 7] Accounting year and month"));
+            AssertParsedUsingXml(parser, new CobolModel("Redefines", "ACCTYRMN REDEFINES CONTROL-REC-NO-9", "[ 7] Accounting year and month"));
         }
 
         [Test]
         public void SingleLine09Trimmed()
         {
-            Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.SingleLine09.Substring(2));
+            Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.SingleLine09.Substring(1));
             IDataParser parser = CreateDataParser(reader);
-            AssertParsed(parser, new CobolModel("Redefines", "ACCTYRMN REDEFINES CONTROL-REC-NO-9", "[ 7] Accounting year and month"));
+            AssertParsedUsingXml(parser, new CobolModel("Redefines", "ACCTYRMN REDEFINES CONTROL-REC-NO-9", "[ 7] Accounting year and month"));
         }
 
         [Test]
@@ -52,7 +53,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.MultiLine11);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsed(parser, new CobolModel("Redefines", "MSF061-DATA-1-061-CB REDEFINES MSF061-DATA-1-061-1A", "[ 5] Reference data 1"));
+            AssertParsedUsingXml(parser, new CobolModel("Redefines", "MSF061-DATA-1-061-CB REDEFINES MSF061-DATA-1-061-1A", "[ 5] Reference data 1"));
         }
 
 
@@ -61,7 +62,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.MultiLine13);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsed(parser, new CobolModel("Redefines", "MSF062-PORT-ELE-RC REDEFINES MSF062-IREQ-ITEM-RC", "[ 46] Portion Number and Element Number"));
+            AssertParsedUsingXml(parser, new CobolModel("Redefines", "MSF062-PORT-ELE-RC REDEFINES MSF062-IREQ-ITEM-RC", "[ 46] Portion Number and Element Number"));
         }
 
         [Test]
@@ -83,7 +84,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                          Build.DataType("FILLER PIC X(255)")
                     )
                      .Model();
-            AssertParsed(parser, model);
+            AssertParsedUsingXml(parser, model);
         }
 
         [Test]
@@ -105,8 +106,82 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                          Build.DataType("FILLER PIC X(258)")
                     )
                      .Model();
-            AssertParsed(parser, model);
+            AssertParsedUsingXml(parser, model);
         }
+
+        /// <test>
+        ///        05  LAST-PAR-WO-NO-9    REDEFINES LAST-PAR-WO-NO    [  51] Last parent work order number
+        ///                                PIC 9(8).
+        /// </test>
+        [Test]
+        public void Level05CompositeImplied()
+        {
+            Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.Level05CompositeImplied);
+            IDataParser parser = CreateDataParser(reader);
+            IModel model =
+                Build.Redefines("LAST-PAR-WO-NO-9 REDEFINES LAST-PAR-WO-NO", "[ 51] Last parent work order number")
+                .WithDataType("PIC 9(8)", "Implied")
+                     .Model();
+            AssertParsedUsingXml(parser, model);
+        }
+
+        /// <test>
+        ///     03  PROFILE-CHAR            REDEFINES PROFILE PIC X(1)  [ 106] Single character of a security profile.
+        ///                                 OCCURS 250 INDEXED BY
+        ///                                 PROFILE-CHAR-IDX.
+        /// </test>
+        [Test]
+        public void Level03MultiLineImplied()
+        {
+            Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.Level03CompositeImplied);
+
+            IDataParser parser = CreateDataParser(reader);
+
+            IModel model =
+                Build.Redefines("PROFILE-CHAR REDEFINES PROFILE", "[ 106] Single character of a security profile.")
+                     .With(
+                         Build.Occurs("OCCURS 250 INDEXED BY PROFILE-CHAR-IDX", "Implied")
+                              .WithDataType("PIC X(1)", "Implied")
+                    ).Model();
+
+            AssertParsedUsingXml(parser, model);
+        }
+
+        [Test]
+        public void ImpliedOccursAndDataType()
+        {
+            IModel model = new CobolModel("Redefines", "PROFILE-CHAR REDEFINES PROFILE PIC X(1) OCCURS 250 INDEXED BY PROFILE-CHAR-IDX", "[ 106] Single character of a security profile.");
+            IImpliedModelParser modelParser = RedefinesParser.OccursAndDataImpliedParser();
+            Assert.That(modelParser.Matches(model), Is.True);
+
+            IModel parsed = modelParser.Parse(model);
+
+            IModel expected =
+                 Build.Redefines("PROFILE-CHAR REDEFINES PROFILE", "[ 106] Single character of a security profile.")
+                      .With(
+                          Build.Occurs("OCCURS 250 INDEXED BY PROFILE-CHAR-IDX", "Implied")
+                               .WithDataType("PIC X(1)", "Implied")
+                     ).Model();
+
+            AssertModelIsSame(parsed, expected, true);
+        }
+
+        /// <test>
+        ///        05  LAST-PAR-WO-NO-9    REDEFINES LAST-PAR-WO-NO    [  59] Last parent work order number
+        ///                                PIC 9(8).
+        /// </test>
+        [Test]
+        public void Level05CompositeImpliedB()
+        {
+            Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.Level05CompositeImpliedB);
+            IDataParser parser = CreateDataParser(reader);
+            IModel model =
+                Build.Redefines("LAST-WO-NO-9 REDEFINES LAST-WO-NO", "[ 59] Last work order number")
+                .WithDataType("PIC 9(8)", "Implied")
+                     .Model();
+            AssertParsedUsingXml(parser, model);
+        }
+
 
         [Test]
         public void Level07Composite()
@@ -124,7 +199,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                                                  "[ 16] Ninety five bytes 0f work data"))
                     )
                      .Model();
-            AssertParsed(parser, model);
+            AssertParsedUsingXml(parser, model);
         }
 
         [Test]
@@ -149,6 +224,18 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         public void PropertyCases()
         {
             AssertDoesNotParse(ExampleStrings.Property.SimpleCases());
+        }
+
+        [Test]
+        public void OccursCases()
+        {
+            AssertDoesNotParse(ExampleStrings.Occurs.AllCases());
+        }
+
+        [Test]
+        public void SameInstance()
+        {
+            AssertSameParser(() => RedefinesParser.HierarchyParser(3));
         }
     }
 }

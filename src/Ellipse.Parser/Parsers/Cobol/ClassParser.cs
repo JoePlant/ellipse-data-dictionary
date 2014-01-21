@@ -9,11 +9,11 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                    Line
                        .StartsWithMarker(Prefix.Marker(1)),
                    Data
-                       .IgnoreBefore(Prefix.Marker(1))
-                       .IgnoreAfter(".")
+                       .IgnoreBefore(Prefix.Marker(1)).ExcludeMarker()
+                       .IgnoreAfter(".").ExcludeMarker()
                        .Trim(),
                    Comment
-                       .IgnoreBefore(".")
+                       .IgnoreBefore(".").ExcludeMarker()
                 )
         {
         }

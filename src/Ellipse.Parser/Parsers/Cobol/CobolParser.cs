@@ -8,7 +8,8 @@
                 new PropertyParser(),
                 new DataTypeParser(),
                 new RedefinesParser(),
-                new EnumValueParser()
+                new EnumValueParser(),
+                new OccursParser()
                 )
         {
         }
@@ -19,7 +20,8 @@
                 new ClassParser(),
                 PropertyParser.HierarchyParser(2),
                 DataTypeParser.HierarchyParser(2),
-                RedefinesParser.HierarchyParser(2));
+                RedefinesParser.HierarchyParser(2),
+                OccursParser.HierarchyParser(2));
         }
     }
 }

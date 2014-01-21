@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Ellipse.DataDictionary.Parsers.Lines
 {
@@ -28,7 +27,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         [Test]
         public void IgnoreAfter()
         {
-            ILineParser lineParser = Data.IgnoreAfter(".");
+            ILineParser lineParser = Data.IgnoreAfter(".").ExcludeMarker();
 
             AssertWillParse(lineParser, "Data", "Data.Testing", "Data.", "Data.  Testing. ", "Data.   Testing");
             AssertWillParse(lineParser, "", ".", ".", "");
@@ -38,7 +37,7 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         [Test]
         public void IgnoreBefore()
         {
-            ILineParser lineParser = Comment.IgnoreBefore(".");
+            ILineParser lineParser = Comment.IgnoreBefore(".").ExcludeMarker();
 
             AssertWillParse(lineParser, "Data", "TEsting.Data", ".Data", "Testing    .Data");
             AssertWillParse(lineParser, "", ".", "", "Data.");
@@ -48,11 +47,41 @@ namespace Ellipse.DataDictionary.Parsers.Lines
         [Test]
         public void IgnoreBefore2Chars()
         {
-            ILineParser lineParser = Comment.IgnoreBefore("./");
+            ILineParser lineParser = Comment.IgnoreBefore("./").ExcludeMarker();
 
             AssertWillParse(lineParser, "Data", "TEsting./Data", "./Data", "Testing    ./Data");
             AssertWillParse(lineParser, "", "./", "", "Data./");
             AssertNoChange(lineParser, "Data", "there is no dot", "dot", ",", ".", "/", "/.");
+        }
+
+        [Test]
+        public void IgnoreAfterIncludeMarker()
+        {
+            ILineParser lineParser = Data.IgnoreAfter(".").IncludeMarker();
+
+            AssertWillParse(lineParser, "Data.", "Data.Testing", "Data.", "Data.  Testing. ", "Data.   Testing");
+            AssertWillParse(lineParser, ".", ".", ".");
+            AssertNoChange(lineParser, "Data", "there is no dot", "dot", ",", "");
+        }
+
+        [Test]
+        public void IgnoreBeforeIncludeMarker()
+        {
+            ILineParser lineParser = Comment.IgnoreBefore(".").IncludeMarker();
+
+            AssertWillParse(lineParser, ".Data", "TEsting.Data", ".Data", "Testing    .Data");
+            AssertWillParse(lineParser, ".", ".", "Data.");
+            AssertNoChange(lineParser, "Data", "there is no dot", "dot", ",", "");
+        }
+
+        [Test]
+        public void IgnoreBefore2CharsIncludeMarker()
+        {
+            ILineParser lineParser = Comment.IgnoreBefore("./").IncludeMarker();
+
+            AssertWillParse(lineParser, "./Data", "TEsting./Data", "./Data", "Testing    ./Data");
+            AssertWillParse(lineParser, "./", "./", "Data./");
+            AssertNoChange(lineParser, "Data", "there is no dot", "dot", ",", ".", "/", "/.", "");
         }
 
         [Test]
@@ -92,6 +121,80 @@ namespace Ellipse.DataDictionary.Parsers.Lines
 
             AssertWillParse(lineParser, "Two", "OneTwo", "On Two", "O  Two", "   Two");
             AssertWillParse(lineParser, "", "", "A", "On");
+        }
+
+        [Test]
+        public void SplitAndIgnore()
+        {
+            ILineParser lineParser = Data.SplitOn("-").Ignore(0, 1).Join(" ");
+            AssertWillParse(lineParser, "C D", "A-B-C-D", "AA-BB-C-D");
+            AssertWillParse(lineParser, "C", "A-B-C", "AA-BB-C");
+            AssertNoChange(lineParser, "A", "C", "C D E");
+        }
+
+        [Test]
+        public void SplitAndIgnoreFollowing()
+        {
+            ILineParser lineParser = Data.SplitOn("-").Ignore(2).AndFollowing().Join(" ");
+            AssertWillParse(lineParser, "A B", "A-B-C", "A-B-C-D", "A-B-C-D-E");
+            AssertNoChange(lineParser, "A", "A-B", "C", "C D E");
+        }
+
+        [Test]
+        public void SplitAndSelect()
+        {
+            ILineParser lineParser = Data.SplitOn("-").Select(0, 1).Join(" ");
+            AssertWillParse(lineParser, "A B", "A-B-C-D", "A-B", "A-B-C");
+            AssertNoChange(lineParser, "A", "C", "C D E");
+        }
+
+        [Test]
+        public void SplitAndSelectFollowing()
+        {
+            ILineParser lineParser = Data.SplitOn("-").Select(2).AndFollowing().Join(" ");
+            AssertWillParse(lineParser, "C D E", "A-B-C-D-E");
+            AssertWillParse(lineParser, "C D", "A-B-C-D");
+            AssertWillParse(lineParser, "C", "A-B-C");
+            AssertNoChange(lineParser, "A", "A-B");
+            AssertNoChange(lineParser, "C", "C D E");
+        }
+
+        [Test]
+        public void SplitFindAndIgnore()
+        {
+            ILineParser lineParser = Data.SplitOn("-").Find("B").Ignore(0, 1).Join(" ");
+            AssertWillParse(lineParser, "A D", "A-B-C-D", "A-D-B-0", "B-C-A-D");
+            AssertNoChange(lineParser, "A", "C", "C D E");
+            AssertNoChange(lineParser, "A-D-C-B");  // B + 1 is out of range
+        }
+
+        [Test]
+        public void SplitFindAndIgnoreFollowing()
+        {
+            ILineParser lineParser = Data.SplitOn("-").Find("B").Ignore(1).AndFollowing().Join(" ");
+            AssertWillParse(lineParser, "A B", "A-B-C", "A-B-C-D", "A-B-C-D-E");
+            AssertNoChange(lineParser, "A", "A-B", "C", "C D E");
+            AssertNoChange(lineParser, "A-D-C-B");  // B + 1 is out of range
+        }
+
+        [Test]
+        public void SplitFindAndSelect()
+        {
+            ILineParser lineParser = Data.SplitOn("-").Find("B").Select(0, 1).Join(" ");
+            AssertWillParse(lineParser, "B C", "A-B-C-D", "A-D-B-C", "B-C");
+            AssertNoChange(lineParser, "A", "C", "C D E");
+            AssertNoChange(lineParser, "A-D-C-B");  // B + 1 is out of range
+        }
+
+        [Test]
+        public void SplitFindAndSelectFollowing()
+        {
+            ILineParser lineParser = Data.SplitOn("-").Find("B").Select(1).AndFollowing().Join(" ");
+            AssertWillParse(lineParser, "C D E", "A-B-C-D-E");
+            AssertWillParse(lineParser, "C D", "A-B-C-D");
+            AssertWillParse(lineParser, "C", "A-B-C");
+            AssertNoChange(lineParser, "A", "A-B");
+            AssertNoChange(lineParser, "C", "C D E");
         }
 
         private void AssertWillParse(ILineParser parser, string expected, params string[] args)

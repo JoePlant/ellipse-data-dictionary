@@ -25,6 +25,8 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                 {16, Prefix.Prefix31},
             };
 
+        private static readonly Dictionary<int, HierarchyParser> ParserDictionary = new Dictionary<int, HierarchyParser>();  
+
         private class LineParser : SingleLineParser
         {
             public LineParser(int level)
@@ -33,7 +35,8 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                            Line.And(Line.StartsWithMarker(Prefix.Marker(level)),
                                     Line.And(
                                         Line.DoesNotContain("PIC "),
-                                        Line.DoesNotContain("REDEFINES ")
+                                        Line.DoesNotContain("REDEFINES "),
+                                        Line.DoesNotContain("OCCURS")
                                         )),
                            Line.Optional(
                                Line.Repeat(Line.StartsWith(Prefix.Empty))
@@ -41,17 +44,17 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                            ),
                        Data.OnLine(0,
                                    Data
-                                       .TruncateAtColumn(60)
-                                       .IgnoreBefore(Prefix.Marker(level))
-                                       .IgnoreAfter(".")
+                                       .TruncateAtColumn(59)
+                                       .IgnoreBefore(Prefix.Marker(level)).ExcludeMarker()
+                                       .IgnoreAfter(".").ExcludeMarker()
                                        .RemoveSpaces()
                                        .Trim())
-                           .TruncateAt(60)
-                           .IgnoreAfter(".")
+                           .TruncateAt(59)
+                           .IgnoreAfter(".").ExcludeMarker()
                            .RemoveSpaces()
                            .Trim(),
                        Comment
-                           .IgnoreBefore(".")
+                           .IgnoreBefore(59)
                            .RemoveSpaces()
                            .Trim()
                     )
@@ -84,14 +87,22 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             if (LevelDictionary.ContainsKey(level))
             {
-                return new HierarchyParser(
-                    SimpleLineParser(level), new[]
-                        {
-                            PropertyParser.HierarchyParser(level + 1),
-                            DataTypeParser.HierarchyParser(level + 1),
-                            RedefinesParser.HierarchyParser(level + 1)
-                        }
-                    );
+                HierarchyParser hierarchyParser;
+                if (!ParserDictionary.TryGetValue(level, out hierarchyParser))
+                {
+                    hierarchyParser = new HierarchyParser(
+                        SimpleLineParser(level),
+                        new[]
+                            {
+                                PropertyParser.HierarchyParser(level + 1),
+                                DataTypeParser.HierarchyParser(level + 1),
+                                RedefinesParser.HierarchyParser(level + 1),
+                                OccursParser.HierarchyParser(level + 1)
+                            }
+                        );
+                    ParserDictionary.Add(level, hierarchyParser);
+                }
+                return hierarchyParser;
             }
             return new EmptyParser();
         }

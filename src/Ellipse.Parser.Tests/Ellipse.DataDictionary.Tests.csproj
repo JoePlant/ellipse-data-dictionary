@@ -57,6 +57,7 @@
     <Compile Include="Models\ModelFormatterUnitTests.cs" />
     <Compile Include="Models\PageHeaderModelUnitTests.cs" />
     <Compile Include="Parsers\Cobol\ClassParserUnitTests.cs" />
+    <Compile Include="Parsers\Cobol\OccursParserUnitTests.cs" />
     <Compile Include="Parsers\Cobol\RedefinesParserUnitTests.cs" />
     <Compile Include="Parsers\Cobol\EnumValueParserUnitTests.cs" />
     <Compile Include="Parsers\Cobol\DataTypeParserUnitTests.cs" />
@@ -65,6 +66,8 @@
     <Compile Include="Parsers\Cobol\Hierarchy\HierarchyDataTypeParserUnitTests.cs" />
     <Compile Include="Parsers\Cobol\Hierarchy\HierarchyPropertyParserUnitTests.cs" />
     <Compile Include="Parsers\Cobol\PropertyParserUnitTests.cs" />
+    <Compile Include="Parsers\HierarchyImpliedModelParserUnitTests.cs" />
+    <Compile Include="Parsers\ImpliedModelParserUnitTests.cs" />
     <Compile Include="ParserTestFixture.cs" />
     <Compile Include="System\CobolHierarchySystemTests.cs" />
     <Compile Include="System\CobolParserSystemTests.cs" />

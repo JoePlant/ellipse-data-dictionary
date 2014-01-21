@@ -14,7 +14,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             
             IDataParser parser = CreateDataParser(reader);
 
-            AssertParsed(parser, new StringModel("Class", "MSF001-RECORD"));
+            AssertParsedUsingXml(parser, new CobolModel("Class", "MSF001-RECORD"));
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
 
             IDataParser parser = CreateDataParser(reader);
 
-            AssertParsed(parser, new StringModel("Class", "MSF001-RECORD"));
+            AssertParsedUsingXml(parser, new CobolModel("Class", "MSF001-RECORD"));
         }
 
         [Test]
@@ -49,6 +49,12 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         public void RedefinesDataTypeCases()
         {
             AssertDoesNotParse(ExampleStrings.Redefines.AllCases());
+        }
+
+        [Test]
+        public void OccursCases()
+        {
+            AssertDoesNotParse(ExampleStrings.Occurs.AllCases());
         }
     }
 }

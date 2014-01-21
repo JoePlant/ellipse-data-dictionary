@@ -147,7 +147,7 @@
                     {
                         SingleLine03, SingleLine05, SingleLine09,
                         SingleLine11, SingleLine13, SingleLine15,
-                        MultiLines05, MultiLines07, MultiLines11, MultiLines31
+                        MultiLines05, MultiLines31
                     };
             }
 
@@ -175,13 +175,6 @@
                 "                                                                                                            (6534) ACTIVE\n" +
                 "                                                                                                            DB,KEY:0";
 
-            public const string MultiLines07 =
-                "           07  CURR-ACCUM-A    PIC X(1) OCCURS 10 INDEXED  [ 183] Current Period Accumulation Identifiers  DB\r\n" +
-                "                               BY CURR-ACC-A-IDX.";
-
-            public const string MultiLines11 =
-                "                     11  W000-DATA PIC X(95) OCCURS 3        [  16] Ninety five bytes 0f work data\r\n" +
-                "                                 INDEXED BY W000-DATA-IDX.";
 
             public const string MultiLines31 =
                 "                               31  MSF062-DATA-2-062-PB PIC [  33] Reference data 2\n" +
@@ -226,7 +219,7 @@
             {
                 return new[]
                     {
-                        SingleLine03, MultiLine05, MultiLine07, SingleLine09, MultiLine11
+                        SingleLine03, MultiLine05, MultiLine07, SingleLine09, MultiLine11, MultiLine13
                     };
             }
 
@@ -270,6 +263,54 @@
                 "                     11  W000-DATA PIC X(95) OCCURS 3        [  16] Ninety five bytes 0f work data\r\n" +
                 "                                 INDEXED BY W000-DATA-IDX.";
 
+            public const string Level03CompositeImplied =
+                "    03  PROFILE-CHAR            REDEFINES PROFILE PIC X(1)  [ 106] Single character of a security profile.\r\n" +
+                "                                OCCURS 250 INDEXED BY\r\n" +
+                "                                PROFILE-CHAR-IDX.";
+
+            public const string Level05CompositeImplied =
+                "        05  LAST-PAR-WO-NO-9    REDEFINES LAST-PAR-WO-NO    [  51] Last parent work order number\r\n" +
+                "                                PIC 9(8).";
+
+            public const string Level05CompositeImpliedB =
+                "        05  LAST-WO-NO-9        REDEFINES LAST-WO-NO PIC    [  59] Last work order number\r\n" +
+                "                                9(8).";
+        }
+
+        public static class Occurs
+        {
+            public static string[] AllCases()
+            {
+                return new[]
+                    {
+                        MultiLine05, MultiLine07, MultiLine09
+                    };
+            }
+
+            public const string MultiLine05 =
+                "        05  ITEM-DDS135         OCCURS 60 INDEXED BY        [  86] Stock Item\r\n" +
+                "                                DDS135-1-IDX.";
+
+            public const string MultiLine07 =
+                "            07  LO-LEVELS       OCCURS 5 INDEXED BY         [ 179] Geographical location levels data\r\n" +
+                "                                LO-LEVELS-IDX.";
+
+            public const string MultiLine09 =
+                "                09  EX-CNT-DATA OCCURS 4 INDEXED BY         [  11] Expedite Count Data\r\n" +
+                "                                EX-CNT-DATA-IDX.";
+
+            public const string ImpliedMultiLine07 =
+                "           07  CURR-ACCUM-A    PIC X(1) OCCURS 10 INDEXED  [ 183] Current Period Accumulation Identifiers  DB\r\n" +
+                "                               BY CURR-ACC-A-IDX.";
+
+            public const string ImpliedMultiLine11 =
+                "                     11  STOCK-SECTION PIC X(2) OCCURS 10    [  28] Internal Stock Sections (Positional)     DB\r\n" +
+                "                                INDEXED BY\r\n" +
+                "                                STOCK-SECTION-IDX.";
+
+            public const string ImpliedMultiLines11B =
+                "                     11  W000-DATA PIC X(95) OCCURS 3        [  16] Ninety five bytes 0f work data\r\n" +
+                "                                 INDEXED BY W000-DATA-IDX.";
 
         }
     }

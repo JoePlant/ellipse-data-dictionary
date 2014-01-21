@@ -12,7 +12,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine03);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(2));
-            AssertParsed(parser, new HierarchyModel(new CobolModel("Property", "KEY-004", "[ 1] key of MSF004 FK:0")));
+            AssertParsedUsingXml(parser, new HierarchyModel(new CobolModel("Property", "KEY-004", "[ 1] key of MSF004 FK:0")));
         }
 
         [Test]
@@ -20,7 +20,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.MultiLine03);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(2));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(new CobolModel("Property", "END-DATE", "[ 11] Ending date DATE\nDB")));
         }
 
@@ -29,7 +29,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.MultiLine05);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(3));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(
                              new CobolModel("Property", "CONTROL-ID",
                                             "[ 29] ID's Subledger,MIMS Sys & InterComp Ctl MANDATORY\nDB,KEY:0")
@@ -42,7 +42,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine07);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(4));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(new CobolModel("Property", "CONTROL-NUMBER",
                                                            "[ 30] No Identifying MIMS System Ctl Account")));
         }
@@ -52,7 +52,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.MultiLine09);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(5));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(
                              new CobolModel("Property", "INT-DSTRCT",
                                             "[ 30] InterDist Dist Code Ident. Target Dist MANDATORY VALUE\n(DSTRCT-CODE) ERROR\n(6534) ACTIVE")));
@@ -63,7 +63,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine11);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(6));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(
                              new CobolModel("Property", "MSF061-DATA-1-061-1A", "[ 5] Reference Data 1a")
                              )
@@ -75,7 +75,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine13);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(7));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(new CobolModel("Property", "MSF062-CONTRACT-NO-RC", "[ 38] Contract Number"))
                 );
         }
@@ -86,7 +86,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine15);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(8));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(new CobolModel("Property", "MSF062-ACCOUNT-CODE-NA",
                                                            "[ 33] Account Code number ACCOUNT-CODE"))
                 );
@@ -98,7 +98,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine17);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(9));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(new CobolModel("Property", "MSF062-DATA-2-062-PA", "[ 33] Reference data 2"))
                 );
         }
@@ -108,7 +108,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine19);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(10));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(new CobolModel("Property", "MSF062-TOP-PAR-PA-PB",
                                                            "[ 33] Parent Account Code"))
                 );
@@ -119,7 +119,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine21);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(11));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(new CobolModel("Property", "MSF062-DATA-2-062-WA", "[ 33] Reference data 2"))
                 );
         }
@@ -130,7 +130,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine23);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(12));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(new CobolModel("Property", "MSF062-WLD-ACCT-WA-WB",
                                                            "[ 33] Account Code number ACCOUNT-CODE"))
                 );
@@ -142,7 +142,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine25);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(13));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(new CobolModel("Property", "MSF062-DATA-2-062-WB", "[ 33] Reference data 2"))
                 );
         }
@@ -153,7 +153,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine27);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(14));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(new CobolModel("Property", "MSF062-DATA-2-062-BA", "[ 33] Reference data 2"))
                 );
         }
@@ -164,7 +164,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.MultiLine29);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(15));
-            AssertParsed(parser,
+            AssertParsedUsingXml(parser,
                          new HierarchyModel(new CobolModel("Property", "MSF062-BUDG-ACCT-CODE-BA",
                                                            "[ 33] Account Code number ACCOUNT-CODE"))
                 );
@@ -177,12 +177,12 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.Property05DataType07);
             IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(3));
 
-            IModel expected = Build.Property("LINE-NO", "[  19] Line No. of description")
+            IModel expected = Build.Property("LINE-NO", "[ 19] Line No. of description DB,KEY:0")
                                   .With(
-                                      Build.DataType("LINE-NO-9 PIC 9(4)", "[  19] Line No. of description")
+                                      Build.DataType("LINE-NO-9 PIC 9(4)", "[ 19] Line No. of description")
                 ).Model();
 
-            AssertParsed(parser, expected);
+            AssertParsedUsingXml(parser, expected);
         }
 
         [Test]

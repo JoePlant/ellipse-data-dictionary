@@ -27,17 +27,17 @@ namespace Ellipse.DataDictionary.System
             IModel expected =
                 Build.Class("MSF003-RECORD")
                      .With(
-                         Build.Property("KEY-003", "comment")
-                              .WithDataType("ATTR-NAME-LONG PIC X(64)", "comment")
+                         Build.Property("KEY-003", "[ 1] key 003 FK:0")
+                              .WithDataType("ATTR-NAME-LONG PIC X(64)", "[ 1] Long Attribute Name DB,KEY:0")
                     )
                      .With(
-                         Build.Property("AIX1-KEY-003", "comment")
-                              .WithDataType("ATTR-NAME-SHRT PIC X(14)", "comment")
+                         Build.Property("AIX1-KEY-003", "[ 65] Alternative key for short Attribute Name FK:1")
+                              .WithDataType("ATTR-NAME-SHRT PIC X(14)", "[ 65] Short Attribute Name DB,KEY:1")
                     )
-                     .WithDataType("AGE-METHOD PIC X(2)", "comment")
+                     .WithDataType("AGE-METHOD PIC X(2)", "[ 79] Ageing Method DB")
                      .Model();
                
-            AssertParsed(dataParser, expected);
+            AssertParsedUsingXml(dataParser, expected);
         }
 
 
@@ -71,7 +71,7 @@ namespace Ellipse.DataDictionary.System
                      .WithDataType("TAX-PERIOD-CLOSED PIC X(1)", "comment")
                      .Model();
 
-            AssertParsed(dataParser, expected);
+            AssertParsedUsingToString(dataParser, expected);
         }
 
         [Test]
@@ -99,8 +99,8 @@ namespace Ellipse.DataDictionary.System
                     )
                      .WithDataType("TLX-TEXT PIC X(72)", "comment")
                      .Model();
-           
-            AssertParsed(dataParser, expected);
+
+            AssertParsedUsingToString(dataParser, expected);
         }
 
         [Test]
@@ -173,7 +173,7 @@ namespace Ellipse.DataDictionary.System
                 )
                 .Model();
 
-            AssertParsed(dataParser, expected);
+            AssertParsedUsingToString(dataParser, expected);
         }
 
         [Test]
@@ -221,7 +221,7 @@ namespace Ellipse.DataDictionary.System
                      .WithDataType("FILLER PIC X(4)")
                      .Model();
 
-            AssertParsed(dataParser, expected);
+            AssertParsedUsingToString(dataParser, expected);
         }
 
     }

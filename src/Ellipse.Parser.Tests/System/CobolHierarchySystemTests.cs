@@ -1,4 +1,5 @@
-﻿using Ellipse.DataDictionary.Parsers;
+﻿using Ellipse.DataDictionary.Models;
+using Ellipse.DataDictionary.Parsers;
 using Ellipse.DataDictionary.Parsers.Cobol;
 using NUnit.Framework;
 
@@ -14,7 +15,8 @@ namespace Ellipse.DataDictionary.System
         [Test]
         public void MSF000_RECORD()
         {
-            ParseHierarchicalFile(@".\Resources\Cobol\MSF000-RECORD.rpt");
+            IModel model = ParseHierarchicalFile(@".\Resources\Cobol\MSF000-RECORD.rpt");
+            SaveAsXml(model);
         }
 
         [Test]
