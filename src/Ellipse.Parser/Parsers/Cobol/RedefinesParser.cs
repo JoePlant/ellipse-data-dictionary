@@ -59,10 +59,10 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                        new[]
                            {
                                OccursAndDataImpliedParser(),
-                               DataTypeParser.ImpliedParser(CobolModel.Factory),
-                               OccursParser.ImpliedParser(CobolModel.Factory),
+                               DataTypeParser.ImpliedParser(RedefinesModel.Factory),
+                               OccursParser.ImpliedParser(RedefinesModel.Factory),
                            },
-                       CobolModel.Factory
+                       RedefinesModel.Factory
                     )
             {
             }
@@ -134,8 +134,8 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         public static IImpliedModelParser OccursAndDataImpliedParser()
         {
             return new HierarchicalImpliedModelParser(
-                new OccursAndDataTypeImpliedParser(CobolModel.Factory),
-                DataTypeParser.ImpliedParser(CobolModel.Factory)
+                new OccursAndDataTypeImpliedParser(RedefinesModel.Factory),
+                DataTypeParser.ImpliedParser(RedefinesModel.Factory)
                 );
         }
     }

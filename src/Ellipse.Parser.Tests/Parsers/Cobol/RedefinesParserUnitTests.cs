@@ -12,7 +12,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.SingleLine03);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Redefines", "DOS-PREF-RPT REDEFINES DOS-PREF-GRP", "[ 5] DOS Preferred Report"));
+            AssertParsedUsingXml(parser, RedefinesModel.Factory("Redefines", "DOS-PREF-RPT REDEFINES DOS-PREF-GRP", "[ 5] DOS Preferred Report"));
         }
 
         [Test]
@@ -20,7 +20,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.MultiLine05);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Redefines", "WH-TABLE-CODE REDEFINES TABLE-CODE", "[ 5] Warehouse Table File Code DATASET (MSF010) ERROR\n(0041)"));
+            AssertParsedUsingXml(parser, RedefinesModel.Factory("Redefines", "WH-TABLE-CODE REDEFINES TABLE-CODE", "[ 5] Warehouse Table File Code DATASET (MSF010) ERROR\n(0041)"));
         }
 
 
@@ -29,7 +29,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.MultiLine07);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Redefines", "MSF062-DATA-1-062-CC REDEFINES MSF062-DATA-1-062-AU", "[ 5] Reference data 1"));
+            AssertParsedUsingXml(parser, RedefinesModel.Factory("Redefines", "MSF062-DATA-1-062-CC REDEFINES MSF062-DATA-1-062-AU", "[ 5] Reference data 1"));
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.SingleLine09);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Redefines", "ACCTYRMN REDEFINES CONTROL-REC-NO-9", "[ 7] Accounting year and month"));
+            AssertParsedUsingXml(parser, RedefinesModel.Factory("Redefines", "ACCTYRMN REDEFINES CONTROL-REC-NO-9", "[ 7] Accounting year and month"));
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.SingleLine09.Substring(1));
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Redefines", "ACCTYRMN REDEFINES CONTROL-REC-NO-9", "[ 7] Accounting year and month"));
+            AssertParsedUsingXml(parser, RedefinesModel.Factory("Redefines", "ACCTYRMN REDEFINES CONTROL-REC-NO-9", "[ 7] Accounting year and month"));
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.MultiLine11);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Redefines", "MSF061-DATA-1-061-CB REDEFINES MSF061-DATA-1-061-1A", "[ 5] Reference data 1"));
+            AssertParsedUsingXml(parser, RedefinesModel.Factory("Redefines", "MSF061-DATA-1-061-CB REDEFINES MSF061-DATA-1-061-1A", "[ 5] Reference data 1"));
         }
 
 
@@ -62,7 +62,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.MultiLine13);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Redefines", "MSF062-PORT-ELE-RC REDEFINES MSF062-IREQ-ITEM-RC", "[ 46] Portion Number and Element Number"));
+            AssertParsedUsingXml(parser, RedefinesModel.Factory("Redefines", "MSF062-PORT-ELE-RC REDEFINES MSF062-IREQ-ITEM-RC", "[ 46] Portion Number and Element Number"));
         }
 
         [Test]

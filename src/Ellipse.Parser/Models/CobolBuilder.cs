@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Ellipse.DataDictionary.Models
 {
@@ -19,12 +20,12 @@ namespace Ellipse.DataDictionary.Models
     {
         public static IBuilder Property(string name, string comment=null)
         {
-            return new ModelBuilder(new CobolModel("Property", name, comment));
+            return new ModelBuilder(CobolModel.Factory("Property", name, comment));
         }
 
         public static IBuilder DataType(string name, string comment = null)
         {
-            return new ModelBuilder(new DataTypeModel("DataType", name, comment));
+            return new ModelBuilder(DataTypeModel.Factory("DataType", name, comment));
         }
 
         public static IBuilder EnumValue(string name, string comment = null)
@@ -39,7 +40,7 @@ namespace Ellipse.DataDictionary.Models
 
         public static IBuilder Redefines(string name, string comment = null)
         {
-            return new ModelBuilder(new CobolModel("Redefines", name, comment));
+            return new ModelBuilder(new RedefinesModel("Redefines", name, comment));
         }
 
         public static IBuilder Occurs(string name, string comment = null)
@@ -52,11 +53,15 @@ namespace Ellipse.DataDictionary.Models
             private readonly CobolModel model;
             private readonly List<IBuilder> children = new List<IBuilder>();
 
-            public ModelBuilder(CobolModel model)
+            public ModelBuilder(IModel model)
             {
-                this.model = model;
+                this.model = model as CobolModel;
+                if (this.model == null)
+                {
+                    throw new ArgumentException("model is not the correct type: " + model.GetType());
+                }
             }
-            
+
             public IModel Model()
             {
                 List<IModel> childModels = new List<IModel>();
