@@ -38,6 +38,26 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
+        public void ImpliedMultiLine05()
+        {
+            Reader reader = Reader.CreateStringReader(ExampleStrings.Occurs.ImpliedMultiLine05);
+
+            IDataParser parser = CreateDataParser(reader, OccursParser.HierarchyParser(3));
+
+            IModel model =
+                Build.Occurs("ERROR-CODE OCCURS 10 INDEXED BY ERROR-CODE-IDX",
+                             "[ 137] ERROR CODE DB")
+                     .With(
+                         Build.DataType("PIC X(4)", "Implied")
+                              .With(
+                                  Build.EnumValue("ERROR VALUE '0001' THRU '9999' 'A000' THRU 'Z999'", "Error"))
+                    )
+                     .Model();
+
+            AssertParsedUsingXml(parser, model);
+        }
+
+        [Test]
         public void ImpliedMultiLine07()
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Occurs.ImpliedMultiLine07);
@@ -69,6 +89,31 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             AssertParsedUsingXml(parser, model);
         }
 
+        /// <test>
+        ///                 09  STOCK-SECTION-N.                        [  28] Group item for stock-section-n.
+        ///                     11  STOCK-SECTION PIC X(2) OCCURS 10    [  28] Internal Stock Sections (Positional)     DB
+        ///                                 INDEXED BY
+        ///                                 STOCK-SECTION-IDX.
+        /// </test>
+        [Test]
+        public void PropertyWithImpliedMultiline11()
+        {
+            Reader reader = Reader.CreateStringReader(ExampleStrings.Occurs.PropertyWithImpliedMultiLine11);
+
+            IDataParser parser = CreateDataParser(reader, PropertyParser.HierarchyParser(5));
+
+            IModel model =
+                Build.Property("STOCK-SECTION-N", "[ 28] Group item for stock-section-n.")
+                     .With(
+                         Build.Occurs("STOCK-SECTION OCCURS 10 INDEXED BY STOCK-SECTION-IDX",
+                                      "[ 28] Internal Stock Sections (Positional) DB")
+                              .WithDataType("PIC X(2)", "Implied")
+                    )
+                     .Model();
+
+            AssertParsedUsingXml(parser, model);
+        }
+
         [Test]
         public void ImpliedMultiLine11B()
         {
@@ -84,6 +129,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             AssertParsedUsingXml(parser, model);
         }
 
+        
 
         [Test]
         public void ClassCases()

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers.Lines;
 
@@ -36,7 +35,9 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                        Line.Multiple(
                            Line.And(
                                Line.StartsWithMarker(Prefix.Marker(level)),
-                               Line.Contains("PIC ")
+                               Line.Contains("PIC "),
+                               Line.DoesNotContain(" REDEFINES "),
+                               Line.DoesNotContain(" OCCURS ")
                                ),
                            Line.Optional(
                                Line.Repeat(Line.StartsWith(Prefix.Empty))

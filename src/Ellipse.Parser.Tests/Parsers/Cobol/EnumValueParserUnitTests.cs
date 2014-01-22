@@ -48,14 +48,21 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
         [Test]
-        public void MultiLine03()
+        public void MultiLine05()
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.MultiLine05);
             IDataParser parser = CreateDataParser(reader);
             AssertParsedUsingXml(parser, new CobolModel("EnumValue", "TARGT-NO-AUTOGEN VALUE 'N'", "No Autogenerate Interdistrict Account\nEntries"));
         }
 
-
+        [Test]
+        public void MultiLine07()
+        {
+            Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.MultiLine07);
+            IDataParser parser = CreateDataParser(reader);
+            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "ERROR VALUE '0001' THRU '9999' 'A000' THRU 'Z999'", "Error"));
+        }
+        
         [Test]
         public void MultiLine13()
         {

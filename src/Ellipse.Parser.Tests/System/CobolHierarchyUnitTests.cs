@@ -211,9 +211,11 @@ namespace Ellipse.DataDictionary.System
                                            Build.Redefines("W000-DATA-RT REDEFINES W000-DATA-GRP", "comment")
                                                 .With(
                                                     Build.Property("W000-REDEF-REC", "comment")
-                                                         .WithDataType(
-                                                             "W000-DATA PIC X(95) OCCURS 3 INDEXED BY W000-DATA-IDX",
+                                                         .With(Build.Occurs(
+                                                             "W000-DATA OCCURS 3 INDEXED BY W000-DATA-IDX",
                                                              "comment")
+                                                                    .With(Build.DataType("PIC X(95)", "Implied"))
+                                                        )
                                                )
                                       )
                              )

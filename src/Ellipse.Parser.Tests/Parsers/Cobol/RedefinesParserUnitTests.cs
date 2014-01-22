@@ -204,6 +204,12 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             AssertParsedUsingXml(parser, model);
         }
 
+        /// <summary>
+        ///              07  W000-DATA-RT    REDEFINES W000-DATA-GRP.    [  16] Work file data
+        ///                  09  W000-REDEF-REC.                         [  16] Work file data
+        ///                      11  W000-DATA PIC X(95) OCCURS 3        [  16] Ninety five bytes 0f work data
+        ///                                  INDEXED BY W000-DATA-IDX.
+        /// </summary>
         [Test]
         public void Level07Composite()
         {
@@ -211,13 +217,17 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             IDataParser parser = CreateDataParser(reader, RedefinesParser.HierarchyParser(4));
 
             IModel model =
-                Build.Redefines("W000-DATA-RT REDEFINES W000-DATA-GRP",
-                                "[ 16] Work file data")
+                Build.Redefines("W000-DATA-RT REDEFINES W000-DATA-GRP", "[ 16] Work file data")
                      .With(
                          Build.Property("W000-REDEF-REC", "[ 16] Work file data")
                               .With(
-                                  Build.DataType("W000-DATA PIC X(95) OCCURS 3 INDEXED BY W000-DATA-IDX",
-                                                 "[ 16] Ninety five bytes 0f work data"))
+                                  Build.Occurs("W000-DATA OCCURS 3 INDEXED BY W000-DATA-IDX",
+                                               "[ 16] Ninety five bytes 0f work data")
+                                       .With(
+                                           Build.DataType("PIC X(95)",
+                                                          "Implied")
+                                      )
+                             )
                     )
                      .Model();
             AssertParsedUsingXml(parser, model);

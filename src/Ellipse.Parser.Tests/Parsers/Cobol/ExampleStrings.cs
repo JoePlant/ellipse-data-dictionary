@@ -188,7 +188,7 @@
                 return new[]
                     {
                         SingleLine05, SingleLine09, SingleLine11,
-                        SingleLine13, SingleLine15, MultiLine05
+                        SingleLine13, SingleLine15, MultiLine05, MultiLine07
                     };
             }
 
@@ -211,6 +211,10 @@
             public const string MultiLine05 =
                 "        88  TARGT-NO-AUTOGEN    VALUE 'N'.                         No Autogenerate Interdistrict Account\n" +
                 "                                                                   Entries";
+
+            public const string MultiLine07 =
+                "            88  ERROR           VALUE '0001' THRU '9999'           Error\r\n" +
+                "                                'A000' THRU 'Z999'.";
         }
 
         public static class Redefines
@@ -304,6 +308,12 @@
                 "                09  EX-CNT-DATA OCCURS 4 INDEXED BY         [  11] Expedite Count Data\r\n" +
                 "                                EX-CNT-DATA-IDX.";
 
+            public const string ImpliedMultiLine05 =
+                "        05  ERROR-CODE          PIC X(4) OCCURS 10 INDEXED  [ 137] ERROR CODE                               DB\r\n" +
+                "                                BY ERROR-CODE-IDX.\r\n" +
+                "            88  ERROR           VALUE '0001' THRU '9999'           Error\r\n" +
+                "                                'A000' THRU 'Z999'.";
+
             public const string ImpliedMultiLine07 =
                 "           07  CURR-ACCUM-A    PIC X(1) OCCURS 10 INDEXED  [ 183] Current Period Accumulation Identifiers  DB\r\n" +
                 "                               BY CURR-ACC-A-IDX.";
@@ -312,6 +322,10 @@
                 "                     11  STOCK-SECTION PIC X(2) OCCURS 10    [  28] Internal Stock Sections (Positional)     DB\r\n" +
                 "                                INDEXED BY\r\n" +
                 "                                STOCK-SECTION-IDX.";
+
+            public const string PropertyWithImpliedMultiLine11 =
+                "                09  STOCK-SECTION-N.                        [  28] Group item for stock-section-n.\r\n"
+                + ImpliedMultiLine11;
 
             public const string ImpliedMultiLines11B =
                 "                     11  W000-DATA PIC X(95) OCCURS 3        [  16] Ninety five bytes 0f work data\r\n" +
