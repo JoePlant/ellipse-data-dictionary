@@ -18,7 +18,7 @@ namespace Ellipse.DataDictionary.Models
         {
             ModelXmlFormatter formatter = new ModelXmlFormatter(new CobolModel("Name", "Data"));
 
-            AssertXmlIsSame(formatter.Render(), "<Name data='Data' comment='' path='1' />");
+            AssertXmlIsSame(formatter.Render(), "<Name data='Data' path='1' />");
         }
 
         [Test]
@@ -28,6 +28,15 @@ namespace Ellipse.DataDictionary.Models
 
             AssertXmlIsSame(formatter.Render(), "<Name data='Data' comment='Comment' path='1' />");
         }
+
+        [Test]
+        public void DataTypeModel()
+        {
+            ModelXmlFormatter formatter = new ModelXmlFormatter(Models.DataTypeModel.Factory("DataType", "NAME-01 PIC X(1)", null));
+
+            AssertXmlIsSame(formatter.Render(), "<DataType name='NAME-01' data='X(1)' text='NAME-01 PIC X(1)' path='1' />");
+        }
+
 
         [Test]
         public void IgnoreModel()
@@ -51,7 +60,7 @@ namespace Ellipse.DataDictionary.Models
             IModel model = Build.Class("Class001").WithProperty("PROP001", "Comment").Model();
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
-            AssertXmlIsSame(formatter.Render(), "<Class data='Class001' comment='' path='1'>" +
+            AssertXmlIsSame(formatter.Render(), "<Class data='Class001'  path='1'>" +
                                                 "  <Property data='PROP001' comment='Comment' path='1.1'/>" +
                                                 "</Class>");
         }
@@ -62,7 +71,7 @@ namespace Ellipse.DataDictionary.Models
             IModel model = Build.Class("Class001").WithProperty("PROP001", "Comment").WithProperty("PROP002", "Comment").Model();
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
-            AssertXmlIsSame(formatter.Render(), "<Class data='Class001' comment='' path='1'>" +
+            AssertXmlIsSame(formatter.Render(), "<Class data='Class001' path='1'>" +
                                                 "  <Property data='PROP001' comment='Comment' path='1.1' />" +
                                                 "  <Property data='PROP002' comment='Comment' path='1.2' />" +
                                                 "</Class>");
@@ -77,7 +86,7 @@ namespace Ellipse.DataDictionary.Models
                                .Model();
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
-            AssertXmlIsSame(formatter.Render(), "<Class data='Class001' comment='' path='1'>" +
+            AssertXmlIsSame(formatter.Render(), "<Class data='Class001'  path='1'>" +
                                                 "  <Property data='PROP001' comment='Comment' path='1.1'>" +
                                                 "    <Property data='PROP002' comment='Comment' path='1.1.1' />" +
                                                 "  </Property>" +
@@ -96,7 +105,7 @@ namespace Ellipse.DataDictionary.Models
                 ).Model();
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
-            const string expected = "<Class data='Class001' comment='' path='1'>" +
+            const string expected = "<Class data='Class001' path='1'>" +
                                     "  <Property data='PROP00A' comment='Comment' path='1.1'>" +
                                     "    <Property data='PROP0A1' comment='Comment' path='1.1.1' />" +
                                     "    <Property data='PROP0A2' comment='Comment' path='1.1.2' />" +

@@ -24,11 +24,13 @@ namespace Ellipse.DataDictionary.Models
 
         public override IDictionary<string, string> GetModelParts()
         {
-            return new Dictionary<string, string>
-                {
-                    {"data", Data},
-                    {"comment", Comment}
-                };
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary["data"] = Data;
+            if (!string.IsNullOrEmpty(Comment))
+            {
+                dictionary["comment"] = Comment;
+            }
+            return dictionary;
         }
     }
 }
