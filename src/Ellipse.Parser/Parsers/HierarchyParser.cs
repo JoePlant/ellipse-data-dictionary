@@ -36,6 +36,17 @@ namespace Ellipse.DataDictionary.Parsers
                 childModel = childrenParser.Parse(reader);
             }
 
+            HierarchyModel currentHierarchy = currentModel as HierarchyModel;
+            if (currentHierarchy != null && children.Count > 0)
+            {
+                if (currentHierarchy.ChildModels.Length == 1)
+                {
+                    return new HierarchyModel(currentHierarchy.Model, new IModel[]
+                        {
+                            new HierarchyModel(currentHierarchy.ChildModels[0], children.ToArray()) 
+                        });
+                }
+            }
             return children.Count == 0 ? currentModel : new HierarchyModel(currentModel, children.ToArray());
         }
     }

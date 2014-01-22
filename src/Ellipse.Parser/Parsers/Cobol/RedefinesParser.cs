@@ -119,7 +119,8 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                             PropertyParser.HierarchyParser(level + 1),
                             DataTypeParser.HierarchyParser(level + 1),
                             RedefinesParser.HierarchyParser(level + 1),
-                            OccursParser.HierarchyParser(level + 1)
+                            OccursParser.HierarchyParser(level + 1),
+                            EnumValueParser.HierarchyParser(level + 1)
                         });
                         
                     ParserDictionary.Add(level, hierarchyParser);

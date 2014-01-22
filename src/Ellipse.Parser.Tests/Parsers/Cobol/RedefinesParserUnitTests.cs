@@ -182,6 +182,27 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             AssertParsedUsingXml(parser, model);
         }
 
+        /// <test>
+        ///         05  CONTROL-REC-IND     REDEFINES CONTROL-REC PIC   [   5] Control Record Indicator
+        ///                                 X(6).            
+        ///             88  DC0001-REC-IND  VALUE 'DC0001'.                    Indicator to use DC0001-REC definition
+        /// </test>
+        [Test]
+        public void Level05CompositeImpliedPlusValue()
+        {
+            Reader reader = Reader.CreateStringReader(ExampleStrings.Redefines.Level05CompositeImpliedPlusValue);
+            IDataParser parser = CreateDataParser(reader, RedefinesParser.HierarchyParser(3));
+            IModel model =
+                Build.Redefines("CONTROL-REC-IND REDEFINES CONTROL-REC", "[ 5] Control Record Indicator")
+                     .With(
+                         Build.DataType("PIC X(6)", "Implied")
+                              .With(
+                                  Build.EnumValue("DC0001-REC-IND VALUE 'DC0001'",
+                                                  "Indicator to use DC0001-REC definition")
+                             ))
+                     .Model();
+            AssertParsedUsingXml(parser, model);
+        }
 
         [Test]
         public void Level07Composite()

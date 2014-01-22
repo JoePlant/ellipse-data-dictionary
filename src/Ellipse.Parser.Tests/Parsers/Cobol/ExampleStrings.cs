@@ -275,6 +275,11 @@
             public const string Level05CompositeImpliedB =
                 "        05  LAST-WO-NO-9        REDEFINES LAST-WO-NO PIC    [  59] Last work order number\r\n" +
                 "                                9(8).";
+
+            public const string Level05CompositeImpliedPlusValue =
+                "        05  CONTROL-REC-IND     REDEFINES CONTROL-REC PIC   [   5] Control Record Indicator\r\n" +
+                "                                X(6).\r\n" +
+                "            88  DC0001-REC-IND  VALUE 'DC0001'.                    Indicator to use DC0001-REC definition";
         }
 
         public static class Occurs
