@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers.Lines;
 
 namespace Ellipse.DataDictionary.Parsers.Cobol
@@ -57,10 +58,11 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                            .Trim(),
                        new[]
                            {
-                              OccursAndDataImpliedParser(),
-                               DataTypeParser.ImpliedParser(),
-                               OccursParser.ImpliedParser(),
-                           }
+                               OccursAndDataImpliedParser(),
+                               DataTypeParser.ImpliedParser(CobolModel.Factory),
+                               OccursParser.ImpliedParser(CobolModel.Factory),
+                           },
+                       CobolModel.Factory
                     )
             {
             }
@@ -88,18 +90,21 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
 
         private class OccursAndDataTypeImpliedParser : ImpliedModelParser
         {
-            public OccursAndDataTypeImpliedParser()
+            public OccursAndDataTypeImpliedParser(ModelFactoryDelegate modelFactory)
                 : base("Occurs",
                        Line.And(
                            Line.Contains(" PIC "),
                            Line.Contains(" OCCURS ")
                            ),
                        Data.SplitOn(" ").Find("PIC").Ignore(0).AndFollowing().Join(" "),
-                       Data.SplitOn(" ").Find("PIC").Select(0).AndFollowing().Join(" "))
+                       Data.SplitOn(" ").Find("PIC").Select(0).AndFollowing().Join(" "),
+                       modelFactory,
+                       DataTypeModel.Factory
+                    )
             {
             }
         }
-        
+
         public static IModelParser HierarchyParser(int level)
         {
             if (LevelDictionary.ContainsKey(level))
@@ -128,8 +133,8 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         public static IImpliedModelParser OccursAndDataImpliedParser()
         {
             return new HierarchicalImpliedModelParser(
-                new OccursAndDataTypeImpliedParser(),
-                DataTypeParser.ImpliedParser()
+                new OccursAndDataTypeImpliedParser(CobolModel.Factory),
+                DataTypeParser.ImpliedParser(CobolModel.Factory)
                 );
         }
     }

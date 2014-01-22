@@ -154,7 +154,7 @@ namespace Ellipse.DataDictionary
             Assert.That(hierarchyModel, Is.Not.Null, "Class Model not found: {0}", dataParser.Results[0]);
             if (hierarchyModel != null)
             {
-                CobolModel model = (CobolModel)hierarchyModel.Model;
+                StringModel model = (StringModel)hierarchyModel.Model;
                 Assert.That(file.Name, Is.StringContaining(model.Data), "Class name doesn't match the filename");
                 Assert.That(model.Data, Is.EqualTo(methodName), "Class name doesn't match the method name");
             }

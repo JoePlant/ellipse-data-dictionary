@@ -1,4 +1,5 @@
-﻿using Ellipse.DataDictionary.Parsers.Lines;
+﻿using Ellipse.DataDictionary.Models;
+using Ellipse.DataDictionary.Parsers.Lines;
 
 namespace Ellipse.DataDictionary.Parsers.Cobol
 {
@@ -13,7 +14,11 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                        .IgnoreAfter(".").ExcludeMarker()
                        .Trim(),
                    Comment
-                       .IgnoreBefore(".").ExcludeMarker()
+                       .IgnoreBefore(".").ExcludeMarker(),
+                   new IImpliedModelParser[]
+                       {
+                       },
+                   CobolModel.Factory
                 )
         {
         }

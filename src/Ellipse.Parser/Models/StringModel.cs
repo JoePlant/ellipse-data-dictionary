@@ -35,5 +35,10 @@ namespace Ellipse.DataDictionary.Models
         {
             return string.Format("[{0}] {1}", Name, Data);
         }
+
+        public static IModel Factory(string name, string data, string comment)
+        {
+            return new StringModel(name, data);
+        }
     }
 }

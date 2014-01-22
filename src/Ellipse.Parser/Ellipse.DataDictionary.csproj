@@ -52,6 +52,7 @@
     <Compile Include="Models\CobolModel.cs" />
     <Compile Include="Models\DataTypeModel.cs" />
     <Compile Include="Models\IModelFormatter.cs" />
+    <Compile Include="Models\ModelFactoryDelegate.cs" />
     <Compile Include="Models\ModelXmlFormatter.cs" />
     <Compile Include="Models\HierarchyModel.cs" />
     <Compile Include="Models\IModel.cs" />

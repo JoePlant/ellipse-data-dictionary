@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers.Lines;
 
 namespace Ellipse.DataDictionary.Parsers.Cobol
@@ -15,7 +16,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                 {08, Prefix.Level1588},
             };
 
-        private static readonly Dictionary<int, IModelParser> ParserDictionary = new Dictionary<int, IModelParser>();  
+        private static readonly Dictionary<int, IModelParser> ParserDictionary = new Dictionary<int, IModelParser>();
 
         private class LevelParser : SingleLineParser
         {
@@ -39,7 +40,13 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                            .Trim(),
                        Comment
                            .IgnoreBefore(60)
-                           .Trim())
+                           .Trim(),
+                       new IImpliedModelParser[]
+                           {
+
+                           },
+                       CobolModel.Factory
+                    )
             {
             }
         }

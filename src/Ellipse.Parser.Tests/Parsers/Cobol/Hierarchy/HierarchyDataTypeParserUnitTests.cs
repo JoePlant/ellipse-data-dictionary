@@ -14,7 +14,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
             IDataParser parser = CreateDataParser(reader, DataTypeParser.HierarchyParser(2));
             AssertParsedUsingXml(parser,
                          new HierarchyModel(
-                             new CobolModel("DataType", "TAX-PERIOD-CLOSED PIC X(1)", "[ 27] Tax Period Closed DB")
+                             new DataTypeModel("DataType", "TAX-PERIOD-CLOSED PIC X(1)", "[ 27] Tax Period Closed DB")
                              ));
         }
 
@@ -24,7 +24,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
             Reader reader = Reader.CreateStringReader(ExampleStrings.DataType.SingleLine05);
             IDataParser parser = CreateDataParser(reader, DataTypeParser.HierarchyParser(3));
             AssertParsedUsingXml(parser,
-             new HierarchyModel(new CobolModel("DataType", "FULL-PERIOD PIC X(6)", "[ 5] Full Period CCYYPP DB,KEY:0")));
+             new HierarchyModel(new DataTypeModel("DataType", "FULL-PERIOD PIC X(6)", "[ 5] Full Period CCYYPP DB,KEY:0")));
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
             Reader reader = Reader.CreateStringReader(ExampleStrings.DataType.SingleLine09);
             IDataParser parser = CreateDataParser(reader, DataTypeParser.HierarchyParser(5));
             AssertParsedUsingXml(parser,
-             new HierarchyModel(new CobolModel("DataType", "AVAIL-SOH PIC S9(9) COMP-3", "[1851] Available SOH")));
+             new HierarchyModel(new DataTypeModel("DataType", "AVAIL-SOH PIC S9(9) COMP-3", "[1851] Available SOH")));
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
             Reader reader = Reader.CreateStringReader(ExampleStrings.DataType.SingleLine11);
             IDataParser parser = CreateDataParser(reader, DataTypeParser.HierarchyParser(6));
             AssertParsedUsingXml(parser,
-             new HierarchyModel(new CobolModel("DataType", "SUBLEDGER-TYPE PIC X(2)", "[ 30] Subledger Account Type OPTIONAL TABLE ('SA')")));
+             new HierarchyModel(new DataTypeModel("DataType", "SUBLEDGER-TYPE PIC X(2)", "[ 30] Subledger Account Type OPTIONAL TABLE ('SA')")));
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
             Reader reader = Reader.CreateStringReader(ExampleStrings.DataType.SingleLine13);
             IDataParser parser = CreateDataParser(reader, DataTypeParser.HierarchyParser(7));
             AssertParsedUsingXml(parser,
-             new HierarchyModel(new CobolModel("DataType", "MSF061-MSB566-RUN-1A PIC X(4)", "[ 5] MSB566 Run Number NUMERIC RANGE (11)")));
+             new HierarchyModel(new DataTypeModel("DataType", "MSF061-MSB566-RUN-1A PIC X(4)", "[ 5] MSB566 Run Number NUMERIC RANGE (11)")));
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
             Reader reader = Reader.CreateStringReader(ExampleStrings.DataType.SingleLine15);
             IDataParser parser = CreateDataParser(reader, DataTypeParser.HierarchyParser(8));
             AssertParsedUsingXml(parser,
-             new HierarchyModel(new CobolModel("DataType", "MSF062-REQ-NO-RC PIC X(6)", "[ 38] Requisition number")));
+             new HierarchyModel(new DataTypeModel("DataType", "MSF062-REQ-NO-RC PIC X(6)", "[ 38] Requisition number")));
         }
 
         [Test]
@@ -69,7 +69,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
             Reader reader = Reader.CreateStringReader(ExampleStrings.DataType.MultiLines05);
             IDataParser parser = CreateDataParser(reader, DataTypeParser.HierarchyParser(3));
             AssertParsedUsingXml(parser,
-             new HierarchyModel(new CobolModel("DataType", "DSTRCT-CODE PIC X(4)", "[ 1] District Code MANDATORY VALUE\n(DSTRCT-CODE) ERROR\n(6534) ACTIVE\nDB,KEY:0")));
+             new HierarchyModel(new DataTypeModel("DataType", "DSTRCT-CODE PIC X(4)", "[ 1] District Code MANDATORY VALUE\n(DSTRCT-CODE) ERROR\n(6534) ACTIVE\nDB,KEY:0")));
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol.Hierarchy
             Reader reader = Reader.CreateStringReader(ExampleStrings.DataType.MultiLines31);
             IDataParser parser = CreateDataParser(reader, DataTypeParser.HierarchyParser(16));
             AssertParsedUsingXml(parser,
-             new HierarchyModel(new CobolModel("DataType", "MSF062-DATA-2-062-PB PIC X(24)", "[ 33] Reference data 2")));
+             new HierarchyModel(new DataTypeModel("DataType", "MSF062-DATA-2-062-PB PIC X(24)", "[ 33] Reference data 2")));
         }
 
         [Test]

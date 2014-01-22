@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers.Lines;
 
 namespace Ellipse.DataDictionary.Parsers.Cobol
@@ -53,18 +55,25 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                        Comment
                            .IgnoreBefore(59)
                            .RemoveSpaces()
-                           .Trim())
+                           .Trim(),
+                       new IImpliedModelParser[]
+                           {
+                           },
+                       DataTypeModel.Factory)
             {
             }
         }
 
         private class ImpliedDataTypeParser : ImpliedModelParser
         {
-            public ImpliedDataTypeParser()
+            public ImpliedDataTypeParser(ModelFactoryDelegate modelFactory)
                 : base("DataType",
                        Line.Contains("PIC "),
                        Data.SplitOn(" ").Find("PIC").Ignore(0, +1).Join(" "),
-                       Data.SplitOn(" ").Find("PIC").Select(0, +1).Join(" "))
+                       Data.SplitOn(" ").Find("PIC").Select(0, +1).Join(" "),
+                       modelFactory,
+                       DataTypeModel.Factory
+                    )
             {
             }
         }
@@ -120,9 +129,9 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             return new EmptyParser();
         }
 
-        public static IImpliedModelParser ImpliedParser()
+        public static IImpliedModelParser ImpliedParser(ModelFactoryDelegate modelFactory)
         {
-            return new ImpliedDataTypeParser();
+            return new ImpliedDataTypeParser(modelFactory);
         }
     }
 }

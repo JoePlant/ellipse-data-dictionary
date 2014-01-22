@@ -14,7 +14,9 @@ namespace Ellipse.DataDictionary.Parsers
                 "Test", 
                 Line.Contains(" TEST "), 
                 Data.SplitOn(" ").Find("TEST").Ignore(0).AndFollowing().Join(" "),
-                Data.SplitOn(" ").Find("TEST").Select(0).AndFollowing().Join(" ")
+                Data.SplitOn(" ").Find("TEST").Select(0).AndFollowing().Join(" "),
+                CobolModel.Factory,
+                CobolModel.Factory
                 )
             {
             }
@@ -27,7 +29,9 @@ namespace Ellipse.DataDictionary.Parsers
                 "Data",
                 Line.Contains("DATA"),
                 Data.SplitOn(" ").Find("DATA").Ignore(0, 1).Join(" "),
-                Data.SplitOn(" ").Find("DATA").Select(1).Join(" ")
+                Data.SplitOn(" ").Find("DATA").Select(1).Join(" "),
+                CobolModel.Factory,
+                CobolModel.Factory
                 )
             {
             }

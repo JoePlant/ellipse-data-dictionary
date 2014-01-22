@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers.Lines;
 
 namespace Ellipse.DataDictionary.Parsers.Cobol
@@ -56,8 +57,9 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                            .Trim(),
                        new[]
                            {
-                               DataTypeParser.ImpliedParser()
-                           }
+                               DataTypeParser.ImpliedParser(CobolModel.Factory)
+                           },
+                        CobolModel.Factory
                     )
             {
             }
@@ -65,11 +67,14 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
 
         private class ImpliedOccursParser : ImpliedModelParser
         {
-            public ImpliedOccursParser()
+            public ImpliedOccursParser(ModelFactoryDelegate modelFactory)
                 : base("Occurs",
                        Line.Contains(" OCCURS "),
                        Data.SplitOn(" ").Find("OCCURS").Ignore(0).AndFollowing().Join(" "),
-                       Data.SplitOn(" ").Find("OCCURS").Select(0).AndFollowing().Join(" "))
+                       Data.SplitOn(" ").Find("OCCURS").Select(0).AndFollowing().Join(" "),
+                       modelFactory,
+                       CobolModel.Factory
+                    )
             {
             }
         }
@@ -130,9 +135,9 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         }
 
 
-        public static IImpliedModelParser ImpliedParser()
+        public static IImpliedModelParser ImpliedParser(ModelFactoryDelegate modelFactory)
         {
-            return new ImpliedOccursParser();
+            return new ImpliedOccursParser(modelFactory);
         }
     }
 }

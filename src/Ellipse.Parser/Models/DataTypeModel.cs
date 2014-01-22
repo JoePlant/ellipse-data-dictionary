@@ -10,7 +10,7 @@ namespace Ellipse.DataDictionary.Models
         {
         }
 
-        public static CobolModel Factory(string name, string data, string comment)
+        public new static CobolModel Factory(string name, string data, string comment)
         {
             return new DataTypeModel(name, data, comment);
         }

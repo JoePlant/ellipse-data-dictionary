@@ -9,7 +9,7 @@ namespace Ellipse.DataDictionary.Parsers
     {
         private class TestParser : ImpliedModelParser
         {
-            public TestParser() : base("Test", Line.Contains("TEST "), Data.IgnoreAfter("TEST ").ExcludeMarker().Trim(), Data.IgnoreBefore("TEST ").IncludeMarker().Trim())
+            public TestParser() : base("Test", Line.Contains("TEST "), Data.IgnoreAfter("TEST ").ExcludeMarker().Trim(), Data.IgnoreBefore("TEST ").IncludeMarker().Trim(), CobolModel.Factory, CobolModel.Factory)
             {
             }
         }

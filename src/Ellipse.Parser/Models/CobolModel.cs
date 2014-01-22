@@ -32,5 +32,10 @@ namespace Ellipse.DataDictionary.Models
             }
             return dictionary;
         }
+
+        public new static IModel Factory(string name, string data, string comment)
+        {
+            return new CobolModel(name, data, comment);
+        }
     }
 }

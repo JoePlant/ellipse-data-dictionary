@@ -1,4 +1,5 @@
-﻿using Ellipse.DataDictionary.Models;
+﻿using System;
+using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers.Lines;
 using Ellipse.DataDictionary.Readers;
 
@@ -10,13 +11,18 @@ namespace Ellipse.DataDictionary.Parsers
         private readonly ILineMatcher lineMatcher;
         private readonly ILineParser modelParser;
         private readonly ILineParser impliedParser;
+        private readonly ModelFactoryDelegate modelFactory;
+        private readonly ModelFactoryDelegate impliedFactory;
 
-        protected ImpliedModelParser(string name, ILineMatcher lineMatcher, ILineParser modelParser, ILineParser impliedParser)
+        protected ImpliedModelParser(string name, ILineMatcher lineMatcher, ILineParser modelParser, ILineParser impliedParser,
+            ModelFactoryDelegate modelFactory, ModelFactoryDelegate impliedFactory)
         {
             this.name = name;
             this.lineMatcher = lineMatcher;
             this.modelParser = modelParser;
             this.impliedParser = impliedParser;
+            this.modelFactory = modelFactory;
+            this.impliedFactory = impliedFactory;
         }
 
         public bool Matches(IModel model)
@@ -51,10 +57,10 @@ namespace Ellipse.DataDictionary.Parsers
                     string impliedData = impliedParser.Parse(0, data);
                     if (!string.IsNullOrEmpty(impliedData))
                     {
-                        return new HierarchyModel(new CobolModel(cobolModel.Name, modelData, cobolModel.Comment),
-                                                  new IModel[]
+                        return new HierarchyModel(modelFactory(cobolModel.Name, modelData, cobolModel.Comment),
+                                                  new []
                                                       {
-                                                          new CobolModel(name, impliedData, "Implied")
+                                                          impliedFactory(name, impliedData, "Implied")
                                                       });
                     }
                 }

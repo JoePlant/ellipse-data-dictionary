@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers.Lines;
@@ -13,24 +14,26 @@ namespace Ellipse.DataDictionary.Parsers
         private readonly ILineParser dataParser;
         private readonly ILineParser commentParser;
         private readonly IImpliedModelParser[] impliedModelParsers;
+        private readonly ModelFactoryDelegate modelFactory;
 
         protected SingleLineParser(string name, ILineMatcher lineMatcher, ILineParser dataParser)
-            : this(name, lineMatcher, dataParser, Comment.IgnoreAll(), null)
+            : this(name, lineMatcher, dataParser, Comment.IgnoreAll(), null, StringModel.Factory)
         {
         }
 
         protected SingleLineParser(string name, ILineMatcher lineMatcher, ILineParser dataParser, ILineParser commentParser)
-            : this(name, lineMatcher, dataParser, commentParser, null)
+            : this(name, lineMatcher, dataParser, commentParser, null, StringModel.Factory)
         {
         }
 
-        protected SingleLineParser(string name, ILineMatcher lineMatcher, ILineParser dataParser, ILineParser commentParser, IImpliedModelParser[] impliedModelParsers)
+        protected SingleLineParser(string name, ILineMatcher lineMatcher, ILineParser dataParser, ILineParser commentParser, IImpliedModelParser[] impliedModelParsers, ModelFactoryDelegate modelFactory)
         {
             this.name = name;
             this.lineMatcher = lineMatcher;
             this.dataParser = dataParser;
             this.commentParser = commentParser;
             this.impliedModelParsers = impliedModelParsers;
+            this.modelFactory = modelFactory;
         }
 
         public bool Matches(IReader reader)
@@ -64,9 +67,7 @@ namespace Ellipse.DataDictionary.Parsers
                     lineNo++;
                 }
 
-                IModel model = comment.Count > 0
-                                   ? new CobolModel(name, string.Join(" ", data), string.Join("\n", comment))
-                                   : new CobolModel(name, string.Join(" ", data));
+                IModel model = modelFactory(name, string.Join(" ", data), string.Join("\n", comment));
 
                 if (impliedModelParsers != null)
                 {

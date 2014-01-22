@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers.Lines;
 
 namespace Ellipse.DataDictionary.Parsers.Cobol
@@ -56,7 +57,12 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                        Comment
                            .IgnoreBefore(59)
                            .RemoveSpaces()
-                           .Trim()
+                           .Trim(),
+                       new IImpliedModelParser[]
+                           {
+
+                           },
+                       CobolModel.Factory
                     )
             {
             }

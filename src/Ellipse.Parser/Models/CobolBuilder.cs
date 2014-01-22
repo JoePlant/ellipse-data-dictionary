@@ -24,7 +24,7 @@ namespace Ellipse.DataDictionary.Models
 
         public static IBuilder DataType(string name, string comment = null)
         {
-            return new ModelBuilder(new CobolModel("DataType", name, comment));
+            return new ModelBuilder(new DataTypeModel("DataType", name, comment));
         }
 
         public static IBuilder EnumValue(string name, string comment = null)
