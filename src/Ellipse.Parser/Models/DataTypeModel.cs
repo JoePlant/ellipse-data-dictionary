@@ -33,7 +33,7 @@ namespace Ellipse.DataDictionary.Models
                     {
                         if (parts[0] == "PIC")
                         {
-                            dictionary["data"] = parts[1];
+                            dictionary["type"] = parts[1];
                         }
                         else
                         {
@@ -50,7 +50,7 @@ namespace Ellipse.DataDictionary.Models
                             {
                                 dataParts.Add(parts[i]);
                             }
-                            dictionary["data"] = string.Join(" ", dataParts);
+                            dictionary["type"] = string.Join(" ", dataParts);
                         }
                         else
                         {

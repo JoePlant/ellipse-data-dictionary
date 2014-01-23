@@ -34,7 +34,7 @@ namespace Ellipse.DataDictionary.Models
         {
             ModelXmlFormatter formatter = new ModelXmlFormatter(Models.DataTypeModel.Factory("DataType", "NAME-01 PIC X(1)", null));
 
-            AssertXmlIsSame(formatter.Render(), "<DataType name='NAME-01' data='X(1)' text='NAME-01 PIC X(1)' path='1' />");
+            AssertXmlIsSame(formatter.Render(), "<DataType name='NAME-01' type='X(1)' text='NAME-01 PIC X(1)' path='1' />");
         }
 
 
