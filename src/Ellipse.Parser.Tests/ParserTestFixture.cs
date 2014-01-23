@@ -183,9 +183,9 @@ namespace Ellipse.DataDictionary
             dataParser.Parse();
 
             Assert.That(dataParser.Results, Is.Not.Empty, "Results should not be empty");
-            Assert.That(dataParser.Results[0], Is.TypeOf<CobolModel>(), "Expected a Cobol Model");
+            Assert.That(dataParser.Results[0], Is.TypeOf<ClassModel>(), "Expected a Class Model");
 
-            CobolModel classModel = dataParser.Results[0] as CobolModel;
+            ClassModel classModel = dataParser.Results[0] as ClassModel;
             Assert.That(classModel, Is.Not.Null, "Class Model not found: {0}", dataParser.Results[0]);
             if (classModel != null)
             {

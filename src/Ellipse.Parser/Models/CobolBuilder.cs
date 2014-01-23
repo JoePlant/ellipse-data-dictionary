@@ -35,7 +35,7 @@ namespace Ellipse.DataDictionary.Models
 
         public static IBuilder Class(string name, string comment = null)
         {
-            return new ModelBuilder(new CobolModel("Class", name, comment));
+            return new ModelBuilder(ClassModel.Factory("Class", name, comment));
         }
 
         public static IBuilder Redefines(string name, string comment = null)

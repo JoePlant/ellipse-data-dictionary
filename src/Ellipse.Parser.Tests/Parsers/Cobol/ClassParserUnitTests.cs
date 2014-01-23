@@ -14,7 +14,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
             
             IDataParser parser = CreateDataParser(reader);
 
-            AssertParsedUsingXml(parser, new CobolModel("Class", "MSF001-RECORD"));
+            AssertParsedUsingXml(parser, ClassModel.Factory("Class", "MSF001-RECORD", null));
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
 
             IDataParser parser = CreateDataParser(reader);
 
-            AssertParsedUsingXml(parser, new CobolModel("Class", "MSF001-RECORD"));
+            AssertParsedUsingXml(parser, ClassModel.Factory("Class", "MSF001-RECORD", null));
         }
 
         [Test]

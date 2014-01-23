@@ -18,7 +18,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                    new IImpliedModelParser[]
                        {
                        },
-                   CobolModel.Factory
+                   ClassModel.Factory
                 )
         {
         }
