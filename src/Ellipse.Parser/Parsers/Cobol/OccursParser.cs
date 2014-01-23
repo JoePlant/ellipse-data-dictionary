@@ -57,9 +57,9 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                            .Trim(),
                        new[]
                            {
-                               DataTypeParser.ImpliedParser(CobolModel.Factory)
+                               DataTypeParser.ImpliedParser(OccursModel.Factory)
                            },
-                        CobolModel.Factory
+                        OccursModel.Factory
                     )
             {
             }
@@ -73,7 +73,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                        Data.SplitOn(" ").Find("OCCURS").Ignore(0).AndFollowing().Join(" "),
                        Data.SplitOn(" ").Find("OCCURS").Select(0).AndFollowing().Join(" "),
                        modelFactory,
-                       CobolModel.Factory
+                       OccursModel.Factory
                     )
             {
             }

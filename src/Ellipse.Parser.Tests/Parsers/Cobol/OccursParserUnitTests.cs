@@ -12,9 +12,9 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Occurs.MultiLine05);
             
-            IDataParser parser = CreateDataParser(reader);
+            IDataParser parser = CreateDataParser(reader); 
 
-            AssertParsedUsingXml(parser, new CobolModel("Occurs", "ITEM-DDS135 OCCURS 60 INDEXED BY DDS135-1-IDX", "[ 86] Stock Item"));
+            AssertParsedUsingXml(parser, OccursModel.Factory("Occurs", "ITEM-DDS135 OCCURS 60 INDEXED BY DDS135-1-IDX", "[ 86] Stock Item"));
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
 
             IDataParser parser = CreateDataParser(reader);
 
-            AssertParsedUsingXml(parser, new CobolModel("Occurs", "LO-LEVELS OCCURS 5 INDEXED BY LO-LEVELS-IDX", "[ 179] Geographical location levels data"));
+            AssertParsedUsingXml(parser, OccursModel.Factory("Occurs", "LO-LEVELS OCCURS 5 INDEXED BY LO-LEVELS-IDX", "[ 179] Geographical location levels data"));
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
 
             IDataParser parser = CreateDataParser(reader);
 
-            AssertParsedUsingXml(parser, new CobolModel("Occurs", "EX-CNT-DATA OCCURS 4 INDEXED BY EX-CNT-DATA-IDX", "[ 11] Expedite Count Data"));
+            AssertParsedUsingXml(parser, OccursModel.Factory("Occurs", "EX-CNT-DATA OCCURS 4 INDEXED BY EX-CNT-DATA-IDX", "[ 11] Expedite Count Data"));
         }
 
         [Test]

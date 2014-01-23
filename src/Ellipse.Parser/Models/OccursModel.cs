@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace Ellipse.DataDictionary.Models
 {
-    public class DataTypeModel : CobolModel
+    public class OccursModel : CobolModel
     {
-        public DataTypeModel(string name, string data, string comment)
+        public OccursModel(string name, string data, string comment)
             : base(name, data, comment)
         {
         }
 
         public new static IModel Factory(string name, string data, string comment)
         {
-            return new DataTypeModel(name, data, comment);
+            return new OccursModel(name, data, comment);
         }
 
         public override IDictionary<string, string> GetModelParts()
@@ -21,19 +21,15 @@ namespace Ellipse.DataDictionary.Models
 
             IDictionary<string, string> dictionary = new Dictionary<string, string>();
 
-            dictionary["name"] = "{implied}";
-            List<string> dataParts = new List<string>();
             switch (parts.Length)
             {
-                case 1:
+                case 6:
                     {
-                        return base.GetModelParts();
-                    }
-                case 2:
-                    {
-                        if (parts[0] == "PIC")
+                        if (parts[1] == "OCCURS")
                         {
-                            dictionary["data"] = parts[1];
+                            dictionary["name"] = parts[0];
+                            dictionary["occurs"] = parts[2];
+                            dictionary["indexed-by"] = parts[5];
                         }
                         else
                         {
@@ -43,20 +39,7 @@ namespace Ellipse.DataDictionary.Models
                     }
                 default:
                     {
-                        if (parts[1] == "PIC")
-                        {
-                            dictionary["name"] = parts[0];
-                            for (int i = 2; i < parts.Length; i++)
-                            {
-                                dataParts.Add(parts[i]);
-                            }
-                            dictionary["data"] = string.Join(" ", dataParts);
-                        }
-                        else
-                        {
-                            return base.GetModelParts();
-                        }
-                        break;
+                        return base.GetModelParts();
                     }
             }
 

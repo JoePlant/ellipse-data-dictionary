@@ -45,7 +45,7 @@ namespace Ellipse.DataDictionary.Models
 
         public static IBuilder Occurs(string name, string comment = null)
         {
-            return new ModelBuilder(new CobolModel("Occurs", name, comment));
+            return new ModelBuilder(OccursModel.Factory("Occurs", name, comment));
         }
 
         private class ModelBuilder : IBuilder

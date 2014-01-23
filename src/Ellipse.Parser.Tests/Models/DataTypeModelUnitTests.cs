@@ -10,7 +10,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void DataWithNoSpace()
         {
-            CobolModel model = DataTypeModel.Factory("DataType", "PIC", null);
+            IModel model = DataTypeModel.Factory("DataType", "PIC", null);
             IDictionary<string, string> dictionary = model.GetModelParts();
             Assert.That(dictionary.ContainsKey("data"));
             Assert.That(dictionary.Keys.Count, Is.EqualTo(1));
@@ -19,7 +19,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void Name_PIC_X1()
         {
-            CobolModel model = DataTypeModel.Factory("DataType", "NAME PIC X(1)", null);
+            IModel model = DataTypeModel.Factory("DataType", "NAME PIC X(1)", null);
             IDictionary<string, string> dictionary = model.GetModelParts();
             Assert.That(dictionary.ContainsKey("name"));
             Assert.That(dictionary.ContainsKey("data"));
@@ -34,7 +34,7 @@ namespace Ellipse.DataDictionary.Models
         [Test]
         public void Implied_PIC_X1()
         {
-            CobolModel model = DataTypeModel.Factory("DataType", "PIC X(1)", null);
+            IModel model = DataTypeModel.Factory("DataType", "PIC X(1)", null);
             IDictionary<string, string> dictionary = model.GetModelParts();
             Assert.That(dictionary.ContainsKey("name"));
             Assert.That(dictionary.ContainsKey("data"));
