@@ -13,7 +13,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine03);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "KEY-004", "[ 1] key of MSF004 FK:0"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "KEY-004", "[ 1] key of MSF004 FK:0"));
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine03.Substring(1));
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "KEY-004", "[ 1] key of MSF004 FK:0"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "KEY-004", "[ 1] key of MSF004 FK:0"));
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.MultiLine03);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "END-DATE", "[ 11] Ending date DATE\nDB"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "END-DATE", "[ 11] Ending date DATE\nDB"));
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.MultiLine05);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "CONTROL-ID", "[ 29] ID's Subledger,MIMS Sys & InterComp Ctl MANDATORY\nDB,KEY:0"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "CONTROL-ID", "[ 29] ID's Subledger,MIMS Sys & InterComp Ctl MANDATORY\nDB,KEY:0"));
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine07);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "CONTROL-NUMBER", "[ 30] No Identifying MIMS System Ctl Account"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "CONTROL-NUMBER", "[ 30] No Identifying MIMS System Ctl Account"));
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.MultiLine09);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "INT-DSTRCT", "[ 30] InterDist Dist Code Ident. Target Dist MANDATORY VALUE\n(DSTRCT-CODE) ERROR\n(6534) ACTIVE"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "INT-DSTRCT", "[ 30] InterDist Dist Code Ident. Target Dist MANDATORY VALUE\n(DSTRCT-CODE) ERROR\n(6534) ACTIVE"));
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine11);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "MSF061-DATA-1-061-1A", "[ 5] Reference Data 1a"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "MSF061-DATA-1-061-1A", "[ 5] Reference Data 1a"));
         }
 
         [Test]
@@ -69,7 +69,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine13);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "MSF062-CONTRACT-NO-RC", "[ 38] Contract Number"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "MSF062-CONTRACT-NO-RC", "[ 38] Contract Number"));
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine15);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "MSF062-ACCOUNT-CODE-NA", "[ 33] Account Code number ACCOUNT-CODE"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "MSF062-ACCOUNT-CODE-NA", "[ 33] Account Code number ACCOUNT-CODE"));
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine17);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "MSF062-DATA-2-062-PA", "[ 33] Reference data 2"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "MSF062-DATA-2-062-PA", "[ 33] Reference data 2"));
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine19);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "MSF062-TOP-PAR-PA-PB", "[ 33] Parent Account Code"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "MSF062-TOP-PAR-PA-PB", "[ 33] Parent Account Code"));
         }
 
         [Test]
@@ -101,7 +101,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine21);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "MSF062-DATA-2-062-WA", "[ 33] Reference data 2"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "MSF062-DATA-2-062-WA", "[ 33] Reference data 2"));
         }
 
         [Test]
@@ -109,7 +109,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine23);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "MSF062-WLD-ACCT-WA-WB", "[ 33] Account Code number ACCOUNT-CODE"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "MSF062-WLD-ACCT-WA-WB", "[ 33] Account Code number ACCOUNT-CODE"));
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine25);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "MSF062-DATA-2-062-WB", "[ 33] Reference data 2"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "MSF062-DATA-2-062-WB", "[ 33] Reference data 2"));
         }
 
         [Test]
@@ -125,7 +125,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.SingleLine27);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "MSF062-DATA-2-062-BA", "[ 33] Reference data 2"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "MSF062-DATA-2-062-BA", "[ 33] Reference data 2"));
         }
 
         [Test]
@@ -133,7 +133,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.MultiLine29);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "MSF062-BUDG-ACCT-CODE-BA", "[ 33] Account Code number ACCOUNT-CODE"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "MSF062-BUDG-ACCT-CODE-BA", "[ 33] Account Code number ACCOUNT-CODE"));
         }
 
         [Test]
@@ -156,7 +156,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.Property.PropertyContainingReservedWord);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("Property", "LST-CON-PICK-NO", "[ 11] Last Consolidate Picking Slip Number DB"));
+            AssertParsedUsingXml(parser, PropertyModel.Factory("Property", "LST-CON-PICK-NO", "[ 11] Last Consolidate Picking Slip Number DB"));
         }
 
         [Test]

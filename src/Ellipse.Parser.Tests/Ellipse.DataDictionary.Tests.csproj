@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="DataParserUnitTests.cs" />
     <Compile Include="Models\CobolBuilderUnitTests.cs" />
+    <Compile Include="Models\PropertyModelUnitTests.cs" />
     <Compile Include="Models\RedefinesModelUnitTests.cs" />
     <Compile Include="Models\EnumValueModelUnitTests.cs" />
     <Compile Include="Models\DataTypeModelUnitTests.cs" />

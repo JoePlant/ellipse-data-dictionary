@@ -20,7 +20,7 @@ namespace Ellipse.DataDictionary.Models
     {
         public static IBuilder Property(string name, string comment=null)
         {
-            return new ModelBuilder(CobolModel.Factory("Property", name, comment));
+            return new ModelBuilder(PropertyModel.Factory("Property", name, comment));
         }
 
         public static IBuilder DataType(string name, string comment = null)

@@ -62,7 +62,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                            {
 
                            },
-                       CobolModel.Factory
+                       PropertyModel.Factory
                     )
             {
             }

@@ -61,7 +61,7 @@ namespace Ellipse.DataDictionary.Models
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
             AssertXmlIsSame(formatter.Render(), "<Class data='Class001'  path='1'>" +
-                                                "  <Property data='PROP001' comment='Comment' path='1.1'/>" +
+                                                "  <Property name='PROP001' text='PROP001' comment='Comment' path='1.1'/>" +
                                                 "</Class>");
         }
 
@@ -72,8 +72,8 @@ namespace Ellipse.DataDictionary.Models
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
             AssertXmlIsSame(formatter.Render(), "<Class data='Class001' path='1'>" +
-                                                "  <Property data='PROP001' comment='Comment' path='1.1' />" +
-                                                "  <Property data='PROP002' comment='Comment' path='1.2' />" +
+                                                "  <Property name='PROP001' text='PROP001' comment='Comment' path='1.1' />" +
+                                                "  <Property name='PROP002' text='PROP002' comment='Comment' path='1.2' />" +
                                                 "</Class>");
         }
 
@@ -87,8 +87,8 @@ namespace Ellipse.DataDictionary.Models
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
             AssertXmlIsSame(formatter.Render(), "<Class data='Class001'  path='1'>" +
-                                                "  <Property data='PROP001' comment='Comment' path='1.1'>" +
-                                                "    <Property data='PROP002' comment='Comment' path='1.1.1' />" +
+                                                "  <Property name='PROP001' text='PROP001' comment='Comment' path='1.1'>" +
+                                                "    <Property name='PROP002' text='PROP002' comment='Comment' path='1.1.1' />" +
                                                 "  </Property>" +
                                                 "</Class>");
         }
@@ -106,13 +106,13 @@ namespace Ellipse.DataDictionary.Models
             ModelXmlFormatter formatter = new ModelXmlFormatter(model);
 
             const string expected = "<Class data='Class001' path='1'>" +
-                                    "  <Property data='PROP00A' comment='Comment' path='1.1'>" +
-                                    "    <Property data='PROP0A1' comment='Comment' path='1.1.1' />" +
-                                    "    <Property data='PROP0A2' comment='Comment' path='1.1.2' />" +
+                                    "  <Property name='PROP00A' text='PROP00A' comment='Comment' path='1.1'>" +
+                                    "    <Property name='PROP0A1' text='PROP0A1' comment='Comment' path='1.1.1' />" +
+                                    "    <Property name='PROP0A2' text='PROP0A2' comment='Comment' path='1.1.2' />" +
                                     "  </Property>" +
-                                    "  <Property data='PROP00B' comment='Comment' path='1.2'>" +
-                                    "    <Property data='PROP0B1' comment='Comment' path='1.2.1' />" +
-                                    "    <Property data='PROP0B2' comment='Comment' path='1.2.2' />" +
+                                    "  <Property name='PROP00B' text='PROP00B' comment='Comment' path='1.2'>" +
+                                    "    <Property name='PROP0B1' text='PROP0B1' comment='Comment' path='1.2.1' />" +
+                                    "    <Property name='PROP0B2' text='PROP0B2' comment='Comment' path='1.2.2' />" +
                                     "  </Property>" +
                                     "</Class>";
 
