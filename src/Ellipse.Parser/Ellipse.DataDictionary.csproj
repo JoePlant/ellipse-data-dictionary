@@ -50,6 +50,7 @@
     <Compile Include="DataParser.cs" />
     <Compile Include="IDataParser.cs" />
     <Compile Include="Models\CobolModel.cs" />
+    <Compile Include="Models\EnumValueModel.cs" />
     <Compile Include="Models\RedefinesModel.cs" />
     <Compile Include="Models\DataTypeModel.cs" />
     <Compile Include="Models\IModelFormatter.cs" />

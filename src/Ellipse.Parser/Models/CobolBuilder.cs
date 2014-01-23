@@ -30,7 +30,7 @@ namespace Ellipse.DataDictionary.Models
 
         public static IBuilder EnumValue(string name, string comment = null)
         {
-            return new ModelBuilder(new CobolModel("EnumValue", name, comment));
+            return new ModelBuilder(EnumValueModel.Factory("EnumValue", name, comment));
         }
 
         public static IBuilder Class(string name, string comment = null)
@@ -40,7 +40,7 @@ namespace Ellipse.DataDictionary.Models
 
         public static IBuilder Redefines(string name, string comment = null)
         {
-            return new ModelBuilder(new RedefinesModel("Redefines", name, comment));
+            return new ModelBuilder(RedefinesModel.Factory("Redefines", name, comment));
         }
 
         public static IBuilder Occurs(string name, string comment = null)

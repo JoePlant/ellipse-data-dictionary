@@ -12,7 +12,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.SingleLine05);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "PO-NO-ITEM VALUE 'PO'", "Purchase Order Number Item"));
+            AssertParsedUsingXml(parser, EnumValueModel.Factory("EnumValue", "PO-NO-ITEM VALUE 'PO'", "Purchase Order Number Item"));
         }
 
         [Test]
@@ -20,7 +20,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.SingleLine09);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "MIMS-CONTROL VALUE 'M'", "Indicates MIMS System Control Account"));
+            AssertParsedUsingXml(parser, EnumValueModel.Factory("EnumValue", "MIMS-CONTROL VALUE 'M'", "Indicates MIMS System Control Account"));
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.SingleLine09.Substring(2));
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "MIMS-CONTROL VALUE 'M'", "Indicates MIMS System Control Account"));
+            AssertParsedUsingXml(parser, EnumValueModel.Factory("EnumValue", "MIMS-CONTROL VALUE 'M'", "Indicates MIMS System Control Account"));
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.SingleLine11);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "EGI-TYPE VALUE 'G'", "EGI type record"));
+            AssertParsedUsingXml(parser, EnumValueModel.Factory("EnumValue", "EGI-TYPE VALUE 'G'", "EGI type record"));
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.SingleLine13);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "RES-TY VALUE 'R'", "Resource Type"));
+            AssertParsedUsingXml(parser, EnumValueModel.Factory("EnumValue", "RES-TY VALUE 'R'", "Resource Type"));
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.MultiLine05);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "TARGT-NO-AUTOGEN VALUE 'N'", "No Autogenerate Interdistrict Account\nEntries"));
+            AssertParsedUsingXml(parser, EnumValueModel.Factory("EnumValue", "TARGT-NO-AUTOGEN VALUE 'N'", "No Autogenerate Interdistrict Account\nEntries"));
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.MultiLine07);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "ERROR VALUE '0001' THRU '9999' 'A000' THRU 'Z999'", "Error"));
+            AssertParsedUsingXml(parser, EnumValueModel.Factory("EnumValue", "ERROR VALUE '0001' THRU '9999' 'A000' THRU 'Z999'", "Error"));
         }
         
         [Test]
@@ -68,7 +68,7 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
         {
             Reader reader = Reader.CreateStringReader(ExampleStrings.EnumValue.SingleLine15);
             IDataParser parser = CreateDataParser(reader);
-            AssertParsedUsingXml(parser, new CobolModel("EnumValue", "MSF062-ETP-TRAIN-PROG VALUE 'P'", "Employee Training Plan Program"));
+            AssertParsedUsingXml(parser, EnumValueModel.Factory("EnumValue", "MSF062-ETP-TRAIN-PROG VALUE 'P'", "Employee Training Plan Program"));
         }
 
         [Test]

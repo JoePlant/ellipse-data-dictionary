@@ -43,9 +43,8 @@ namespace Ellipse.DataDictionary.Parsers.Cobol
                            .Trim(),
                        new IImpliedModelParser[]
                            {
-
                            },
-                       CobolModel.Factory
+                       EnumValueModel.Factory
                     )
             {
             }
