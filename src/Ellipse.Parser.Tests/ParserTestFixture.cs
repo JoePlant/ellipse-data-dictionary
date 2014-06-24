@@ -100,12 +100,14 @@ namespace Ellipse.DataDictionary
         protected static string BuildStringModel(IList<IModel> modelList)
         {
             StringBuilder builder = new StringBuilder();
-            
+
+            string formatString = modelList.Count > 9 ? "{0:00}: {1}" : "{0:0}: {1}";
+
             int index = 0;
             foreach (IModel model in modelList)
             {
                 index++;
-                builder.AppendFormat("{0}: {1}", index, model);
+                builder.AppendFormat(formatString, index, model);
                 builder.AppendLine();
             }
             if (modelList.Count > 1)
