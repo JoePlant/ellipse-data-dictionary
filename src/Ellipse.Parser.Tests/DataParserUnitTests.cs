@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Ellipse.DataDictionary.Models;
 using Ellipse.DataDictionary.Parsers;
 using Ellipse.DataDictionary.Parsers.Cobol;
 using Ellipse.DataDictionary.Parsers.Models;
@@ -115,6 +117,33 @@ namespace Ellipse.DataDictionary
         }
 
         [Test]
+        public void HeaderSystemTests()
+        {
+            IReader reader = new FileReader(@".\Resources\DataDictionary\datadict.rpt");
+            IModelParser[] parsers = new IModelParser[] {
+                    new PageHeaderParser(),
+                    new AccessInformationParser(),
+                    new DescriptionParser(),
+                    new DetailsParser(),
+                    new ModifiedParser(),
+                    new ModuleParser(),
+                    new RecordLengthParser(),
+                    new RecordParser(),
+                    new TechnicalInformationParser(),
+                    CobolParser.CobolHierarchy(), 
+                    new IgnoreParser(), 
+                };
+            IDataParser dataParser = new DataParser(reader, parsers);
+            dataParser.Corrections = corrections;
+            dataParser.OnMissingParser = (line) =>
+            {
+                throw new InvalidOperationException("No Parser for: " + reader);
+            };
+            dataParser.Parse();
+            
+        }
+
+        [Test]
         public void HierarchySystemTests()
         {
             IReader reader = new FileReader(@".\Resources\DataDictionary\datadict.rpt");
@@ -138,6 +167,41 @@ namespace Ellipse.DataDictionary
                 throw new InvalidOperationException("No Parser for: " + reader);
             };
             dataParser.Parse();
+
+            string typename = GetType().Name;
+            string directory = Path.Combine(".", typename);
+
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            foreach (IModel model in dataParser.Results)
+            {
+                HierarchyModel hiearchyModel = model as HierarchyModel;
+                if (hiearchyModel != null)
+                {
+                    ClassModel classModel = hiearchyModel.Model as ClassModel;
+                    if (classModel != null)
+                    {
+                        ModelXmlFormatter formatter = new ModelXmlFormatter(model);
+                        string xml = formatter.Render();
+                        string objectName = classModel.Data;
+
+                        string fileName = directory + @"\" + objectName + ".xml";
+                        if (File.Exists(fileName))
+                        {
+                            File.Delete(fileName);
+                        }
+
+                        Assert.That(File.Exists(fileName), Is.False);
+                        using (StreamWriter writer = new StreamWriter(fileName))
+                        {
+                            writer.Write(xml);
+                        }
+                    }
+                }
+            }
         }
     }
 }
